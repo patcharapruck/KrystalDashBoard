@@ -23,10 +23,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LogiinActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     TextInputEditText username,password;
+
+
 
     CheckBox cbRemember;
 
@@ -113,13 +115,13 @@ public class LogiinActivity extends AppCompatActivity implements View.OnClickLis
                                 .saveLogin(user,pass,dao.getObject().getAuthentication().getAccessToken(),aBoolean);
 
 
-                        Toast.makeText(mcontext,"เข้าสู่ระบบ",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(mcontext,"เข้าสู่ระบบ",Toast.LENGTH_LONG).show();
 
-//                        if(SharedPrefUser.getInstance(mcontext).getToken().length()>0){
-//                            Intent intent = new Intent(LogInActivity.this,MainActivity.class);
-//                            finish();
-//                            startActivity(intent);
-//                        }
+                        if(SharedPrefUser.getInstance(mcontext).getToken().length()>0){
+                            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
                     }
 
                     else if (response.body().getStatusCode() == 404){
