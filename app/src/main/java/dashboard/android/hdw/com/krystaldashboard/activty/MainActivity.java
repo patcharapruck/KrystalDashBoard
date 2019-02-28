@@ -8,18 +8,23 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.fragment.DrinkFragment;
+import dashboard.android.hdw.com.krystaldashboard.fragment.HomeFragment;
+import dashboard.android.hdw.com.krystaldashboard.fragment.PRFragment;
+import dashboard.android.hdw.com.krystaldashboard.fragment.RevenueFragment;
 
 public class MainActivity extends AppCompatActivity {
-
+    TextView textView;
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_menu,menu);
+        getMenuInflater().inflate(R.menu.top_menu, menu);
         return true;
     }
 
@@ -28,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        if (id == R.id.item_logout){
-            Toast.makeText(MainActivity.this,"Logout",Toast.LENGTH_SHORT).show();
+        if (id == R.id.item_logout) {
+            Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -40,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        toolbar =findViewById(R.id.toolbar);
+        textView = findViewById(R.id.text);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -50,27 +55,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment = null;
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.item_home:
                         fragment = new HomeFragment();
-                    break;
+                        break;
                     case R.id.item_revrnue:
-
+                        fragment = new RevenueFragment();
                         break;
 
                     case R.id.item_drink:
-
+                        fragment = new DrinkFragment();
                         break;
 
                     case R.id.item_pr:
-
+                        fragment = new PRFragment();
                         break;
                 }
 
-                return false;
+                return loadFragment(fragment);
             }
         });
+bottomNavigationView.setSelectedItemId(R.id.item_home);
+
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
 
 
+        return false;
     }
 }
