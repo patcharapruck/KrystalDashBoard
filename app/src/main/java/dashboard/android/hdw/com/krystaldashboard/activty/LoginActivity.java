@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         //Toast.makeText(mcontext,"เข้าสู่ระบบ",Toast.LENGTH_LONG).show();
 
                         if(SharedPrefUser.getInstance(mcontext).getToken().length()>0){
-                            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             finish();
                             startActivity(intent);
                         }
