@@ -1,4 +1,4 @@
-package dashboard.android.hdw.com.krystaldashboard.activty;
+package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 
-public class HomeFragment extends Fragment {
+public class PRFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home,null);
+        return inflater.inflate(R.layout.fragment_pr,null);
     }
 }
