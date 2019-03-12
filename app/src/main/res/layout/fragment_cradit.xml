@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="450dp"
     android:padding="10dp"
@@ -18,44 +17,49 @@
         app:cardElevation="5dp">
 
         <RelativeLayout
-            android:padding="15dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="15dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barchart"
                     android:layout_width="match_parent"
-                    android:background="@color/colorAccent"
-                    android:layout_height="150dp">
-                </com.github.mikephil.charting.charts.BarChart>
+                    android:layout_height="150dp"></com.github.mikephil.charting.charts.BarChart>
 
                 <android.support.v7.widget.CardView
-                    android:layout_margin="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp">
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@color/bg1"/>
+                                android:src="@color/bg1" />
+
                             <TextView
                                 android:layout_width="190dp"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="left|center_vertical"
                                 android:layout_height="50dp"
+                                android:layout_marginLeft="10dp"
                                 android:fontFamily="@font/prompt_regular"
-                                android:textSize="20sp"
+                                android:gravity="left|center_vertical"
                                 android:text="ธนาคารธนชาต"
-                                />
+                                android:textSize="20sp" />
+
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="40dp"
@@ -64,43 +68,48 @@
 
                             </ImageView>
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_marginRight="25dp"
                             android:layout_height="50dp"
+                            android:layout_marginRight="25dp"
                             android:gravity="right|center_vertical"
-                            android:textSize="20sp"
-                            android:text="12312312312312"/>
+                            android:text="12312312312312"
+                            android:textSize="20sp" />
 
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:layout_margin="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp">
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@color/bg1"/>
+                                android:src="@color/bg1" />
+
                             <TextView
                                 android:layout_width="190dp"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="left|center_vertical"
                                 android:layout_height="50dp"
+                                android:layout_marginLeft="10dp"
                                 android:fontFamily="@font/prompt_regular"
-                                android:textSize="20sp"
+                                android:gravity="left|center_vertical"
                                 android:text="ธนาคารกรุงเทพ"
-                                />
+                                android:textSize="20sp" />
+
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="40dp"
@@ -109,13 +118,14 @@
 
                             </ImageView>
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_marginRight="25dp"
                             android:layout_height="50dp"
+                            android:layout_marginRight="25dp"
                             android:gravity="right|center_vertical"
-                            android:textSize="20sp"
-                            android:text="12312312312312"/>
+                            android:text="12312312312312"
+                            android:textSize="20sp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>

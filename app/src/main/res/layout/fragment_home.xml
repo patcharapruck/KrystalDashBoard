@@ -31,7 +31,7 @@
                 android:id="@+id/fragment2"
                 android:name="dashboard.android.hdw.com.krystaldashboard.fragment.DashBooardPRFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="450dp"
                 tools:layout="@layout/fragment_dash_booard_pr" />
 
             <!--_________________________graph Bank_________________________-->
