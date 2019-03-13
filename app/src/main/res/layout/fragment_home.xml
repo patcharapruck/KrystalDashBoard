@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,6 +28,14 @@
 
             <!--_________________________graph PR_________________________-->
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PR"
+                android:layout_marginLeft="5dp"
+                android:textSize="25sp" />
+
             <fragment
                 android:id="@+id/fragment2"
                 android:name="dashboard.android.hdw.com.krystaldashboard.fragment.DashBooardPRFragment"
@@ -35,6 +44,13 @@
                 tools:layout="@layout/fragment_dash_booard_pr" />
 
             <!--_________________________graph Bank_________________________-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ยอดบัตรเครดิต"
+                android:layout_marginLeft="5dp"
+                android:textSize="25sp" />
 
             <fragment
                 android:id="@+id/fragment3"
@@ -45,31 +61,19 @@
 
             <!--_________________________graph drink ________________________-->
 
-            <RelativeLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ปริมาณเครื่องดื่ม"
+                android:layout_marginLeft="5dp"
+                android:textSize="25sp" />
+
+            <fragment
+                android:id="@+id/fragment4"
+                android:name="dashboard.android.hdw.com.krystaldashboard.fragment.AmountDrinksFragment"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:padding="10dp"
-
-                >
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="5dp">
-
-                    <!--<TextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="กราฟ เครื่องดื่ม " />-->
-
-                </android.support.v7.widget.CardView>
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_amount_drinks" />
 
         </LinearLayout>
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="450dp"
-    android:padding="10dp"
     tools:context=".fragment.DashBooardPRFragment">
 
     <android.support.v7.widget.CardView
@@ -20,13 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PR"
-                android:textSize="18sp" />
 
             <!-- Doughnut chart starts here -->
             <android.support.constraint.ConstraintLayout
@@ -169,7 +161,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="0.25dp"
+                        android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:background="@color/black">
@@ -178,7 +170,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.25dp"
+                        android:layout_height="0.2dp"
                         android:layout_alignParentBottom="true"
                         android:background="@color/black">
 
@@ -231,7 +223,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="0.25dp"
+                        android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
                         android:background="@color/black">
@@ -240,7 +232,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.25dp"
+                        android:layout_height="0.2dp"
                         android:layout_alignParentBottom="true"
                         android:background="@color/black">
 
@@ -295,7 +287,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="0.25dp"
+                        android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:background="@color/black">
@@ -304,7 +296,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.25dp"
+                        android:layout_height="0.2dp"
                         android:layout_alignParentTop="true"
                         android:background="@color/black">
 
@@ -358,7 +350,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="0.25dp"
+                        android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
                         android:background="@color/black">
@@ -367,7 +359,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.25dp"
+                        android:layout_height="0.2dp"
                         android:layout_alignParentTop="true"
                         android:background="@color/black">
 

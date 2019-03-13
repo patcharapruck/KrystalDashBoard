@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="450dp"
-    android:padding="10dp"
     tools:context=".fragment.CraditFragment">
 
     <android.support.v7.widget.CardView
@@ -61,21 +60,39 @@
                                 android:textSize="20sp" />
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="30dp"
+                                android:layout_height="20dp"
                                 android:layout_gravity="center"
                                 android:src="@drawable/ic_arrow_forward_black_24dp">
 
                             </ImageView>
                         </LinearLayout>
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginRight="25dp"
-                            android:gravity="right|center_vertical"
-                            android:text="12312312312312"
-                            android:textSize="20sp" />
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_weight="1"
+                                android:gravity="right|center_vertical"
+                                android:text="12312312312312"
+                                android:layout_gravity="right"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:layout_marginRight="25dp"
+                                android:gravity="right|center_vertical"
+                                android:text="บาท"
+                                android:textSize="20sp"/>
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
@@ -111,21 +128,38 @@
                                 android:textSize="20sp" />
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="30dp"
+                                android:layout_height="20dp"
                                 android:layout_gravity="center"
                                 android:src="@drawable/ic_arrow_forward_black_24dp">
 
                             </ImageView>
                         </LinearLayout>
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginRight="25dp"
-                            android:gravity="right|center_vertical"
-                            android:text="12312312312312"
-                            android:textSize="20sp" />
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_weight="1"
+                                android:gravity="right|center_vertical"
+                                android:text="12312312312312"
+                                android:layout_gravity="right"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:layout_marginRight="25dp"
+                                android:gravity="right|center_vertical"
+                                android:text="บาท"
+                                android:textSize="20sp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
