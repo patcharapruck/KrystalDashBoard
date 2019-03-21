@@ -1,10 +1,10 @@
-package dashboard.android.hdw.com.krystaldashboard.dao.login;
+package dashboard.android.hdw.com.krystaldashboard.dto.login;
 
-public class LoginItemDao {
+public class LoginItemDto {
 
     private Long statusCode;
     private String message;
-    private LoginObjectDao object;
+    private LoginObjectDto object;
 
     public Long getStatusCode() {
         return statusCode;
@@ -22,11 +22,11 @@ public class LoginItemDao {
         this.message = message;
     }
 
-    public LoginObjectDao getObject() {
+    public LoginObjectDto getObject() {
         return object;
     }
 
-    public void setObject(LoginObjectDao object) {
+    public void setObject(LoginObjectDto object) {
         this.object = object;
     }
 }

@@ -1,6 +1,6 @@
-package dashboard.android.hdw.com.krystaldashboard.dao.login;
+package dashboard.android.hdw.com.krystaldashboard.dto.login;
 
-public class LoginAuthenticationDao {
+public class LoginAuthenticationDto {
 
     private String accessToken;
 

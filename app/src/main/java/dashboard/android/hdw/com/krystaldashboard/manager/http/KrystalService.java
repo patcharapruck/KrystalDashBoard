@@ -1,7 +1,7 @@
 package dashboard.android.hdw.com.krystaldashboard.manager.http;
 
 
-import dashboard.android.hdw.com.krystaldashboard.dao.login.LoginItemDao;
+import dashboard.android.hdw.com.krystaldashboard.dto.login.LoginItemDto;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,5 +22,5 @@ public interface KrystalService {
     Call<Object> loadAPINotPay(@Body RequestBody json);
 
     @POST("restaurant/v1/login")
-    Call<LoginItemDao> loadAPIToken(@Body RequestBody login);
+    Call<LoginItemDto> loadAPIToken(@Body RequestBody login);
 }

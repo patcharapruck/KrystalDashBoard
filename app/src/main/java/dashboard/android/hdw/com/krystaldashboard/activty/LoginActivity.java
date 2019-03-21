@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
-import dashboard.android.hdw.com.krystaldashboard.dao.login.LoginItemDao;
+import dashboard.android.hdw.com.krystaldashboard.dto.login.LoginItemDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpLoginManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefUser;
@@ -101,16 +101,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"authentication\":{\"username\":\""+user+"\",\"password\":\""+pass+"\"}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<LoginItemDao> call = HttpLoginManager.getInstance().getService().loadAPIToken(requestBody);
-        call.enqueue(new Callback<LoginItemDao>() {
+        Call<LoginItemDto> call = HttpLoginManager.getInstance().getService().loadAPIToken(requestBody);
+        call.enqueue(new Callback<LoginItemDto>() {
 
             @Override
-            public void onResponse(Call<LoginItemDao> call, Response<LoginItemDao> response) {
+            public void onResponse(Call<LoginItemDto> call, Response<LoginItemDto> response) {
 
                 if(response.isSuccessful()){
 
                     if(response.body().getStatusCode() == 200){
-                        LoginItemDao dao = response.body();
+                        LoginItemDto dao = response.body();
                         SharedPrefUser.getInstance(mcontext)
                                 .saveLogin(user,pass,dao.getObject().getAuthentication().getAccessToken(),aBoolean);
 
@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
             @Override
-            public void onFailure(Call<LoginItemDao> call, Throwable t) {
+            public void onFailure(Call<LoginItemDto> call, Throwable t) {
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
             }
         });

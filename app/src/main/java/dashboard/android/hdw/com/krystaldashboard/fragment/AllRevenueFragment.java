@@ -46,34 +46,22 @@ public class AllRevenueFragment extends Fragment {
 
         // no description text
         chart.getDescription().setEnabled(false);
-
         // enable touch gestures
         chart.setTouchEnabled(true);
-
         // enable scaling and dragging
         chart.setDragEnabled(true);
         chart.setScaleEnabled(true);
-
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false);
-
         chart.setDrawGridBackground(false);
         chart.setMaxHighlightDistance(300);
 
-
         setData(20, 10000000);
-
         chart.getAxisRight().setEnabled(false);
-
         chart.getLegend().setEnabled(false);
-
         chart.animateXY(2000, 2000);
-
         // don't forget to refresh the drawing
         chart.invalidate();
-
-
-
     }
 
     private void setData(int count, int range) {
@@ -103,7 +91,6 @@ public class AllRevenueFragment extends Fragment {
         } else {
             // create a dataset and give it a type
             set1 = new LineDataSet(values, "DataSet 1");
-
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set1.setCubicIntensity(0.2f);
             set1.setDrawFilled(true);
@@ -131,18 +118,17 @@ public class AllRevenueFragment extends Fragment {
                 chart.notifyDataSetChanged();
             } else {
                 // create a dataset and give it a type
-                set2 = new LineDataSet(values1, "DataSet 1");
-
+                set2 = new LineDataSet(values1, "DataSet 2");
                 set2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
                 set2.setCubicIntensity(0.2f);
                 set2.setDrawFilled(true);
                 set2.setDrawCircles(false);
                 set2.setLineWidth(1.8f);
                 set2.setCircleRadius(4f);
-                set2.setCircleColor(Color.BLACK);
+                set2.setCircleColor(Color.WHITE);
                 set2.setHighLightColor(Color.rgb(244, 117, 117));
-                set2.setColor(Color.BLACK);
-                set2.setFillColor(Color.parseColor("#B45084"));
+                set2.setColor(Color.WHITE);
+                set2.setFillColor(Color.parseColor("#479FF8"));
                 set2.setFillAlpha(100);
                 set2.setDrawHorizontalHighlightIndicator(false);
                 set2.setFillFormatter(new IFillFormatter() {
@@ -152,7 +138,6 @@ public class AllRevenueFragment extends Fragment {
                     }
                 });
             }
-
             // create a data object with the data sets
             LineData data = new LineData(set1, set2);
             data.setValueTextSize(9f);
