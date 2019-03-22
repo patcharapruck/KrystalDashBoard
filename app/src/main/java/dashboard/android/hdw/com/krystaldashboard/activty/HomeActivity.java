@@ -258,8 +258,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).saveDateFull(fulldate);
 
                 reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
-                reqAPIpay(datecalendat2);
-                reqAPInotpay(datecalendat2);
+//                reqAPIpay(datecalendat2);
+//                reqAPInotpay(datecalendat2);
 
                 SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                         .saveDateCalendar(dayOfMonth,month,year);
