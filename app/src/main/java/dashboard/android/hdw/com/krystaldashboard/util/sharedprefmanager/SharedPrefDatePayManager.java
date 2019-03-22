@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 public class SharedPrefDatePayManager {
 
+
     private static SharedPrefDatePayManager mInstance;
     private static Context mCtx;
 
@@ -65,5 +66,7 @@ public class SharedPrefDatePayManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PAY, Context.MODE_PRIVATE);
         return sharedPreferences.getLong(KEY_NOTPAY,0);
     }
+
+
 
 }

@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -116,6 +117,40 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getDateTime() {
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+        DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH);
+
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        Calendar calendartoday = Calendar.getInstance();
+
+        calendar.setTime(date);
+        calendartoday.setTime(date);
+
+        calendar.add(Calendar.DATE,-1);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int year = calendar.get(Calendar.YEAR);
+
+        String formatDateTime = dateFormat.format(calendar.getTime());
+        String formatDateTime2 = dateFormat2.format(calendar.getTime());
+        String formatDateTimetoday = dateFormat.format(calendartoday.getTime());
+        String formatDategeneral = dateFormatth.format(calendar.getTime());
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDatereq(formatDateTime,formatDateTime2);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDateMax(formatDateTimetoday);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDateFull(formatDategeneral);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDateCalendar(day,month,year);
+
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -210,14 +245,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if (dayOfMonth < 10){
                     dd = "0"+dayOfMonth;
                 }
-                String datecalendat;
-                datehome.setText(year+ "/" + mm + "/" +dd);
+                String datecalendat, datecalendat2;
+                String fulldate;
+                datehome.setText(dd+ "/" + mm + "/" +year);
                 datecalendat = year+ "/" + mm + "/" +dd;
+                datecalendat2 = year+ "-" + mm + "-" +dd;
+                fulldate = dd+ "/" + mm + "/" +year;
 
                 SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
-                        .saveDatereq(datecalendat);
+                        .saveDatereq(datecalendat,datecalendat2);
+
+                SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).saveDateFull(fulldate);
 
                 reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
+                reqAPIpay(datecalendat2);
+                reqAPInotpay(datecalendat2);
 
                 SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                         .saveDateCalendar(dayOfMonth,month,year);
@@ -225,21 +267,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         },year,month-1,day);
 
-        Calendar c = Calendar.getInstance(Locale.ENGLISH);
-        c.add(Calendar.DATE,-1);
-        Date date = c.getTime();
+        Date date = null;
         Date d = null;
         String oldDateString = "2019/01/06";
+        String NewDateString = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDate();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
         try {
             d = sdf.parse(oldDateString);
+            date = sdf.parse(NewDateString);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         dialog.show();
         dialog.getDatePicker().setMinDate(d.getTime());
         dialog.getDatePicker().setMaxDate(date.getTime());
+
     }
 
     @Override
