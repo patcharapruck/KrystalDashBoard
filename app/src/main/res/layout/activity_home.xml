@@ -42,6 +42,12 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <Button
+        android:id="@+id/datehome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"/>
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_marginTop="@dimen/h_tool_bar"

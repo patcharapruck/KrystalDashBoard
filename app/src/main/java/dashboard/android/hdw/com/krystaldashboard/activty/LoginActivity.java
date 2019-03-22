@@ -61,6 +61,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             username.setText(SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).getUsername());
             password.setText(SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).getPassword());
         }
+
+
+        if(SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).getToken().length()>0){
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            finish();
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -93,6 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Boolean aBoolean = cbRemember.isChecked();
 
             reqLogin(user,pass,aBoolean);
+
         }
     }
 
@@ -115,9 +123,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 .saveLogin(user,pass,dao.getObject().getAuthentication().getAccessToken(),aBoolean);
 
 
-                        //Toast.makeText(mcontext,"เข้าสู่ระบบ",Toast.LENGTH_LONG).show();
-
-                        if(SharedPrefUser.getInstance(mcontext).getToken().length()>0){
+                        if(SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).getToken().length()>0){
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             finish();
                             startActivity(intent);

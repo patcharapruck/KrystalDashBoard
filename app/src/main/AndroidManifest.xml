@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activty.LoginActivity"></activity>
+        <activity android:name=".activty.HomeActivity"></activity>
         <activity
-            android:name=".activty.HomeActivity"
+            android:name=".activty.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
