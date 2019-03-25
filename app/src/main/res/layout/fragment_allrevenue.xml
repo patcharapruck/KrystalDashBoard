@@ -1,200 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="500dp">
+    android:layout_height="340dp">
 
-        <android.support.v7.widget.CardView
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="1dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_margin="5dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp">
+            android:orientation="vertical"
+            android:padding="10dp">
 
+            <!--_____graph_____-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="117dp"
+                android:orientation="vertical">
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/linechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </com.github.mikephil.charting.charts.LineChart>
+            </LinearLayout>
+            <!--_____money______-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp">
-                <!-- botton -->
-                <!--<LinearLayout-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_gravity="right"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <!--<Button-->
-                        <!--android:layout_width="70dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:fontFamily="@font/prompt_regular"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="7 day"-->
-                        <!--android:textSize="10sp" />-->
-
-                    <!--<Button-->
-                        <!--android:layout_width="70dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:fontFamily="@font/prompt_regular"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="2 week"-->
-                        <!--android:textSize="10sp" />-->
-
-                    <!--<Button-->
-                        <!--android:layout_width="70dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:fontFamily="@font/prompt_regular"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="3 week"-->
-                        <!--android:textSize="10sp" />-->
-
-                <!--</LinearLayout>-->
-                <!--_____graph_____-->
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+<!--รายรับทั้งหมด-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="1dp"
                     android:orientation="vertical">
 
-                    <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/linechart"
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="28dp"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="center"
+                        android:text="รายรับทั้งหมด"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
 
-                    </com.github.mikephil.charting.charts.LineChart>
-                </LinearLayout>
-                <!--_____money______-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
+                    <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginBottom="1dp"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="6dp"
+                        android:elevation="5dp"
+                        app:cardCornerRadius="2dp">
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:fontFamily="@font/prompt_regular"
-                            android:gravity="center"
-                            android:text="รายรับทั้งหมด"
-                            android:textColor="#000000"
-                            android:textSize="12sp" />
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="10dp"
-                            android:elevation="15dp"
-                            app:cardCornerRadius="5dp">
+                            android:fontFamily="@font/prompt_medium"
+                            android:gravity="center"
+                            android:text="1234567890"
+                            android:textColor="#000000"
+                            android:textSize="24sp" />
+                    </android.support.v7.widget.CardView>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/prompt_regular"
-                                android:gravity="center"
-                                android:text="1234567890"
-                                android:textColor="#000000"
-                                android:textSize="20sp" />
-                        </android.support.v7.widget.CardView>
+                </LinearLayout>
 
-                    </LinearLayout>
 
-                    <android.support.v7.widget.GridLayout
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:columnCount="2"
-                        app:columnOrderPreserved="false"
-                        app:rowCount="1">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="58dp">
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="2dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginBottom="2dp"
-                                android:orientation="horizontal"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
                                 android:weightSum="2">
 
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="0dp"
+                                <TextView
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:elevation="15dp"
-                                    app:cardCornerRadius="5dp">
+                                    android:layout_marginLeft="5dp"
+                                    android:fontFamily="@font/prompt_regular"
+                                    android:text="รายรับจริง"
+                                    android:textColor="#000000" />
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:fontFamily="@font/prompt_regular"
-                                        android:gravity="center"
-                                        android:text="รายรับจริง"
-                                        android:textColor="#000000" />
-
-                                </android.support.v7.widget.CardView>
-
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="0dp"
+                                <TextView
+                                    android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:elevation="15dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <android.support.v7.widget.GridLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="50dp"
-                                        app:columnCount="2"
-                                        app:rowCount="1">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_margin="0dp"
-                                            android:orientation="horizontal"
-                                            android:padding="5dp"
-                                            android:weightSum="2">
-
-                                            <TextView
-                                                android:layout_width="0dp"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:fontFamily="@font/prompt_regular"
-                                                android:gravity="center"
-                                                android:text="เครื่องดื่ม"
-                                                android:textColor="#000000" />
-
-                                            <TextView
-                                                android:layout_width="0dp"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:fontFamily="@font/prompt_regular"
-                                                android:gravity="center"
-                                                android:text="เครื่องดื่ม"
-                                                android:textColor="#000000" />
-
-                                        </LinearLayout>
-
-                                    </android.support.v7.widget.GridLayout>
-
-                                </android.support.v7.widget.CardView>
+                                    android:layout_marginRight="5dp"
+                                    android:fontFamily="@font/prompt_regular"
+                                    android:gravity="right"
+                                    android:text="รายรับจริง"
+                                    android:textColor="#000000" />
                             </LinearLayout>
 
-                        </RelativeLayout>
 
 
-                    </android.support.v7.widget.GridLayout>
-                </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                android:weightSum="2">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_marginLeft="5dp"
+                                    android:fontFamily="@font/prompt_regular"
+                                    android:text="รายรับจริง"
+                                    android:textColor="#000000" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_marginRight="5dp"
+                                    android:fontFamily="@font/prompt_regular"
+                                    android:gravity="right"
+                                    android:text="รายรับจริง"
+                                    android:textColor="#000000" />
+
+
+                            </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
             </LinearLayout>
+        </LinearLayout>
 
 
-        </android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
 
-    </RelativeLayout>
+</RelativeLayout>
