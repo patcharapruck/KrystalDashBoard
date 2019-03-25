@@ -2,6 +2,7 @@ package dashboard.android.hdw.com.krystaldashboard.dto;
 
 public class ObjectListItemDto {
 
+    private Long id;
     private Float cashPayments;
     private Float creditPayments;
     private Float creditCardPayments;
