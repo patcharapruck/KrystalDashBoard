@@ -40,6 +40,7 @@
                         android:textSize="20sp"/>
 
                     <TextView
+                        android:id="@+id/textview_total_amount_drinks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="110"
@@ -87,6 +88,7 @@
                             android:layout_weight="1.5"/>
 
                         <TextView
+                            android:id="@+id/textview_buy_amount_drinks"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="25"
@@ -113,6 +115,7 @@
                             android:layout_weight="1.5"/>
 
                         <TextView
+                            android:id="@+id/textview_purchase_amount_drinks"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="79"
@@ -139,6 +142,7 @@
                             android:layout_weight="1.5"/>
 
                         <TextView
+                            android:id="@+id/textview_entertain_amount_drinks"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="6"

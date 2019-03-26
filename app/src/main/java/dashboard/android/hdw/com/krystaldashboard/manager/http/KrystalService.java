@@ -3,6 +3,8 @@ package dashboard.android.hdw.com.krystaldashboard.manager.http;
 
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.login.LoginItemDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,10 +19,10 @@ public interface KrystalService {
     Call<Object> loadAPIcompare(@Body RequestBody json);
 
     @POST("restaurant/v1/invoicedocument/search")
-    Call<Object> loadAPIPay(@Body RequestBody json);
+    Call<PayItemColleationDto> loadAPIPay(@Body RequestBody json);
 
     @POST("restaurant/v1/invoicedocument/search")
-    Call<Object> loadAPINotPay(@Body RequestBody json);
+    Call<NotPayItemColleationDto> loadAPINotPay(@Body RequestBody json);
 
     @POST("restaurant/v1/login")
     Call<LoginItemDto> loadAPIToken(@Body RequestBody login);
