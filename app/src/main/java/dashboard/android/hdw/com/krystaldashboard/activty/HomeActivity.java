@@ -76,6 +76,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initInstances();
+    }
+
+    private void initInstances() {
+
         textView = findViewById(R.id.text);
         toolbar = findViewById(R.id.toolbar);
 
@@ -86,33 +91,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        bottomNavigationView = findViewById(R.id.bottom_nav_view);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment = null;
-                switch (menuItem.getItemId()) {
-                    case R.id.item_home:
-                        fragment = new HomeFragment();
-                        break;
-                    case R.id.item_revrnue:
-                        fragment = new RevenueFragment();
-                        break;
-
-                    case R.id.item_drink:
-                        fragment = new DrinkFragment();
-                        break;
-
-                    case R.id.item_pr:
-                        fragment = new PRFragment();
-                        break;
-                }
-
-                return loadFragment(fragment);
-            }
-        });
-            bottomNavigationView.setSelectedItemId(R.id.item_home);
 
     }
 
@@ -167,7 +145,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
     }
 
     @Override
@@ -178,6 +155,35 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+
+        bottomNavigationView = findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment = null;
+                switch (menuItem.getItemId()) {
+                    case R.id.item_home:
+                        fragment = new HomeFragment();
+                        break;
+                    case R.id.item_revrnue:
+                        fragment = new RevenueFragment();
+                        break;
+
+                    case R.id.item_drink:
+                        fragment = new DrinkFragment();
+                        break;
+
+                    case R.id.item_pr:
+                        fragment = new PRFragment();
+                        break;
+                }
+
+                return loadFragment(fragment);
+            }
+        });
+        bottomNavigationView.setSelectedItemId(R.id.item_home);
+        Toast.makeText(Contextor.getInstance().getmContext(),"AAAAA",Toast.LENGTH_LONG).show();
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
     }
 
     @Override
@@ -186,18 +192,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void reqAPI(String date) {
-
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
         Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
         call.enqueue(new Callback<DashBoardDto>() {
-
             @Override
             public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
-
                 String aa = String.valueOf(response.raw().code());
-
                 if(response.isSuccessful()){
                     DashBoardDto dao = response.body();
                     DashBoradManager.getInstance().setDao(dao);
@@ -219,12 +221,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
             @Override
             public void onFailure(Call<DashBoardDto> call, Throwable t) {
-
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
-
             }
         });
     }
+
+
 
     private void setDateDialog() {
 
