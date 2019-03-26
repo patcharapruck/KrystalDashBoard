@@ -41,6 +41,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/creditA"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal">
@@ -60,6 +61,7 @@
                                 android:textSize="20sp" />
 
                             <ImageView
+                                android:id="@+id/creditA_img"
                                 android:layout_width="30dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="center"
@@ -109,6 +111,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/creditB"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal">
@@ -128,6 +131,7 @@
                                 android:textSize="20sp" />
 
                             <ImageView
+                                android:id="@+id/creditB_img"
                                 android:layout_width="30dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="center"

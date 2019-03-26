@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -18,11 +20,10 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.fragment.dialogfragment.DialogCraditFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class CraditFragment extends Fragment {
+
+public class CraditFragment extends Fragment implements View.OnClickListener {
 
 
     BarChart barChart;
@@ -41,6 +42,9 @@ public class CraditFragment extends Fragment {
             unipayts, unipayks,
             visats, visaks;
 
+    LinearLayout creditA,creditB;
+    Button creditABtn,creditBBtn;
+
     public CraditFragment() {
         // Required empty public constructor
     }
@@ -57,6 +61,12 @@ public class CraditFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
+
+        creditA = (LinearLayout) rootView.findViewById(R.id.creditA);
+        creditB = (LinearLayout) rootView.findViewById(R.id.creditB);
+
+        creditA.setOnClickListener(this);
+        creditB.setOnClickListener(this);
 
         barChart = rootView.findViewById(R.id.barchart);
 
@@ -139,4 +149,16 @@ public class CraditFragment extends Fragment {
         return barBnk2;
     }
 
+    @Override
+    public void onClick(View v) {
+
+        if(v == creditA){
+            DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
+            dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
+        }
+
+        if(v == creditB){
+
+        }
+    }
 }
