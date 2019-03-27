@@ -78,6 +78,11 @@
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_amount_drinks" />
 
+           <!--___________________________-graph  table-____________________________-->
+
+
+
+
         </LinearLayout>
 
     </ScrollView>
