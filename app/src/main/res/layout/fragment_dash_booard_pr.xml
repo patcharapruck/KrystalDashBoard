@@ -110,6 +110,7 @@
                 app:alignmentMode="alignMargins"
                 app:columnCount="2"
                 app:columnOrderPreserved="false"
+                android:padding="15dp"
                 app:rowCount="2">
 
                 <RelativeLayout
@@ -141,7 +142,7 @@
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_onfloor">
 
@@ -164,7 +165,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -172,7 +173,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentBottom="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
                 </RelativeLayout>
@@ -226,7 +227,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -234,7 +235,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentBottom="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -268,7 +269,7 @@
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_run">
 
@@ -290,7 +291,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -298,7 +299,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentTop="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -353,7 +354,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -361,7 +362,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentTop="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
