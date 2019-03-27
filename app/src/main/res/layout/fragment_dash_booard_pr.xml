@@ -137,8 +137,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:fontFamily="@font/prompt_bold"
                                 android:text="On Floor ทั้งหมด"
-                                android:textSize="20sp" />
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -200,11 +201,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="ว่าง"
-                                android:textSize="20sp" />
+                                android:fontFamily="@font/prompt_bold"
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_empty">
 
@@ -265,7 +267,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="รันดื่มอยู่"
-                                android:textSize="20sp" />
+                                android:fontFamily="@font/prompt_bold"
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -327,12 +330,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/prompt_bold"
                                 android:text="ไม่มีดื่ม"
-                                android:textSize="20sp" />
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_none">
 

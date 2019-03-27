@@ -18,5 +18,9 @@
         android:id="@+id/item_pr"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="PR"/>
+    <item
+        android:id="@+id/item_table"
+        android:icon="@drawable/ic_weekend_black_24dp"
+        android:title="โต๊ะ"/>
 
 </menu>
