@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
+    android:layout_height="350dp"
     tools:context=".fragment.CraditFragment">
 
     <android.support.v7.widget.CardView
@@ -28,43 +28,45 @@
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barchart"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"></com.github.mikephil.charting.charts.BarChart>
+                    android:layout_height="100dp"></com.github.mikephil.charting.charts.BarChart>
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:padding="10dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/creditA"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="25dp"
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:src="@color/bg1" />
 
                             <TextView
                                 android:layout_width="190dp"
-                                android:layout_height="50dp"
+                                android:layout_height="24dp"
                                 android:layout_marginLeft="10dp"
-                                android:fontFamily="@font/prompt_regular"
+                                android:fontFamily="@font/prompt_bold"
                                 android:gravity="left|center_vertical"
                                 android:text="ธนาคารธนชาต"
-                                android:textSize="20sp" />
+                                android:textColor="@color/bank_Tana"
+                                android:textSize="16sp" />
 
                             <ImageView
                                 android:id="@+id/creditA_img"
                                 android:layout_width="30dp"
                                 android:layout_height="20dp"
-                                android:layout_gravity="center"
+                                android:gravity="right"
                                 android:src="@drawable/ic_arrow_forward_black_24dp">
 
                             </ImageView>
@@ -102,33 +104,35 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:padding="10dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/creditB"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="25dp"
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:src="@color/bg1" />
 
                             <TextView
                                 android:layout_width="190dp"
-                                android:layout_height="50dp"
+                                android:layout_height="24dp"
                                 android:layout_marginLeft="10dp"
-                                android:fontFamily="@font/prompt_regular"
+                                android:fontFamily="@font/prompt_bold"
                                 android:gravity="left|center_vertical"
                                 android:text="ธนาคารกรุงเทพ"
-                                android:textSize="20sp" />
+                                android:textColor="@color/bank_krungtap"
+                                android:textSize="16sp"/>
 
                             <ImageView
                                 android:id="@+id/creditB_img"

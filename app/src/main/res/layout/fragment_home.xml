@@ -33,8 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PR"
+                android:fontFamily="@font/prompt_medium"
                 android:layout_marginLeft="5dp"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
 
             <fragment
                 android:id="@+id/fragment2"
@@ -49,8 +50,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ยอดบัตรเครดิต"
+                android:fontFamily="@font/prompt_medium"
                 android:layout_marginLeft="5dp"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
 
             <fragment
                 android:id="@+id/fragment3"
@@ -65,8 +67,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ปริมาณเครื่องดื่ม"
+                android:fontFamily="@font/prompt_medium"
                 android:layout_marginLeft="5dp"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
 
             <fragment
                 android:id="@+id/fragment4"
