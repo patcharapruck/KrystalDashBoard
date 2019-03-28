@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
+    android:layout_height="350dp"
     tools:context=".fragment.DashBooardPRFragment">
 
     <android.support.v7.widget.CardView
@@ -15,366 +15,317 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+          <!--chart pr-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:orientation="vertical">
 
-            <!-- Doughnut chart starts here -->
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <!-- ProgressBar that represents a total of 100% -->
-                <ProgressBar
-                    android:id="@+id/background_progressbar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="200dp"
-                    android:layout_height="204dp"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="100"
-                    android:progressDrawable="@drawable/stats_full"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
-                <ProgressBar
-                    android:id="@+id/stats_progressbar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="200dp"
-                    android:layout_height="204dp"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="60"
-                    android:progressDrawable="@drawable/stats_progress"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ProgressBar
-                    android:id="@+id/stats_progressbar2"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="200dp"
-                    android:layout_height="204dp"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="30"
-                    android:progressDrawable="@drawable/stats_progress2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ProgressBar
-                    android:id="@+id/stats_progressbar3"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="200dp"
-                    android:layout_height="204dp"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="10"
-                    android:progressDrawable="@drawable/stats_progress3"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <!-- The text that goes in a center of the chart -->
-                <TextView
-                    android:id="@+id/number_of_calories"
+                <!-- Doughnut chart starts here -->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraintLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1500/2000"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+                    android:layout_gravity="center">
 
-            <android.support.v7.widget.GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                    <!-- ProgressBar that represents a total of 100% -->
+                    <ProgressBar
+                        android:id="@+id/background_progressbar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="204dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="100"
+                        android:progressDrawable="@drawable/stats_full"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
+                    <ProgressBar
+                        android:id="@+id/stats_progressbar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="204dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="60"
+                        android:progressDrawable="@drawable/stats_progress"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/stats_progressbar2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="204dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="30"
+                        android:progressDrawable="@drawable/stats_progress2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/stats_progressbar3"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="204dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="10"
+                        android:progressDrawable="@drawable/stats_progress3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- The text that goes in a center of the chart -->
+                    <TextView
+                        android:id="@+id/number_of_calories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="134"
+                        android:textSize="24sp"
+                        android:textColor="#232425"
+                        android:fontFamily="@font/prompt_bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:weightSum="2.01">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:weightSum="2.01">
+
+            <LinearLayout
                 android:layout_weight="1"
-                app:alignmentMode="alignMargins"
-                app:columnCount="2"
-                app:columnOrderPreserved="false"
-                android:padding="15dp"
-                app:rowCount="2">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-                <RelativeLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/prompt_bold"
+                    android:text="On Floor ทั้งหมด"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="25dp"
+
+                    android:textColor="#232425"
+                    android:textSize="13sp" />
+
+                <View
+                    android:layout_width="104dp"
+                    android:layout_height="1.5dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#007AFF">
+
+                </View>
+
+                <TextView
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:text="134"
+                    android:textColor="#909090"
+                    android:textSize="28sp" />
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_weight="0.004"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_alignParentBottom="true"
+                android:background="#5D5D5D">
+
+            </View>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/prompt_bold"
+                    android:text="ว่าง"
+                    android:layout_marginLeft="25dp"
+                    android:textColor="#232425"
+                    android:textSize="13sp" />
+
+                <View
+                    android:layout_width="22dp"
+                    android:layout_height="1.5dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFC108">
+
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:gravity="left"
+                    android:text="122"
+                    android:textColor="#909090"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+            <View
+                android:layout_weight="0.01"
+                android:layout_width="match_parent"
+                android:layout_height="0.004dp"
+                android:layout_gravity="center"
+                android:background="#5D5D5D">
+
+            </View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="2.01">
+
+                <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:fontFamily="@font/prompt_bold"
+                        android:layout_marginRight="25dp"
+                        android:text="รันดื่มอยู่"
+                        android:layout_gravity="right"
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="right">
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:fontFamily="@font/prompt_bold"
-                                android:text="On Floor ทั้งหมด"
-                                android:textSize="15sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_alignParentBottom="true"
-                                android:background="@color/pr_onfloor">
-
-                            </View>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:text="134"
-                            android:textSize="35sp"
-                            android:textColor="@color/pr_onfloor"/>
-
-
-                    </LinearLayout>
+                        android:textColor="#232425"
+                        android:textSize="13sp" />
 
                     <View
-                        android:layout_width="0.2dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:background="#909090">
-
-                    </View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.2dp"
+                        android:layout_width="50dp"
+                        android:layout_height="1.5dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="25dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#909090">
+                        android:background="#06B085">
 
                     </View>
-                </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="ว่าง"
-                                android:fontFamily="@font/prompt_bold"
-                                android:textSize="15sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_alignParentBottom="true"
-                                android:background="@color/pr_empty">
-
-                            </View>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:text="122"
-                            android:textColor="@color/pr_empty"
-                            android:textSize="35sp" />
+                        android:layout_gravity="right"
+                        android:layout_marginRight="25dp"
+                        android:gravity="right"
+                        android:text="0"
+                        android:textColor="#909090"
+                        android:textSize="28sp" />
 
 
-                    </LinearLayout>
+
+                </LinearLayout>
+                <View
+                    android:layout_weight="0.004"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_alignParentBottom="true"
+                    android:background="#5D5D5D">
+
+                </View>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/prompt_bold"
+                        android:text="ไม่มีดื่ม"
+                        android:layout_marginLeft="25dp"
+                        android:textColor="#232425"
+                        android:textSize="13sp" />
 
                     <View
-                        android:layout_width="0.2dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        android:background="#909090">
+                        android:layout_width="39dp"
+                        android:layout_height="1.5dp"
+                        android:layout_marginLeft="25dp"
 
-                    </View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.2dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#909090">
+                        android:background="#EF483E">
 
                     </View>
 
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="right">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="รันดื่มอยู่"
-                                android:fontFamily="@font/prompt_bold"
-                                android:textSize="15sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_alignParentBottom="true"
-                                android:background="@color/pr_run">
-
-                            </View>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:text="0"
-                                android:textSize="35sp"
-                                android:textColor="@color/pr_run"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="0.2dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:background="#909090">
-
-                    </View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.2dp"
-                        android:layout_alignParentTop="true"
-                        android:background="#909090">
-
-                    </View>
+                        android:layout_marginLeft="25dp"
+                        android:gravity="left"
+                        android:text="12"
+                        android:textColor="#909090"
+                        android:textSize="28sp" />
 
 
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
+            </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/prompt_bold"
-                                android:text="ไม่มีดื่ม"
-                                android:textSize="15sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_alignParentBottom="true"
-                                android:background="@color/pr_none">
-
-                            </View>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="left"
-                                android:text="12"
-                                android:textSize="35sp"
-                                android:textColor="@color/pr_none"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="0.2dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        android:background="#909090">
-
-                    </View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.2dp"
-                        android:layout_alignParentTop="true"
-                        android:background="#909090">
-
-                    </View>
-
-
-                </RelativeLayout>
-
-
-            </android.support.v7.widget.GridLayout>
+        </LinearLayout>
 
         </LinearLayout>
 
