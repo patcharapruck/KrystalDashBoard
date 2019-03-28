@@ -51,17 +51,16 @@
                         android:fontFamily="@font/prompt_medium"
                         android:gravity="center_horizontal"
                         android:text="รายรับทั้งหมด"
-                        android:textColor="#909090"
+                        android:textColor="#212428"
                         android:textSize="18sp" />
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="36dp"
+                        app:cardCornerRadius="18dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:layout_marginBottom="6dp"
-                        android:elevation="0.5dp"
-                        app:cardCornerRadius="2dp">
+                        android:background="@drawable/border_shadow">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -69,7 +68,7 @@
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="center_vertical|center"
                             android:text="1,234,567,890"
-                            android:textColor="#909090"
+                            android:textColor="#212428"
                             android:textSize="24sp" />
                     </android.support.v7.widget.CardView>
 
@@ -115,9 +114,9 @@
                                           android:layout_height="match_parent"                                          
                                           android:layout_marginLeft="5dp"
                                           android:gravity="center_vertical"
-                                          android:fontFamily="@font/prompt_regular"
+                                          android:fontFamily="@font/prompt_medium"
                                           android:text="รายรับจริง"
-                                          android:textColor="#909090" />
+                                          android:textColor="#212428" />
                                   </LinearLayout>  
                                   
 
@@ -126,10 +125,10 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:layout_marginRight="5dp"
-                                    android:fontFamily="@font/prompt_regular"
+                                    android:fontFamily="@font/prompt_medium"
                                     android:gravity="right"
                                     android:text="12,000,000"
-                                    android:textColor="#01A431" />
+                                    android:textColor="#212428" />
                             </LinearLayout>
 <!--ค้าวชำระ-->
                             <LinearLayout
@@ -157,9 +156,9 @@
                                         android:layout_height="match_parent"
                                         android:layout_marginLeft="5dp"
                                         android:gravity="center_vertical"
-                                        android:fontFamily="@font/prompt_regular"
+                                        android:fontFamily="@font/prompt_medium"
                                         android:text="ค้างชำระ"
-                                        android:textColor="#909090" />
+                                        android:textColor="#B14242" />
                                 </LinearLayout>
 
                                 <TextView
@@ -167,7 +166,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:layout_marginRight="5dp"
-                                    android:fontFamily="@font/prompt_regular"
+                                    android:fontFamily="@font/prompt_medium"
                                     android:gravity="right"
                                     android:text="1,002,000"
                                     android:textColor="#B14242" />
