@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/h_tool_bar"
-        android:background="@color/design_default_color_primary_dark"
+        android:background="#19237E"
         app:menu="@menu/top_menu"
 
         >
@@ -21,18 +21,13 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="66dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_action_logo"
-                android:layout_gravity="center"/>
             <TextView
                 android:layout_marginLeft="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Krystal"
-                android:textSize="20sp"
-                android:fontFamily="@font/prompt_medium"
+                android:text="Krystal Dashboard"
+                android:textSize="18dp"
+                android:fontFamily="@font/plantagenet_cherokee"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
                 />

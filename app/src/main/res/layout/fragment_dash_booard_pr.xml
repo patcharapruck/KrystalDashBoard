@@ -110,6 +110,7 @@
                 app:alignmentMode="alignMargins"
                 app:columnCount="2"
                 app:columnOrderPreserved="false"
+                android:padding="15dp"
                 app:rowCount="2">
 
                 <RelativeLayout
@@ -136,12 +137,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:fontFamily="@font/prompt_bold"
                                 android:text="On Floor ทั้งหมด"
-                                android:textSize="20sp" />
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_onfloor">
 
@@ -164,7 +166,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -172,7 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentBottom="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
                 </RelativeLayout>
@@ -199,11 +201,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="ว่าง"
-                                android:textSize="20sp" />
+                                android:fontFamily="@font/prompt_bold"
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_empty">
 
@@ -226,7 +229,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -234,7 +237,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentBottom="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -264,11 +267,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="รันดื่มอยู่"
-                                android:textSize="20sp" />
+                                android:fontFamily="@font/prompt_bold"
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_run">
 
@@ -290,7 +294,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -298,7 +302,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentTop="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -326,12 +330,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/prompt_bold"
                                 android:text="ไม่มีดื่ม"
-                                android:textSize="20sp" />
+                                android:textSize="15sp" />
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="1.5dp"
                                 android:layout_alignParentBottom="true"
                                 android:background="@color/pr_none">
 
@@ -353,7 +358,7 @@
                         android:layout_width="0.2dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 
@@ -361,7 +366,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.2dp"
                         android:layout_alignParentTop="true"
-                        android:background="@color/black">
+                        android:background="#909090">
 
                     </View>
 

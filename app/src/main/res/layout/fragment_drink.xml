@@ -15,62 +15,147 @@
             android:layout_margin="5dp"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="5dp"
-                android:orientation="vertical">
-
+                android:layout_height="180dp"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
                 <android.support.v7.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/bg1"
-                    app:cardCornerRadius="50dp">
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/bg1">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="1.Black label"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="left|center_vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="horizontal"
+                        android:background="@color/white"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="bottom"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:src="@mipmap/testimg"
+                            />
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_margin="5dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="ซื้อ"
+                                android:fontFamily="@font/prompt_medium"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="left|center_vertical"
+                                android:textSize="13dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:text="123"
+                                android:fontFamily="@font/prompt_regular"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="right|center_vertical"
+                                android:textSize="13dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:text="เบิกใช้"
+                                android:fontFamily="@font/prompt_medium"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="left|center_vertical"
+                                android:textSize="13dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:text="2"
+                                android:fontFamily="@font/prompt_regular"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="right|center_vertical"
+                                android:textSize="13dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:text="Entertain"
+                                android:fontFamily="@font/prompt_medium"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="left|center_vertical"
+                                android:textSize="13dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:text="9"
+                                android:fontFamily="@font/prompt_regular"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="right|center_vertical"
+                                android:textSize="13dp"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/bg1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:background="@color/white"
+                        android:layout_margin="5dp"
+                        android:weightSum="2">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="ยังไม่ได้ทำ รอก่อนนะ ยังคิดไม่ออก"
+                            android:fontFamily="@font/prompt_medium"
+                            android:gravity="left|center_vertical"/>
+
+
+                    </LinearLayout>
+
+
 
                 </android.support.v7.widget.CardView>
 
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/bg1"
-                    app:cardCornerRadius="50dp"></android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/bg1"
-                    app:cardCornerRadius="50dp"></android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/bg1"
-                    app:cardCornerRadius="50dp"></android.support.v7.widget.CardView>
 
 
             </LinearLayout>
+
+
+
+
 
 
                 <LinearLayout

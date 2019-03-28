@@ -32,6 +32,7 @@ import dashboard.android.hdw.com.krystaldashboard.fragment.DrinkFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.HomeFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.PRFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.RevenueFragment;
+import dashboard.android.hdw.com.krystaldashboard.fragment.TableFragment;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
@@ -179,6 +180,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                     case R.id.item_pr:
                         fragment = new PRFragment();
+                        break;
+                    case R.id.item_table:
+                        fragment = new TableFragment();
                         break;
                 }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
+    android:layout_height="380dp"
     tools:context=".fragment.CraditFragment">
 
     <android.support.v7.widget.CardView
@@ -18,7 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="15dp">
+            android:layout_margin="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -28,7 +28,43 @@
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barchart"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"></com.github.mikephil.charting.charts.BarChart>
+                    android:layout_height="97dp">
+                </com.github.mikephil.charting.charts.BarChart>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="27dp"
+                       android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/prompt_medium"
+                        android:text="ยอดบัตรเครดิตทั้งหมด"
+                        android:textSize="16dp"
+                        android:gravity="center"
+                        android:textColor="#212428"
+                        />
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        app:cardCornerRadius="18dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/border_shadow"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="2,543,960.00 บาท"
+                            android:gravity="center_vertical|center"
+                            android:textColor="#212428"
+                            android:textSize="24sp"
+                            android:fontFamily="@font/prompt_medium"/>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -43,131 +79,206 @@
                         <LinearLayout
                             android:id="@+id/creditA"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal">
+                            android:layout_height="21dp"
+                            android:orientation="horizontal"
+                            android:layout_margin="10dp"
+                            android:weightSum="3">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@color/bg1" />
-
-                            <TextView
-                                android:layout_width="190dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
-                                android:fontFamily="@font/prompt_regular"
-                                android:gravity="left|center_vertical"
-                                android:text="ธนาคารธนชาต"
-                                android:textSize="20sp" />
-
-                            <ImageView
-                                android:id="@+id/creditA_img"
-                                android:layout_width="30dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_arrow_forward_black_24dp">
-
-                            </ImageView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/textview_totalt"
+                                android:layout_weight="0.3"
                                 android:layout_width="0dp"
-                                android:layout_height="50dp"
-                                android:layout_marginRight="25dp"
-                                android:layout_weight="1"
-                                android:gravity="right|center_vertical"
-                                android:text="12312312312312"
-                                android:layout_gravity="right"
-                                android:textSize="20sp" />
+                                android:layout_height="match_parent"
+                                android:src="@drawable/krungtap"
+                                android:layout_gravity="center_vertical"/>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="50dp"
-                                android:layout_marginRight="25dp"
-                                android:gravity="right|center_vertical"
+                                android:layout_weight="1.3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_bold"
+                                android:gravity="left|center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:text="ธนาคารกรุงเทพ"
+                                android:textColor="@color/bank_krungtap"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/creditA_img"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:text="1,222,333,000"
+                                android:gravity="right"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center|center_vertical"
+                                android:layout_gravity="center_vertical"
                                 android:text="บาท"
-                                android:textSize="20sp"/>
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+
 
                         </LinearLayout>
-
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
                         <LinearLayout
                             android:id="@+id/creditB"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal">
+                            android:layout_height="21dp"
+                            android:orientation="horizontal"
+                            android:layout_margin="10dp"
+                            android:weightSum="3">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@color/bg1" />
+                                android:layout_weight="0.3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/tanachat"
+                                android:layout_gravity="center_vertical"/>
 
                             <TextView
-                                android:layout_width="190dp"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="10dp"
-                                android:fontFamily="@font/prompt_regular"
+                                android:layout_weight="1.3"
+                                android:id="@+id/textview_totalt"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_bold"
                                 android:gravity="left|center_vertical"
-                                android:text="ธนาคารกรุงเทพ"
-                                android:textSize="20sp" />
-
-                            <ImageView
-                                android:id="@+id/creditB_img"
-                                android:layout_width="30dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_arrow_forward_black_24dp">
-
-                            </ImageView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                                android:layout_gravity="center_vertical"
+                                android:text="ธนาคารธนชาต"
+                                android:textColor="@color/bank_Tana"
+                                android:textSize="14sp" />
 
                             <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/creditB_img"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:text="1,222,333.00"
+                                android:gravity="right"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center|center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:text="บาท"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/creditC"
+                            android:layout_width="match_parent"
+                            android:layout_height="21dp"
+                            android:orientation="horizontal"
+                            android:layout_margin="10dp"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:layout_weight="0.3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/thaipanit"
+                                android:layout_gravity="center_vertical"/>
+
+                            <TextView
+                                android:layout_weight="1.3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_bold"
+                                android:gravity="left|center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:text="ธนาคารไทยพาณิชย์"
+                                android:textColor="#502984"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/creditC_img"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:text="1,222,333,000"
+                                android:gravity="right"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center|center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:text="บาท"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/creditD"
+                            android:layout_width="match_parent"
+                            android:layout_height="21dp"
+                            android:orientation="horizontal"
+                            android:layout_margin="10dp"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:layout_weight="0.3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/khunodd"
+                                android:layout_gravity="center_vertical"/>
+
+                            <TextView
+                                android:layout_weight="1.3"
                                 android:id="@+id/textview_totalk"
                                 android:layout_width="0dp"
-                                android:layout_height="50dp"
-                                android:layout_marginRight="25dp"
-                                android:layout_weight="1"
-                                android:gravity="right|center_vertical"
-                                android:text="12312312312312"
-                                android:layout_gravity="right"
-                                android:textSize="20sp" />
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_bold"
+                                android:gravity="left|center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:text="บัญชีคุณอ๊อด"
+                                android:textColor="@color/bank_krungtap"
+                                android:textSize="14sp" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="50dp"
-                                android:layout_marginRight="25dp"
-                                android:gravity="right|center_vertical"
+                                android:layout_weight="1"
+                                android:id="@+id/creditD_img"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:text="1,222,333,000"
+                                android:gravity="right"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center|center_vertical"
+                                android:layout_gravity="center_vertical"
                                 android:text="บาท"
-                                android:textSize="20sp"/>
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+
 
                         </LinearLayout>
 
+
+
                     </LinearLayout>
+
                 </android.support.v7.widget.CardView>
 
 
@@ -176,3 +287,6 @@
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>
+
+
+

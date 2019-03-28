@@ -20,5 +20,10 @@
         android:font="@font/prompt_medium"
         android:fontStyle="normal"
         android:fontWeight="400" />
+    <font
+        android:font="@font/plantagenet_cherokee"
+        android:fontStyle="normal"
+        android:fontWeight="400" />
+
 
 </font-family>

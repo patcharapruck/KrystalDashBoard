@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:fontFamily="@font/prompt_medium"
             android:text="1.BlackLabel"
             android:textSize="20dp" />
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.25"
             android:fontFamily="@font/prompt_medium"
             android:gravity="right"
             android:text="Total"
@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.25"
             android:fontFamily="@font/prompt_medium"
             android:gravity="right"
             android:text="100"
