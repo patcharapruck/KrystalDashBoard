@@ -2,6 +2,7 @@ package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -18,6 +20,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
@@ -33,22 +36,34 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
     BarChart barChart;
 
+    TextView CreditallTextView,
+            AmaxTTextView, AmaxKTextView,
+            JcbTTextView, JcbKTextView,
+            MasterTTextView, MasterKTextView,
+            UnipayTTextView, UnipayKTextView,
+            VisaTextView, VisaKTextView,
+            TotalTTextView, TotalKTextView;
+
     Double creditall,
             amaxt = 0.0, amaxk = 0.0,
             jcbt = 0.0, jcbk = 0.0,
             mastert = 0.0, masterk = 0.0,
             unipayt = 0.0, unipayk = 0.0,
-            visat = 0.0, visak = 0.0;
+            visat = 0.0, visak = 0.0,
+            totalt = 0.0, totalk = 0.0;
 
     String creditalls,
             amaxts, amaxks,
             jcbts, jcbks,
             masterts, masterks,
             unipayts, unipayks,
-            visats, visaks;
+            visats, visaks,
+            totalts,totalks;
 
     LinearLayout creditA,creditB;
     Button creditABtn,creditBBtn;
+
+    DecimalFormat formatter;
 
     public CraditFragment() {
         // Required empty public constructor
@@ -75,6 +90,10 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         barChart = rootView.findViewById(R.id.barchart);
 
+        formatter = new DecimalFormat("#,###,##0.00");
+
+        TotalTTextView = (TextView) rootView.findViewById(R.id.textview_totalt);
+        TotalKTextView = (TextView) rootView.findViewById(R.id.textview_totalk);
 
         try {
             setdata();
@@ -86,26 +105,33 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
     private void setdata() {
 
-        CreditItemColleationDto   B1 = DashBoradManager.getInstance().getDao().getObject().getIncomeByCreditCardList().get(0);
-        CreditItemColleationDto   B2 = DashBoradManager.getInstance().getDao().getObject().getIncomeByCreditCardList().get(1);
+        CreditItemColleationDto   Credit1 = DashBoradManager.getInstance().getDao().getObject().getIncomeByCreditCardList().get(0);
+        CreditItemColleationDto   Credit2 = DashBoradManager.getInstance().getDao().getObject().getIncomeByCreditCardList().get(1);
 
         creditall = DashBoradManager.getInstance().getDao().getObject().getCreditCardPayments();
 
-        amaxt = B1.getAmax();
-        amaxk = B2.getAmax();
+        amaxt = Credit1.getAmax();
+        amaxk = Credit2.getAmax();
+        jcbt = Credit1.getJcb();
+        jcbk = Credit2.getJcb();
+        mastert = Credit1.getMaster();
+        masterk = Credit2.getMaster();
+        unipayt = Credit1.getUnipay();
+        unipayk = Credit2.getUnipay();
+        visat = Credit1.getVisa();
+        visak = Credit2.getVisa();
 
-        jcbt = B1.getJcb();
-        jcbk = B2.getJcb();
+        totalt = amaxt+jcbt+mastert+unipayt+visat;
+        totalk = amaxk+jcbk+masterk+unipayk+visak;
 
-        mastert = B1.getMaster();
-        masterk = B2.getMaster();
+        totalts = formatter.format(totalt);
+        totalks = formatter.format(totalk);
 
-        unipayt = B1.getUnipay();
-        unipayk = B2.getUnipay();
+        TotalTTextView.setText(totalts);
+        TotalTTextView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
-        visat = B1.getVisa();
-        visak = B2.getVisa();
-
+        TotalKTextView.setText(totalks);
+        TotalKTextView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         ArrayList<BarEntry> values = new ArrayList<>();
         ArrayList<BarEntry> values2 = new ArrayList<>();
