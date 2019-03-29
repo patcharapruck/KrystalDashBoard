@@ -55,6 +55,7 @@
                         android:background="@drawable/border_shadow"
                         >
                         <TextView
+                            android:id="@+id/textview_sum"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="2,543,960.00 บาท"
@@ -68,7 +69,7 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp">
 
                     <LinearLayout
@@ -104,7 +105,7 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditA_img"
+                                android:id="@+id/textview_kungthap"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
@@ -154,7 +155,7 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditB_img"
+                                android:id="@+id/textview_tanachat"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
@@ -203,7 +204,7 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditC_img"
+                                android:id="@+id/textview_thaipanich"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
@@ -253,7 +254,7 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditD_img"
+                                android:id="@+id/textview_khunoot"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
