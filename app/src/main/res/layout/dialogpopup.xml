@@ -13,18 +13,14 @@
              android:layout_width="match_parent"
              android:layout_height="50dp"
              android:layout_marginBottom="20dp"
-             android:background="#EFEFEF">
+             android:background="@color/bank_krungtap">
              <LinearLayout
                  android:layout_width="wrap_content"
                  android:layout_height="50dp"
                  android:orientation="horizontal"
                  android:layout_centerInParent="true"
                  >
-                 <ImageView
-                     android:layout_width="30dp"
-                     android:layout_marginRight="5dp"
-                     android:layout_height="match_parent"
-                     android:src="@drawable/khunodd" />
+
                  <TextView
                      android:layout_width="match_parent"
                      android:layout_height="50dp"
@@ -33,7 +29,7 @@
                      android:gravity="center"
                      android:textSize="21sp"
                      android:layout_marginBottom="30dp"
-                     android:textColor="@color/bank_Tana"/>
+                     android:textColor="@color/white"/>
              </LinearLayout>
          </RelativeLayout>
 
