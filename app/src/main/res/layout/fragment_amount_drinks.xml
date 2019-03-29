@@ -11,20 +11,20 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_margin="5dp"
-
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
+        app:cardElevation="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <RelativeLayout
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                         android:fontFamily="@font/prompt_bold"
                         android:text="เครื่องดื่มทั้งหมด"
                         android:textColor="#232323"
-                        android:textSize="20sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/textview_total_amount_drinks"
@@ -61,136 +61,131 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/black">
+                android:background="#D8D8D8">
 
             </View>
 
             <RelativeLayout
-                android:layout_width="0dp"
+                android:layout_width="180dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1.1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
                     android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/drink1"
-                            android:layout_weight="0.5"/>
+                           />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/prompt_medium"
-                            android:text="ซื้อ"
+                            android:text="  ซื้อ"
                             android:textColor="#232323"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textview_buy_amount_drinks"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
+                            android:layout_weight="0.8"
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="right"
                             android:text="25"
                             android:textColor="#232323"
-                            android:textSize="20dp" />
+                            android:textSize="12dp" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/drink2"
-                            android:layout_weight="0.5"/>
+                           />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/prompt_medium"
-                            android:text="เบิกใช้สิทธิ์"
+                            android:text="  เบิกใช้สิทธิ์"
                             android:textColor="#232323"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textview_purchase_amount_drinks"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
+                            android:layout_weight="0.8"
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="right"
                             android:text="79"
                             android:textColor="#232323"
-                            android:textSize="20dp" />
+                            android:textSize="12dp" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
+                        android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/drink3"
-                            android:layout_weight="0.5"/>
+                            />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/prompt_medium"
-                            android:text="Entertain"
+                            android:text="  Entertain"
                             android:textColor="#232323"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textview_entertain_amount_drinks"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
+                            android:layout_weight="0.8"
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="right"
                             android:text="6"
                             android:textColor="#232323"
-                            android:textSize="20dp" />
+                            android:textSize="12dp" />
 
 
                     </LinearLayout>

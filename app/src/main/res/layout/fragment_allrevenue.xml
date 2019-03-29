@@ -87,10 +87,10 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="2dp"
                         android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:weightSum="2.003">
 <!--รายรับจริง-->
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:layout_weight="1"
@@ -130,9 +130,17 @@
                                     android:text="12,000,000"
                                     android:textColor="#212428" />
                             </LinearLayout>
-<!--ค้าวชำระ-->
+<!--ค้าวชำระ--><View
+                        android:layout_weight="0.003"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_alignParentBottom="true"
+                        android:background="#5D5D5D">
+
+                    </View>
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:layout_weight="1"
