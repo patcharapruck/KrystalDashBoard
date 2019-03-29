@@ -56,6 +56,7 @@
                         android:background="@drawable/border_shadow"
                         >
                         <TextView
+                            android:id="@+id/textview_sum"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="2,543,960.00 บาท"
@@ -67,11 +68,14 @@
                 </LinearLayout>
 
 
-
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="160dp"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -103,11 +107,11 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditA_img"
+                                android:id="@+id/textview_kungthap"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
-                                android:text="492,430.00"
+                                android:text="1,222,333,000"
                                 android:gravity="right"
                                 android:textColor="#232323"
                                 android:textSize="14sp" />
@@ -143,6 +147,7 @@
 
                             <TextView
                                 android:layout_weight="1.3"
+                                android:id="@+id/textview_totalt"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_bold"
@@ -154,11 +159,11 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditB_img"
+                                android:id="@+id/textview_tanachat"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
-                                android:text="416,113.00"
+                                android:text="1,222,333.00"
                                 android:gravity="right"
                                 android:textColor="#232323"
                                 android:textSize="14sp" />
@@ -205,11 +210,11 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditC_img"
+                                android:id="@+id/textview_thaipanich"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
-                                android:text="12,123.00"
+                                android:text="1,222,333,000"
                                 android:gravity="right"
                                 android:textColor="#232323"
                                 android:textSize="14sp" />
@@ -244,6 +249,7 @@
 
                             <TextView
                                 android:layout_weight="1.3"
+                                android:id="@+id/textview_totalk"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_bold"
@@ -255,11 +261,11 @@
 
                             <TextView
                                 android:layout_weight="1"
-                                android:id="@+id/creditD_img"
+                                android:id="@+id/textview_khunoot"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/prompt_medium"
-                                android:text="31,443.00"
+                                android:text="1,222,333,000"
                                 android:gravity="right"
                                 android:textColor="#232323"
                                 android:textSize="14sp" />
@@ -281,6 +287,7 @@
 
                     </LinearLayout>
 
+                </android.support.v7.widget.CardView>
 
 
             </LinearLayout>
