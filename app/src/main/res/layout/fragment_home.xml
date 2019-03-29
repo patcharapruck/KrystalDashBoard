@@ -35,7 +35,8 @@
                 android:text="PR"
                 android:fontFamily="@font/prompt_medium"
                 android:layout_marginLeft="5dp"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:textColor="#4D4D4D"/>
 
             <fragment
                 android:id="@+id/fragment2"
@@ -52,7 +53,8 @@
                 android:text="ยอดบัตรเครดิต"
                 android:fontFamily="@font/prompt_medium"
                 android:layout_marginLeft="5dp"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:textColor="#4D4D4D"/>
 
             <fragment
                 android:id="@+id/fragment3"
@@ -69,7 +71,8 @@
                 android:text="ปริมาณเครื่องดื่ม"
                 android:fontFamily="@font/prompt_medium"
                 android:layout_marginLeft="5dp"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:textColor="#4D4D4D"/>
 
             <fragment
                 android:id="@+id/fragment4"
@@ -79,7 +82,21 @@
                 tools:layout="@layout/fragment_amount_drinks" />
 
            <!--___________________________-graph  table-____________________________-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="รายการขาย"
+                android:fontFamily="@font/prompt_medium"
+                android:layout_marginLeft="5dp"
+                android:textSize="10sp"
+                android:textColor="#4D4D4D"/>
 
+            <fragment
+                android:id="@+id/fragment5"
+                android:name="dashboard.android.hdw.com.krystaldashboard.fragment.GraphTableFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_graph_table" />
 
 
 
