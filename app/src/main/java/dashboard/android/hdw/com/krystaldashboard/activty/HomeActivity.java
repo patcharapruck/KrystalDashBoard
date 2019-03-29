@@ -220,9 +220,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).logoutDate();
                         SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext()).logoutPay();
 
-                        Toast.makeText(Contextor.getInstance().getmContext(),aa,Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                        mcontext.startActivity(intent);
+                        Contextor.getInstance().getmContext().startActivity(intent);
                         finish();
 
                     }else{
