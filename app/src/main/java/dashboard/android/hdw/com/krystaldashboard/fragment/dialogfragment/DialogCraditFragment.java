@@ -32,7 +32,7 @@ public class DialogCraditFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.dialogpopup, container, false);
+        View rootView = inflater.inflate(R.layout.dialogpopupkrungtep, container, false);
         initInstances(rootView);
         return rootView;
     }

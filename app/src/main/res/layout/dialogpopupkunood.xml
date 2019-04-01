@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           >
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:layout_marginBottom="20dp"
+             android:background="#212529">
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="50dp"
+                 android:orientation="horizontal"
+                 android:layout_centerInParent="true"
+                 >
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="50dp"
+                     android:text="บัญชีคุณอ๊อด"
+                     android:fontFamily="@font/prompt_bold"
+                     android:gravity="center"
+                     android:textSize="21sp"
+                     android:layout_marginBottom="30dp"
+                     android:textColor="@color/white"/>
+             </LinearLayout>
+         </RelativeLayout>
+
+
+           <LinearLayout
+               android:layout_width="300dp"
+               android:layout_height="50dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:orientation="horizontal"
+               android:weightSum="2">
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="A-MAX"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="left|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp" />
+               <TextView
+                   android:id="@+id/textview_amax"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="34,543.00"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="right|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp" />
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:orientation="horizontal"
+               android:weightSum="2">
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="JCB"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="left|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp" />
+
+               <TextView
+                   android:id="@+id/textview_jcb"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="34,543.00"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="right|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:orientation="horizontal"
+               android:weightSum="2">
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="MASTER"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="left|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp" />
+
+               <TextView
+                   android:id="@+id/textview_master"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="34,543.00"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="right|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp"  />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:orientation="horizontal"
+               android:weightSum="2">
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="UNIPAY"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="left|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp"/>
+
+               <TextView
+                   android:id="@+id/textview_unipay"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="34,543.00"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="right|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp"  />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:orientation="horizontal"
+               android:weightSum="2">
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="VISA"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="left|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp" />
+
+               <TextView
+                   android:id="@+id/textview_visa"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:text="34,543.00"
+                   android:fontFamily="@font/prompt_regular"
+                   android:gravity="right|center_vertical"
+                   android:textColor="@color/black"
+                   android:textSize="18sp"  />
+           </LinearLayout>
+
+           <Button
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:background="@drawable/button"
+               android:layout_gravity="center"
+               android:gravity="center"
+               android:layout_margin="15dp"
+              android:fontFamily="@font/prompt_bold"
+               android:text="ปิด"
+               android:textColor="@color/white"
+               android:textSize="18dp" />
+
+       </LinearLayout>
+
+</android.support.v7.widget.CardView>
