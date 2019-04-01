@@ -1,8 +1,10 @@
 package dashboard.android.hdw.com.krystaldashboard.activty;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -24,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.Nullable;
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
@@ -52,7 +55,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
 
+    private Boolean checkPay = false,checkNotPay=false , checkdashboard=false , checkall = false;
+
     Button datehome;
+
+    ProgressDialog progress;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,7 +88,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        initInstances();
+
+        getDateTime();
+        showProgress();
+
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
+        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+
     }
 
     private void initInstances() {
@@ -89,13 +103,42 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         textView = findViewById(R.id.text);
         toolbar = findViewById(R.id.toolbar);
 
-        getDateTime();
-
         datehome = (Button) findViewById(R.id.datehome);
         datehome.setOnClickListener(this);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        bottomNavigationView = findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment = null;
+                switch (menuItem.getItemId()) {
+                    case R.id.item_home:
+                        fragment = new HomeFragment();
+                        break;
+                    case R.id.item_revrnue:
+                        fragment = new RevenueFragment();
+                        break;
+
+                    case R.id.item_drink:
+                        fragment = new DrinkFragment();
+                        break;
+
+                    case R.id.item_pr:
+                        fragment = new PRFragment();
+                        break;
+
+                    case R.id.item_table:
+                        fragment = new TableFragment();
+                        break;
+                }
+
+                return loadFragment(fragment);
+            }
+        });
+        bottomNavigationView.setSelectedItemId(R.id.item_home);
 
     }
 
@@ -148,6 +191,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+            initInstances();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
     }
@@ -161,40 +210,36 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-        bottomNavigationView = findViewById(R.id.bottom_nav_view);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment = null;
-                switch (menuItem.getItemId()) {
-                    case R.id.item_home:
-                        fragment = new HomeFragment();
-                        break;
-                    case R.id.item_revrnue:
-                        fragment = new RevenueFragment();
-                        break;
-
-                    case R.id.item_drink:
-                        fragment = new DrinkFragment();
-                        break;
-
-                    case R.id.item_pr:
-                        fragment = new PRFragment();
-                        break;
-
-                    case R.id.item_table:
-                        fragment = new TableFragment();
-                        break;
-                }
-
-                return loadFragment(fragment);
-            }
-        });
-        bottomNavigationView.setSelectedItemId(R.id.item_home);
-
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
-        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+//            bottomNavigationView = findViewById(R.id.bottom_nav_view);
+//            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                    Fragment fragment = null;
+//                    switch (menuItem.getItemId()) {
+//                        case R.id.item_home:
+//                            fragment = new HomeFragment();
+//                            break;
+//                        case R.id.item_revrnue:
+//                            fragment = new RevenueFragment();
+//                            break;
+//
+//                        case R.id.item_drink:
+//                            fragment = new DrinkFragment();
+//                            break;
+//
+//                        case R.id.item_pr:
+//                            fragment = new PRFragment();
+//                            break;
+//
+//                        case R.id.item_table:
+//                            fragment = new TableFragment();
+//                            break;
+//                    }
+//
+//                    return loadFragment(fragment);
+//                }
+//            });
+//            bottomNavigationView.setSelectedItemId(R.id.item_home);
     }
 
     @Override
@@ -203,6 +248,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void reqAPI(String date) {
+        checkdashboard = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
@@ -214,6 +260,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if(response.isSuccessful()){
                     DashBoardDto dao = response.body();
                     DashBoradManager.getInstance().setDao(dao);
+                    checkdashboard = true;
+
+                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+                        initInstances();
+                        progress.dismiss();
+                    }
                 }else {
                     if(response.code() == 403){
                         SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).logout();
@@ -237,6 +289,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void reqAPInotpay(String date) {
+        checkNotPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
                 "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
@@ -250,9 +303,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if(response.isSuccessful()){
                     NotPayItemColleationDto dao = response.body();
                     NotPayManager.getInstance().setNotpayItemColleationDao(dao);
+                    checkNotPay = true;
 
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .saveNotPay(dao.getPagination().getTotalItem());
+
+                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+                        initInstances();
+                        progress.dismiss();
+                    }
                 }else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
@@ -267,6 +326,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void reqAPIpay(String date) {
+        checkPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
                 "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
@@ -281,13 +341,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     PayItemColleationDto dao = response.body();
                     PayManager.getInstance().setPayItemColleationDao(dao);
 
+                    checkPay = true;
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .savePay(dao.getPagination().getTotalItem());
+
+                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+                        initInstances();
+                        progress.dismiss();
+                    }
+
                 }else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
@@ -360,5 +426,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         if(v == datehome){
             setDateDialog();
         }
+    }
+
+    private void showProgress() {
+        progress = new ProgressDialog(HomeActivity.this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
     }
 }
