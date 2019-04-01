@@ -95,7 +95,7 @@
                 android:id="@+id/fragment5"
                 android:name="dashboard.android.hdw.com.krystaldashboard.fragment.GraphTableFragment"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_graph_table" />
 
 

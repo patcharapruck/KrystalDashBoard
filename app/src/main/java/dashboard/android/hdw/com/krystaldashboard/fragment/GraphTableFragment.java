@@ -88,7 +88,7 @@ public class GraphTableFragment extends Fragment {
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(15f);
+        data.setValueTextSize(10f);
         data.setValueTextColor(Color.WHITE);
 
         pieChart.setData(data);
@@ -103,7 +103,7 @@ public class GraphTableFragment extends Fragment {
 
         int height = metrics.heightPixels;
 
-        int offset = (int) (height * 0.5);
+        int offset = (int) (height * 0.3);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) pieChart.getLayoutParams();
         params.setMargins(0,0,0,-offset);
