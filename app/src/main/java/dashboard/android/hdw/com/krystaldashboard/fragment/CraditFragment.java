@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,8 +49,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
     ArrayList<String> Total = new ArrayList<>();
 
 
-    LinearLayout creditA,creditB;
-    Button creditABtn,creditBBtn;
+    LinearLayout creditA,creditB,creditC,creditD;
 
     DecimalFormat formatter;
 
@@ -69,21 +69,26 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
     private void initInstances(View rootView) {
 
-//        creditA = (LinearLayout) rootView.findViewById(R.id.creditA);
-//        creditB = (LinearLayout) rootView.findViewById(R.id.creditB);
+
+        creditA = (LinearLayout) rootView.findViewById(R.id.creditA);
+        creditB = (LinearLayout) rootView.findViewById(R.id.creditB);
+        creditC = (LinearLayout) rootView.findViewById(R.id.creditC);
+        creditD = (LinearLayout) rootView.findViewById(R.id.creditD);
 
         creditA.setOnClickListener(this);
         creditB.setOnClickListener(this);
+        creditC.setOnClickListener(this);
+        creditD.setOnClickListener(this);
 
         barChart = rootView.findViewById(R.id.barchart);
 
         formatter = new DecimalFormat("#,###,##0.00");
 
         TotalSum = (TextView) rootView.findViewById(R.id.textview_sum);
-//        TotalKungthap = (TextView) rootView.findViewById(R.id.textview_kungthap);
-//        TotalTthaipanich = (TextView) rootView.findViewById(R.id.textview_thaipanich);
-//        TotalTanachat = (TextView) rootView.findViewById(R.id.textview_tanachat);
-//        TotalKhunoot = (TextView) rootView.findViewById(R.id.textview_khunoot);
+        TotalKungthap = (TextView) rootView.findViewById(R.id.textview_kungthap);
+        TotalTthaipanich = (TextView) rootView.findViewById(R.id.textview_thaipanich);
+        TotalTanachat = (TextView) rootView.findViewById(R.id.textview_tanachat);
+        TotalKhunoot = (TextView) rootView.findViewById(R.id.textview_khunoot);
 
 
 
@@ -118,14 +123,24 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             total.add(i,amax + jcb + master + unipay + visa);
             creditall = creditall+total.get(i);
             Total.add(i,formatter.format(total.get(i)));
+
+            if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")){
+                TotalTanachat.setText(Total.get(i));
+            }
+            else if (Credit.getBank().getBankName().equals("ธนาคารกรุงเทพ (BBL)")){
+                TotalKungthap.setText(Total.get(i));
+            }
+            else if (Credit.getBank().getBankName().equals("ธนาคารไทยพาณิชย์ (SCB)")){
+                TotalTthaipanich.setText(Total.get(i));
+            }
+            else if (Credit.getBank().getBankName().equals("บัญชีคุณอ๊อด")){
+                TotalKhunoot.setText(Total.get(i));
+            }
         }
 
 
-        TotalSum.setText(formatter.format(creditall));
-        TotalKungthap.setText(Total.get(1));
-        TotalTanachat.setText(Total.get(0));
-        TotalTthaipanich.setText(Total.get(2));
-        TotalKhunoot.setText(Total.get(3));
+        TotalSum.setText(formatter.format(creditall)+" บาท");
+
 
 //        TotalSum.setText(totalts);
 //        TotalSum.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
@@ -218,11 +233,25 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         if(v == creditA){
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
+            dialogCraditFragment.setNameCredit("ธนาคารกรุงเทพ (BBL)");
             dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
         }
 
         if(v == creditB){
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
+            dialogCraditFragment.setNameCredit("ธนาคารธนชาต (T-BANK)");
+            dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
+        }
+
+        if(v == creditC){
+            DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
+            dialogCraditFragment.setNameCredit("ธนาคารไทยพาณิชย์ (SCB)");
+            dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
+        }
+
+        if(v == creditD){
+            DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
+            dialogCraditFragment.setNameCredit("บัญชีคุณอ๊อด");
             dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
         }
     }
