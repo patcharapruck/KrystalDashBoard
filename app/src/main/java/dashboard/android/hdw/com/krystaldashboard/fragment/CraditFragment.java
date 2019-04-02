@@ -69,8 +69,8 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
     private void initInstances(View rootView) {
 
-        creditA = (LinearLayout) rootView.findViewById(R.id.creditA);
-        creditB = (LinearLayout) rootView.findViewById(R.id.creditB);
+//        creditA = (LinearLayout) rootView.findViewById(R.id.creditA);
+//        creditB = (LinearLayout) rootView.findViewById(R.id.creditB);
 
         creditA.setOnClickListener(this);
         creditB.setOnClickListener(this);
@@ -80,10 +80,10 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         formatter = new DecimalFormat("#,###,##0.00");
 
         TotalSum = (TextView) rootView.findViewById(R.id.textview_sum);
-        TotalKungthap = (TextView) rootView.findViewById(R.id.textview_kungthap);
-        TotalTthaipanich = (TextView) rootView.findViewById(R.id.textview_thaipanich);
-        TotalTanachat = (TextView) rootView.findViewById(R.id.textview_tanachat);
-        TotalKhunoot = (TextView) rootView.findViewById(R.id.textview_khunoot);
+//        TotalKungthap = (TextView) rootView.findViewById(R.id.textview_kungthap);
+//        TotalTthaipanich = (TextView) rootView.findViewById(R.id.textview_thaipanich);
+//        TotalTanachat = (TextView) rootView.findViewById(R.id.textview_tanachat);
+//        TotalKhunoot = (TextView) rootView.findViewById(R.id.textview_khunoot);
 
 
 
