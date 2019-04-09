@@ -1,160 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="100dp"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="5dp">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="5dp"/>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textview_name_pr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="รัชนิกร ดีประสิทธิ์"
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"/>
-
-        <TextView
-            android:id="@+id/text_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
-            android:layout_toStartOf="@+id/textview_nickname_pr"
-            android:layout_toLeftOf="@+id/textview_nickname_pr"
-            android:fontFamily="@font/prompt_regular"
-            android:text="ชื่อเล่น: "
-            android:textSize="@dimen/textsize_pr" />
-
-        <TextView
-            android:id="@+id/textview_nickname_pr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="เบนจี้"
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_alignParentRight="true"/>
-
-        <TextView
-            android:id="@+id/text_id"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID: "
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/textview_name_pr"/>
-
-        <TextView
-            android:id="@+id/textview_id_pr"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="514019"
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/textview_name_pr"
-            android:layout_toRightOf="@id/text_id"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp" />
 
 
-        <TextView
-            android:id="@+id/text_position"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ตำแหน่ง: "
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/text_id"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textview_position_pr"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PR"
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/text_id"
-            android:layout_toRightOf="@id/text_position"/>
+            <TextView
+                android:id="@+id/textview_name_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/prompt_regular"
+                android:text="รัชนิกร ดีประสิทธิ์"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
 
-        <TextView
-            android:id="@+id/text_onfloor"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="On Floor: "
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/text_position"/>
+            <TextView
+                android:id="@+id/text_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:layout_toStartOf="@+id/textview_nickname_pr"
+                android:layout_toLeftOf="@+id/textview_nickname_pr"
+                android:fontFamily="@font/prompt_regular"
+                android:text="ชื่อเล่น: "
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
 
-        <TextView
-            android:id="@+id/textview_onfloor_pr"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="22:33"
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/text_position"
-            android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/text_onfloor"/>
+            <TextView
+                android:id="@+id/textview_nickname_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/prompt_regular"
+                android:text="เบนจี้"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
 
-        <TextView
-            android:id="@+id/text_start"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ดื่มเริ่มต้น: "
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
+            <TextView
+                android:id="@+id/text_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_name_pr"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/prompt_regular"
+                android:text="ID: "
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
 
-            android:layout_below="@id/text_position"
-            android:layout_toRightOf="@id/textview_onfloor_pr"/>
-
-        <TextView
-            android:id="@+id/textview_start_pr"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_marginRight="5dp"
-            android:layout_below="@id/text_position"
-            android:layout_toRightOf="@id/text_start"/>
-
-        <TextView
-            android:id="@+id/text_all"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ดื่มทั้งหมด: "
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/text_position"
-            android:layout_toRightOf="@id/textview_start_pr"/>
-
-        <TextView
-            android:id="@+id/textview_all_pr"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="44"
-            android:fontFamily="@font/prompt_regular"
-            android:textSize="@dimen/textsize_pr"
-            android:layout_below="@id/text_position"
-            android:layout_toRightOf="@id/text_all"/>
-
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/textview_id_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_name_pr"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/text_id"
+                android:fontFamily="@font/prompt_regular"
+                android:text="514019"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
 
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/text_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_id"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/prompt_regular"
+                android:text="ตำแหน่ง: "
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
+
+            <TextView
+                android:id="@+id/textview_position_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_id"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/text_position"
+                android:fontFamily="@font/prompt_regular"
+                android:text="PR"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
+
+            <TextView
+                android:id="@+id/text_onfloor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_position"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/prompt_regular"
+                android:text="On Floor: "
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
+
+            <TextView
+                android:id="@+id/textview_onfloor_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_position"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/text_onfloor"
+                android:fontFamily="@font/prompt_regular"
+                android:text="22:33"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
+
+            <TextView
+                android:id="@+id/text_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_position"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/prompt_regular"
+                android:textStyle="bold"
+                android:text="ดื่มเริ่มต้น: "
+                android:textSize="@dimen/textsize_pr" />
+
+            <TextView
+                android:id="@+id/textview_start_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_position"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/prompt_regular"
+                android:layout_toRightOf="@id/text_start"
+                android:text="4"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
+
+            <TextView
+                android:id="@+id/text_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_position"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@+id/textview_all_pr"
+                android:fontFamily="@font/prompt_regular"
+                android:text="ดื่มทั้งหมด: "
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
+
+            <TextView
+                android:id="@+id/textview_all_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_position"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/prompt_regular"
+                android:text="44"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_pr" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

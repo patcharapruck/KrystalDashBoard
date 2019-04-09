@@ -7,8 +7,9 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.GridLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:padding="5dp"
         app:alignmentMode="alignMargins"
         app:columnCount="2"
@@ -19,44 +20,180 @@
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#55ACEF"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="On Floor ทั้งหมด"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="246"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="27sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#EF483E"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ไม่มีดื่ม"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="48"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="27sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#FFC105"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ว่าง"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="198"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="27sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#04B085"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="รันดื่มอยู่"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="27sp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
@@ -78,6 +215,12 @@
             android:gravity="left|center_vertical"
             android:hint="ค้นหา PR" />
 
+        <ListView
+            android:layout_marginTop="10dp"
+            android:id="@+id/list_pr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
 
 
     </LinearLayout>

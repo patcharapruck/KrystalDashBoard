@@ -3,5 +3,5 @@
     <dimen name="h_tool_bar">50dp</dimen>
 
 
-    <dimen name="textsize_pr">14sp</dimen>
+    <dimen name="textsize_pr">11sp</dimen>
 </resources>
