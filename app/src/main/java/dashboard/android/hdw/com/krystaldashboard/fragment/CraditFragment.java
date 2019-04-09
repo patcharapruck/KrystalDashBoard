@@ -38,6 +38,8 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
     TextView TotalSum,TotalKungthap,TotalTanachat,TotalTthaipanich,TotalKhunoot;
     Double creditall = 0.0, amax = 0.0, jcb = 0.0, master = 0.0, unipay = 0.0, visa = 0.0;
 
+    String Kungthap,Tanachat,Tthaipanich,Khunoot;
+
     ArrayList<Double> total = new ArrayList<>();
 
     ArrayList<String> creditAll = new ArrayList<>();
@@ -125,16 +127,20 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             Total.add(i,formatter.format(total.get(i)));
 
             if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")){
-                TotalTanachat.setText(Total.get(i));
+                Tanachat = Total.get(i);
+                TotalTanachat.setText(Tanachat);
             }
             else if (Credit.getBank().getBankName().equals("ธนาคารกรุงเทพ (BBL)")){
-                TotalKungthap.setText(Total.get(i));
+                Kungthap = Total.get(i);
+                TotalKungthap.setText(Kungthap);
             }
             else if (Credit.getBank().getBankName().equals("ธนาคารไทยพาณิชย์ (SCB)")){
-                TotalTthaipanich.setText(Total.get(i));
+                Tthaipanich = Total.get(i);
+                TotalTthaipanich.setText(Tthaipanich);
             }
             else if (Credit.getBank().getBankName().equals("บัญชีคุณอ๊อด")){
-                TotalKhunoot.setText(Total.get(i));
+                Khunoot = Total.get(i);
+                TotalKhunoot.setText(Khunoot);
             }
         }
 
@@ -233,25 +239,25 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         if(v == creditA){
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("ธนาคารกรุงเทพ (BBL)");
+            dialogCraditFragment.setNameCredit("ธนาคารกรุงเทพ (BBL)",Kungthap);
             dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
         }
 
         if(v == creditB){
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("ธนาคารธนชาต (T-BANK)");
+            dialogCraditFragment.setNameCredit("ธนาคารธนชาต (T-BANK)",Tanachat);
             dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
         }
 
         if(v == creditC){
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("ธนาคารไทยพาณิชย์ (SCB)");
+            dialogCraditFragment.setNameCredit("ธนาคารไทยพาณิชย์ (SCB)",Tthaipanich);
             dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
         }
 
         if(v == creditD){
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("บัญชีคุณอ๊อด");
+            dialogCraditFragment.setNameCredit("บัญชีคุณอ๊อด",Khunoot);
             dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
         }
     }

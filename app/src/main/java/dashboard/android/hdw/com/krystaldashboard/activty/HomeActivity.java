@@ -93,9 +93,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         showProgress();
 
         reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
+    }
+
+    @Override
+    protected void onPostCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
         reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-
     }
 
     private void initInstances() {
@@ -271,18 +275,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).logout();
                         SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).logoutDate();
                         SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext()).logoutPay();
-
+                        progress.dismiss();
                         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                         Contextor.getInstance().getmContext().startActivity(intent);
                         finish();
 
                     }else{
+                        progress.dismiss();
                         Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                     }
                 }
             }
             @Override
             public void onFailure(Call<DashBoardDto> call, Throwable t) {
+                progress.dismiss();
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
             }
         });
