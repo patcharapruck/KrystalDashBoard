@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="h_tool_bar">50dp</dimen>
+
+
+    <dimen name="textsize_pr">14sp</dimen>
 </resources>

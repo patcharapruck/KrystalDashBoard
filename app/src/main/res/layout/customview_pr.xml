@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textview_name_pr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="รัชนิกร ดีประสิทธิ์"
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"/>
+
+        <TextView
+            android:id="@+id/text_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_toStartOf="@+id/textview_nickname_pr"
+            android:layout_toLeftOf="@+id/textview_nickname_pr"
+            android:fontFamily="@font/prompt_regular"
+            android:text="ชื่อเล่น: "
+            android:textSize="@dimen/textsize_pr" />
+
+        <TextView
+            android:id="@+id/textview_nickname_pr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="เบนจี้"
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/text_id"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID: "
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/textview_name_pr"/>
+
+        <TextView
+            android:id="@+id/textview_id_pr"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="514019"
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/textview_name_pr"
+            android:layout_toRightOf="@id/text_id"/>
+
+
+        <TextView
+            android:id="@+id/text_position"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ตำแหน่ง: "
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/text_id"/>
+
+        <TextView
+            android:id="@+id/textview_position_pr"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PR"
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/text_id"
+            android:layout_toRightOf="@id/text_position"/>
+
+        <TextView
+            android:id="@+id/text_onfloor"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On Floor: "
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/text_position"/>
+
+        <TextView
+            android:id="@+id/textview_onfloor_pr"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22:33"
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/text_position"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/text_onfloor"/>
+
+        <TextView
+            android:id="@+id/text_start"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ดื่มเริ่มต้น: "
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+
+            android:layout_below="@id/text_position"
+            android:layout_toRightOf="@id/textview_onfloor_pr"/>
+
+        <TextView
+            android:id="@+id/textview_start_pr"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_marginRight="5dp"
+            android:layout_below="@id/text_position"
+            android:layout_toRightOf="@id/text_start"/>
+
+        <TextView
+            android:id="@+id/text_all"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ดื่มทั้งหมด: "
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/text_position"
+            android:layout_toRightOf="@id/textview_start_pr"/>
+
+        <TextView
+            android:id="@+id/textview_all_pr"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="44"
+            android:fontFamily="@font/prompt_regular"
+            android:textSize="@dimen/textsize_pr"
+            android:layout_below="@id/text_position"
+            android:layout_toRightOf="@id/text_all"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

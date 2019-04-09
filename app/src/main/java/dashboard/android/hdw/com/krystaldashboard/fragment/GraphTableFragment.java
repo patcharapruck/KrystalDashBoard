@@ -52,6 +52,7 @@ public class GraphTableFragment extends Fragment {
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setDrawHoleEnabled(true);
+        pieChart.setRotationEnabled(false);
 
         pieChart.setMaxAngle(180);
         pieChart.setRotationAngle(180);
@@ -71,7 +72,7 @@ public class GraphTableFragment extends Fragment {
 
     }
 
-    String[] countries = new String[]{"USA","JAP"};
+    String[] countries = new String[]{"โต๊ะที่ชำระแล้ว","โต๊ะที่ยังไม่ชำระ"};
 
     private void setData(int count , int range){
         ArrayList<PieEntry> values = new ArrayList<>();
