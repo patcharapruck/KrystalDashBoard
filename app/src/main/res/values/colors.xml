@@ -14,6 +14,10 @@
     <color name="bank_Tana">#F37637</color>
     <color name="bank_krungtap">#204298</color>
 
+    <color name="color_pay">#62BB47</color>
+    <color name="color_not_pay">#FF0707</color>
+    <color name="colorfontpay">#949494</color>
+
 
 
 </resources>
