@@ -4,10 +4,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import dashboard.android.hdw.com.krystaldashboard.view.NotPayListItem;
+
 public class NotPayAdapter extends BaseAdapter {
     @Override
     public int getCount() {
-        return 0;
+        return 20;
     }
 
     @Override
@@ -22,6 +24,13 @@ public class NotPayAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        NotPayListItem item;
+        if(convertView != null){
+            item = (NotPayListItem) convertView;
+        }else{
+            item = new NotPayListItem(parent.getContext());
+        }
+
+        return item;
     }
 }
