@@ -40,8 +40,8 @@ public class FragmentPay extends Fragment {
 
     private void initInstances(View rootView) {
         listViewPay = (ListView) rootView.findViewById(R.id.list_pay);
-
         payMentAdapter = new PayMentAdapter();
+        payMentAdapter.notifyDataSetChanged();
         listViewPay.setAdapter(payMentAdapter);
     }
 

@@ -5,12 +5,19 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BaseCustomViewGroup;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BundleSavedState;
 
 public class PaymentListItem extends BaseCustomViewGroup {
+
+    TextView tvPpyId,tvPpyBill,tvPpyRoom,tvPpySale,tvPpyMonny;
+    String tPpyMonny;
+
     public PaymentListItem(Context context) {
         super(context);
         initInflate();
@@ -47,6 +54,12 @@ public class PaymentListItem extends BaseCustomViewGroup {
     }
 
     private void initInstances() {
+
+        tvPpyId = (TextView)findViewById(R.id.tvPpyId);
+        tvPpyBill = (TextView)findViewById(R.id.tvPpyBill);
+        tvPpyRoom = (TextView)findViewById(R.id.tvPpyRoom);
+        tvPpySale = (TextView)findViewById(R.id.tvPpySale);
+        tvPpyMonny = (TextView)findViewById(R.id.tvPpyMonny);
     }
 
     @Override
@@ -62,5 +75,27 @@ public class PaymentListItem extends BaseCustomViewGroup {
         super.onRestoreInstanceState(ss.getSuperState());
         Bundle bundle = ss.getBundle();
 
+    }
+
+    public void setPayId(String payId){
+        tvPpyId.setText(payId);
+    }
+
+    public void setPayBill(String payBill){
+        tvPpyBill.setText(payBill);
+    }
+
+    public void setPayRoom(String payRoom){
+        tvPpyRoom.setText(payRoom);
+    }
+
+    public void setPaySale(String paySaleId , String paySaleName){
+        tvPpySale.setText(paySaleId+":"+paySaleName);
+    }
+
+    public void setPayMoney(Double payMoney){
+        DecimalFormat formatter = new DecimalFormat("#,###,###.00");
+        tPpyMonny = formatter.format(payMoney);
+        tvPpyMonny.setText(tPpyMonny);
     }
 }

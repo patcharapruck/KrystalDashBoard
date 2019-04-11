@@ -40,6 +40,7 @@ public class FragmentNotPay extends Fragment {
         listNotpay = (ListView)rootView.findViewById(R.id.list_notpay);
 
         notPayAdapter = new NotPayAdapter();
+        notPayAdapter.notifyDataSetChanged();
         listNotpay.setAdapter(notPayAdapter);
     }
 

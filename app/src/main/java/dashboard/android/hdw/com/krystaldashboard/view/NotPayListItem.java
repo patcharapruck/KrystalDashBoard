@@ -5,12 +5,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BaseCustomViewGroup;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BundleSavedState;
 
 public class NotPayListItem extends BaseCustomViewGroup {
+
+    TextView tvNpyId,tvNpyBill,tvNpyRoom,tvNpySale,tvNpyMonny;
+    String tNpyMonny;
 
     public NotPayListItem(Context context) {
             super(context);
@@ -47,6 +53,12 @@ public class NotPayListItem extends BaseCustomViewGroup {
     }
 
     private void initInstances() {
+
+        tvNpyId = (TextView)findViewById(R.id.tvNpyId);
+        tvNpyBill = (TextView)findViewById(R.id.tvNpyBill);
+        tvNpyRoom = (TextView)findViewById(R.id.tvNpyRoom);
+        tvNpySale = (TextView)findViewById(R.id.tvNpySale);
+        tvNpyMonny = (TextView)findViewById(R.id.tvNpyMonny);
     }
 
     @Override
@@ -62,5 +74,27 @@ public class NotPayListItem extends BaseCustomViewGroup {
         super.onRestoreInstanceState(ss.getSuperState());
         Bundle bundle = ss.getBundle();
 
+    }
+
+    public void setNotPayId(String NotpayId){
+        tvNpyId.setText(NotpayId);
+    }
+
+    public void setNotPayBill(String NotpayBill){
+        tvNpyBill.setText(NotpayBill);
+    }
+
+    public void setNotPayRoom(String NotpayRoom){
+        tvNpyRoom.setText(NotpayRoom);
+    }
+
+    public void setNotPaySale(String NotpaySaleId , String NotpaySaleName){
+        tvNpySale.setText(NotpaySaleId+":"+NotpaySaleName);
+    }
+
+    public void setNotPayMoney(Double NotpayMoney){
+        DecimalFormat formatter = new DecimalFormat("#,###,###.00");
+        tNpyMonny = formatter.format(NotpayMoney);
+        tvNpyMonny.setText(tNpyMonny);
     }
 }
