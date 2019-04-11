@@ -65,7 +65,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvcashPayments"
+                    android:id="@+id/textview_cash_payments"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -98,7 +98,7 @@
 
                 <TextView
 
-                    android:id="@+id/tvcreditPayments"
+                    android:id="@+id/textview_credit_payments"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -128,7 +128,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvmemberDebitPayments"
+                    android:id="@+id/textview_member_debit_payments"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -157,7 +157,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tventertainPayments"
+                    android:id="@+id/textview_entertain_payments"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -188,7 +188,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvcredit"
+                    android:id="@+id/textview_credit"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -267,7 +267,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvtotalServiceCharge"
+                    android:id="@+id/textview_total_servicecharge"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -348,6 +348,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/textview_drink"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -379,7 +380,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-
+                    android:id="@+id/textview_member"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -409,6 +410,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/textview_service"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
@@ -439,7 +441,7 @@
                     android:textColor="@color/black"  />
 
                 <TextView
-
+                    android:id="@+id/textview_product"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"

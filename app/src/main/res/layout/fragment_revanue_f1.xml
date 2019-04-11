@@ -41,6 +41,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/textview_total_revanue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -51,6 +52,7 @@
                         android:textSize="26sp" />
 
                     <TextView
+                        android:id="@+id/textview_update_time_revanue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -77,65 +79,64 @@
 
             </android.support.v7.widget.CardView>
 
-           <RelativeLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-               <ImageView
-                   android:layout_width="50dp"
-                   android:layout_height="50dp"
-                   android:src="@drawable/chair"
-                   android:layout_marginTop="32dp"
-                   android:layout_marginLeft="20dp"
-                   />
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="21dp"
-                   android:layout_marginLeft="88dp"
-                   android:layout_marginTop="18dp"
-                   android:fontFamily="@font/prompt_bold"
-                   android:text="โต๊ะที่ชำระเงิน"
-                   android:textColor="#7F6CFF"
-                   android:textSize="14sp" />
-               <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="21dp"
-               android:layout_marginLeft="88dp"
-               android:layout_marginTop="40dp"
-               android:fontFamily="@font/prompt_regular"
-               android:text="235,756.00 บาท"
-               android:textColor="#7F6CFF"
-               android:textSize="14sp" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="32dp"
+                    android:src="@drawable/chair" />
 
-               <ProgressBar
-                   android:id="@+id/horizontal_progress_bar"
-                   style="?android:attr/progressBarStyleHorizontal"
-                   android:layout_width="230dp"
-                   android:layout_height="10dp"
-                   android:layout_marginTop="65dp"
-                   android:layout_marginLeft="88dp"
-                   android:indeterminate="false"
-                   android:max="100"
-                   android:scaleY="2"
-                   android:minHeight="100dp"
-                   android:progress="30"
-                   />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="21dp"
+                    android:layout_marginLeft="88dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/prompt_bold"
+                    android:text="โต๊ะที่ชำระเงิน"
+                    android:textColor="#7F6CFF"
+                    android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/textview_table_money_revanue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="21dp"
+                    android:layout_marginLeft="88dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/prompt_regular"
+                    android:text="235,756.00 บาท"
+                    android:textColor="#7F6CFF"
+                    android:textSize="14sp" />
 
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="21dp"
-                   android:layout_marginLeft="88dp"
-                   android:layout_marginTop="80dp"
-                   android:fontFamily="@font/prompt_regular"
-                   android:text="15 โต๊ะ"
-                   android:textColor="#7F6CFF"
-                   android:textSize="12sp" />
-
-           </RelativeLayout>
+                <ProgressBar
+                    android:id="@+id/horizontal_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="230dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="88dp"
+                    android:layout_marginTop="65dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:minHeight="100dp"
+                    android:progress="30"
+                    android:scaleY="2" />
 
 
+                <TextView
+                    android:id="@+id/textview_amount_table_revanue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="21dp"
+                    android:layout_marginLeft="88dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/prompt_regular"
+                    android:text="15 โต๊ะ"
+                    android:textColor="#7F6CFF"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
 
 
         </LinearLayout>
