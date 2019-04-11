@@ -21,7 +21,7 @@ public class Revanuef1Fragment extends Fragment {
     public Revanuef1Fragment() {
         // Required empty public constructor
     }
-ProgressBar progressBar;
+        ProgressBar progressBar;
 
 
     @Override

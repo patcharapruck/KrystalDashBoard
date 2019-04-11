@@ -100,7 +100,7 @@ public class DialogCraditFragment extends DialogFragment implements View.OnClick
         for(int i=0;true;i++){
             CreditItemColleationDto Credit;
             try{
-                Credit = DashBoradManager.getInstance().getDao()
+                Credit = DashBoradManager.getInstance().getDto()
                         .getObject().getIncomeByCreditCardList().get(i);
             }catch (Exception e){
                 break;

@@ -8,7 +8,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 public class DashBoradManager {
 
     private static DashBoradManager instance;
-    private DashBoardDto Dao;
+    private DashBoardDto Dto;
     public static DashBoradManager getInstance() {
         if (instance == null)
             instance = new DashBoradManager();
@@ -17,12 +17,12 @@ public class DashBoradManager {
 
 
 
-    public DashBoardDto getDao() {
-        return Dao;
+    public DashBoardDto getDto() {
+        return Dto;
     }
 
-    public void setDao(DashBoardDto dao) {
-        Dao = dao;
+    public void setDto(DashBoardDto dto) {
+        Dto = dto;
     }
 
     private Context mContext;

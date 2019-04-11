@@ -52,7 +52,7 @@ public class AmountDrinksFragment extends Fragment {
         purchaseAmountDrinks = (TextView) rootView.findViewById(R.id.textview_purchase_amount_drinks);
 
         try {
-            Odto = DashBoradManager.getInstance().getDao().getObject();
+            Odto = DashBoradManager.getInstance().getDto().getObject();
         }catch (Exception e){
             Toast.makeText(Contextor.getInstance().getmContext(),"ไม่มีข้อมูลที่จะแสดงผล",Toast.LENGTH_SHORT).show();
         }
@@ -116,7 +116,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long getWithdraw(int i) {
         Long withdraw;
         try {
-            withdraw = DashBoradManager.getInstance().getDao().getObject().getSummaryUseProductList().get(i).getWithdrawUse();
+            withdraw = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getWithdrawUse();
         } catch (NullPointerException e) {
             return 0L;
         }
@@ -126,7 +126,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long getPurchase(int i) {
         Long purchase;
         try {
-            purchase = DashBoradManager.getInstance().getDao().getObject().getSummaryUseProductList().get(i).getPurchaseAmount();
+            purchase = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getPurchaseAmount();
         } catch (NullPointerException e) {
             return 0L;
         }
@@ -136,7 +136,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long getEntertain(int i) {
         Long enter;
         try {
-            enter = DashBoradManager.getInstance().getDao().getObject().getSummaryUseProductList().get(i).getEntertainAmount();
+            enter = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getEntertainAmount();
         } catch (NullPointerException e) {
             return 0L;
         }
@@ -146,7 +146,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long gettotalProduct(int i) {
         Long total;
         try {
-            total = DashBoradManager.getInstance().getDao().getObject().getSummaryUseProductList().get(i).getTotalAll();
+            total = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getTotalAll();
         } catch (NullPointerException e) {
             return 0L;
         }

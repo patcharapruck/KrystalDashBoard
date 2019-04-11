@@ -7,9 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -105,12 +103,12 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
     private void setdata() {
 
 
-        //creditall = DashBoradManager.getInstance().getDao().getObject().getCreditCardPayments();
+        //creditall = DashBoradManager.getInstance().getDto().getObject().getCreditCardPayments();
 
         for(int i=0;true;i++){
             CreditItemColleationDto  Credit;
             try{
-              Credit = DashBoradManager.getInstance().getDao()
+              Credit = DashBoradManager.getInstance().getDto()
                         .getObject().getIncomeByCreditCardList().get(i);
             }catch (Exception e){
                 break;

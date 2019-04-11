@@ -90,16 +90,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
 
         getDateTime();
-        showProgress();
-
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
+//        showProgress();
+        initInstances();
+//
+//        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
     }
 
     @Override
     protected void onPostCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+//        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+//        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
     }
 
     private void initInstances() {
@@ -214,36 +215,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-//            bottomNavigationView = findViewById(R.id.bottom_nav_view);
-//            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                    Fragment fragment = null;
-//                    switch (menuItem.getItemId()) {
-//                        case R.id.item_home:
-//                            fragment = new HomeFragment();
-//                            break;
-//                        case R.id.item_revrnue:
-//                            fragment = new RevenueFragment();
-//                            break;
-//
-//                        case R.id.item_drink:
-//                            fragment = new DrinkFragment();
-//                            break;
-//
-//                        case R.id.item_pr:
-//                            fragment = new PRFragment();
-//                            break;
-//
-//                        case R.id.item_table:
-//                            fragment = new TableFragment();
-//                            break;
-//                    }
-//
-//                    return loadFragment(fragment);
-//                }
-//            });
-//            bottomNavigationView.setSelectedItemId(R.id.item_home);
     }
 
     @Override
@@ -251,122 +222,124 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onPause();
     }
 
-    public void reqAPI(String date) {
-        checkdashboard = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
-        String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
-        call.enqueue(new Callback<DashBoardDto>() {
-            @Override
-            public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
-                String aa = String.valueOf(response.raw().code());
-                if(response.isSuccessful()){
-                    DashBoardDto dao = response.body();
-                    DashBoradManager.getInstance().setDao(dao);
-                    checkdashboard = true;
-
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
-                        initInstances();
-                        progress.dismiss();
-                    }
-                }else {
-                    if(response.code() == 403){
-                        SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).logout();
-                        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).logoutDate();
-                        SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext()).logoutPay();
-                        progress.dismiss();
-                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                        Contextor.getInstance().getmContext().startActivity(intent);
-                        finish();
-
-                    }else{
-                        progress.dismiss();
-                        Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<DashBoardDto> call, Throwable t) {
-                progress.dismiss();
-                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void reqAPInotpay(String date) {
-        checkNotPay = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
-        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
-                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
-                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<NotPayItemColleationDto> call = HttpManager.getInstance().getService().loadAPINotPay(requestBody);
-        call.enqueue(new Callback<NotPayItemColleationDto>() {
-            @Override
-            public void onResponse(Call<NotPayItemColleationDto> call, Response<NotPayItemColleationDto> response) {
-                if(response.isSuccessful()){
-                    NotPayItemColleationDto dao = response.body();
-                    NotPayManager.getInstance().setNotpayItemColleationDao(dao);
-                    checkNotPay = true;
-
-                    SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
-                            .saveNotPay(dao.getPagination().getTotalItem());
-
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
-                        initInstances();
-                        progress.dismiss();
-                    }
-                }else {
-                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NotPayItemColleationDto> call, Throwable t) {
-                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
-
-    private void reqAPIpay(String date) {
-        checkPay = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
-        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
-                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
-                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<PayItemColleationDto> call = HttpManager.getInstance().getService().loadAPIPay(requestBody);
-        call.enqueue(new Callback<PayItemColleationDto>() {
-            @Override
-            public void onResponse(Call<PayItemColleationDto> call, Response<PayItemColleationDto> response) {
-                if(response.isSuccessful()){
-                    PayItemColleationDto dao = response.body();
-                    PayManager.getInstance().setPayItemColleationDao(dao);
-
-                    checkPay = true;
-                    SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
-                            .savePay(dao.getPagination().getTotalItem());
-
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
-                        initInstances();
-                        progress.dismiss();
-                    }
-
-                }else {
-                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
-                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
+//    public void reqAPI(String date) {
+//        checkdashboard = false;
+//        final Context mcontext = Contextor.getInstance().getmContext();
+//        String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+//        Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
+//        call.enqueue(new Callback<DashBoardDto>() {
+//            @Override
+//            public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
+//                String aa = String.valueOf(response.raw().code());
+//                if(response.isSuccessful()){
+//                    DashBoardDto dao = response.body();
+//                    DashBoradManager.getInstance().setDto(dao);
+//                    checkdashboard = true;
+//
+//                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+//                        initInstances();
+//                        progress.dismiss();
+//                    }
+//                }else {
+//                    if(response.code() == 403){
+//                        SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).logout();
+//                        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).logoutDate();
+//                        SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext()).logoutPay();
+//                        progress.dismiss();
+//                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+//                        Contextor.getInstance().getmContext().startActivity(intent);
+//                        finish();
+//
+//                    }else{
+//                        progress.dismiss();
+//                        Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<DashBoardDto> call, Throwable t) {
+//                progress.dismiss();
+//                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
+//
+//    private void reqAPInotpay(String date) {
+//        checkNotPay = false;
+//        final Context mcontext = Contextor.getInstance().getmContext();
+//        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
+//                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+//                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
+//                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+//        Call<NotPayItemColleationDto> call = HttpManager.getInstance().getService().loadAPINotPay(requestBody);
+//        call.enqueue(new Callback<NotPayItemColleationDto>() {
+//            @Override
+//            public void onResponse(Call<NotPayItemColleationDto> call, Response<NotPayItemColleationDto> response) {
+//                if(response.isSuccessful()){
+//                    NotPayItemColleationDto dao = response.body();
+//                    NotPayManager.getInstance().setNotpayItemColleationDao(dao);
+//                    checkNotPay = true;
+//
+//                    SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
+//                            .saveNotPay(dao.getPagination().getTotalItem());
+//
+//                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+//                        initInstances();
+//                        progress.dismiss();
+//                    }
+//                }else {
+//                    progress.dismiss();
+//                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<NotPayItemColleationDto> call, Throwable t) {
+//                progress.dismiss();
+//                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//
+//    }
+//
+//    private void reqAPIpay(String date) {
+//        checkPay = false;
+//        final Context mcontext = Contextor.getInstance().getmContext();
+//        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
+//                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+//                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
+//                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+//        Call<PayItemColleationDto> call = HttpManager.getInstance().getService().loadAPIPay(requestBody);
+//        call.enqueue(new Callback<PayItemColleationDto>() {
+//            @Override
+//            public void onResponse(Call<PayItemColleationDto> call, Response<PayItemColleationDto> response) {
+//                if(response.isSuccessful()){
+//                    PayItemColleationDto dao = response.body();
+//                    PayManager.getInstance().setPayItemColleationDao(dao);
+//
+//                    checkPay = true;
+//                    SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
+//                            .savePay(dao.getPagination().getTotalItem());
+//
+//                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+//                        initInstances();
+//                        progress.dismiss();
+//                    }
+//
+//                }else {
+//                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
+//                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//
+//    }
 
     private void setDateDialog() {
 
@@ -399,7 +372,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).saveDateFull(fulldate);
 
-                reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
+//                reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
 //                reqAPIpay(datecalendat2);
 //                reqAPInotpay(datecalendat2);
 
@@ -434,11 +407,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void showProgress() {
-        progress = new ProgressDialog(HomeActivity.this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
-        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
-        progress.show();
-    }
+//    private void showProgress() {
+//        progress = new ProgressDialog(HomeActivity.this);
+//        progress.setTitle("Loading");
+//        progress.setMessage("Wait while loading...");
+//        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+//        progress.show();
+//    }
 }
