@@ -6,14 +6,15 @@
     android:orientation="vertical">
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="157dp"
-            android:background="@color/bg1"></View>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:background="@color/bg1"></View>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -140,8 +141,8 @@
                             <View
                                 android:layout_width="84dp"
                                 android:layout_height="4dp"
-                                android:layout_marginTop="7dp"
                                 android:layout_gravity="center"
+                                android:layout_marginTop="7dp"
                                 android:background="#8772DE" />
 
                         </LinearLayout>
@@ -181,8 +182,8 @@
                             <View
                                 android:layout_width="84dp"
                                 android:layout_height="4dp"
-                                android:layout_marginTop="7dp"
                                 android:layout_gravity="center"
+                                android:layout_marginTop="7dp"
                                 android:background="#DE72AC" />
 
 
@@ -223,8 +224,8 @@
                             <View
                                 android:layout_width="84dp"
                                 android:layout_height="4dp"
-                                android:layout_marginTop="7dp"
                                 android:layout_gravity="center"
+                                android:layout_marginTop="7dp"
                                 android:background="#72DE97" />
 
                         </LinearLayout>
@@ -238,12 +239,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="สินค้าขายดี"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/prompt_medium"
-                android:textSize="10sp"
-                android:layout_marginLeft="10dp"
-                />
+                android:text="สินค้าขายดี"
+                android:textSize="10sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -251,22 +251,36 @@
                 android:background="@color/bg1"
                 android:orientation="horizontal">
 
+                <!--card bast seller-->
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="รายการสินค้า"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/prompt_medium"
-                android:textSize="10sp"
-                android:layout_marginLeft="10dp"
-                />
+                android:text="รายการสินค้า"
+                android:textSize="10sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/bg1"
                 android:orientation="vertical">
 
+<!--list-->
+
             </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
 

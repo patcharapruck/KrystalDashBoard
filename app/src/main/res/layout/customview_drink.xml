@@ -14,20 +14,35 @@
         android:elevation="3dp"
         app:cardCornerRadius="9dp">
 
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:rowCount="3"
+            app:columnCount="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+
+            </LinearLayout>
+        </android.support.v7.widget.GridLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-            
+
             <ImageView
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:background="@drawable/lace"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="12dp"/>
-            
+
             <TextView
-                android:layout_width="250dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Drizly"
                 android:layout_marginLeft="5dp"
