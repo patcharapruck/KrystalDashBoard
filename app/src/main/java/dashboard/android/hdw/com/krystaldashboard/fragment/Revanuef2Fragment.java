@@ -32,9 +32,6 @@ public class Revanuef2Fragment extends Fragment {
             ,EntertainPayments,Credit, Unpaid,Drink
             ,Member,Service,Product;
 
-//    String CashPaymentsText,CreditPaymentsText,MemberDebitPaymentsText
-//            ,EntertainPaymentsText,CreditText,UnpaidText,DrinkText
-//            ,MemberText,ServiceText,ProductText;
 
     DecimalFormat formatter;
 
@@ -73,15 +70,19 @@ public class Revanuef2Fragment extends Fragment {
         formatter = new DecimalFormat("#,###,##0.00");
 
         ODto = DashBoradManager.getInstance().getDto().getObject();
-       // income = ODto.getIncome();
+
         CashPayments = ODto.getCashPayments();
         CreditPayments = ODto.getCreditPayments();
-       // revenue = ODto.getRevenue();
         Credit = ODto.getCreditCardPayments();
         MemberDebitPayments = ODto.getMemberDebitPayments();
         EntertainPayments = ODto.getEntertainPayments();
-        //unpaid = ODto.getUnpaid();
+
         Unpaid = ODto.getTotalServiceCharge();
+
+        Drink = ODto.getSerivceDrinkCharge();
+        Member = ODto.getMemberCharge();
+        Service = ODto.getServiceCharge();
+        Product = ODto.getFoodPrice()+ODto.getProductPrice();
 
         TextViewCashPayments.setText(formatter.format(CashPayments));
         TextViewCreditPayments.setText(formatter.format(CreditPayments));
@@ -90,6 +91,10 @@ public class Revanuef2Fragment extends Fragment {
         TextViewCredit.setText(formatter.format(Credit));
         TextViewUnpaid.setText(formatter.format(Unpaid));
 
+        TextViewDrink.setText(formatter.format(Drink));
+        TextViewMember.setText(formatter.format(Member));
+        TextViewService.setText(formatter.format(Service));
+        TextViewProduct.setText(formatter.format(Product));
 
     }
 
