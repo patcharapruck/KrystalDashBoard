@@ -142,7 +142,7 @@
                                 android:layout_width="84dp"
                                 android:layout_height="4dp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="7dp"
+                                android:layout_marginTop="8dp"
                                 android:background="#8772DE" />
 
                         </LinearLayout>
@@ -183,7 +183,7 @@
                                 android:layout_width="84dp"
                                 android:layout_height="4dp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="7dp"
+                                android:layout_marginTop="8dp"
                                 android:background="#DE72AC" />
 
 
@@ -225,7 +225,7 @@
                                 android:layout_width="84dp"
                                 android:layout_height="4dp"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="7dp"
+                                android:layout_marginTop="8dp"
                                 android:background="#72DE97" />
 
                         </LinearLayout>
@@ -240,7 +240,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="11dp"
                 android:fontFamily="@font/prompt_medium"
                 android:text="สินค้าขายดี"
                 android:textSize="10sp" />
@@ -248,7 +248,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="@color/bg1"
                 android:orientation="horizontal">
 
                 <!--card bast seller-->
@@ -266,20 +265,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="18.57dp"
                 android:fontFamily="@font/prompt_medium"
                 android:text="รายการสินค้า"
                 android:textSize="10sp" />
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="@color/bg1"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@color/bg1"
+                    android:orientation="vertical">
 
-<!--list-->
+                    <!--list-->
 
-            </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
 
 
         </LinearLayout>
