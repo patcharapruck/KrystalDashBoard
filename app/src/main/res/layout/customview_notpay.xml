@@ -132,17 +132,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:fontFamily="@font/prompt_regular"
+                    android:fontFamily="@font/prompt_bold"
                     android:text="ยอดเงินรวม(บาท)" />
 
                 <TextView
                     android:id="@+id/tvNpyMonny"
                     style="@style/textPay"
-                    android:freezesText="true"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:fontFamily="@font/prompt_regular"
+                    android:fontFamily="@font/prompt_bold"
+                    android:freezesText="true"
                     android:gravity="right"
                     android:text="0.0"
                     android:textColor="@color/color_not_pay"
