@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -33,10 +34,10 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
 
     BarChart barChart;
-    TextView TotalSum,TotalKungthap,TotalTanachat,TotalTthaipanich,TotalKhunoot;
+    TextView TotalSum, TotalKungthap, TotalTanachat, TotalTthaipanich, TotalKhunoot;
     Double creditall = 0.0, amax = 0.0, jcb = 0.0, master = 0.0, unipay = 0.0, visa = 0.0;
 
-    String Kungthap,Tanachat,Tthaipanich,Khunoot;
+    String Kungthap, Tanachat, Tthaipanich, Khunoot;
 
     ArrayList<Double> total = new ArrayList<>();
 
@@ -49,7 +50,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
     ArrayList<String> Total = new ArrayList<>();
 
 
-    LinearLayout creditA,creditB,creditC,creditD;
+    LinearLayout creditA, creditB, creditC, creditD;
 
     DecimalFormat formatter;
 
@@ -91,11 +92,10 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         TotalKhunoot = (TextView) rootView.findViewById(R.id.textview_khunoot);
 
 
-
         try {
             setdata();
-        }catch (Exception e){
-            Toast.makeText(Contextor.getInstance().getmContext(),"ไม่มีข้อมูลที่จะแสดงผล",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(Contextor.getInstance().getmContext(), "ไม่มีข้อมูลที่จะแสดงผล", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -105,12 +105,12 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         //creditall = DashBoradManager.getInstance().getDto().getObject().getCreditCardPayments();
 
-        for(int i=0;true;i++){
-            CreditItemColleationDto  Credit;
-            try{
-              Credit = DashBoradManager.getInstance().getDto()
+        for (int i = 0; true; i++) {
+            CreditItemColleationDto Credit;
+            try {
+                Credit = DashBoradManager.getInstance().getDto()
                         .getObject().getIncomeByCreditCardList().get(i);
-            }catch (Exception e){
+            } catch (Exception e) {
                 break;
             }
 
@@ -120,30 +120,27 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             unipay = Credit.getUnipay();
             visa = Credit.getVisa();
 
-            total.add(i,amax + jcb + master + unipay + visa);
-            creditall = creditall+total.get(i);
-            Total.add(i,formatter.format(total.get(i)));
+            total.add(i, amax + jcb + master + unipay + visa);
+            creditall = creditall + total.get(i);
+            Total.add(i, formatter.format(total.get(i)));
 
-            if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")){
+            if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")) {
                 Tanachat = Total.get(i);
                 TotalTanachat.setText(Tanachat);
-            }
-            else if (Credit.getBank().getBankName().equals("ธนาคารกรุงเทพ (BBL)")){
+            } else if (Credit.getBank().getBankName().equals("ธนาคารกรุงเทพ (BBL)")) {
                 Kungthap = Total.get(i);
                 TotalKungthap.setText(Kungthap);
-            }
-            else if (Credit.getBank().getBankName().equals("ธนาคารไทยพาณิชย์ (SCB)")){
+            } else if (Credit.getBank().getBankName().equals("ธนาคารไทยพาณิชย์ (SCB)")) {
                 Tthaipanich = Total.get(i);
                 TotalTthaipanich.setText(Tthaipanich);
-            }
-            else if (Credit.getBank().getBankName().equals("บัญชีคุณอ๊อด")){
+            } else if (Credit.getBank().getBankName().equals("บัญชีคุณอ๊อด")) {
                 Khunoot = Total.get(i);
                 TotalKhunoot.setText(Khunoot);
             }
         }
 
 
-        TotalSum.setText(formatter.format(creditall)+" บาท");
+        TotalSum.setText(formatter.format(creditall) + " บาท");
 
 
 //        TotalSum.setText(totalts);
@@ -154,27 +151,25 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         ArrayList<BarEntry> values = new ArrayList<>();
 
-        for (int i = 0; true ; i++) {
+        for (int i = 0; true; i++) {
 
             try {
-                values.add(new BarEntry(i,total.get(i).floatValue()));
-            }catch (Exception e){
+                values.add(new BarEntry(i, total.get(i).floatValue()));
+            } catch (Exception e) {
                 break;
             }
 
         }
 
         BarDataSet set1;
-        set1 = new BarDataSet(values,"Credit");
-        set1.setColors(Color.parseColor("#001B7A"));
+        set1 = new BarDataSet(values, "Credit");
+        set1.setColors(new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
         set1.setValueTextColor(Color.BLACK);
-
-
         BarData data = new BarData(set1);
         data.setValueFormatter(new MyFormatCredit());
         barChart.setData(data);
 
-        String[] creditName = new String[]{"กรุงเทพ","ธนชาต","ไทยพาณิชย์","คุณอ๊อต"};
+        String[] creditName = new String[]{"กรุงเทพ", "ธนชาต", "ไทยพาณิชย์", "คุณอ๊อต"};
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(creditName));
         xAxis.setCenterAxisLabels(true);
@@ -186,25 +181,27 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         barChart.setVisibleXRangeMaximum(4);
 
         //set Label Center
-        float barSpace = 0.05f;
+        float barSpace = 0.01f;
         float groupSpace = 0.66f;
-        data.setBarWidth(0.12f);
+        data.setBarWidth(0.20f);
         //(barwidth + barspace) * no of bars + groupspace = 1
 
         barChart.getXAxis().setAxisMinimum(0);
-        barChart.getXAxis().setAxisMaximum(0 + barChart.getBarData().getGroupWidth(groupSpace, barSpace) * 5);
+        barChart.getXAxis().setAxisMaximum(0 + barChart.getBarData().getGroupWidth(groupSpace, barSpace) * 4);
         barChart.getAxisLeft().setAxisMinimum(0);
         barChart.groupBars(0, groupSpace, barSpace);
 
+        YAxis yAxis = barChart.getAxisRight();
+        yAxis.setEnabled(false);
 
-        // Hide grid lines
-        barChart.getAxisLeft().setEnabled(false);
-        barChart.getAxisRight().setEnabled(false);
-        // Hide graph description
-        barChart.getDescription().setEnabled(false);
-        // Hide graph legend
-        barChart.getLegend().setEnabled(false);
-
+//        // Hide grid lines
+//        barChart.getAxisLeft().setEnabled(false);
+//        barChart.getAxisRight().setEnabled(false);
+//        // Hide graph description
+//        barChart.getDescription().setEnabled(false);
+//        // Hide graph legend
+//        barChart.getLegend().setEnabled(false);
+//        barChart.setDrawValueAboveBar(true);
         barChart.invalidate();
     }
 
@@ -235,28 +232,28 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if(v == creditA){
+        if (v == creditA) {
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("ธนาคารกรุงเทพ (BBL)",Kungthap);
-            dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
+            dialogCraditFragment.setNameCredit("ธนาคารกรุงเทพ (BBL)", Kungthap);
+            dialogCraditFragment.show(getFragmentManager(), "DialogCraditFragment");
         }
 
-        if(v == creditB){
+        if (v == creditB) {
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("ธนาคารธนชาต (T-BANK)",Tanachat);
-            dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
+            dialogCraditFragment.setNameCredit("ธนาคารธนชาต (T-BANK)", Tanachat);
+            dialogCraditFragment.show(getFragmentManager(), "DialogCraditFragment");
         }
 
-        if(v == creditC){
+        if (v == creditC) {
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("ธนาคารไทยพาณิชย์ (SCB)",Tthaipanich);
-            dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
+            dialogCraditFragment.setNameCredit("ธนาคารไทยพาณิชย์ (SCB)", Tthaipanich);
+            dialogCraditFragment.show(getFragmentManager(), "DialogCraditFragment");
         }
 
-        if(v == creditD){
+        if (v == creditD) {
             DialogCraditFragment dialogCraditFragment = new DialogCraditFragment();
-            dialogCraditFragment.setNameCredit("บัญชีคุณอ๊อด",Khunoot);
-            dialogCraditFragment.show(getFragmentManager(),"DialogCraditFragment");
+            dialogCraditFragment.setNameCredit("บัญชีคุณอ๊อด", Khunoot);
+            dialogCraditFragment.show(getFragmentManager(), "DialogCraditFragment");
         }
     }
 }
