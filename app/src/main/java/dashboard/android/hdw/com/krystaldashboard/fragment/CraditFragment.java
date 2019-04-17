@@ -194,8 +194,11 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         barChart.getAxisLeft().setAxisMinimum(0);
         barChart.groupBars(0, groupSpace, barSpace);
 
-        YAxis yAxis = barChart.getAxisRight();
-        yAxis.setEnabled(false);
+        YAxis yAxisR = barChart.getAxisRight();
+        yAxisR.setEnabled(false);
+
+        YAxis yAxisL = barChart.getAxisLeft();
+        yAxisL.setEnabled(false);
 
 //        // Hide grid lines
 //        barChart.getAxisLeft().setEnabled(false);
