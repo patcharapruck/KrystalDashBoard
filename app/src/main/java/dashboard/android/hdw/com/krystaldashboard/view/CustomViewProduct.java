@@ -5,32 +5,26 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BaseCustomViewGroup;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BundleSavedState;
 
-public class CustomViewPR extends BaseCustomViewGroup {
-
-    TextView textviewNamePR,textviewNicknamePR, textviewIdPR
-            ,textviewPosition,textviewOnfloor,textviewStart,textviewAll;
-
-
-    public CustomViewPR(Context context) {
+public class CustomViewProduct extends BaseCustomViewGroup {
+    public CustomViewProduct(Context context) {
         super(context);
         initInflate();
         initInstances();
     }
 
-    public CustomViewPR(Context context, AttributeSet attrs) {
+    public CustomViewProduct(Context context, AttributeSet attrs) {
         super(context, attrs);
         initInflate();
         initInstances();
         initWithAttrs(attrs, 0, 0);
     }
 
-    public CustomViewPR(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomViewProduct(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initInflate();
         initInstances();
@@ -38,18 +32,18 @@ public class CustomViewPR extends BaseCustomViewGroup {
     }
 
     @TargetApi(28)
-    public CustomViewPR(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomViewProduct(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initInflate();
         initInstances();
         initWithAttrs(attrs, defStyleAttr, defStyleRes);
-    }
 
+    }
     private void initWithAttrs(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     }
 
     private void initInflate() {
-        inflate(getContext(), R.layout.customview_pr, this);
+        inflate(getContext(), R.layout.customview_drink_0, this);
     }
 
     private void initInstances() {
@@ -69,5 +63,4 @@ public class CustomViewPR extends BaseCustomViewGroup {
         Bundle bundle = ss.getBundle();
 
     }
-
 }

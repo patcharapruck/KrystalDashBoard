@@ -9,15 +9,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.adapter.ProductListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.TopProductAdapter;
 import dashboard.android.hdw.com.krystaldashboard.view.TopProductModelClass;
 
 public class DrinkFragment extends Fragment {
 
+    ArrayList<TopProductModelClass> items;
+    TopProductAdapter adapter;
+    RecyclerView recyclerView;
+
+    ListView listProduct;
+    ProductListAdapter productListAdapter;
 
     @Nullable
     @Override
@@ -28,18 +36,20 @@ public class DrinkFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
-        ArrayList<TopProductModelClass> items = new ArrayList<>();
-        TopProductAdapter adapter = new TopProductAdapter(getContext(), items);
+        items = new ArrayList<>();
+        adapter = new TopProductAdapter(getContext(), items);
 
-        RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
+        recyclerView = rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
         recyclerView.setAdapter(adapter);
 
+        listProduct  = (ListView) rootView.findViewById(R.id.list_item_product);
+        productListAdapter = new ProductListAdapter();
+        listProduct.setAdapter(productListAdapter);
         // let's create 10 random items
 
         for (int i = 0; i < 10; i++) {
-            items.add(new TopProductModelClass("aaaa","vbvb","fff"));
+            items.add(new TopProductModelClass("aaaa","vbvb",""+i));
             adapter.notifyDataSetChanged();
         }
     }

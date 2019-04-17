@@ -21,7 +21,7 @@ public class TopProductAdapter extends RecyclerView.Adapter<TopProductAdapter.Cu
 
     public TopProductAdapter(Context context, ArrayList<TopProductModelClass> item){
         this.context = context;
-        this.items = items;
+        this.items = item;
     }
 
     @NonNull
@@ -32,7 +32,7 @@ public class TopProductAdapter extends RecyclerView.Adapter<TopProductAdapter.Cu
 
     @Override
     public void onBindViewHolder(@NonNull TopProductAdapter.CustomViewTopproduct customViewTopproduct, int i) {
-
+        customViewTopproduct.TextViewAmountProduct.setText(items.get(i).getAmountProduct());
     }
 
     @Override

@@ -38,7 +38,7 @@ public class PaymentListItem extends BaseCustomViewGroup {
         initWithAttrs(attrs, defStyleAttr, 0);
     }
 
-    @TargetApi(21)
+    @TargetApi(28)
     public PaymentListItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initInflate();

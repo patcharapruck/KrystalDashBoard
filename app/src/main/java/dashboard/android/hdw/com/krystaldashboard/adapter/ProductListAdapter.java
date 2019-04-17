@@ -4,10 +4,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import dashboard.android.hdw.com.krystaldashboard.view.CustomViewProduct;
+
 public class ProductListAdapter extends BaseAdapter {
     @Override
     public int getCount() {
-        return 0;
+        return 18;
     }
 
     @Override
@@ -22,6 +24,13 @@ public class ProductListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        CustomViewProduct item;
+        if(convertView != null){
+            item = (CustomViewProduct) convertView;
+        }else{
+            item = new CustomViewProduct(parent.getContext());
+        }
+
+        return item;
     }
 }
