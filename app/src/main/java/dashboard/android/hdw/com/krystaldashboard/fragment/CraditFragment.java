@@ -163,7 +163,10 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         BarDataSet set1;
         set1 = new BarDataSet(values, "Credit");
-        set1.setColors(new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW});
+        set1.setColors(new int[]{Color.parseColor("#204298"),
+                Color.parseColor("#F37637"),
+                Color.parseColor("#502984"),
+                Color.parseColor("#19237E")});
         set1.setValueTextColor(Color.BLACK);
         BarData data = new BarData(set1);
         data.setValueFormatter(new MyFormatCredit());
