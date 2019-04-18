@@ -13,7 +13,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
@@ -31,12 +34,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TableFragment extends Fragment {
+    Spinner spins;
+    private ArrayList<String> mTypeSearch = new ArrayList<String>();
 
     ViewPager viewPager;
     TabLayout tabLayout;
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private Boolean checkPay = false,checkNotPay=false ;
+    private Boolean checkPay = false, checkNotPay = false;
     ProgressDialog progress;
 
 
@@ -51,9 +56,18 @@ public class TableFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_table,null);
+        View rootView = inflater.inflate(R.layout.fragment_table, null);
         initInstances(rootView);
         return rootView;
+    }
+    private void createTypeSearchData() {
+
+        if (mTypeSearch.isEmpty()){
+            mTypeSearch.add("เลขที่เอกสาร");
+            mTypeSearch.add("ชื่อหัวบิล");
+            mTypeSearch.add("Table/Room");
+            mTypeSearch.add("รหัส Sale");
+        }
     }
 
     private void initInstances(View rootView) {
@@ -98,15 +112,15 @@ public class TableFragment extends Fragment {
         checkNotPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+                "(f:salesShift.openDate >= '" + date + " 00:00:00' AND f:salesShift.openDate <= '" + date + " 23:59:59')\"}," +
                 "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
                 "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), nn);
         Call<NotPayItemColleationDto> call = HttpManager.getInstance().getService().loadAPINotPay(requestBody);
         call.enqueue(new Callback<NotPayItemColleationDto>() {
             @Override
             public void onResponse(Call<NotPayItemColleationDto> call, Response<NotPayItemColleationDto> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     NotPayItemColleationDto dao = response.body();
                     NotPayManager.getInstance().setNotpayItemColleationDao(dao);
 
@@ -115,19 +129,19 @@ public class TableFragment extends Fragment {
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .saveNotPay(dao.getPagination().getTotalItem());
 
-                    if(checkPay == true && checkNotPay == true){
+                    if (checkPay == true && checkNotPay == true) {
                         progress.dismiss();
                     }
-                }else {
+                } else {
                     progress.dismiss();
-                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                    Toast.makeText(mcontext, "เกิดข้อผิดพลาด", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<NotPayItemColleationDto> call, Throwable t) {
                 progress.dismiss();
-                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+                Toast.makeText(mcontext, "ไม่สามารถเชื่อมต่อได้", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -137,15 +151,15 @@ public class TableFragment extends Fragment {
         checkPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+                "(f:salesShift.openDate >= '" + date + " 00:00:00' AND f:salesShift.openDate <= '" + date + " 23:59:59')\"}," +
                 "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
                 "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), nn);
         Call<PayItemColleationDto> call = HttpManager.getInstance().getService().loadAPIPay(requestBody);
         call.enqueue(new Callback<PayItemColleationDto>() {
             @Override
             public void onResponse(Call<PayItemColleationDto> call, Response<PayItemColleationDto> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     PayItemColleationDto dao = response.body();
                     PayManager.getInstance().setPayItemColleationDao(dao);
 
@@ -154,20 +168,20 @@ public class TableFragment extends Fragment {
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .savePay(dao.getPagination().getTotalItem());
 
-                    if(checkPay == true && checkNotPay == true){
+                    if (checkPay == true && checkNotPay == true) {
                         progress.dismiss();
                     }
 
-                }else {
+                } else {
                     progress.dismiss();
-                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                    Toast.makeText(mcontext, "เกิดข้อผิดพลาด", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
                 progress.dismiss();
-                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+                Toast.makeText(mcontext, "ไม่สามารถเชื่อมต่อได้", Toast.LENGTH_LONG).show();
             }
         });
 
