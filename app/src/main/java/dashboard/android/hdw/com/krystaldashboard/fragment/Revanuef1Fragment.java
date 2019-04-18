@@ -84,7 +84,14 @@ public class Revanuef1Fragment extends Fragment {
 
         AmountTableRevanue = Paydto.getPagination().getTotalItem();
         TotalRevanue = ODto.getRevenue();
-        int pg = (int) (AmountTableRevanue/(AmountTableRevanue+Notdto.getPagination().getTotalItem()))*100;
+        int pg;
+
+        try {
+            pg = (int) (AmountTableRevanue/(AmountTableRevanue+Notdto.getPagination().getTotalItem()))*100;
+        }catch (Exception e){
+            pg = 0;
+        }
+
 
         DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 

@@ -216,6 +216,7 @@
                 android:drawableLeft="@mipmap/ic_search"
                 android:gravity="left|center_vertical"
                 android:fontFamily="@font/prompt_regular"
+                android:background="@android:color/transparent"
                 android:hint="ค้นหา PR"
                 android:singleLine="true" />
 

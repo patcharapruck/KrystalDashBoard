@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
@@ -33,6 +34,10 @@ public class TopProductAdapter extends RecyclerView.Adapter<TopProductAdapter.Cu
     @Override
     public void onBindViewHolder(@NonNull TopProductAdapter.CustomViewTopproduct customViewTopproduct, int i) {
         customViewTopproduct.TextViewAmountProduct.setText(items.get(i).getAmountProduct());
+        customViewTopproduct.TextViewNameProduct.setText(items.get(i).getNameProduct());
+        Glide.with(context)
+                .load(items.get(i).getImage())
+                .into(customViewTopproduct.ImgProduct);
     }
 
     @Override

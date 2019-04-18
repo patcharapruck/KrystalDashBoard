@@ -62,6 +62,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:id="@+id/textview_amount_product"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -91,6 +92,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:id="@+id/textview_amount_drinks"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -128,12 +130,12 @@
                                 android:textSize="11sp" />
 
                             <TextView
+                                android:id="@+id/textview_purchase_amount_product"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/prompt_bold"
                                 android:gravity="center"
-
                                 android:text="120"
                                 android:textColor="#19237E"
                                 android:textSize="20dp" />
@@ -170,6 +172,7 @@
                                 android:textSize="11sp" />
 
                             <TextView
+                                android:id="@+id/textview_buy_amount_product"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -212,6 +215,7 @@
                                 android:textSize="11sp" />
 
                             <TextView
+                                android:id="@+id/textview_entertain_amount_product"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
