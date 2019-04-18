@@ -80,7 +80,7 @@ public class AllRevenueFragment extends Fragment {
         }
 
         LineDataSet set1;
-        LineDataSet set2;
+
 
         if (chart.getData() != null &&
                 chart.getData().getDataSetCount() > 0) {
@@ -112,34 +112,14 @@ public class AllRevenueFragment extends Fragment {
 
             if (chart.getData() != null &&
                     chart.getData().getDataSetCount() > 0) {
-                set2 = (LineDataSet) chart.getData().getDataSetByIndex(0);
-                set2.setValues(values1);
                 chart.getData().notifyDataChanged();
                 chart.notifyDataSetChanged();
             } else {
                 // create a dataset and give it a type
-                set2 = new LineDataSet(values1, "DataSet 2");
-                set2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-                set2.setCubicIntensity(0.2f);
-                set2.setDrawFilled(true);
-                set2.setDrawCircles(false);
-                set2.setLineWidth(1.8f);
-                set2.setCircleRadius(4f);
-                set2.setCircleColor(Color.WHITE);
-                set2.setHighLightColor(Color.rgb(244, 117, 117));
-                set2.setColor(Color.WHITE);
-                set2.setFillColor(Color.parseColor("#479FF8"));
-                set2.setFillAlpha(100);
-                set2.setDrawHorizontalHighlightIndicator(false);
-                set2.setFillFormatter(new IFillFormatter() {
-                    @Override
-                    public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
-                        return chart.getAxisLeft().getAxisMinimum();
-                    }
-                });
+
             }
             // create a data object with the data sets
-            LineData data = new LineData(set1, set2);
+            LineData data = new LineData(set1);
             data.setValueTextSize(9f);
             data.setDrawValues(false);
 

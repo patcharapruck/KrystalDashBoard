@@ -15,19 +15,22 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:src="@drawable/untitled11" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/textview_name_pr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/prompt_regular"
+                android:fontFamily="@font/prompt_bold"
                 android:text="รัชนิกร ดีประสิทธิ์"
+                android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
 
@@ -38,9 +41,9 @@
                 android:layout_marginEnd="1dp"
                 android:layout_toStartOf="@+id/textview_nickname_pr"
                 android:layout_toLeftOf="@+id/textview_nickname_pr"
-                android:fontFamily="@font/prompt_regular"
-                android:text="ชื่อเล่น: "
-                android:textStyle="bold"
+                android:fontFamily="@font/prompt_bold"
+                android:text="ชื่อเล่น : "
+                android:textColor="@color/colorfont"
                 android:textSize="@dimen/textsize_pr" />
 
             <TextView
@@ -48,8 +51,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:fontFamily="@font/prompt_regular"
+                android:fontFamily="@font/prompt_bold"
+
                 android:text="เบนจี้"
+                android:textColor="@color/colorfont"
+
                 android:layout_marginRight="10dp"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
@@ -60,8 +66,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textview_name_pr"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/prompt_regular"
-                android:text="ID: "
+
+                android:fontFamily="@font/prompt_bold"
+
+                android:text="ID : "
+                android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
 
@@ -72,9 +81,13 @@
                 android:layout_below="@id/textview_name_pr"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/text_id"
-                android:fontFamily="@font/prompt_regular"
+
+                android:fontFamily="@font/prompt_bold"
+
                 android:text="514019"
                 android:textStyle="bold"
+                android:textColor="@color/colorfont"
+
                 android:textSize="@dimen/textsize_pr" />
 
 
@@ -84,8 +97,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_id"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/prompt_regular"
-                android:text="ตำแหน่ง: "
+
+                android:fontFamily="@font/prompt_bold"
+
+                android:text="ตำแหน่ง : "
+                android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
 
@@ -96,7 +112,10 @@
                 android:layout_below="@id/text_id"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/text_position"
-                android:fontFamily="@font/prompt_regular"
+
+                android:fontFamily="@font/prompt_bold"
+
+                android:textColor="@color/colorfont"
                 android:text="PR"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
@@ -107,8 +126,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_position"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/prompt_regular"
-                android:text="On Floor: "
+
+                android:fontFamily="@font/prompt_bold"
+
+                android:text="On Floor : "
+                android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
 
@@ -120,8 +142,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_toRightOf="@id/text_onfloor"
-                android:fontFamily="@font/prompt_regular"
+
+                android:fontFamily="@font/prompt_bold"
+
                 android:text="22:33"
+                android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
 
@@ -132,9 +157,12 @@
                 android:layout_below="@id/text_position"
                 android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="@font/prompt_regular"
+
+                android:fontFamily="@font/prompt_bold"
+
                 android:textStyle="bold"
-                android:text="ดื่มเริ่มต้น: "
+                android:textColor="@color/colorfont"
+                android:text="ดื่มเริ่มต้น : "
                 android:textSize="@dimen/textsize_pr" />
 
             <TextView
@@ -143,9 +171,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_position"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/prompt_regular"
+
+                android:fontFamily="@font/prompt_bold"
+
                 android:layout_toRightOf="@id/text_start"
                 android:text="4"
+                android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
 
@@ -156,8 +187,11 @@
                 android:layout_below="@id/text_position"
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@+id/textview_all_pr"
-                android:fontFamily="@font/prompt_regular"
-                android:text="ดื่มทั้งหมด: "
+
+                android:fontFamily="@font/prompt_bold"
+
+                android:text="ดื่มทั้งหมด : "
+                android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
 
@@ -168,8 +202,11 @@
                 android:layout_below="@id/text_position"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentRight="true"
-                android:fontFamily="@font/prompt_regular"
+
+                android:fontFamily="@font/prompt_bold"
+
                 android:text="44"
+                android:textColor="@color/colorfont"
                 android:layout_marginRight="10dp"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
