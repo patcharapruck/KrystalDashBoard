@@ -11,12 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.dto.CompareDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
@@ -40,6 +44,8 @@ public class HomeFragment extends Fragment {
         reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+        teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay()
+                ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date());
     }
 
     @Nullable
@@ -69,9 +75,8 @@ public class HomeFragment extends Fragment {
                     DashBoradManager.getInstance().setDto(dao);
                     checkdashboard = true;
 
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
                         progress.dismiss();
-
                     }
                 }
                 else {
@@ -108,7 +113,7 @@ public class HomeFragment extends Fragment {
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .saveNotPay(dao.getPagination().getTotalItem());
 
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
                         progress.dismiss();
                     }
                 }else {
@@ -147,7 +152,7 @@ public class HomeFragment extends Fragment {
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .savePay(dao.getPagination().getTotalItem());
 
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
+                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
                         progress.dismiss();
                     }
 
@@ -166,6 +171,39 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private void teqAPICompare(String s, String key7Date) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+key7Date+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<CompareDto> call = HttpManager.getInstance().getService().loadAPIcompare(requestBody);
+        call.enqueue(new Callback<CompareDto>() {
+
+            @Override
+            public void onResponse(Call<CompareDto> call, Response<CompareDto> response) {
+                if(response.isSuccessful()){
+                    CompareDto dao = response.body();
+                    CompareManager.getInstance().setCompareDao(dao);
+
+                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
+                        progress.dismiss();
+                    }
+
+                }else {
+                    try {
+                        progress.dismiss();
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        progress.dismiss();
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<CompareDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
     private void showProgress() {
         progress = new ProgressDialog(getContext());
         progress.setTitle("Loading");

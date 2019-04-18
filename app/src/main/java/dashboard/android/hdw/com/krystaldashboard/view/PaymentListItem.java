@@ -94,7 +94,7 @@ public class PaymentListItem extends BaseCustomViewGroup {
     }
 
     public void setPayMoney(Double payMoney){
-        DecimalFormat formatter = new DecimalFormat("#,###,###.00");
+        DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
         tPpyMonny = formatter.format(payMoney);
         tvPpyMonny.setText(tPpyMonny);
     }

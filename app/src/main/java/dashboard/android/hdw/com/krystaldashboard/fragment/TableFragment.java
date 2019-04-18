@@ -40,19 +40,14 @@ public class TableFragment extends Fragment {
     ProgressDialog progress;
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        showProgress();
-        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_table,null);
-        initInstances(rootView);
+        showProgress();
+        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
+        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
         return rootView;
     }
 
@@ -94,7 +89,7 @@ public class TableFragment extends Fragment {
     }
 
 
-    private void reqAPInotpay(String date) {
+    private void reqAPInotpay(String date, final View rootView) {
         checkNotPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
@@ -117,6 +112,7 @@ public class TableFragment extends Fragment {
 
                     if(checkPay == true && checkNotPay == true){
                         progress.dismiss();
+                        initInstances(rootView);
                     }
                 }else {
                     progress.dismiss();
@@ -133,7 +129,7 @@ public class TableFragment extends Fragment {
 
     }
 
-    private void reqAPIpay(String date) {
+    private void reqAPIpay(String date, final View rootView) {
         checkPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
@@ -156,6 +152,7 @@ public class TableFragment extends Fragment {
 
                     if(checkPay == true && checkNotPay == true){
                         progress.dismiss();
+                        initInstances(rootView);
                     }
 
                 }else {

@@ -152,10 +152,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         Calendar calendartoday = Calendar.getInstance();
+        Calendar day7 = Calendar.getInstance();
 
         calendar.setTime(date);
         calendartoday.setTime(date);
+        day7.setTime(date);
 
+        day7.add(Calendar.DATE,-8);
         calendar.add(Calendar.DATE,-1);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH)+1;
@@ -165,6 +168,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         String formatDateTime2 = dateFormat2.format(calendar.getTime());
         String formatDateTimetoday = dateFormat.format(calendartoday.getTime());
         String formatDategeneral = dateFormatth.format(calendar.getTime());
+        String format7DateTime = dateFormat2.format(day7.getTime());
 
         SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                 .saveDatereq(formatDateTime,formatDateTime2);
@@ -174,6 +178,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                 .saveDateFull(formatDategeneral);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDate7(format7DateTime);
 
         SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                 .saveDateCalendar(day,month,year);

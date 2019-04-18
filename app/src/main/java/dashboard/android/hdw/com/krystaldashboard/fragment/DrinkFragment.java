@@ -68,18 +68,12 @@ public class DrinkFragment extends Fragment {
 
     ProgressDialog progress;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_drink,null);
         showProgress();
-        initInstances(rootView);
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate(),rootView);
         return rootView;
     }
 
@@ -287,7 +281,7 @@ public class DrinkFragment extends Fragment {
 
     }
 
-    public void reqAPI(String date) {
+    public void reqAPI(String date, final View rootView) {
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
@@ -300,6 +294,7 @@ public class DrinkFragment extends Fragment {
                     DashBoardDto dao = response.body();
                     DashBoradManager.getInstance().setDto(dao);
                     progress.dismiss();
+                    initInstances(rootView);
 
                 }
                 else {

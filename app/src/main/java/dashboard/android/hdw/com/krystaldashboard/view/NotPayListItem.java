@@ -93,7 +93,7 @@ public class NotPayListItem extends BaseCustomViewGroup {
     }
 
     public void setNotPayMoney(Double NotpayMoney){
-        DecimalFormat formatter = new DecimalFormat("#,###,###.00");
+        DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
         tNpyMonny = formatter.format(NotpayMoney);
         tvNpyMonny.setText(tNpyMonny);
     }
