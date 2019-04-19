@@ -255,11 +255,12 @@
                 android:orientation="horizontal">
 
                 <!--card bast seller-->
-
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
@@ -277,7 +278,7 @@
             <!--Expandable Card drink-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="2000dp"
                 android:background="@color/bg1"
                 android:orientation="vertical">
 
@@ -285,7 +286,6 @@
                     android:id="@+id/list_item_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
                 </ListView>
 
 
