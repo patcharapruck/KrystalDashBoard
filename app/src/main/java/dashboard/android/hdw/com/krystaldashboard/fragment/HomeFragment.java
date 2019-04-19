@@ -172,6 +172,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void teqAPICompare(String s, String key7Date) {
+        checkall = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+key7Date+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
@@ -181,6 +182,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<CompareCollectionDto> call, Response<CompareCollectionDto> response) {
                 if(response.isSuccessful()){
+                    checkall = true;
                     CompareCollectionDto dao = response.body();
                     CompareManager.getInstance().setCompareDao(dao);
 

@@ -73,6 +73,7 @@ public class DrinkFragment extends Fragment {
 
     CardView cardView;
     ExpandableRelativeLayout mycontent;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -140,14 +141,14 @@ public class DrinkFragment extends Fragment {
         }
 
 // Expandable card
-        cardView = (CardView) rootView.findViewById(R.id.carddrink);
-        mycontent = (ExpandableRelativeLayout)rootView.findViewById(R.id.mycontent);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mycontent.toggle();
-            }
-        });
+//        cardView = (CardView) rootView.findViewById(R.id.carddrink);
+//        mycontent = (ExpandableRelativeLayout)rootView.findViewById(R.id.mycontent);
+//        cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mycontent.toggle();
+//            }
+//        });
 
     }
 

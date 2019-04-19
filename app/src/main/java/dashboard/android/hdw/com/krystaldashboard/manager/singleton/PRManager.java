@@ -9,7 +9,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 public class PRManager {
 
     private static PRManager instance;
-    private CompareCollectionDto pr;
+    private PRItemCollectionDto pr;
     public static PRManager getInstance() {
         if (instance == null)
             instance = new PRManager();
@@ -18,7 +18,7 @@ public class PRManager {
 
     private Context mContext;
 
-    public CompareCollectionDto getPr() {
+    public PRItemCollectionDto getPr() {
         return pr;
     }
 
