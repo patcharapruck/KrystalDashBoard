@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
-import dashboard.android.hdw.com.krystaldashboard.dto.CompareDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
@@ -175,13 +175,13 @@ public class HomeFragment extends Fragment {
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+key7Date+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<CompareDto> call = HttpManager.getInstance().getService().loadAPIcompare(requestBody);
-        call.enqueue(new Callback<CompareDto>() {
+        Call<CompareCollectionDto> call = HttpManager.getInstance().getService().loadAPIcompare(requestBody);
+        call.enqueue(new Callback<CompareCollectionDto>() {
 
             @Override
-            public void onResponse(Call<CompareDto> call, Response<CompareDto> response) {
+            public void onResponse(Call<CompareCollectionDto> call, Response<CompareCollectionDto> response) {
                 if(response.isSuccessful()){
-                    CompareDto dao = response.body();
+                    CompareCollectionDto dao = response.body();
                     CompareManager.getInstance().setCompareDao(dao);
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
@@ -199,7 +199,7 @@ public class HomeFragment extends Fragment {
                 }
             }
             @Override
-            public void onFailure(Call<CompareDto> call, Throwable t) {
+            public void onFailure(Call<CompareCollectionDto> call, Throwable t) {
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
             }
         });

@@ -1,7 +1,7 @@
 package dashboard.android.hdw.com.krystaldashboard.manager.http;
 
 
-import dashboard.android.hdw.com.krystaldashboard.dto.CompareDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.login.LoginItemDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
@@ -17,13 +17,16 @@ public interface KrystalService {
     Call<DashBoardDto> loadAPI(@Body RequestBody json);
 
     @POST("restaurant/v1/salesshift/search")
-    Call<CompareDto> loadAPIcompare(@Body RequestBody json);
+    Call<CompareCollectionDto> loadAPIcompare(@Body RequestBody json);
 
     @POST("restaurant/v1/invoicedocument/search")
     Call<PayItemColleationDto> loadAPIPay(@Body RequestBody json);
 
     @POST("restaurant/v1/invoicedocument/search")
     Call<NotPayItemColleationDto> loadAPINotPay(@Body RequestBody json);
+
+    @POST("restaurant/v1/bpm/prdrinkcenter/search")
+    Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> loadAPIPR(@Body RequestBody json);
 
     @POST("restaurant/v1/login")
     Call<LoginItemDto> loadAPIToken(@Body RequestBody login);

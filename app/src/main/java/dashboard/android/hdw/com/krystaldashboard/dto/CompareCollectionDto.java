@@ -2,7 +2,7 @@ package dashboard.android.hdw.com.krystaldashboard.dto;
 
 import java.util.List;
 
-public class CompareDto {
+public class CompareCollectionDto {
 
     private Long statusCode;
     private String message;

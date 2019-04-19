@@ -3,29 +3,30 @@ package dashboard.android.hdw.com.krystaldashboard.manager.singleton;
 import android.content.Context;
 
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 
-public class CompareManager {
+public class PRManager {
 
-    private static CompareManager instance;
-    private CompareCollectionDto compareDao;
-    public static CompareManager getInstance() {
+    private static PRManager instance;
+    private CompareCollectionDto pr;
+    public static PRManager getInstance() {
         if (instance == null)
-            instance = new CompareManager();
+            instance = new PRManager();
         return instance;
     }
 
     private Context mContext;
 
-    public CompareCollectionDto getCompareDao() {
-        return compareDao;
+    public CompareCollectionDto getPr() {
+        return pr;
     }
 
-    public void setCompareDao(CompareCollectionDto compareDao) {
-        this.compareDao = compareDao;
+    public void setPr(PRItemCollectionDto pr) {
+        this.pr = pr;
     }
 
-    private CompareManager() {
+    private PRManager() {
         mContext = Contextor.getInstance().getmContext();
     }
 
