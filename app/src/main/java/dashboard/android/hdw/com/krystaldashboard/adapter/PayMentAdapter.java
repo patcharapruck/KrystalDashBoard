@@ -20,7 +20,7 @@ public class PayMentAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return PayManager.getInstance().getPayItemColleationDao().getObject().get(position);
     }
 
     @Override

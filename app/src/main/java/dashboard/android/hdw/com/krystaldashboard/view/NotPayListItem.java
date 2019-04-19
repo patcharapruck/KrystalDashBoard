@@ -38,7 +38,7 @@ public class NotPayListItem extends BaseCustomViewGroup {
             initWithAttrs(attrs, defStyleAttr, 0);
         }
 
-    @TargetApi(21)
+    @TargetApi(28)
     public NotPayListItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
             super(context, attrs, defStyleAttr, defStyleRes);
             initInflate();
@@ -93,7 +93,7 @@ public class NotPayListItem extends BaseCustomViewGroup {
     }
 
     public void setNotPayMoney(Double NotpayMoney){
-        DecimalFormat formatter = new DecimalFormat("#,###,###.00");
+        DecimalFormat formatter = new DecimalFormat("#,###,##0.00");
         tNpyMonny = formatter.format(NotpayMoney);
         tvNpyMonny.setText(tNpyMonny);
     }

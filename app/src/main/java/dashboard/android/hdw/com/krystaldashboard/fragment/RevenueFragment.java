@@ -34,13 +34,21 @@ public class RevenueFragment extends Fragment {
     private Boolean checkPay = false,checkNotPay=false , checkdashboard=false , checkall = false;
 
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showProgress();
+
+        checkPay = false;
+        checkNotPay=false;
+        checkdashboard=false;
+
         reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+
+
     }
 
     @Nullable
@@ -71,7 +79,6 @@ public class RevenueFragment extends Fragment {
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true){
                         progress.dismiss();
-
                     }
                 }
                 else {
@@ -102,9 +109,7 @@ public class RevenueFragment extends Fragment {
                 if(response.isSuccessful()){
                     NotPayItemColleationDto dao = response.body();
                     NotPayManager.getInstance().setNotpayItemColleationDao(dao);
-
                     checkNotPay = true;
-
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .saveNotPay(dao.getPagination().getTotalItem());
 
@@ -116,7 +121,6 @@ public class RevenueFragment extends Fragment {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<NotPayItemColleationDto> call, Throwable t) {
                 progress.dismiss();
@@ -141,22 +145,17 @@ public class RevenueFragment extends Fragment {
                 if(response.isSuccessful()){
                     PayItemColleationDto dao = response.body();
                     PayManager.getInstance().setPayItemColleationDao(dao);
-
                     checkPay = true;
-
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .savePay(dao.getPagination().getTotalItem());
-
                     if(checkPay == true && checkNotPay == true && checkdashboard == true){
                         progress.dismiss();
                     }
-
                 }else {
                     progress.dismiss();
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
                 progress.dismiss();

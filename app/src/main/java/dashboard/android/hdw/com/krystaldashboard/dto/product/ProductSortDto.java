@@ -7,6 +7,7 @@ public class ProductSortDto {
     private Long[] entertainProductSort;
     private Long[] purchaseProductSort;
     private Long[] withdrawProductSort;
+    private String[] imageProductSort;
 
     public String[] getNameProductSort() {
         return nameProductSort;
@@ -46,5 +47,13 @@ public class ProductSortDto {
 
     public void setWithdrawProductSort(Long[] withdrawProductSort) {
         this.withdrawProductSort = withdrawProductSort;
+    }
+
+    public String[] getImageProductSort() {
+        return imageProductSort;
+    }
+
+    public void setImageProductSort(String[] imageProductSort) {
+        this.imageProductSort = imageProductSort;
     }
 }

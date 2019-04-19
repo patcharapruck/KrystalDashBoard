@@ -17,12 +17,12 @@ public class ProductManager {
         return instance;
     }
 
-    public ProductSortDto getProductSortDao() {
+    public ProductSortDto getProductSortDto() {
         return productSortDao;
     }
 
-    public void setProductSortDao(ProductSortDto productSortDao) {
-        this.productSortDao = productSortDao;
+    public void setProductSortDto(ProductSortDto productSortDto) {
+        this.productSortDao = productSortDto;
     }
 
     private Context mContext;

@@ -17,6 +17,7 @@ public class SharedPrefDateManager {
     private static final String KEY_REQ_DATE = "reqdate";
     private static final String KEY_DATE_FULL = "datefull";
     private static final String KEY_DATE_PAY = "datepayment";
+    private static final String KEY_7DATE = "date7";
 
 
     SharedPrefDateManager(Context context) {
@@ -76,6 +77,16 @@ public class SharedPrefDateManager {
         return true;
     }
 
+    public boolean saveDate7(String date){
+
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_7DATE,date);
+        editor.apply();
+
+        return true;
+    }
+
     public boolean logoutDate(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -115,6 +126,11 @@ public class SharedPrefDateManager {
     public static String getKeyDatePay() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_DATE_PAY,null);
+    }
+
+    public static String getKey7Date(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_7DATE,null);
     }
 
 }
