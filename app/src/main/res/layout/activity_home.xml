@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/plantagenet_cherokee"
+                android:fontFamily="@font/prompt_medium"
                 android:gravity="center"
                 android:text="Restaurant Dashboard"
                 android:textColor="#FFFFFF"

@@ -367,11 +367,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="62dp"
-                        app:ael_duration="500"
-                        app:ael_expanded="false"
+                        app:ael_duration="300"
+                        app:ael_expanded="true"
                         app:ael_interpolator="fastOutSlowIn"
                         app:ael_orientation="vertical"
-
                         >
 
                         <android.support.v7.widget.CardView
