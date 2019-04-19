@@ -13,7 +13,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
@@ -31,12 +34,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TableFragment extends Fragment {
+    Spinner spins;
+    private ArrayList<String> mTypeSearch = new ArrayList<String>();
 
     ViewPager viewPager;
     TabLayout tabLayout;
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private Boolean checkPay = false,checkNotPay=false ;
+    private Boolean checkPay = false, checkNotPay = false;
     ProgressDialog progress;
 
 
@@ -49,6 +54,15 @@ public class TableFragment extends Fragment {
         reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
         reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
         return rootView;
+    }
+    private void createTypeSearchData() {
+
+        if (mTypeSearch.isEmpty()){
+            mTypeSearch.add("เลขที่เอกสาร");
+            mTypeSearch.add("ชื่อหัวบิล");
+            mTypeSearch.add("Table/Room");
+            mTypeSearch.add("รหัส Sale");
+        }
     }
 
     private void initInstances(View rootView) {

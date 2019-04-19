@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -28,7 +31,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PRFragment extends Fragment {
-    
+    Spinner spins;
+    private ArrayList<String> mTypeSearch = new ArrayList<String>();
     ListView listViewPR;
     PRListAdapter prListAdapter;
     
@@ -40,7 +44,15 @@ public class PRFragment extends Fragment {
         return rootView;
 
     }
+    private void createTypeSearchData() {
 
+        if (mTypeSearch.isEmpty()){
+            mTypeSearch.add("ชื่อจริง");
+            mTypeSearch.add("ชื่อเล่น");
+            mTypeSearch.add("ID");
+            mTypeSearch.add("ตำแหน่ง");
+        }
+    }
     private void initInstances(View rootView) {
 
         listViewPR = (ListView) rootView.findViewById(R.id.list_pr);

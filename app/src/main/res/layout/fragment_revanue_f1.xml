@@ -70,7 +70,7 @@
                         android:layout_marginTop="25dp"
                         android:background="@drawable/button2"
                         android:fontFamily="@font/prompt_medium"
-                        android:text="รายงานผล"
+                        android:text="เลือกวันที่"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
@@ -97,44 +97,75 @@
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/prompt_bold"
                     android:text="โต๊ะที่ชำระเงิน"
-                    android:textColor="#7F6CFF"
+                    android:textColor="@color/colorfontrevenue"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/textview_table_money_revanue"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="21dp"
+                    android:orientation="horizontal"
                     android:layout_marginLeft="88dp"
                     android:layout_marginTop="40dp"
-                    android:fontFamily="@font/prompt_regular"
-                    android:text="235,756.00 บาท"
-                    android:textColor="#7F6CFF"
-                    android:textSize="14sp" />
+                    >
+                    <TextView
+                        android:id="@+id/textview_table_money_revanue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:text="235,756.00 "
+                        android:textColor="@color/colorfontrevenue"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:text=" บาท"
+                        android:textColor="@color/colorfontrevenue"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
 
                 <ProgressBar
                     android:id="@+id/horizontal_progress_bar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="230dp"
-                    android:layout_height="10dp"
+                    android:layout_height="9dp"
                     android:layout_marginLeft="88dp"
                     android:layout_marginTop="65dp"
                     android:indeterminate="false"
                     android:max="100"
                     android:minHeight="100dp"
                     android:progress="30"
-                    android:scaleY="2" />
+                    android:progressDrawable="@drawable/set_conner_radius_progress"
+                    android:scaleY="1" />
 
 
-                <TextView
-                    android:id="@+id/textview_amount_table_revanue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="21dp"
-                    android:layout_marginLeft="88dp"
-                    android:layout_marginTop="80dp"
-                    android:fontFamily="@font/prompt_regular"
-                    android:text="15 โต๊ะ"
-                    android:textColor="#7F6CFF"
-                    android:textSize="12sp" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="21dp"
+    android:orientation="horizontal"
+    android:weightSum="2"
+    android:layout_marginLeft="88dp"
+    android:layout_marginTop="80dp">
+
+    <TextView
+        android:id="@+id/textview_amount_table_revanue"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:fontFamily="@font/prompt_regular"
+        android:text="15 "
+        android:textColor="@color/colorfontrevenue"
+        android:textSize="12sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:fontFamily="@font/prompt_regular"
+        android:text=" โต๊ะ"
+        android:textColor="@color/colorfontrevenue"
+        android:textSize="12sp" />
+</LinearLayout>
+
 
             </RelativeLayout>
 

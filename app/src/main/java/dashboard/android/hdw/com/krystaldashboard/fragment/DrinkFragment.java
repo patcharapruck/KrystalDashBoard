@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.util.ArrayList;
 
@@ -68,6 +71,8 @@ public class DrinkFragment extends Fragment {
 
     ProgressDialog progress;
 
+    CardView cardView;
+    ExpandableRelativeLayout mycontent;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -133,6 +138,17 @@ public class DrinkFragment extends Fragment {
             items.add(new TopProductModelClass(Sortimage[i],Sortname[i],Sorttotal[i].toString()));
             adapter.notifyDataSetChanged();
         }
+
+// Expandable card
+        cardView = (CardView) rootView.findViewById(R.id.carddrink);
+        mycontent = (ExpandableRelativeLayout)rootView.findViewById(R.id.mycontent);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mycontent.toggle();
+            }
+        });
+
     }
 
     private Long getWithdraw(int i) {

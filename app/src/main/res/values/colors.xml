@@ -17,6 +17,8 @@
     <color name="color_pay">#62BB47</color>
     <color name="color_not_pay">#FF0707</color>
     <color name="colorfontpay">#949494</color>
+    <color name="colorfont">#4D4D4D</color>
+    <color name="colorfontrevenue">#7F6CFF</color>
 
 
 
