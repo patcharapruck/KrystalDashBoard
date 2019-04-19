@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <!--<ScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -63,6 +63,7 @@
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                     <TextView
+                        android:id="@+id/memberbill"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:fontFamily="@font/prompt_bold"
@@ -87,6 +88,7 @@
         android:textSize="10dp" />
 
     <TextView
+        android:id="@+id/nomberbill"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:fontFamily="@font/prompt_medium"
@@ -111,6 +113,7 @@
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                     <TextView
+                        android:id="@+id/datebill"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:fontFamily="@font/prompt_medium"
@@ -133,10 +136,18 @@
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                     <TextView
+                        android:id="@+id/paxbill"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:fontFamily="@font/prompt_medium"
-                        android:text="0 AMOUNT"
+                        android:text="0"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:fontFamily="@font/prompt_medium"
+                        android:text=" AMOUNT"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                 </LinearLayout>
@@ -159,6 +170,7 @@
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                     <TextView
+                        android:id="@+id/salebill"
                         android:layout_width="wrap_content"
                         android:layout_height="21dp"
                         android:fontFamily="@font/prompt_medium"
@@ -177,7 +189,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="144dp"
                     android:orientation="horizontal"
                     android:weightSum="2">
@@ -191,8 +203,8 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="73dp"
-                            android:layout_height="21dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="center"
                             android:text="TABLE / ROOM"
@@ -200,6 +212,7 @@
                             android:textSize="10dp" />
 
                         <TextView
+                            android:id="@+id/tableroombill"
                             android:layout_width="match_parent"
                             android:layout_height="21dp"
                             android:fontFamily="@font/prompt_medium"
@@ -221,22 +234,38 @@
 
                         <TextView
 
-                            android:layout_width="73dp"
-                            android:layout_height="21dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="center"
                             android:text="TOTAL"
                             android:textColor="@color/white"
                             android:textSize="10dp" />
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="21dp"
-                            android:fontFamily="@font/prompt_medium"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
                             android:gravity="center"
-                            android:text="2,640 ฿"
-                            android:textColor="@color/white"
-                            android:textSize="10dp" />
+                            >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center"
+                                android:text="2,640"
+                                android:textColor="@color/white"
+                                android:textSize="10dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center"
+                                android:text=" ฿"
+                                android:textColor="@color/white"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
 
                     </LinearLayout>
                 </LinearLayout>
@@ -344,7 +373,7 @@
                 <ListView
                     android:id="@+id/listview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
                     android:layout_marginTop="240dp"
                     android:collapseColumns="5"></ListView>
 
@@ -411,7 +440,7 @@
 
             </RelativeLayout>
 
-        <!--</ScrollView>-->
+        </ScrollView>
 
 
         <LinearLayout
