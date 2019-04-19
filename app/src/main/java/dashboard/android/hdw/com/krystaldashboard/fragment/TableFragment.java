@@ -58,7 +58,6 @@ public class TableFragment extends Fragment {
     private void createTypeSearchData() {
 
         if (mTypeSearch.isEmpty()){
-            mTypeSearch.add("เลขที่เอกสาร");
             mTypeSearch.add("ชื่อหัวบิล");
             mTypeSearch.add("Table/Room");
             mTypeSearch.add("รหัส Sale");

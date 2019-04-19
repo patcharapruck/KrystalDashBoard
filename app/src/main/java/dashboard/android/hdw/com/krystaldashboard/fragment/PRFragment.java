@@ -59,6 +59,15 @@ public class PRFragment extends Fragment {
 
         prListAdapter = new PRListAdapter();
         listViewPR.setAdapter(prListAdapter);
+
+        if (listViewPR.getCount() != 0){
+            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
+            int itemHeight = listViewPR.getChildAt(0).getHeight() + 1 ;
+            listViewParams.height = listViewPR.getCount() * itemHeight;
+            listViewPR.setLayoutParams(listViewParams);
+        }
+
+
     }
 
     private void teqAPICompare(String s) {
