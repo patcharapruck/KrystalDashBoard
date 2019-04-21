@@ -9,6 +9,10 @@
 
     </style>
 
+    <style name="Dottheme" >
+        <item name="android:tint">@color/white</item>
+    </style>
+
     <style name="creditHdw">
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:gravity">center</item>

@@ -3,6 +3,7 @@ package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.FontsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -123,7 +124,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             total.add(i, amax + jcb + master + unipay + visa);
             creditall = creditall + total.get(i);
             Total.add(i, formatter.format(total.get(i)));
-
+//dialog
             if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")) {
                 Tanachat = Total.get(i);
                 TotalTanachat.setText(Tanachat);
@@ -139,7 +140,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             }
         }
 
-
+//total
         TotalSum.setText(formatter.format(creditall) + " บาท");
 
 
@@ -160,7 +161,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             }
 
         }
-
+//Barchart
         BarDataSet set1;
         set1 = new BarDataSet(values, "Credit");
         set1.setColors(new int[]{Color.parseColor("#204298"),
@@ -175,39 +176,26 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         String[] creditName = new String[]{"กรุงเทพ", "ธนชาต", "ไทยพาณิชย์", "คุณอ๊อต"};
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(creditName));
-        xAxis.setCenterAxisLabels(true);
+        xAxis.setCenterAxisLabels(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
 
-        barChart.setDragEnabled(false);
+
+        barChart.setDragEnabled(true);
         barChart.setVisibleXRangeMaximum(4);
+        data.setBarWidth(0.3f);
 
-        //set Label Center
-        float barSpace = 0.01f;
-        float groupSpace = 0.66f;
-        data.setBarWidth(0.20f);
-        //(barwidth + barspace) * no of bars + groupspace = 1
 
-        barChart.getXAxis().setAxisMinimum(0);
-        barChart.getXAxis().setAxisMaximum(0 + barChart.getBarData().getGroupWidth(groupSpace, barSpace) * 4);
-        barChart.getAxisLeft().setAxisMinimum(0);
-        barChart.groupBars(0, groupSpace, barSpace);
-
-        YAxis yAxisR = barChart.getAxisRight();
-        yAxisR.setEnabled(false);
-
-        YAxis yAxisL = barChart.getAxisLeft();
-        yAxisL.setEnabled(false);
 
 //        // Hide grid lines
-//        barChart.getAxisLeft().setEnabled(false);
-//        barChart.getAxisRight().setEnabled(false);
+        barChart.getAxisLeft().setEnabled(true);
+        barChart.getAxisRight().setEnabled(false);
 //        // Hide graph description
-//        barChart.getDescription().setEnabled(false);
+        barChart.getDescription().setEnabled(false);
 //        // Hide graph legend
-//        barChart.getLegend().setEnabled(false);
-//        barChart.setDrawValueAboveBar(true);
+        barChart.getLegend().setEnabled(false);
+        barChart.setDrawValueAboveBar(true);
         barChart.invalidate();
     }
 
