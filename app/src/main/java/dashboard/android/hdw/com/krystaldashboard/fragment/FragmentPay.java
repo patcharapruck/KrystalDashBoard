@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
@@ -43,6 +44,13 @@ public class FragmentPay extends Fragment {
         payMentAdapter = new PayMentAdapter();
         payMentAdapter.notifyDataSetChanged();
         listViewPay.setAdapter(payMentAdapter);
+
+        listViewPay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
     @Override
