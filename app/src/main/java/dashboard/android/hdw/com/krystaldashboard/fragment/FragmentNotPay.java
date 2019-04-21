@@ -1,14 +1,18 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
 import dashboard.android.hdw.com.krystaldashboard.adapter.NotPayAdapter;
 
 public class FragmentNotPay extends Fragment {
@@ -41,6 +45,16 @@ public class FragmentNotPay extends Fragment {
         notPayAdapter = new NotPayAdapter();
         notPayAdapter.notifyDataSetChanged();
         listNotpay.setAdapter(notPayAdapter);
+
+        listNotpay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String item = (String) listViewPay.getItemAtPosition(position);
+//                Toast.makeText(getContext(),"You selected : " + parent.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), BillActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

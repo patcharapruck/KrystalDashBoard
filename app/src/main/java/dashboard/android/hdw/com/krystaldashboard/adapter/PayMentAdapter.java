@@ -16,11 +16,13 @@ public class PayMentAdapter extends BaseAdapter {
         if (PayManager.getInstance().getPayItemColleationDao().getObject() == null)
             return 0;
         return PayManager.getInstance().getPayItemColleationDao().getObject().size();
+//        return 18;
     }
 
     @Override
     public Object getItem(int position) {
         return PayManager.getInstance().getPayItemColleationDao().getObject().get(position);
+//        return null;
     }
 
     @Override

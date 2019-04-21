@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activty.HomeActivity"></activity>
+        <activity android:name=".activty.BillActivity"></activity>
+        <activity android:name=".activty.HomeActivity" />
         <activity
             android:name=".activty.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
@@ -25,9 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!--<meta-data android:name="dashboard.android.hdw.com.krystaldashboard.configuration.GlideConfiguration"-->
-            <!--android:value="GlideModule"/>-->
     </application>
 
 </manifest>
