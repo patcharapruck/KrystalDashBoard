@@ -160,7 +160,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         calendartoday.setTime(date);
         day7.setTime(date);
 
-        day7.add(Calendar.DATE,-8);
+        day7.add(Calendar.DATE,-9);
         calendar.add(Calendar.DATE,-1);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH)+1;
