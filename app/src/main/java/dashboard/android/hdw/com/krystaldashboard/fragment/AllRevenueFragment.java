@@ -67,16 +67,10 @@ public class AllRevenueFragment extends Fragment {
     private void setData(int count, int range) {
 
         ArrayList<Entry> values = new ArrayList<>();
-        ArrayList<Entry> values1 = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * (range + 1)) + 10000000;
             values.add(new Entry(i, val));
-        }
-
-        for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * (range + 1)) + 10000000;
-            values1.add(new Entry(i, val));
         }
 
         LineDataSet set1;
