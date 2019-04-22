@@ -181,6 +181,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         xAxis.setGranularityEnabled(true);
 
         barChart.setDragEnabled(false);
+
         barChart.setVisibleXRangeMaximum(4);
         data.setBarWidth(0.5f);
 
