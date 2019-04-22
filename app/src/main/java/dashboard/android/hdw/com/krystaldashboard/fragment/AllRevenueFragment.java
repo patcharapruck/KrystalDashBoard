@@ -25,11 +25,17 @@ import com.github.mikephil.charting.utils.Utils;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 
 public class AllRevenueFragment extends Fragment {
 
     private LineChart chart;
 
+    ArrayList<Float> revenue;
+    int size;
+
+    CompareCollectionDto dto;
     public AllRevenueFragment(){
 
     }
@@ -45,6 +51,36 @@ public class AllRevenueFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
+
+        try {
+            dto = CompareManager.getInstance().getCompareDao();
+        }catch (NullPointerException e){
+
+        }
+
+        try {
+            this.size = dto.getObject().size();
+        }catch (NullPointerException e){
+
+        }
+
+
+        revenue = new ArrayList<Float>(size);
+
+        for(int i=0;i<size;i++){
+
+            float Cash = valueCashPayments(i);
+            float Credit = valueCreditCardPayments(i);
+            float CardCreddit = valueCreditPayments(i);
+            float Sum = Cash + Credit + CardCreddit;
+            revenue.add(Sum);
+        }
+
+        ChartCompare(rootView);
+    }
+
+    private void ChartCompare(View rootView) {
+
         chart = rootView.findViewById(R.id.linechart);
         chart.setViewPortOffsets(0, 0, 0, 0);
         chart.setBackgroundColor(Color.WHITE);
@@ -60,7 +96,7 @@ public class AllRevenueFragment extends Fragment {
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
         chart.setMaxHighlightDistance(300);
-        setData(7, 10000000);
+        setData(size);
         chart.getAxisRight().setEnabled(true);
         chart.getLegend().setEnabled(false);
 //        chart.animateXY(2000, 2000);
@@ -76,27 +112,19 @@ public class AllRevenueFragment extends Fragment {
         y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         y.setDrawGridLines(false);
         y.setAxisLineColor(Color.WHITE);
-        y.setSpaceBottom(15f);
-        y.setSpaceTop(15f);
 //        y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         y.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         chart.invalidate();
     }
 
-    private void setData(int count, int range) {
+    private void setData(int count) {
 
         ArrayList<Entry> values = new ArrayList<>();
-        ArrayList<Entry> values1 = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * (range + 1)) + 10000000;
+            float val = revenue.get(i);
             values.add(new Entry(i, val));
-        }
-
-        for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * (range + 1)) + 10000000;
-            values1.add(new Entry(i, val));
         }
 
         LineDataSet set1;
@@ -156,5 +184,35 @@ public class AllRevenueFragment extends Fragment {
             // set data
             chart.setData(data);
         }
+    }
+
+    private float valueCreditPayments(int i) {
+        float CreditPayments;
+        try {
+            CreditPayments = dto.getObject().get(i).getCreditPayments();
+        } catch (NullPointerException e) {
+            return 0f;
+        }
+        return CreditPayments;
+    }
+
+    private float valueCreditCardPayments(int i) {
+        float CreditCardPayments;
+        try {
+            CreditCardPayments = dto.getObject().get(i).getCreditCardPayments();
+        } catch (NullPointerException e) {
+            return 0f;
+        }
+        return CreditCardPayments;
+    }
+
+    private float valueCashPayments(int i) {
+        float CashPayments;
+        try {
+            CashPayments = dto.getObject().get(i).getCashPayments();
+        } catch (NullPointerException e) {
+            return 0f;
+        }
+        return CashPayments;
     }
 }

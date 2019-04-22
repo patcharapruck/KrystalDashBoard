@@ -37,30 +37,25 @@ public class HomeFragment extends Fragment {
     ProgressDialog progress;
     private Boolean checkPay = false,checkNotPay=false , checkdashboard=false , checkall = false;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        showProgress();
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
-        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-        teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay()
-                ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date());
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater
             , @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        initInstances(rootView);
+        showProgress();
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate(),rootView);
+        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
+        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
+        teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay()
+                ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date(),rootView);
         return rootView;
     }
 
     private void initInstances(View rootView) {
     }
 
-    public void reqAPI(String date) {
+    public void reqAPI(String date, final View rootView) {
         checkdashboard = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
@@ -76,6 +71,7 @@ public class HomeFragment extends Fragment {
                     checkdashboard = true;
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
+                        initInstances(rootView);
                         progress.dismiss();
                     }
                 }
@@ -92,7 +88,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void reqAPInotpay(String date) {
+    private void reqAPInotpay(String date, final View rootView) {
         checkNotPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
@@ -114,6 +110,7 @@ public class HomeFragment extends Fragment {
                             .saveNotPay(dao.getPagination().getTotalItem());
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
+                        initInstances(rootView);
                         progress.dismiss();
                     }
                 }else {
@@ -131,7 +128,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void reqAPIpay(String date) {
+    private void reqAPIpay(String date, final View rootView) {
         checkPay = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
@@ -153,6 +150,7 @@ public class HomeFragment extends Fragment {
                             .savePay(dao.getPagination().getTotalItem());
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
+                        initInstances(rootView);
                         progress.dismiss();
                     }
 
@@ -171,7 +169,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void teqAPICompare(String s, String key7Date) {
+    private void teqAPICompare(String s, String key7Date, final View rootView) {
         checkall = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+key7Date+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
@@ -187,6 +185,7 @@ public class HomeFragment extends Fragment {
                     CompareManager.getInstance().setCompareDao(dao);
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
+                        initInstances(rootView);
                         progress.dismiss();
                     }
 
