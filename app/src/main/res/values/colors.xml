@@ -7,10 +7,11 @@
     <color name="black">#000000</color>
     <color name="colorMain">#19237E</color>
     <color name="bg1">#EFEFEF</color>
+
     <color name="pr_empty">#FFC108</color>
-    <color name="pr_run">#479FF8</color>
-    <color name="pr_onfloor">#81D653</color>
-    <color name="pr_none">#B45084</color>
+    <color name="pr_run">#06B085</color>
+    <color name="pr_onfloor">#007AFF</color>
+    <color name="pr_none">#EF483E</color>
     <color name="bank_Tana">#F37637</color>
     <color name="bank_krungtap">#204298</color>
 

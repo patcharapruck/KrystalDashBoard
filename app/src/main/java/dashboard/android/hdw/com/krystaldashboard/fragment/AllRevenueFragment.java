@@ -1,10 +1,12 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -57,7 +60,7 @@ public class AllRevenueFragment extends Fragment {
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
         chart.setMaxHighlightDistance(300);
-        setData(20, 10000000);
+        setData(7, 10000000);
         chart.getAxisRight().setEnabled(true);
         chart.getLegend().setEnabled(false);
 //        chart.animateXY(2000, 2000);
@@ -73,6 +76,8 @@ public class AllRevenueFragment extends Fragment {
         y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         y.setDrawGridLines(false);
         y.setAxisLineColor(Color.WHITE);
+        y.setSpaceBottom(15f);
+        y.setSpaceTop(15f);
 //        y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         y.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
@@ -124,6 +129,16 @@ public class AllRevenueFragment extends Fragment {
                     return chart.getAxisLeft().getAxisMinimum();
                 }
             });
+
+
+            // set color of filled area
+            if (Utils.getSDKInt() >= 18) {
+                // drawables only supported on api level 18 and above
+                Drawable col = ContextCompat.getDrawable(getContext(),R.drawable.fade_blue);
+                set1.setFillDrawable(col);
+            } else {
+                set1.setFillColor(Color.BLACK);
+            }
 
             if (chart.getData() != null &&
                     chart.getData().getDataSetCount() > 0) {

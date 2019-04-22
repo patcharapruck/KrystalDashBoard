@@ -46,9 +46,7 @@ public class GraphTableFragment extends Fragment {
 
     private void initInstances(View rootView) {
         pieChart = (PieChart) rootView.findViewById(R.id.chart1);
-
         moveOffScreen();
-
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setDrawHoleEnabled(true);
@@ -56,8 +54,8 @@ public class GraphTableFragment extends Fragment {
 
         pieChart.setMaxAngle(180);
         pieChart.setRotationAngle(180);
-        pieChart.setCenterTextOffset(0,-20);
-        setData(2,100);
+        pieChart.setCenterTextOffset(0, -20);
+        setData(2, 100);
 
         pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic);
 
@@ -68,30 +66,30 @@ public class GraphTableFragment extends Fragment {
         l.setDrawInside(false);
 
         pieChart.setEntryLabelColor(Color.WHITE);
-        pieChart.setEntryLabelTextSize(12f);
-
+        pieChart.setEntryLabelTextSize(0f);
     }
 
-    String[] countries = new String[]{"โต๊ะที่ชำระแล้ว","โต๊ะที่ยังไม่ชำระ"};
+    String[] countries = new String[]{"โต๊ะที่ชำระแล้ว", "โต๊ะที่ยังไม่ชำระ"};
 
-    private void setData(int count , int range){
+    private void setData(int count, int range) {
         ArrayList<PieEntry> values = new ArrayList<>();
 
-        for(int i=0;i<count;i++){
-            int val = (int) ((Math.random()*range)+range/5);
-            values.add(new PieEntry(val,countries[i]));
+        for (int i = 0; i < count; i++) {
+            int val = (int) ((Math.random() * range) + range / 5);
+            values.add(new PieEntry(val, countries[i]));
         }
 
-        PieDataSet dataSet = new PieDataSet(values,"Port");
+        PieDataSet dataSet = new PieDataSet(values, "");
         dataSet.setSelectionShift(5f);
         dataSet.setSliceSpace(3f);
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setColors(new int[]{Color.parseColor("#007AFF"),
+                Color.parseColor("#C4183B")});
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(10f);
+        data.setValueTextSize(0f);
         data.setValueTextColor(Color.WHITE);
-
+        pieChart.setBackgroundColor(Color.WHITE);
         pieChart.setData(data);
         pieChart.invalidate();
     }
@@ -107,7 +105,7 @@ public class GraphTableFragment extends Fragment {
         int offset = (int) (height * 0.3);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) pieChart.getLayoutParams();
-        params.setMargins(0,0,0,-offset);
+        params.setMargins(0, 0, 0, -offset);
         pieChart.setLayoutParams(params);
     }
 

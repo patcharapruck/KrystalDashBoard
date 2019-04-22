@@ -189,6 +189,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         YAxis leftAxis = barChart.getAxisLeft();
 //        leftAxis.setTypeface(tfLight);
         leftAxis.setLabelCount(8, false);
+        leftAxis.setTextColor(Color.parseColor("#4D4D4D"));
 //        leftAxis.setValueFormatter(custom);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
