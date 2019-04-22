@@ -41,6 +41,7 @@ public class PRFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pr,null);
         initInstances(rootView);
+
         return rootView;
 
     }
@@ -60,12 +61,12 @@ public class PRFragment extends Fragment {
         prListAdapter = new PRListAdapter();
         listViewPR.setAdapter(prListAdapter);
 
-        if (listViewPR.getCount() != 0){
-            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
-            int itemHeight = listViewPR.getChildAt(0).getHeight() + 1 ;
-            listViewParams.height = listViewPR.getCount() * itemHeight;
-            listViewPR.setLayoutParams(listViewParams);
-        }
+//        if (listViewPR.getCount() != 0){
+//            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
+//            int itemHeight = listViewPR.getChildAt(0).getHeight() + 1 ;
+//            listViewParams.height = listViewPR.getCount() * itemHeight;
+//            listViewPR.setLayoutParams(listViewParams);
+//        }
 
 
     }

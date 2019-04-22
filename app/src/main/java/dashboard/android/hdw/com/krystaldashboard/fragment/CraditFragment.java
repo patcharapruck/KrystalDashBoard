@@ -175,7 +175,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         String[] creditName = new String[]{"กรุงเทพ", "ธนชาต", "ไทยพาณิชย์", "คุณอ๊อต"};
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(creditName));
-        xAxis.setCenterAxisLabels(true);
+        xAxis.setCenterAxisLabels(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
@@ -184,8 +184,17 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         barChart.setVisibleXRangeMaximum(4);
         data.setBarWidth(0.5f);
 
+        YAxis yAxis = barChart.getAxisLeft();
+        YAxis leftAxis = barChart.getAxisLeft();
+//        leftAxis.setTypeface(tfLight);
+        leftAxis.setLabelCount(8, false);
+//        leftAxis.setValueFormatter(custom);
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setSpaceTop(15f);
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
 //        // Hide grid lines
-        barChart.getAxisLeft().setEnabled(false);
+        barChart.getAxisLeft().setEnabled(true);
         barChart.getAxisRight().setEnabled(false);
 //        // Hide graph description
         barChart.getDescription().setEnabled(false);
