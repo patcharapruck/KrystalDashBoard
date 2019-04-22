@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -55,12 +57,25 @@ public class AllRevenueFragment extends Fragment {
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
         chart.setMaxHighlightDistance(300);
-
         setData(20, 10000000);
-        chart.getAxisRight().setEnabled(false);
+        chart.getAxisRight().setEnabled(true);
         chart.getLegend().setEnabled(false);
-        chart.animateXY(2000, 2000);
+//        chart.animateXY(2000, 2000);
         // don't forget to refresh the drawing
+
+        XAxis x = chart.getXAxis();
+        x.setEnabled(false);
+
+        YAxis y = chart.getAxisLeft();
+//        y.setTypeface(tfLight);
+        y.setLabelCount(6, false);
+        y.setTextColor(Color.parseColor("#4d4d4d"));
+        y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+        y.setDrawGridLines(false);
+        y.setAxisLineColor(Color.WHITE);
+//        y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        y.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
         chart.invalidate();
     }
 
@@ -88,13 +103,13 @@ public class AllRevenueFragment extends Fragment {
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set1.setCubicIntensity(0.2f);
             set1.setDrawFilled(true);
-            set1.setDrawCircles(false);
-            set1.setLineWidth(1.8f);
+            set1.setDrawCircles(true);
+            set1.setLineWidth(2f);
             set1.setCircleRadius(4f);
-            set1.setCircleColor(Color.WHITE);
+            set1.setCircleColor(Color.parseColor("#B35FF0"));//point on line
             set1.setHighLightColor(Color.rgb(244, 117, 117));
-            set1.setColor(Color.WHITE);
-            set1.setFillColor(Color.parseColor("#B45084"));
+            set1.setColor(Color.parseColor("#B35FF0"));//line
+            set1.setFillColor(Color.parseColor("#E5CCF9"));
             set1.setFillAlpha(100);
             set1.setDrawHorizontalHighlightIndicator(false);
             set1.setFillFormatter(new IFillFormatter() {

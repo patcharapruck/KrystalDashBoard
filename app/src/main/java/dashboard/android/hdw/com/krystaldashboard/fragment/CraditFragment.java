@@ -3,7 +3,6 @@ package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.FontsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,7 +123,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             total.add(i, amax + jcb + master + unipay + visa);
             creditall = creditall + total.get(i);
             Total.add(i, formatter.format(total.get(i)));
-//dialog
+
             if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")) {
                 Tanachat = Total.get(i);
                 TotalTanachat.setText(Tanachat);
@@ -140,7 +139,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             }
         }
 
-//total
+
         TotalSum.setText(formatter.format(creditall) + " บาท");
 
 
@@ -161,7 +160,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             }
 
         }
-//Barchart
+
         BarDataSet set1;
         set1 = new BarDataSet(values, "Credit");
         set1.setColors(new int[]{Color.parseColor("#204298"),
@@ -181,12 +180,19 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
 
+        barChart.setDragEnabled(false);
 
-        barChart.setDragEnabled(true);
         barChart.setVisibleXRangeMaximum(4);
-        data.setBarWidth(0.3f);
+        data.setBarWidth(0.5f);
 
-
+        YAxis yAxis = barChart.getAxisLeft();
+        YAxis leftAxis = barChart.getAxisLeft();
+//        leftAxis.setTypeface(tfLight);
+        leftAxis.setLabelCount(8, false);
+//        leftAxis.setValueFormatter(custom);
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setSpaceTop(15f);
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
 //        // Hide grid lines
         barChart.getAxisLeft().setEnabled(true);
