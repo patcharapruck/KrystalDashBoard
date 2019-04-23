@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.File;
@@ -19,11 +20,15 @@ import java.io.IOException;
 import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
 
 public class BillFragment extends Fragment {
 
 
     Button btnsaveBILL;
+    ImageButton backidalog;
+
+//    BillActivity billActivity;
     public BillFragment() {
         super();
     }
@@ -49,7 +54,7 @@ public class BillFragment extends Fragment {
         Date date = new Date();
         CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
         //ตรงนี้เป็นการบันทึกชื่อไฟล์ โดยจะต้องบันทึกจากหมายเลยบิล เช่น NO.20190421050
-        String filename = Environment.getExternalStorageDirectory() +"/DCIM/"+ "/KrystalScreenShooter/" + now + ".png";
+        String filename = Environment.getExternalStorageDirectory() +"/DCIM/"+ "/KrystalScreenShooter/" + now + ".jpg";
 
         View root = getView().getRootView();
         root.setDrawingCacheEnabled(true);
@@ -61,7 +66,7 @@ public class BillFragment extends Fragment {
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
 
@@ -78,6 +83,9 @@ public class BillFragment extends Fragment {
 
     private void initInstances(final View rootView) {
         btnsaveBILL = (Button)rootView.findViewById(R.id.save_bill);
+        backidalog = (ImageButton)rootView.findViewById(R.id.cloesdialog);
+
+
 
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,5 +95,11 @@ public class BillFragment extends Fragment {
             }
         });
 
+        backidalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
     }
 }
