@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_margin="10dp">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,27 +18,27 @@
         >
 
         <!--<ScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-            <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_margin="1dp"-->
-                <!--android:padding="10dp">-->
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="1dp"-->
+        <!--android:padding="10dp">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="29dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="18dp"
-                    android:background="@drawable/borderstatus"
-                    android:fontFamily="@font/prompt_medium"
-                    android:gravity="center_vertical"
-                    android:padding="3dp"
-                    android:text="ชำระเรียบร้อยแล้ว"
-                    android:textColor="#8BC34A"
-                    android:textSize="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/borderstatus"
+            android:fontFamily="@font/prompt_medium"
+            android:gravity="center_vertical"
+            android:padding="3dp"
+            android:text="ชำระเรียบร้อยแล้ว"
+            android:textColor="#8BC34A"
+            android:textSize="10dp" />
 
 
         <LinearLayout
@@ -59,481 +63,481 @@
                 android:gravity="right"
                 android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:fontFamily="@font/prompt_medium"
-                android:layout_alignParentRight="true"
-                android:text="NO. "
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <TextView
-                android:id="@+id/nomberbill"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/prompt_medium"
-                android:text="20190410102"
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-        </LinearLayout>
-        </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                   android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/dotline" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:fontFamily="@font/prompt_bold"
-                android:text="MEMBER : "
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <TextView
-                android:id="@+id/memberbill"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:fontFamily="@font/prompt_bold"
-                android:text="บุหรี่"
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-          android:gravity="right"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:fontFamily="@font/prompt_medium"
-                android:text="DATE : "
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <TextView
-                android:id="@+id/datebill"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:fontFamily="@font/prompt_medium"
-                android:text="11/04/2019 (05:24)"
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-
-
-
-
-
-
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:layout_alignParentRight="true"
+                    android:text="NO. "
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/nomberbill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/prompt_medium"
+                    android:text="20190410102"
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/dotline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:fontFamily="@font/prompt_bold"
+                    android:text="MEMBER : "
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/memberbill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:fontFamily="@font/prompt_bold"
+                    android:text="บุหรี่"
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:text="DATE : "
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/datebill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:text="11/04/2019 (05:24)"
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:fontFamily="@font/prompt_medium"
+                android:text="PAX : "
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/paxbill"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:fontFamily="@font/prompt_medium"
+                android:text="0"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:fontFamily="@font/prompt_medium"
+                android:text=" AMOUNT"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bordersale"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center_vertical"
+                android:text="SALE : "
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/salebill"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:fontFamily="@font/prompt_medium"
+                android:text="- | -"
+                android:gravity="center_vertical"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/dotline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:fontFamily="@font/prompt_medium"
+                    android:gravity="center"
+                    android:text="TABLE / ROOM"
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tableroombill"
+                    android:layout_width="match_parent"
+                    android:layout_height="21dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:gravity="center"
+                    android:text="สด"
+                    android:textColor="#1A1A1A"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bordertotal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/prompt_medium"
+                    android:gravity="center"
+                    android:text="TOTAL"
+                    android:textColor="@color/white"
+                    android:textSize="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="PAX : "
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/paxbill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="0"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text=" AMOUNT"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                   android:layout_gravity="center"
-                    android:background="@drawable/bordersale"
-                    android:gravity="center|center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="21dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center_vertical"
-                        android:text="SALE : "
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/salebill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="21dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="- | -"
-                        android:gravity="center_vertical"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/dotline" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:fontFamily="@font/prompt_medium"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:text="2,640"
+                        android:textColor="@color/white"
+                        android:textSize="10dp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/prompt_medium"
-                            android:gravity="center"
-                            android:text="TABLE / ROOM"
-                            android:textColor="#1A1A1A"
-                            android:textSize="10dp" />
-
-                        <TextView
-                            android:id="@+id/tableroombill"
-                            android:layout_width="match_parent"
-                            android:layout_height="21dp"
-                            android:fontFamily="@font/prompt_medium"
-                            android:gravity="center"
-                            android:text="สด"
-                            android:textColor="#1A1A1A"
-                            android:textSize="10dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/bordertotal"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="3dp">
-
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/prompt_medium"
-                            android:gravity="center"
-                            android:text="TOTAL"
-                            android:textColor="@color/white"
-                            android:textSize="10dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/prompt_medium"
-                                android:gravity="center"
-                                android:text="2,640"
-                                android:textColor="@color/white"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/prompt_medium"
-                                android:gravity="center"
-                                android:text=" ฿"
-                                android:textColor="@color/white"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/dotline" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="5">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="DEACRIPTION"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
                         android:fontFamily="@font/prompt_medium"
                         android:gravity="center"
-                        android:text="QTY"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text="AMOUNT"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text="DISCOUNT"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text="PRICE"
-                        android:textColor="#1A1A1A"
+                        android:text=" ฿"
+                        android:textColor="@color/white"
                         android:textSize="10dp" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/dotline" />
 
-                <LinearLayout
-                    android:layout_width="150dp"
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/dotline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/prompt_medium"
+                android:text="DEACRIPTION"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center"
+                android:text="QTY"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center"
+                android:text="AMOUNT"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center"
+                android:text="DISCOUNT"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center"
+                android:text="PRICE"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/dotline" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1.5">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/dotline" />
+
+            <TextView
+                android:id="@+id/textfood"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/food_product"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/dotline" />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:collapseColumns="5">
+        </ListView>
+
+        <LinearLayout
+            android:id="@+id/lineartotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/prompt_medium"
+                android:text=""
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center"
+                android:text=""
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center"
+                android:text=""
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="center"
+                android:text="TOTAL"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/prompt_medium"
+                android:gravity="right"
+                android:text="2,640"
+                android:layout_marginRight="15dp"
+                android:textColor="#1A1A1A"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                android:layout_gravity="top"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="3">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="1.5">
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="3dp"
-                        android:layout_weight="0.25"
-                        android:background="@drawable/dotline" />
-
-                    <TextView
-                        android:id="@+id/textfood"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/food_product"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="3dp"
-                        android:layout_weight="0.25"
-                        android:background="@drawable/dotline" />
-                </LinearLayout>
-
-
-                <ListView
-                    android:id="@+id/listview"
-                    android:layout_width="match_parent"
+                    android:fontFamily="@font/prompt_medium"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/all"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:collapseColumns="5">
-                </ListView>
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/prompt_medium"
+                    android:text=" รวมค่าใช้จ่ายสุทธิ "
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
 
-                <LinearLayout
-                    android:id="@+id/lineartotal"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-
-                    android:weightSum="5">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text=""
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text="TOTAL"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="right"
-                        android:text="2,640"
-                        android:layout_marginRight="15dp"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="vertical">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/black"
-                        android:layout_gravity="top"
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:weightSum="3">
-                        <TextView
-                        android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/prompt_medium"
-                            android:text=""
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
-                        <TextView
-                            android:layout_weight="1"
-                            android:id="@+id/all"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/prompt_medium"
-                            android:text=" รวมค่าใช้จ่ายสุทธิ "
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:fontFamily="@font/prompt_medium"
-                            android:text="2,640"
-                            android:layout_marginRight="5dp"
-                            android:textColor="@color/black"
-                            android:textSize="12dp" />
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_gravity="bottom"
-                        android:background="@color/black" />
-                </LinearLayout>
+                    android:gravity="right"
+                    android:fontFamily="@font/prompt_medium"
+                    android:text="2,640"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="bottom"
+                android:background="@color/black" />
+        </LinearLayout>
 
 
 
 
 
-            <!--</RelativeLayout>-->
+        <!--</RelativeLayout>-->
 
         <!--</ScrollView>-->
 
@@ -558,7 +562,7 @@
             <Button
                 android:id="@+id/save_bill"
                 android:layout_width="260dp"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/button1_1"
@@ -576,5 +580,6 @@
 
 
     </LinearLayout>
+</ScrollView>
 
 </RelativeLayout>

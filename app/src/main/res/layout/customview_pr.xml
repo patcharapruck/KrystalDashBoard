@@ -66,13 +66,44 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textview_name_pr"
                 android:layout_marginTop="5dp"
-
                 android:fontFamily="@font/prompt_bold"
-
                 android:text="ID : "
                 android:textColor="@color/colorfont"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize_pr" />
+
+            <!-- .........................เพิ่มกำลังดื่มอยู่ที่โต๊ะ............................. -->
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:layout_alignParentRight="true"
+                 android:layout_below="@id/text_nickname"
+                 >
+                 <TextView
+                     android:id="@+id/text_run"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="5dp"
+                     android:layout_alignParentRight="true"
+                     android:fontFamily="@font/prompt_bold"
+                     android:text="รันดื่มอยู่ที่โต๊ะ : "
+                     android:textColor="@color/colorfont"
+                     android:textStyle="bold"
+                     android:textSize="@dimen/textsize_pr" />
+                 <TextView
+                     android:id="@+id/text_rundrink"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="5dp"
+                     android:layout_alignParentRight="true"
+                     android:fontFamily="@font/prompt_bold"
+                     android:text="K.เดี่ยว "
+                     android:textColor="@color/colorfont"
+                     android:textStyle="bold"
+                     android:textSize="@dimen/textsize_pr" />
+             </LinearLayout>
+
 
             <TextView
                 android:id="@+id/textview_id_pr"
