@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -31,9 +37,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PRFragment extends Fragment {
+public class PRFragment extends Fragment implements View.OnClickListener {
     Spinner spins;
     private ArrayList<String> mTypeSearch = new ArrayList<String>();
+
+    TextView TextViewSearch;
+
+    CardView CardOnfloor,CardIsdrinkFalse,CardIsdrinkTrue,CardNulldrink;
+    String typeSearch = "";
+
+    String json;
+    Long id;
+
     ListView listViewPR;
     PRListAdapter prListAdapter;
 
@@ -50,15 +65,57 @@ public class PRFragment extends Fragment {
     private void createTypeSearchData() {
 
         if (mTypeSearch.isEmpty()){
-            mTypeSearch.add("ชื่อจริง");
-            mTypeSearch.add("ชื่อเล่น");
-            mTypeSearch.add("ID");
+            mTypeSearch.add("รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน");
             mTypeSearch.add("ตำแหน่ง");
         }
     }
     private void initInstances(View rootView) {
 
+        TextViewSearch = (TextView) rootView.findViewById(R.id.textview_serach);
+
         listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
+        spins = (Spinner) rootView.findViewById(R.id.spinspr);
+
+        CardOnfloor = (CardView) rootView.findViewById(R.id.card_onfloor);
+        CardIsdrinkTrue = (CardView) rootView.findViewById(R.id.card_isdrink_trus);
+        CardIsdrinkFalse = (CardView) rootView.findViewById(R.id.card_isdrink_false);
+        CardNulldrink = (CardView) rootView.findViewById(R.id.card_null_drink);
+
+        CardOnfloor.setOnClickListener(this);
+        CardIsdrinkFalse.setOnClickListener(this);
+        CardIsdrinkTrue.setOnClickListener(this);
+        CardNulldrink.setOnClickListener(this);
+
+        createTypeSearchData();
+
+        ArrayAdapter<String> spinsSearch = new ArrayAdapter<String>(getContext()
+                ,R.layout.support_simple_spinner_dropdown_item,mTypeSearch);
+        spins.setAdapter(spinsSearch);
+        spins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(mTypeSearch.get(position).equals("รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน")){
+                    typeSearch = "รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน";
+                    TextViewSearch.setText(typeSearch);
+                }else if(mTypeSearch.get(position).equals("ตำแหน่ง")){
+                    typeSearch = "ตำแหน่ง";
+                    TextViewSearch.setText(typeSearch);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        listViewPR.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
 
 //        if (listViewPR.getCount() != 0){
 //            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
@@ -82,7 +139,10 @@ public class PRFragment extends Fragment {
                 if(response.isSuccessful()){
                     CompareCollectionDto dao = response.body();
                     CompareManager.getInstance().setCompareDao(dao);
-                    reqAPIPR(dao.getObject().get(0).getId());
+                    id = dao.getObject().get(0).getId();
+                    json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }";
+
+                    reqAPIPR(json);
 
                 }else {
                     try {
@@ -102,10 +162,9 @@ public class PRFragment extends Fragment {
     }
 
 
-    private void reqAPIPR(Long s) {
+    private void reqAPIPR(String s) {
         final Context mcontext = Contextor.getInstance().getmContext();
-        String nn ="{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+s+",\"PrDrinkCenter-isDrink\":\"false\"},\"property\":[],\"pagination\": { } }";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
         Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
         call.enqueue(new Callback<PRItemCollectionDto>() {
 
@@ -134,5 +193,25 @@ public class PRFragment extends Fragment {
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == CardOnfloor){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }";
+            reqAPIPR(json);
+        }
+        if(v == CardIsdrinkTrue){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }";
+            reqAPIPR(json);
+        }
+        if(v == CardIsdrinkFalse){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"sql-obj-command\":\"(f:itemQuantity = 0 OR f:itemQuantity IS NULL)\"},\"property\":[],\"pagination\":{}}";
+            reqAPIPR(json);
+        }
+        if(v == CardNulldrink){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"false\"},\"property\":[],\"pagination\":{}}";
+            reqAPIPR(json);
+        }
     }
 }
