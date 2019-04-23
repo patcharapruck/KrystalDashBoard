@@ -24,6 +24,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PRManager;
+import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -35,11 +36,12 @@ public class PRFragment extends Fragment {
     private ArrayList<String> mTypeSearch = new ArrayList<String>();
     ListView listViewPR;
     PRListAdapter prListAdapter;
-    
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pr,null);
+        teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         initInstances(rootView);
 
         return rootView;
@@ -57,9 +59,6 @@ public class PRFragment extends Fragment {
     private void initInstances(View rootView) {
 
         listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
-
-        prListAdapter = new PRListAdapter();
-        listViewPR.setAdapter(prListAdapter);
 
 //        if (listViewPR.getCount() != 0){
 //            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
@@ -83,10 +82,7 @@ public class PRFragment extends Fragment {
                 if(response.isSuccessful()){
                     CompareCollectionDto dao = response.body();
                     CompareManager.getInstance().setCompareDao(dao);
-
-//                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
-//                        progress.dismiss();
-//                    }
+                    reqAPIPR(dao.getObject().get(0).getId());
 
                 }else {
                     try {
@@ -106,22 +102,22 @@ public class PRFragment extends Fragment {
     }
 
 
-    private void reqAPIPR(String s) {
+    private void reqAPIPR(Long s) {
         final Context mcontext = Contextor.getInstance().getmContext();
-        String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+s+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
+        String nn ="{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+s+",\"PrDrinkCenter-isDrink\":\"false\"},\"property\":[],\"pagination\": { } }";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
-        call.enqueue(new Callback<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto>() {
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
 
             @Override
-            public void onResponse(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Response<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> response) {
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
                 if(response.isSuccessful()){
                     PRItemCollectionDto dto = response.body();
                     PRManager.getInstance().setPr(dto);
 
-//                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
-//                        progress.dismiss();
-//                    }
+                    prListAdapter = new PRListAdapter();
+                    prListAdapter.notifyDataSetChanged();
+                    listViewPR.setAdapter(prListAdapter);
 
                 }else {
                     try {
