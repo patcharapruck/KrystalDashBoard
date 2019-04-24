@@ -78,6 +78,7 @@
                  android:layout_height="wrap_content"
                  android:orientation="horizontal"
                  android:layout_alignParentRight="true"
+                 android:layout_marginRight="15dp"
                  android:layout_below="@id/text_nickname"
                  >
                  <TextView
@@ -99,7 +100,7 @@
                      android:layout_alignParentRight="true"
                      android:layout_marginTop="5dp"
                      android:fontFamily="@font/prompt_bold"
-                     android:text="K.เดี่ยว "
+                     android:text="-"
                      android:textColor="@color/colorfont"
                      android:textSize="@dimen/textsize_pr"
                      android:textStyle="bold" />

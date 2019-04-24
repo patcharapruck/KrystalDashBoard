@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
@@ -19,11 +21,19 @@ import java.io.IOException;
 import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
+import dashboard.android.hdw.com.krystaldashboard.util.screenshot.FileUtil;
+import dashboard.android.hdw.com.krystaldashboard.util.screenshot.ScreenShotUtill;
 
 public class BillFragment extends Fragment {
 
 
     Button btnsaveBILL;
+    ImageButton backidalog;
+    LinearLayout parentView;
+    private Bitmap bitmap;
+
+    //    BillActivity billActivity;
     public BillFragment() {
         super();
     }
@@ -49,43 +59,74 @@ public class BillFragment extends Fragment {
         Date date = new Date();
         CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
         //ตรงนี้เป็นการบันทึกชื่อไฟล์ โดยจะต้องบันทึกจากหมายเลยบิล เช่น NO.20190421050
-        String filename = Environment.getExternalStorageDirectory() +"/DCIM/"+ "/KrystalScreenShooter/" + now + ".png";
 
-        View root = getView().getRootView();
-        root.setDrawingCacheEnabled(true);
-        Bitmap bitmap = Bitmap.createBitmap(root.getDrawingCache());
-        root.setDrawingCacheEnabled(false);
+        bitmap = ScreenShotUtill.getInstance().takeScreenshotForView(parentView);
 
-        File file = new File(filename);
-        file.getParentFile().mkdirs();
-
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-
-            Uri uri = Uri.fromFile(file);
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (bitmap != null) {
+            String path = Environment.getExternalStorageDirectory() .toString() + "/DCIM/" + "/KrystalScreenShooter/" + now + ".jpg";
+            FileUtil.getInstance().storeBitmap(bitmap, path);
+            Toast.makeText(getContext(), getString(R.string.toast_message_screenshot_success) + " " + path, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), getString(R.string.toast_message_screenshot), Toast.LENGTH_LONG).show();
         }
+
+//        View root = getView().getRootView();
+//        root.setDrawingCacheEnabled(true);
+//        Bitmap bitmap = Bitmap.createBitmap(root.getDrawingCache());
+//        root.setDrawingCacheEnabled(false);
+//
+//        File file = new File(filename);
+//        file.getParentFile().mkdirs();
+//
+//        try {
+//            FileOutputStream fileOutputStream = new FileOutputStream(file);
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+//            fileOutputStream.flush();
+//            fileOutputStream.close();
+//
+//            Uri uri = Uri.fromFile(file);
+//
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
+//    private void capture() {
+//
+//        linearLayout.isDrawingCacheEnabled();
+//
+//    }
+
     private void initInstances(final View rootView) {
-        btnsaveBILL = (Button)rootView.findViewById(R.id.save_bill);
+        btnsaveBILL = (Button) rootView.findViewById(R.id.save_bill);
+        backidalog = (ImageButton) rootView.findViewById(R.id.cloesdialog);
+        parentView = (LinearLayout) rootView.findViewById(R.id.container_bill);
 
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 screenshot();
-                Toast.makeText(getContext(), "save image ", Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
+        backidalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
     }
+
+
+
+
+
+
+
 }

@@ -153,11 +153,11 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         });
 
 //        if (listViewPR.getCount() != 0){
-//            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
-//            int itemHeight = listViewPR.getChildAt(0).getHeight() + 1 ;
-//            listViewParams.height = listViewPR.getCount() * itemHeight;
-//            listViewPR.setLayoutParams(listViewParams);
-//        }
+////            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
+////            int itemHeight = listViewPR.getChildAt(0).getHeight() + 1 ;
+////            listViewParams.height = listViewPR.getCount() * itemHeight;
+////            listViewPR.setLayoutParams(listViewParams);
+////        }
 
 
     }
