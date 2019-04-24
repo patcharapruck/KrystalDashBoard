@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
@@ -27,8 +28,10 @@ public class BillFragment extends Fragment {
 
     Button btnsaveBILL;
     ImageButton backidalog;
+    LinearLayout linearLayout;
 
-//    BillActivity billActivity;
+
+    //    BillActivity billActivity;
     public BillFragment() {
         super();
     }
@@ -54,7 +57,7 @@ public class BillFragment extends Fragment {
         Date date = new Date();
         CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
         //ตรงนี้เป็นการบันทึกชื่อไฟล์ โดยจะต้องบันทึกจากหมายเลยบิล เช่น NO.20190421050
-        String filename = Environment.getExternalStorageDirectory() +"/DCIM/"+ "/KrystalScreenShooter/" + now + ".jpg";
+        String filename = Environment.getExternalStorageDirectory() + "/DCIM/" + "/KrystalScreenShooter/" + now + ".jpg";
 
         View root = getView().getRootView();
         root.setDrawingCacheEnabled(true);
@@ -81,11 +84,16 @@ public class BillFragment extends Fragment {
 
     }
 
+//    private void capture() {
+//
+//        linearLayout.isDrawingCacheEnabled();
+//
+//    }
+
     private void initInstances(final View rootView) {
-        btnsaveBILL = (Button)rootView.findViewById(R.id.save_bill);
-        backidalog = (ImageButton)rootView.findViewById(R.id.cloesdialog);
-
-
+        btnsaveBILL = (Button) rootView.findViewById(R.id.save_bill);
+        backidalog = (ImageButton) rootView.findViewById(R.id.cloesdialog);
+        linearLayout = (LinearLayout) rootView.findViewById(R.id.container_bill);
 
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override

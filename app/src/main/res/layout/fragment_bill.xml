@@ -4,16 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@color/white"
     android:layout_margin="10dp">
-<ScrollView
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--content-->
     <LinearLayout
         android:id="@+id/container_bill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:padding="5dp"
         android:orientation="vertical"
         >
@@ -536,41 +539,45 @@
 
 
     </LinearLayout>
+
+    <!--button-->
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="38.17dp"
-    android:layout_alignParentBottom="true"
-    android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="38.17dp"
+        android:layout_below="@+id/constraintLayout"
+        android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/cloesdialog"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/button1"
-        android:fontFamily="@font/prompt_bold"
-        android:gravity="center"
-        android:src="@drawable/ic_chevron_left_black_24dp" />
+        <ImageButton
+            android:id="@+id/cloesdialog"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button1"
+            android:fontFamily="@font/prompt_bold"
+            android:gravity="center"
+            android:src="@drawable/ic_chevron_left_black_24dp" />
 
-    <Button
-        android:id="@+id/save_bill"
-        android:layout_width="260dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/button1_1"
-        android:drawableLeft="@drawable/ic_get_app_black_24dp"
-        android:fontFamily="@font/prompt_bold"
-        android:gravity="center"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:text="บันทึก"
-        android:textColor="@color/white"
-        android:textSize="18dp" />
+        <Button
+            android:id="@+id/save_bill"
+            android:layout_width="260dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button1_1"
+            android:drawableLeft="@drawable/ic_get_app_black_24dp"
+            android:fontFamily="@font/prompt_bold"
+            android:gravity="center"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="บันทึก"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
+
+    </LinearLayout>
 
 </LinearLayout>
-</ScrollView>
+
 
 </RelativeLayout>
