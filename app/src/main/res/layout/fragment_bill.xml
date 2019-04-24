@@ -10,12 +10,13 @@
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
     android:orientation="vertical">
     <!--content-->
     <LinearLayout
         android:id="@+id/container_bill"
-        android:layout_width="380dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/white"
@@ -384,66 +385,7 @@
             android:collapseColumns="5">
         </ListView>
 
-        <LinearLayout
-            android:id="@+id/lineartotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:weightSum="5">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/prompt_medium"
-                android:text=""
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.4"
-                android:fontFamily="@font/prompt_medium"
-                android:gravity="center"
-                android:text=""
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:fontFamily="@font/prompt_medium"
-                android:gravity="center"
-                android:text=""
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/prompt_medium"
-                android:gravity="center"
-                android:text="TOTAL"
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/prompt_medium"
-                android:gravity="right"
-                android:text="2,640"
-                android:layout_marginRight="15dp"
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -507,7 +449,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="38.17dp"
-        android:layout_below="@+id/constraintLayout"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <ImageButton

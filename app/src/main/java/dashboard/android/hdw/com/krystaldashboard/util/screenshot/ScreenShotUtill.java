@@ -37,8 +37,8 @@ public class ScreenShotUtill {
      * @return A {@link Bitmap} for the taken screenshot.
      */
     public Bitmap takeScreenshotForView(View view) {
-        view.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.AT_MOST));
+        view.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.AT_MOST),
+                View.MeasureSpec.makeMeasureSpec(view.getHeight(), View.MeasureSpec.EXACTLY));
         view.layout((int) view.getX(), (int) view.getY(), (int) view.getX() + view.getMeasuredWidth(),
                 (int) view.getY() + view.getMeasuredHeight());
 
