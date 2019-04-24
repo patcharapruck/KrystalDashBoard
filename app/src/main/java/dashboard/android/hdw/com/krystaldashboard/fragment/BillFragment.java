@@ -59,30 +59,39 @@ public class BillFragment extends Fragment {
         Date date = new Date();
         CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
         //ตรงนี้เป็นการบันทึกชื่อไฟล์ โดยจะต้องบันทึกจากหมายเลยบิล เช่น NO.20190421050
-        String filename = Environment.getExternalStorageDirectory() + "/DCIM/" + "/KrystalScreenShooter/" + now + ".jpg";
+
         bitmap = ScreenShotUtill.getInstance().takeScreenshotForView(parentView);
-        View root = getView().getRootView();
-        root.setDrawingCacheEnabled(true);
-        Bitmap bitmap = Bitmap.createBitmap(root.getDrawingCache());
-        root.setDrawingCacheEnabled(false);
 
-        File file = new File(filename);
-        file.getParentFile().mkdirs();
-
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-
-            Uri uri = Uri.fromFile(file);
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (bitmap != null) {
+            String path = Environment.getExternalStorageDirectory() .toString() + "/DCIM/" + "/KrystalScreenShooter/" + now + ".jpg";
+            FileUtil.getInstance().storeBitmap(bitmap, path);
+            Toast.makeText(getContext(), getString(R.string.toast_message_screenshot_success) + " " + path, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), getString(R.string.toast_message_screenshot), Toast.LENGTH_LONG).show();
         }
+
+//        View root = getView().getRootView();
+//        root.setDrawingCacheEnabled(true);
+//        Bitmap bitmap = Bitmap.createBitmap(root.getDrawingCache());
+//        root.setDrawingCacheEnabled(false);
+//
+//        File file = new File(filename);
+//        file.getParentFile().mkdirs();
+//
+//        try {
+//            FileOutputStream fileOutputStream = new FileOutputStream(file);
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+//            fileOutputStream.flush();
+//            fileOutputStream.close();
+//
+//            Uri uri = Uri.fromFile(file);
+//
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
