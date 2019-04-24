@@ -9,8 +9,6 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class BaseCustomViewGroup extends FrameLayout {
     public BaseCustomViewGroup(Context context) {

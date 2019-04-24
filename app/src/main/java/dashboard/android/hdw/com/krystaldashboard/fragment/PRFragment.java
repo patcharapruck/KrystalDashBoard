@@ -6,12 +6,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -42,11 +45,15 @@ public class PRFragment extends Fragment implements View.OnClickListener {
     private ArrayList<String> mTypeSearch = new ArrayList<String>();
 
     TextView TextViewSearch;
+    EditText EditTextSearchTable;
 
     CardView CardOnfloor,CardIsdrinkFalse,CardIsdrinkTrue,CardNulldrink;
     String typeSearch = "";
 
     String json;
+    String Search="";
+    String dataSearch = "";
+    int ch=0,chCrad =0;
     Long id;
 
     ListView listViewPR;
@@ -72,6 +79,7 @@ public class PRFragment extends Fragment implements View.OnClickListener {
     private void initInstances(View rootView) {
 
         TextViewSearch = (TextView) rootView.findViewById(R.id.textview_serach);
+        EditTextSearchTable = (EditText) rootView.findViewById(R.id.edittext_search_table);
 
         listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
         spins = (Spinner) rootView.findViewById(R.id.spinspr);
@@ -97,9 +105,11 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                 if(mTypeSearch.get(position).equals("รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน")){
                     typeSearch = "รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน";
                     TextViewSearch.setText(typeSearch);
+                    ch = 0;
                 }else if(mTypeSearch.get(position).equals("ตำแหน่ง")){
                     typeSearch = "ตำแหน่ง";
                     TextViewSearch.setText(typeSearch);
+                    ch =1;
                 }
             }
 
@@ -117,6 +127,31 @@ public class PRFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+
+        EditTextSearchTable.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(ch == 0){
+                    Search = ",\"PrDrinkCenter-employeeCode-firstname-lastname-nickName\":\""+s+"\"";
+                    setDataSearch(chCrad,Search);
+                }
+                else if (ch == 1){
+                    Search = ",\"PrDrinkCenter-positionName\":\""+s+"\"";
+                    setDataSearch(chCrad,Search);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 //        if (listViewPR.getCount() != 0){
 //            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
 //            int itemHeight = listViewPR.getChildAt(0).getHeight() + 1 ;
@@ -125,6 +160,21 @@ public class PRFragment extends Fragment implements View.OnClickListener {
 //        }
 
 
+    }
+
+    private void setDataSearch(int chCrad, String search) {
+        if(chCrad == 0){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+""+Search+"},\"property\":[],\"pagination\": { } }";
+            reqAPIPR(json);
+        }else if(chCrad ==1){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\""+Search+"},\"property\":[],\"pagination\": { } }";
+            reqAPIPR(json);
+        }else if(chCrad ==2){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"sql-obj-command\":\"(f:itemQuantity = 0 OR f:itemQuantity IS NULL)\""+Search+"},\"property\":[],\"pagination\":{}}";
+        }else if(chCrad ==3){
+            json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"false\"\"+Search+\"},\"property\":[],\"pagination\":{}}";
+            reqAPIPR(json);
+        }
     }
 
     private void teqAPICompare(String s) {
@@ -198,18 +248,22 @@ public class PRFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v == CardOnfloor){
+            chCrad =0;
             json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }";
             reqAPIPR(json);
         }
         if(v == CardIsdrinkTrue){
+            chCrad =1;
             json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }";
             reqAPIPR(json);
         }
         if(v == CardIsdrinkFalse){
+            chCrad = 2;
             json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"sql-obj-command\":\"(f:itemQuantity = 0 OR f:itemQuantity IS NULL)\"},\"property\":[],\"pagination\":{}}";
             reqAPIPR(json);
         }
         if(v == CardNulldrink){
+            chCrad =3;
             json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"false\"},\"property\":[],\"pagination\":{}}";
             reqAPIPR(json);
         }
