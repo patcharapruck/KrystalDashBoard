@@ -22,14 +22,16 @@ import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
+import dashboard.android.hdw.com.krystaldashboard.util.screenshot.FileUtil;
+import dashboard.android.hdw.com.krystaldashboard.util.screenshot.ScreenShotUtill;
 
 public class BillFragment extends Fragment {
 
 
     Button btnsaveBILL;
     ImageButton backidalog;
-    LinearLayout linearLayout;
-
+    LinearLayout parentView;
+    private Bitmap bitmap;
 
     //    BillActivity billActivity;
     public BillFragment() {
@@ -58,7 +60,7 @@ public class BillFragment extends Fragment {
         CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
         //ตรงนี้เป็นการบันทึกชื่อไฟล์ โดยจะต้องบันทึกจากหมายเลยบิล เช่น NO.20190421050
         String filename = Environment.getExternalStorageDirectory() + "/DCIM/" + "/KrystalScreenShooter/" + now + ".jpg";
-
+        bitmap = ScreenShotUtill.getInstance().takeScreenshotForView(parentView);
         View root = getView().getRootView();
         root.setDrawingCacheEnabled(true);
         Bitmap bitmap = Bitmap.createBitmap(root.getDrawingCache());
@@ -93,13 +95,14 @@ public class BillFragment extends Fragment {
     private void initInstances(final View rootView) {
         btnsaveBILL = (Button) rootView.findViewById(R.id.save_bill);
         backidalog = (ImageButton) rootView.findViewById(R.id.cloesdialog);
-        linearLayout = (LinearLayout) rootView.findViewById(R.id.container_bill);
+        parentView = (LinearLayout) rootView.findViewById(R.id.container_bill);
 
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 screenshot();
-                Toast.makeText(getContext(), "save image ", Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
@@ -110,4 +113,11 @@ public class BillFragment extends Fragment {
             }
         });
     }
+
+
+
+
+
+
+
 }

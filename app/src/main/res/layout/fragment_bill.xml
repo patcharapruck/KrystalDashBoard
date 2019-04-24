@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@color/white"
     android:layout_margin="10dp">
@@ -20,16 +21,6 @@
         android:padding="5dp"
         android:orientation="vertical"
         >
-
-        <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_margin="1dp"-->
-        <!--android:padding="10dp">-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -382,42 +373,13 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/dotline" />
 
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="1.5">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="3dp"
-                android:layout_weight="0.25"
-                android:background="@drawable/dotline" />
-
-            <TextView
-                android:id="@+id/textfood"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/food_product"
-                android:textColor="#1A1A1A"
-                android:textSize="10dp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="3dp"
-                android:layout_weight="0.25"
-                android:background="@drawable/dotline" />
-        </LinearLayout>
 
 
         <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="500dp"
             android:collapseColumns="5">
         </ListView>
 
@@ -580,4 +542,4 @@
 </LinearLayout>
 
 
-</RelativeLayout>
+</ScrollView>
