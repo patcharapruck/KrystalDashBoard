@@ -141,7 +141,7 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     setDataSearch(chCrad,Search);
                 }
                 else if (ch == 1){
-                    Search = ",\"PrDrinkCenter-positionName\":\""+s+"\"";
+                    Search = ",\"PrDrinkCenter-positionNameTh\":\""+s+"\"";
                     setDataSearch(chCrad,Search);
                 }
             }
