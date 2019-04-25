@@ -38,7 +38,7 @@ public class FileUtil {
         imageFile.getParentFile().mkdirs();
         try {
             OutputStream fout = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
             fout.flush();
             fout.close();
         } catch (FileNotFoundException e) {
