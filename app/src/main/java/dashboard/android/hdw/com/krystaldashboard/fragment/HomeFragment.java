@@ -35,62 +35,60 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     ProgressDialog progress;
-    private Boolean checkPay = false,checkNotPay=false , checkdashboard=false , checkall = false;
-
+    final Context mcontext = Contextor.getInstance().getmContext();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater
             , @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        showProgress();
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate(),rootView);
-        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
-        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay(),rootView);
-        teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay()
-                ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date(),rootView);
+        initInstances(rootView);
         return rootView;
     }
 
     private void initInstances(View rootView) {
+
+        showProgress();
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
+        try {
+            Thread.sleep(10000);
+        }catch (Exception e){
+
+        }
+
     }
 
-    public void reqAPI(String date, final View rootView) {
-        checkdashboard = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    public void reqAPI(String date) {
         String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
         Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
         call.enqueue(new Callback<DashBoardDto>() {
             @Override
             public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
-                String aa = String.valueOf(response.raw().code());
                 if(response.isSuccessful()){
                     DashBoardDto dao = response.body();
                     DashBoradManager.getInstance().setDto(dao);
-                    checkdashboard = true;
 
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
-                        initInstances(rootView);
-                        progress.dismiss();
-                    }
+                    teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay()
+                            ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date());
                 }
                 else {
-                    progress.dismiss();
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
             }
             @Override
             public void onFailure(Call<DashBoardDto> call, Throwable t) {
-                progress.dismiss();
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void reqAPInotpay(String date, final View rootView) {
-        checkNotPay = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
+    private void reqAPInotpay(String date) {
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
                 "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
                 "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
@@ -104,15 +102,10 @@ public class HomeFragment extends Fragment {
                     NotPayItemColleationDto dao = response.body();
                     NotPayManager.getInstance().setNotpayItemColleationDao(dao);
 
-                    checkNotPay = true;
-
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .saveNotPay(dao.getPagination().getTotalItem());
-
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
-                        initInstances(rootView);
                         progress.dismiss();
-                    }
+
                 }else {
                     progress.dismiss();
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
@@ -128,9 +121,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void reqAPIpay(String date, final View rootView) {
-        checkPay = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
+    private void reqAPIpay(String date) {
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
                 "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
                 "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
@@ -144,34 +135,25 @@ public class HomeFragment extends Fragment {
                     PayItemColleationDto dao = response.body();
                     PayManager.getInstance().setPayItemColleationDao(dao);
 
-                    checkPay = true;
+                    reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
 
                     SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
                             .savePay(dao.getPagination().getTotalItem());
 
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
-                        initInstances(rootView);
-                        progress.dismiss();
-                    }
-
                 }else {
-                    progress.dismiss();
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
-                progress.dismiss();
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
             }
         });
 
     }
 
-    private void teqAPICompare(String s, String key7Date, final View rootView) {
-        checkall = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
+    private void teqAPICompare(String s, String key7Date) {
         String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+key7Date+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
         Call<CompareCollectionDto> call = HttpManager.getInstance().getService().loadAPIcompare(requestBody);
@@ -180,21 +162,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<CompareCollectionDto> call, Response<CompareCollectionDto> response) {
                 if(response.isSuccessful()){
-                    checkall = true;
                     CompareCollectionDto dao = response.body();
                     CompareManager.getInstance().setCompareDao(dao);
 
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true && checkall == true){
-                        initInstances(rootView);
-                        progress.dismiss();
-                    }
+                    reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
 
                 }else {
                     try {
-                        progress.dismiss();
                         Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
                     } catch (IOException e) {
-                        progress.dismiss();
                         e.printStackTrace();
                     }
                 }

@@ -1,6 +1,7 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,8 +33,15 @@ public class FragmentPay extends Fragment {
     ListView listViewPay;
     PayMentAdapter payMentAdapter;
 
+    String DataType = "";
+
     public FragmentPay() {
             super();
+    }
+
+    @SuppressLint("ValidFragment")
+    public FragmentPay(String s){
+        this.DataType = s;
     }
 
 
@@ -96,7 +104,7 @@ public class FragmentPay extends Fragment {
     private void reqAPIpay(String date) {
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\""+DataType+"}," +
                 "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
                 "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
