@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class Revanuef1Fragment extends Fragment {
 
     ProgressBar progressBar;
     DecimalFormat formatter;
-    TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue,TextViewTableMoneyRevanue,TextViewAmountTableRevanue;
+    TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue,TextViewTableMoneyRevanue,TextViewAmountTableRevanue,TextViewAmountAll;
 
     NotPayItemColleationDto Notdto;
     PayItemColleationDto Paydto;
@@ -42,6 +43,7 @@ public class Revanuef1Fragment extends Fragment {
     Double TotalRevanue,TableMoneyRevanue;
     String UpdateTimeRevanue;
     Long AmountTableRevanue;
+    Long NotTableRevanue;
 
     public Revanuef1Fragment() {
         // Required empty public constructor
@@ -76,6 +78,7 @@ public class Revanuef1Fragment extends Fragment {
         TextViewTableMoneyRevanue = (TextView) rootView.findViewById(R.id.textview_table_money_revanue);
         TextViewUpdateTimeRevanue = (TextView) rootView.findViewById(R.id.textview_update_time_revanue);
         TextViewAmountTableRevanue = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
+        TextViewAmountAll = (TextView) rootView.findViewById(R.id.textview_amountAll);
 
         setTextView();
     }
@@ -83,14 +86,10 @@ public class Revanuef1Fragment extends Fragment {
     private void setTextView() {
 
         AmountTableRevanue = Paydto.getPagination().getTotalItem();
+        NotTableRevanue = Notdto.getPagination().getTotalItem();
         TotalRevanue = ODto.getRevenue();
-        int pg;
 
-        try {
-            pg = (int) (AmountTableRevanue/(AmountTableRevanue+Notdto.getPagination().getTotalItem()))*100;
-        }catch (Exception e){
-            pg = 0;
-        }
+        Long dD = AmountTableRevanue+NotTableRevanue;
 
 
         DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
@@ -103,7 +102,7 @@ public class Revanuef1Fragment extends Fragment {
         calendar.add(Calendar.DATE,-1);
         String formatDategeneral = dateFormatth.format(calendar.getTime());
 
-        Date d=new Date();
+        Date d =new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("hh:mm a");
         String currentDateTimeString = sdf.format(d);
 
@@ -114,10 +113,11 @@ public class Revanuef1Fragment extends Fragment {
         }
 
         TextViewAmountTableRevanue.setText(AmountTableRevanue.toString());
+        TextViewAmountAll.setText("   จาก "+dD+" โต๊ะ");
         TextViewTotalRevanue.setText(formatter.format(TotalRevanue));
         TextViewUpdateTimeRevanue.setText("อัพเดทรายรับล่าสุด "+formatDategeneral+" "+currentDateTimeString);
         TextViewTableMoneyRevanue.setText(formatter.format(sum));
-        progressBar.setProgress(pg);
+//        progressBar.setProgress(pg);
     }
 
 }

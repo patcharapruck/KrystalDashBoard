@@ -136,8 +136,7 @@
                     android:indeterminate="false"
                     android:max="100"
                     android:minHeight="100dp"
-                    android:progress="30"
-                    android:progressDrawable="@drawable/set_conner_radius_progress"
+                    android:progress="0"
                     android:scaleY="1" />
 
 
@@ -162,6 +161,14 @@
         android:layout_height="21dp"
         android:fontFamily="@font/prompt_regular"
         android:text=" โต๊ะ"
+        android:textColor="@color/colorfontrevenue"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/textview_amountAll"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:fontFamily="@font/prompt_regular"
+        android:text=" 15 "
         android:textColor="@color/colorfontrevenue"
         android:textSize="12sp" />
 </LinearLayout>

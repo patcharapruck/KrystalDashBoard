@@ -98,10 +98,8 @@ public class TableFragment extends Fragment {
                     textViewTable.setText("Table/Room");
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -114,7 +112,6 @@ public class TableFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 dataSearch = ","+typeSearch+":\""+s+"\"";
-
                 setPager(dataSearch);
             }
 

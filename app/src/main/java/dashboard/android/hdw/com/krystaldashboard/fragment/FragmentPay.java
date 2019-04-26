@@ -17,6 +17,7 @@ import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
 import dashboard.android.hdw.com.krystaldashboard.adapter.PayMentAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.payment.PayItemDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
@@ -68,9 +69,10 @@ public class FragmentPay extends Fragment {
         listViewPay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String item = (String) listViewPay.getItemAtPosition(position);
-//                Toast.makeText(getContext(),"You selected : " + parent.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
+                PayItemDto item = (PayItemDto) listViewPay.getAdapter().getItem(position);
+
                 Intent intent = new Intent(getContext(), BillActivity.class);
+                intent.putExtra("Codeid",item.getInvoiceCode());
                 getContext().startActivity(intent);
             }
         });

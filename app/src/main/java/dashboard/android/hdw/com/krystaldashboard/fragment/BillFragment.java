@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,16 +34,25 @@ public class BillFragment extends Fragment {
     LinearLayout parentView;
     private Bitmap bitmap;
 
+    String CodeID;
+
     //    BillActivity billActivity;
     public BillFragment() {
         super();
     }
 
-    public static BillFragment newInstance() {
+    public static BillFragment newInstance(String s) {
         BillFragment fragment = new BillFragment();
         Bundle args = new Bundle();
+        args.putString("CodeID",s);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        CodeID = getArguments().getString("CodeID");
     }
 
     @Override

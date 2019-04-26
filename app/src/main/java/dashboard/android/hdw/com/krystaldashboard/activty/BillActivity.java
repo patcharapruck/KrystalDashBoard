@@ -1,5 +1,6 @@
 package dashboard.android.hdw.com.krystaldashboard.activty;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,14 +13,19 @@ public class BillActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
+    String CodeId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill);
 
+        Intent id = new Intent();
+        CodeId = id.getStringExtra("Codeid");
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_bill, BillFragment.newInstance())
+                    .add(R.id.frame_bill, BillFragment.newInstance(CodeId))
                     .commit();
         }
 
