@@ -2,6 +2,8 @@ package dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.payment;
 
 public class PayItemDto {
 
+
+    private Long id;
     private String invoiceCode;
     private String customerName;
     private PayplaceItemDto place;
@@ -42,6 +44,14 @@ public class PayItemDto {
 
     public PaysalesItemDto getSales() {
         return sales;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setSales(PaysalesItemDto sales) {

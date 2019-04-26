@@ -1,6 +1,7 @@
 package dashboard.android.hdw.com.krystaldashboard.manager.http;
 
 
+import dashboard.android.hdw.com.krystaldashboard.dto.BillCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.login.LoginItemDto;
@@ -31,4 +32,7 @@ public interface KrystalService {
 
     @POST("restaurant/v1/login")
     Call<LoginItemDto> loadAPIToken(@Body RequestBody login);
+
+    @POST("restaurant/v1/invoicedocument/search")
+    Call<BillCollectionDto> loadAPIBill(@Body RequestBody json);
 }

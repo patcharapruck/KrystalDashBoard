@@ -1,10 +1,9 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,16 +14,22 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
-import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
+import dashboard.android.hdw.com.krystaldashboard.dto.BillCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
+import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
+import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.screenshot.FileUtil;
 import dashboard.android.hdw.com.krystaldashboard.util.screenshot.ScreenShotUtill;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BillFragment extends Fragment {
 
@@ -34,17 +39,17 @@ public class BillFragment extends Fragment {
     LinearLayout parentView;
     private Bitmap bitmap;
 
-    String CodeID;
+    Long CodeID;
 
     //    BillActivity billActivity;
     public BillFragment() {
         super();
     }
 
-    public static BillFragment newInstance(String s) {
+    public static BillFragment newInstance(Long s) {
         BillFragment fragment = new BillFragment();
         Bundle args = new Bundle();
-        args.putString("CodeID",s);
+        args.putLong("CodeID",s);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,7 +57,7 @@ public class BillFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CodeID = getArguments().getString("CodeID");
+        CodeID = getArguments().getLong("CodeID");
     }
 
     @Override
@@ -60,7 +65,6 @@ public class BillFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_bill, container, false);
         initInstances(rootView);
-
         return rootView;
 
     }
@@ -80,36 +84,7 @@ public class BillFragment extends Fragment {
             Toast.makeText(getContext(), getString(R.string.toast_message_screenshot), Toast.LENGTH_LONG).show();
         }
 
-//        View root = getView().getRootView();
-//        root.setDrawingCacheEnabled(true);
-//        Bitmap bitmap = Bitmap.createBitmap(root.getDrawingCache());
-//        root.setDrawingCacheEnabled(false);
-//
-//        File file = new File(filename);
-//        file.getParentFile().mkdirs();
-//
-//        try {
-//            FileOutputStream fileOutputStream = new FileOutputStream(file);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-//            fileOutputStream.flush();
-//            fileOutputStream.close();
-//
-//            Uri uri = Uri.fromFile(file);
-//
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
     }
-
-//    private void capture() {
-//
-//        linearLayout.isDrawingCacheEnabled();
-//
-//    }
 
     private void initInstances(final View rootView) {
         btnsaveBILL = (Button) rootView.findViewById(R.id.save_bill);
@@ -120,8 +95,6 @@ public class BillFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 screenshot();
-
-
             }
         });
 
@@ -135,6 +108,32 @@ public class BillFragment extends Fragment {
 
 
 
+    private void reqAPIpay() {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        String nn = "{\"criteria\":{\"InvoiceDocument-id\":\""+ CodeID+"\"},\"property\":" +
+                "[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"itemList\",\"transactionPaymentList->bank\"" +
+                ",\"documentStatus\",\"transactionPaymentList->memberPayer\",\"transactionPaymentList->employeePayer\"]" +
+                ",\"pagination\":{}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<BillCollectionDto> call = HttpManager.getInstance().getService().loadAPIBill(requestBody);
+        call.enqueue(new Callback<BillCollectionDto>() {
+            @Override
+            public void onResponse(Call<BillCollectionDto> call, Response<BillCollectionDto> response) {
+                if(response.isSuccessful()){
+                    BillCollectionDto dto = response.body();
+                    BillManager.getInstance().setBillCollectionDto(dto);
+
+                }else {
+                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<BillCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 
 
 

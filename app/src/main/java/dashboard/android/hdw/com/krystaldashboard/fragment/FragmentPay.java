@@ -72,7 +72,7 @@ public class FragmentPay extends Fragment {
                 PayItemDto item = (PayItemDto) listViewPay.getAdapter().getItem(position);
 
                 Intent intent = new Intent(getContext(), BillActivity.class);
-                intent.putExtra("Codeid",item.getInvoiceCode());
+                intent.putExtra("Codeid",item.getId());
                 getContext().startActivity(intent);
             }
         });
