@@ -1,6 +1,7 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
 import dashboard.android.hdw.com.krystaldashboard.adapter.PayMentAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.payment.PayItemDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
@@ -32,8 +34,15 @@ public class FragmentPay extends Fragment {
     ListView listViewPay;
     PayMentAdapter payMentAdapter;
 
+    String DataType = "";
+
     public FragmentPay() {
             super();
+    }
+
+    @SuppressLint("ValidFragment")
+    public FragmentPay(String s){
+        this.DataType = s;
     }
 
 
@@ -60,9 +69,10 @@ public class FragmentPay extends Fragment {
         listViewPay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String item = (String) listViewPay.getItemAtPosition(position);
-//                Toast.makeText(getContext(),"You selected : " + parent.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
+                PayItemDto item = (PayItemDto) listViewPay.getAdapter().getItem(position);
+
                 Intent intent = new Intent(getContext(), BillActivity.class);
+                intent.putExtra("Codeid",item.getInvoiceCode());
                 getContext().startActivity(intent);
             }
         });
@@ -96,7 +106,7 @@ public class FragmentPay extends Fragment {
     private void reqAPIpay(String date) {
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\""+DataType+"}," +
                 "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
                 "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);

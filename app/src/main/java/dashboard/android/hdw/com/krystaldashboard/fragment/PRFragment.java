@@ -52,7 +52,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
 
     String json;
     String Search="";
-    String dataSearch = "";
     int ch=0,chCrad =0;
     Long id;
 

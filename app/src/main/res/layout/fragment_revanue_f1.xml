@@ -136,7 +136,7 @@
                     android:indeterminate="false"
                     android:max="100"
                     android:minHeight="100dp"
-                    android:progress="50"
+                    android:progress="0"
                     android:scaleY="1" />
 
                 <!--android:progressDrawable="@drawable/set_conner_radius_progress"-->

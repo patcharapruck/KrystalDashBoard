@@ -10,10 +10,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,10 +43,17 @@ public class TableFragment extends Fragment {
     Spinner spins;
     private ArrayList<String> mTypeSearch = new ArrayList<String>();
 
+    TextView textViewTable;
+    EditText EdittextSearchTable;
+
     ViewPager viewPager;
     TabLayout tabLayout;
     SectionsPagerAdapter mSectionsPagerAdapter;
 
+    String typeSearch = "";
+    String dataSearch = "";
+
+    int ch=0;
 
 
     @Nullable
@@ -53,9 +66,8 @@ public class TableFragment extends Fragment {
     private void createTypeSearchData() {
 
         if (mTypeSearch.isEmpty()){
-            mTypeSearch.add("ชื่อหัวบิล");
+            mTypeSearch.add("เลขที่เอกสาร");
             mTypeSearch.add("Table/Room");
-            mTypeSearch.add("รหัส Sale");
         }
     }
 
@@ -63,7 +75,52 @@ public class TableFragment extends Fragment {
 
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
-        setPager();
+        spins = (Spinner) rootView.findViewById(R.id.spins);
+        textViewTable = (TextView) rootView.findViewById(R.id.textview_serach_table);
+        EdittextSearchTable = (EditText) rootView.findViewById(R.id.edittext_search_table);
+
+        setPager(dataSearch);
+
+        createTypeSearchData();
+
+        ArrayAdapter<String> spinsSearch = new ArrayAdapter<String>(getContext()
+                ,R.layout.support_simple_spinner_dropdown_item,mTypeSearch);
+        spins.setAdapter(spinsSearch);
+
+        spins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(mTypeSearch.get(position).equals("เลขที่เอกสาร")){
+                    typeSearch = "InvoiceDocument-invoiceCode";
+                    textViewTable.setText("เลขที่เอกสาร");
+                }else if (mTypeSearch.get(position).equals("Table/Room")){
+                    typeSearch = "Place-placeCode";
+                    textViewTable.setText("Table/Room");
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        EdittextSearchTable.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dataSearch = ","+typeSearch+":\""+s+"\"";
+                setPager(dataSearch);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -71,14 +128,14 @@ public class TableFragment extends Fragment {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-
         @Override
         public Fragment getItem(int position) {
+
             switch (position) {
                 case 0:
-                    return new FragmentPay();
+                    return new FragmentPay(dataSearch);
                 default:
-                    return new FragmentNotPay();
+                    return new FragmentNotPay(dataSearch);
             }
         }
         @Override
@@ -87,7 +144,7 @@ public class TableFragment extends Fragment {
         }
     }
 
-    private void setPager() {
+    private void setPager(String s) {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
         viewPager = (ViewPager) viewPager.findViewById(R.id.pager);
         viewPager.setAdapter(mSectionsPagerAdapter);
@@ -96,24 +153,10 @@ public class TableFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-//        setPager();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-//        setPager();
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
     }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
