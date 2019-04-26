@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
                 android:layout_gravity="right"
-                android:layout_marginTop="18dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/borderstatus"
                 android:fontFamily="@font/prompt_medium"
                 android:gravity="center_vertical"
@@ -92,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
                 android:weightSum="2">
 
                 <LinearLayout
@@ -117,6 +118,7 @@
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_weight="1"
@@ -144,43 +146,76 @@
                 </LinearLayout>
             </LinearLayout>
 
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:orientation="horizontal">
-
-                <TextView
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:weightSum="2">
+                <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:text="PAX : "
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:fontFamily="@font/prompt_bold"
+                        android:text="MEMBER NAME : "
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
 
-                <TextView
-                    android:id="@+id/paxbill"
+                    <TextView
+                        android:id="@+id/textNameView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:fontFamily="@font/prompt_bold"
+                        android:text="-"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:text="0"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:text=" AMOUNT"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:fontFamily="@font/prompt_medium"
+                        android:text="PAX : "
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/paxbill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:fontFamily="@font/prompt_medium"
+                        android:text="0"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:fontFamily="@font/prompt_medium"
+                        android:text=" AMOUNT"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+                </LinearLayout>
             </LinearLayout>
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/bordersale"
                 android:gravity="center|center_vertical"
                 android:orientation="horizontal">
