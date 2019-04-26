@@ -23,16 +23,17 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
+        <Button
             android:id="@+id/close"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/button1"
+            android:drawableLeft="@drawable/ic_chevron_left_black_24dp"
             android:fontFamily="@font/prompt_bold"
             android:gravity="center"
-            android:src="@drawable/ic_chevron_left_black_24dp" />
+            android:text="ปิด"
+            android:textColor="@color/white"
+            android:textSize="18dp"  />
 
         <!--<Button-->
             <!--android:id="@+id/share"-->

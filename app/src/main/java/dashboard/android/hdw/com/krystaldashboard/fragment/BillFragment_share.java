@@ -35,8 +35,8 @@ import dashboard.android.hdw.com.krystaldashboard.activty.BillActivity;
 import dashboard.android.hdw.com.krystaldashboard.util.screenshot.FileUtil;
 
 public class BillFragment_share extends Fragment {
-    private Button btnsaveBILL;
-    private ImageButton backidalog;
+    private Button btnshare;
+    private Button btnback;
     private Bitmap bitmap;
     private ImageView imageViewShowScreenshot;
 
@@ -73,22 +73,14 @@ public class BillFragment_share extends Fragment {
 
 
     private void initInstances(final View rootView) {
-        btnsaveBILL = (Button) rootView.findViewById(R.id.share);
+//        btnshare = (Button) rootView.findViewById(R.id.share);
         imageViewShowScreenshot = (ImageView) rootView.findViewById(R.id.imageViewShowScreenshot);
-        backidalog = (ImageButton) rootView.findViewById(R.id.close);
-
+        btnback = (Button) rootView.findViewById(R.id.close);
         Log.d("pathhhhh"," "+sharePath);
-
         imageViewShowScreenshot.setImageBitmap(BitmapFactory.decodeFile(sharePath));
-//        btnsaveBILL.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
-        backidalog.setOnClickListener(new View.OnClickListener() {
+
+        btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().finish();

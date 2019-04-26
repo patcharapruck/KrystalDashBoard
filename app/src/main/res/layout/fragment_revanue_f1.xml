@@ -144,10 +144,32 @@
     android:layout_width="wrap_content"
     android:layout_height="21dp"
     android:orientation="horizontal"
-    android:weightSum="2"
+    android:weightSum="5"
     android:layout_marginLeft="88dp"
     android:layout_marginTop="80dp">
+    <TextView
+        android:id="@+id/table_revanue"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:fontFamily="@font/prompt_regular"
+        android:text="15 "
+        android:textColor="@color/colorfontrevenue"
+        android:textSize="12sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:fontFamily="@font/prompt_regular"
+        android:text=" โต๊ะ"
+        android:textColor="@color/colorfontrevenue"
+        android:textSize="12sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:fontFamily="@font/prompt_regular"
+        android:text=" จาก "
+        android:textColor="@color/colorfontrevenue"
+        android:textSize="12sp" />
     <TextView
         android:id="@+id/textview_amount_table_revanue"
         android:layout_width="wrap_content"
