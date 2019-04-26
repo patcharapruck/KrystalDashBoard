@@ -1,19 +1,37 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 import android.content.Context;
+import android.Manifest;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
@@ -32,14 +50,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BillFragment extends Fragment {
-
-
-    Button btnsaveBILL;
-    ImageButton backidalog;
-    LinearLayout parentView;
+    private Button btnsaveBILL;
+    private ImageButton backidalog;
+    private LinearLayout parentView;
     private Bitmap bitmap;
 
     Long CodeID;
+    private ImageView imageViewShowScreenshot;
+
+    private String sharePath = "no";
+
 
     //    BillActivity billActivity;
     public BillFragment() {
@@ -66,24 +86,6 @@ public class BillFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_bill, container, false);
         initInstances(rootView);
         return rootView;
-
-    }
-
-    private void screenshot() {
-        Date date = new Date();
-        CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
-        //ตรงนี้เป็นการบันทึกชื่อไฟล์ โดยจะต้องบันทึกจากหมายเลยบิล เช่น NO.20190421050
-
-        bitmap = ScreenShotUtill.getInstance().takeScreenshotForView(parentView);
-
-        if (bitmap != null) {
-            String path = Environment.getExternalStorageDirectory() .toString() + "/DCIM/" + "/KrystalScreenShooter/" + now + ".jpg";
-            FileUtil.getInstance().storeBitmap(bitmap, path);
-            Toast.makeText(getContext(), getString(R.string.toast_message_screenshot_success) + " " + path, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getContext(), getString(R.string.toast_message_screenshot), Toast.LENGTH_LONG).show();
-        }
-
     }
 
     private void initInstances(final View rootView) {
@@ -91,10 +93,14 @@ public class BillFragment extends Fragment {
         backidalog = (ImageButton) rootView.findViewById(R.id.cloesdialog);
         parentView = (LinearLayout) rootView.findViewById(R.id.container_bill);
 
+        imageViewShowScreenshot = (ImageView) rootView.findViewById(R.id.imageViewShowScreenshot);
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                screenshot();
+                capture(v);
+                requestPermissionAndSave();
+                getFragmentManager().beginTransaction().replace(R.id.frame_bill,BillFragment_share.newInstance(sharePath)).commit();
+
             }
         });
 
@@ -106,7 +112,61 @@ public class BillFragment extends Fragment {
         });
     }
 
+    // captureImage
+    private Bitmap capture(View view) {
 
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache(true);
+        bitmap = Bitmap.createBitmap(parentView.getMeasuredWidth(), parentView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas();
+        canvas.setBitmap(bitmap);
+        parentView.layout(0, 0, parentView.getMeasuredWidth(), parentView.getMeasuredHeight());
+        parentView.draw(canvas);
+        view.setDrawingCacheEnabled(false);
+        imageViewShowScreenshot.setImageBitmap(bitmap);
+
+        return bitmap;
+    }
+
+    //    saveImage
+    private void requestPermissionAndSave() {
+        Dexter.withActivity(getActivity())
+                .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        Date date = new Date();
+                        CharSequence now = android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", date);
+                        if (bitmap != null) {
+                            String path = Environment.getExternalStorageDirectory().toString() + "/DCIM/" + "/KrystalScreenShooter/" + now + ".jpg";
+                            FileUtil.getInstance().storeBitmap(bitmap, path);
+
+                            File imageFile = new File(path);
+                            String filePath = imageFile.getPath();
+                            sharePath = filePath;
+
+                            Log.d("pathhhhha"," "+sharePath);
+
+                            Toast.makeText(getActivity(), getString(R.string.toast_message_screenshot_success) + " " + path, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getActivity(), getString(R.string.toast_message_screenshot), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        // check for permanent denial of permission
+                        if (response.isPermanentlyDenied()) {
+                            Toast.makeText(getActivity(), getString(R.string.settings_message), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
 
     private void reqAPIpay() {
         final Context mcontext = Contextor.getInstance().getmContext();
@@ -134,7 +194,6 @@ public class BillFragment extends Fragment {
         });
 
     }
-
 
 
 

@@ -9,7 +9,7 @@
 
     </style>
 
-    <style name="Dottheme" >
+    <style name="Dottheme" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
         <item name="android:tint">@color/white</item>
     </style>
 
