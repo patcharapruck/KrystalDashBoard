@@ -27,6 +27,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/textview_head_bill"
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
                 android:layout_gravity="right"
@@ -35,7 +36,7 @@
                 android:fontFamily="@font/prompt_medium"
                 android:gravity="center_vertical"
                 android:padding="3dp"
-                android:text="ชำระเรียบร้อยแล้ว"
+                android:text="-"
                 android:textColor="#8BC34A"
                 android:textSize="10dp" />
 
@@ -73,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:fontFamily="@font/prompt_medium"
-                        android:text="20190410102"
+                        android:text="00000000000"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
 
@@ -114,7 +115,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:fontFamily="@font/prompt_bold"
-                        android:text="บุหรี่"
+                        android:text="-"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                 </LinearLayout>
@@ -140,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:fontFamily="@font/prompt_medium"
-                        android:text="11/04/2019 (05:24)"
+                        android:text="00/00/0000 (00:00)"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
                 </LinearLayout>
@@ -193,7 +194,7 @@
                     <TextView
                         android:id="@+id/paxbill"
                         android:layout_width="wrap_content"
-                        android:layout_height="15dp"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/prompt_medium"
                         android:text="0"
                         android:textColor="#1A1A1A"
@@ -277,7 +278,7 @@
                         android:layout_height="21dp"
                         android:fontFamily="@font/prompt_medium"
                         android:gravity="center"
-                        android:text="สด"
+                        android:text="-"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
 
@@ -309,11 +310,12 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/textview_bill_total"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="center"
-                            android:text="2,640"
+                            android:text="0.00"
                             android:textColor="@color/white"
                             android:textSize="10dp" />
 
@@ -448,12 +450,13 @@
                         android:textSize="12dp" />
 
                     <TextView
+                        android:id="@+id/textview_bill_total2"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:fontFamily="@font/prompt_medium"
-                        android:text="2,640"
+                        android:text="0.00"
                         android:layout_marginRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="12dp" />

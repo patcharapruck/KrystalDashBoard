@@ -1,6 +1,6 @@
 package dashboard.android.hdw.com.krystaldashboard.dto.bill;
 
-public class BillฺMemberAccountDto {
+public class BillMemberAccountDto {
 
     private Long id;
     private String memberCode;

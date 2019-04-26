@@ -6,7 +6,7 @@ public class BillItemDto {
 
     private Long id;
     private String invoiceCode;
-    private BillฺMemberAccountDto memberAccount;
+    private BillMemberAccountDto memberAccount;
     private String customerName;
     private BillPlaceDto place;
     private Long pax;
@@ -62,11 +62,11 @@ public class BillItemDto {
         this.invoiceCode = invoiceCode;
     }
 
-    public BillฺMemberAccountDto getMemberAccount() {
+    public BillMemberAccountDto getMemberAccount() {
         return memberAccount;
     }
 
-    public void setMemberAccount(BillฺMemberAccountDto memberAccount) {
+    public void setMemberAccount(BillMemberAccountDto memberAccount) {
         this.memberAccount = memberAccount;
     }
 

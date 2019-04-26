@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
@@ -32,10 +33,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.BillCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillItemDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
@@ -54,6 +57,12 @@ public class BillFragment extends Fragment {
     private ImageButton backidalog;
     private LinearLayout parentView;
     private Bitmap bitmap;
+
+    TextView TextViewHeadBill,TextViewNomberBill,TextViewMemberBill,TextNameView,
+            TextViewDateBill,TextViewPaxBill,TextViewSaleBill,TextViewTableRoomBill,TextViewBillTotal,TextViewBillTotal2;
+
+    BillItemDto billDto;
+    DecimalFormat formatter;
 
     Long CodeID;
     private ImageView imageViewShowScreenshot;
@@ -89,27 +98,45 @@ public class BillFragment extends Fragment {
     }
 
     private void initInstances(final View rootView) {
+
         btnsaveBILL = (Button) rootView.findViewById(R.id.save_bill);
         backidalog = (ImageButton) rootView.findViewById(R.id.cloesdialog);
         parentView = (LinearLayout) rootView.findViewById(R.id.container_bill);
 
+        TextViewHeadBill = (TextView) rootView.findViewById(R.id.textview_head_bill);
+        TextViewNomberBill = (TextView) rootView.findViewById(R.id.nomberbill);
+        TextViewMemberBill = (TextView) rootView.findViewById(R.id.memberbill);
+        TextNameView = (TextView) rootView.findViewById(R.id.textNameView);
+        TextViewDateBill = (TextView) rootView.findViewById(R.id.datebill);
+        TextViewPaxBill = (TextView) rootView.findViewById(R.id.paxbill);
+        TextViewSaleBill = (TextView) rootView.findViewById(R.id.salebill);
+        TextViewTableRoomBill = (TextView) rootView.findViewById(R.id.tableroombill);
+        TextViewBillTotal = (TextView) rootView.findViewById(R.id.textview_bill_total);
+        TextViewBillTotal2 = (TextView) rootView.findViewById(R.id.textview_bill_total2);
+
         imageViewShowScreenshot = (ImageView) rootView.findViewById(R.id.imageViewShowScreenshot);
+
+
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 capture(v);
                 requestPermissionAndSave();
                 getFragmentManager().beginTransaction().replace(R.id.frame_bill,BillFragment_share.newInstance(sharePath)).commit();
-
             }
         });
-
         backidalog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        reqAPIpay();
     }
 
     // captureImage
@@ -183,6 +210,8 @@ public class BillFragment extends Fragment {
                     BillCollectionDto dto = response.body();
                     BillManager.getInstance().setBillCollectionDto(dto);
 
+                    setTextBill();
+
                 }else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
@@ -195,6 +224,25 @@ public class BillFragment extends Fragment {
 
     }
 
+    private void setTextBill() {
+
+        billDto = BillManager.getInstance().getBillCollectionDto().getObject().get(0);
+
+        formatter = new DecimalFormat("#,###,##0.00");
+
+        TextViewHeadBill.setText(billDto.getDocumentStatus().getStatusNameTh());
+        TextViewNomberBill.setText(billDto.getInvoiceCode());
+        TextViewMemberBill.setText(billDto.getMemberAccount().getMemberCode());
+        TextNameView.setText(billDto.getMemberAccount().getMemberAccountName());
+        TextViewPaxBill.setText(billDto.getPax().toString());
+        TextViewTableRoomBill.setText(billDto.getPlace().getPlaceNameTh());
+        TextViewSaleBill.setText(billDto.getSales().getNickName()+" | "+billDto.getSales().getEmployeeCode());
+        TextViewBillTotal.setText(formatter.format(billDto.getTotalPrice()));
+        TextViewBillTotal2.setText(formatter.format(billDto.getTotalPrice()));
+
+
+
+    }
 
 
 }

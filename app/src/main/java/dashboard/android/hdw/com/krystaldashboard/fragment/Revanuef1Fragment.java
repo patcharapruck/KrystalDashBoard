@@ -78,7 +78,7 @@ public class Revanuef1Fragment extends Fragment {
         TextViewTableMoneyRevanue = (TextView) rootView.findViewById(R.id.textview_table_money_revanue);
         TextViewUpdateTimeRevanue = (TextView) rootView.findViewById(R.id.textview_update_time_revanue);
         TextViewAmountTableRevanue = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
-        TextViewAmountAll = (TextView) rootView.findViewById(R.id.textview_amountAll);
+        TextViewAmountAll = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
 
         setTextView();
     }
