@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -40,11 +40,70 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="5dp"
+        android:collapseColumns="5"></ListView>
+
+    <LinearLayout
+        android:id="@+id/lineartotal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:collapseColumns="5">
-    </ListView>
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:weightSum="5">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="@font/prompt_medium"
+            android:text=""
+            android:textColor="#1A1A1A"
+            android:textSize="10dp" />
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:fontFamily="@font/prompt_medium"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#1A1A1A"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:fontFamily="@font/prompt_medium"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#1A1A1A"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/prompt_medium"
+            android:gravity="center"
+            android:text="TOTAL"
+            android:textColor="#1A1A1A"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/prompt_medium"
+            android:gravity="right"
+            android:text="2,640"
+            android:layout_marginRight="15dp"
+            android:textColor="#1A1A1A"
+            android:textSize="10dp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -10,12 +10,13 @@
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
     android:orientation="vertical">
     <!--content-->
     <LinearLayout
         android:id="@+id/container_bill"
-        android:layout_width="380dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/white"
@@ -507,7 +508,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="38.17dp"
-        android:layout_below="@+id/constraintLayout"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <ImageButton
