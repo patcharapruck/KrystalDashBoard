@@ -29,6 +29,7 @@ import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.adapter.PRListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
@@ -47,6 +48,8 @@ public class PRFragment extends Fragment implements View.OnClickListener {
     TextView TextViewSearch;
     EditText EditTextSearchTable;
 
+    TextView TextViewOnfloor,TextViewNullDrink,TextViewIsFalse,TextViewIsTrue;
+
     CardView CardOnfloor,CardIsdrinkFalse,CardIsdrinkTrue,CardNulldrink;
     String typeSearch = "";
 
@@ -54,6 +57,10 @@ public class PRFragment extends Fragment implements View.OnClickListener {
     String Search="";
     int ch=0,chCrad =0;
     Long id;
+
+    int count;
+
+    int sizeonfloor,sizenull,sizeisfalse,sizeistrue;
 
     ListView listViewPR;
     PRListAdapter prListAdapter;
@@ -82,6 +89,11 @@ public class PRFragment extends Fragment implements View.OnClickListener {
 
         listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
         spins = (Spinner) rootView.findViewById(R.id.spinspr);
+
+        TextViewOnfloor = (TextView) rootView.findViewById(R.id.textview_Onfloor) ;
+        TextViewNullDrink = (TextView) rootView.findViewById(R.id.textview_null_drink);
+        TextViewIsFalse = (TextView) rootView.findViewById(R.id.textview_isfalse);
+        TextViewIsTrue = (TextView) rootView.findViewById(R.id.textview_istrue);
 
         CardOnfloor = (CardView) rootView.findViewById(R.id.card_onfloor);
         CardIsdrinkTrue = (CardView) rootView.findViewById(R.id.card_isdrink_trus);
@@ -151,14 +163,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-//        if (listViewPR.getCount() != 0){
-////            ViewGroup.LayoutParams listViewParams = listViewPR.getLayoutParams();
-////            int itemHeight = listViewPR.getChildAt(0).getHeight() + 1 ;
-////            listViewParams.height = listViewPR.getCount() * itemHeight;
-////            listViewPR.setLayoutParams(listViewParams);
-////        }
-
-
     }
 
     private void setDataSearch(int chCrad, String search) {
@@ -190,9 +194,7 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     CompareManager.getInstance().setCompareDao(dao);
                     id = dao.getObject().get(0).getId();
                     json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }";
-
                     reqAPIPR(json);
-
                 }else {
                     try {
 //                        progress.dismiss();
@@ -227,6 +229,8 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     prListAdapter.notifyDataSetChanged();
                     listViewPR.setAdapter(prListAdapter);
 
+                    reqAPIPRistrue("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }");
+
                 }else {
                     try {
 //                        progress.dismiss();
@@ -242,6 +246,26 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void setdataview(PRItemCollectionDto dto) {
+
+        count = 0;
+        sizeonfloor = dto.getObject().size();
+
+        TextViewOnfloor.setText(String.valueOf(sizeonfloor));
+
+        for(int i=0;i<sizeonfloor;i++){
+            if(dto.getObject().get(i).getItemQuantity()==0L){
+                count++;
+            }
+        }
+
+        sizenull = count;
+        TextViewNullDrink.setText(String.valueOf(sizenull));
+
+        sizeisfalse = sizeonfloor-(sizenull+sizeistrue);
+        TextViewIsFalse.setText(String.valueOf(sizeisfalse));
     }
 
     @Override
@@ -267,4 +291,64 @@ public class PRFragment extends Fragment implements View.OnClickListener {
             reqAPIPR(json);
         }
     }
+
+    private void reqAPIPROnfloor(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+
+                    setdataview(dto);
+
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPIPRistrue(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+
+                    sizeistrue = dto.getObject().size();
+                    TextViewIsTrue.setText(String.valueOf(sizeistrue));
+
+                    reqAPIPROnfloor("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }");
+
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }

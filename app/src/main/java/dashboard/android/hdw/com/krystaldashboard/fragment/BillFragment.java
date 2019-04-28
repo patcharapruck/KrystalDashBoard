@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.adapter.BillTypeAdater;
 import dashboard.android.hdw.com.krystaldashboard.dto.BillCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillItemDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
@@ -63,6 +65,9 @@ public class BillFragment extends Fragment {
 
     BillItemDto billDto;
     DecimalFormat formatter;
+
+    ListView listviewType;
+    BillTypeAdater billTypeAdater;
 
     Long CodeID;
     private ImageView imageViewShowScreenshot;
@@ -116,6 +121,9 @@ public class BillFragment extends Fragment {
 
         imageViewShowScreenshot = (ImageView) rootView.findViewById(R.id.imageViewShowScreenshot);
 
+        listviewType = (ListView) rootView.findViewById(R.id.listview);
+        billTypeAdater = new BillTypeAdater();
+        listviewType.setAdapter(billTypeAdater);
 
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,7 +218,7 @@ public class BillFragment extends Fragment {
                     BillCollectionDto dto = response.body();
                     BillManager.getInstance().setBillCollectionDto(dto);
 
-                    setTextBill();
+//                    setTextBill();
 
                 }else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
@@ -240,7 +248,8 @@ public class BillFragment extends Fragment {
         TextViewBillTotal.setText(formatter.format(billDto.getTotalPrice()));
         TextViewBillTotal2.setText(formatter.format(billDto.getTotalPrice()));
 
-
+        billTypeAdater = new BillTypeAdater();
+        listviewType.setAdapter(billTypeAdater);
 
     }
 

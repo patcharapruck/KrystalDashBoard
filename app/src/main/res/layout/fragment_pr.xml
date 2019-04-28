@@ -62,11 +62,12 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/textview_Onfloor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/prompt_regular"
-                            android:text="246"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="27sp"
                             android:textStyle="bold" />
@@ -115,11 +116,12 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/textview_null_drink"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/prompt_regular"
-                            android:text="48"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="27sp"
                             android:textStyle="bold" />
@@ -168,11 +170,12 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/textview_isfalse"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/prompt_regular"
-                            android:text="198"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="27sp"
                             android:textStyle="bold" />
@@ -221,6 +224,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/textview_istrue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
