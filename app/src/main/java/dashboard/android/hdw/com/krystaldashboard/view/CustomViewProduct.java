@@ -4,11 +4,14 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BaseCustomViewGroup;
@@ -20,6 +23,9 @@ public class CustomViewProduct extends BaseCustomViewGroup {
             ,TextViewProductBuy,TextViewProductEntertain;
 
     ImageView imageView;
+
+    CardView cardView;
+    ExpandableRelativeLayout mycontent;
 
     public CustomViewProduct(Context context) {
         super(context);
@@ -65,6 +71,14 @@ public class CustomViewProduct extends BaseCustomViewGroup {
         TextViewProductEntertain = (TextView) findViewById(R.id.textview_product_entertain);
 
         imageView = (ImageView) findViewById(R.id.imageview_product);
+        cardView = (CardView) findViewById(R.id.carddrink);
+        mycontent = (ExpandableRelativeLayout)findViewById(R.id.mycontent);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mycontent.toggle();
+            }
+        });
     }
 
     @Override
@@ -80,6 +94,13 @@ public class CustomViewProduct extends BaseCustomViewGroup {
         super.onRestoreInstanceState(ss.getSuperState());
         Bundle bundle = ss.getBundle();
 
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+                MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, expandSpec);
     }
 
     public void setNameProduct(int count,String nameProduct){

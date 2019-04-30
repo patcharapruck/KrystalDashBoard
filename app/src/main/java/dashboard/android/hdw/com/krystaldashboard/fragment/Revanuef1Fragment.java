@@ -1,6 +1,7 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -9,28 +10,34 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.activty.HomeActivity;
 import dashboard.android.hdw.com.krystaldashboard.dto.ObjectItemDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
+import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
+import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Revanuef1Fragment extends Fragment {
+public class Revanuef1Fragment extends Fragment implements View.OnClickListener {
 
     ProgressBar progressBar;
     DecimalFormat formatter;
@@ -40,6 +47,7 @@ public class Revanuef1Fragment extends Fragment {
     PayItemColleationDto Paydto;
     ObjectItemDto ODto;
 
+    Button ButtonDate;
     Double TotalRevanue,TableMoneyRevanue;
     String UpdateTimeRevanue;
     Long AmountTableRevanue;
@@ -79,6 +87,9 @@ public class Revanuef1Fragment extends Fragment {
         TextViewUpdateTimeRevanue = (TextView) rootView.findViewById(R.id.textview_update_time_revanue);
         TextViewAmountTableRevanue = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
         TextViewAmountAll = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
+
+        ButtonDate = (Button) rootView.findViewById(R.id.button_date);
+        ButtonDate.setOnClickListener(this);
 
         setTextView();
     }
@@ -120,4 +131,66 @@ public class Revanuef1Fragment extends Fragment {
 //        progressBar.setProgress(pg);
     }
 
+    @Override
+    public void onClick(View v) {
+
+        if(v == ButtonDate){
+            setDateDialog();
+        }
+    }
+
+    private void setDateDialog() {
+
+        int day = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getDateofMonth();
+        int month = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getMonth();
+        int year = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getYear();
+
+        final DatePickerDialog dialog = new DatePickerDialog(getContext(),new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month++;
+                String mm = ""+month;
+                String dd = ""+dayOfMonth;
+
+                if (month<10){
+                    mm = "0"+month;
+                }
+                if (dayOfMonth < 10){
+                    dd = "0"+dayOfMonth;
+                }
+                String datecalendat, datecalendat2;
+                String fulldate;
+                datecalendat = year+ "/" + mm + "/" +dd;
+                datecalendat2 = year+ "-" + mm + "-" +dd;
+                fulldate = dd+ "/" + mm + "/" +year;
+
+                SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                        .saveDatereq(datecalendat,datecalendat2);
+
+                SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).saveDateFull(fulldate);
+
+                SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                        .saveDateCalendar(dayOfMonth,month,year);
+
+
+            }
+        },year,month-1,day);
+
+        Date date = null;
+        Date d = null;
+        String oldDateString = "2019/01/06";
+        String NewDateString = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDate();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+        try {
+            d = sdf.parse(oldDateString);
+            date = sdf.parse(NewDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        dialog.show();
+        dialog.getDatePicker().setMinDate(d.getTime());
+        dialog.getDatePicker().setMaxDate(date.getTime());
+
+    }
 }

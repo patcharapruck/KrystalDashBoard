@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.adapter.BillItemAdater;
@@ -13,6 +14,9 @@ public class CustomViewBillType extends BaseCustomViewGroup {
 
     ListView listViewBill;
     BillItemAdater billItemAdater;
+
+    String Type;
+    TextView TextFood;
 
     public CustomViewBillType(Context context) {
         super(context);
@@ -47,14 +51,29 @@ public class CustomViewBillType extends BaseCustomViewGroup {
 
     private void initInstances() {
         listViewBill = (ListView) findViewById(R.id.listview);
+        TextFood = (TextView) findViewById(R.id.textfood);
 
         billItemAdater = new BillItemAdater();
+        billItemAdater.setType(Type);
         listViewBill.setAdapter(billItemAdater);
     }
 
     private void initInflate() {
         inflate(getContext(), R.layout.customview_bill_type, this);
     }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+                MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, expandSpec);
+    }
+
+    public void setTypeBill(String type){
+        TextFood.setText(type);
+    }
+
+
 
 
 }

@@ -2,13 +2,10 @@ package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 import android.content.Context;
 import android.Manifest;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -31,23 +28,20 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.adapter.BillTypeAdater;
 import dashboard.android.hdw.com.krystaldashboard.dto.BillCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillArrayDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillItemDto;
-import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillArrayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillManager;
-import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.screenshot.FileUtil;
-import dashboard.android.hdw.com.krystaldashboard.util.screenshot.ScreenShotUtill;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -74,6 +68,9 @@ public class BillFragment extends Fragment {
 
     private String sharePath = "no";
 
+    ArrayList<String> TypeBill;
+    ArrayList<Integer> index = new ArrayList<Integer>();
+ //   ArrayList<index> indices  ;
 
     //    BillActivity billActivity;
     public BillFragment() {
@@ -122,8 +119,8 @@ public class BillFragment extends Fragment {
         imageViewShowScreenshot = (ImageView) rootView.findViewById(R.id.imageViewShowScreenshot);
 
         listviewType = (ListView) rootView.findViewById(R.id.listview);
-        billTypeAdater = new BillTypeAdater();
-        listviewType.setAdapter(billTypeAdater);
+//        billTypeAdater = new BillTypeAdater();
+//        listviewType.setAdapter(billTypeAdater);
 
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,7 +215,7 @@ public class BillFragment extends Fragment {
                     BillCollectionDto dto = response.body();
                     BillManager.getInstance().setBillCollectionDto(dto);
 
-//                    setTextBill();
+                    setTextBill();
 
                 }else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
@@ -247,6 +244,30 @@ public class BillFragment extends Fragment {
         TextViewSaleBill.setText(billDto.getSales().getNickName()+" | "+billDto.getSales().getEmployeeCode());
         TextViewBillTotal.setText(formatter.format(billDto.getTotalPrice()));
         TextViewBillTotal2.setText(formatter.format(billDto.getTotalPrice()));
+
+        int size = billDto.getItemList().size();
+        TypeBill = new ArrayList<>();
+
+        TypeBill.add(billDto.getItemList().get(0).getIncomeType());
+
+        boolean count;
+
+        for(int i=1;i<size;i++){
+            count = false;
+            for(int j=0;j<TypeBill.size();j++){
+                if(TypeBill.get(j).equals(billDto.getItemList().get(i).getIncomeType())){
+                    count = true;
+                }
+            }
+            if(count==false){
+                TypeBill.add(billDto.getItemList().get(i).getIncomeType());
+            }
+        }
+
+        BillArrayDto billArrayDto = new BillArrayDto();
+        billArrayDto.setTypeBill(TypeBill);
+
+        BillArrayManager.getInstance().setBillArrayDto(billArrayDto);
 
         billTypeAdater = new BillTypeAdater();
         listviewType.setAdapter(billTypeAdater);

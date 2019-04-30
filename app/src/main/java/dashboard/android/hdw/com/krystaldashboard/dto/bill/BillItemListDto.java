@@ -6,6 +6,7 @@ public class BillItemListDto {
     private String itemName;
     private Long quantity;
     private Double amount;
+    private Double discount;
     private String discountType;
     private Double totalPrice;
     private String incomeType;
@@ -83,5 +84,13 @@ public class BillItemListDto {
 
     public void setItemType(String itemType) {
         this.itemType = itemType;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 }

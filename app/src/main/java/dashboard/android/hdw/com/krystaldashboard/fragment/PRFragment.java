@@ -331,7 +331,12 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                 if(response.isSuccessful()){
                     PRItemCollectionDto dto = response.body();
 
-                    sizeistrue = dto.getObject().size();
+                    try {
+                        sizeistrue = dto.getObject().size();
+                    }catch (Exception e){
+                        sizeistrue = 0;
+                    }
+
                     TextViewIsTrue.setText(String.valueOf(sizeistrue));
 
                     reqAPIPROnfloor("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }");
