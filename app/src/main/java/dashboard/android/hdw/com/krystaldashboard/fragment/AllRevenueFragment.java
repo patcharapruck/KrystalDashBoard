@@ -10,6 +10,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -22,20 +24,35 @@ import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.Utils;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
+import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
+import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AllRevenueFragment extends Fragment {
 
     private LineChart chart;
 
+    TextView Revrnus,Income,Unpaid;
+    DecimalFormat formatter;
     ArrayList<Float> revenue;
     int size;
 
     CompareCollectionDto dto;
+    DashBoardDto dtomain;
     public AllRevenueFragment(){
 
     }
@@ -45,6 +62,9 @@ public class AllRevenueFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_allrevenue,container,false);
+        teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay()
+                ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date());
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         initInstances(rootView);
         return rootView;
 
@@ -52,36 +72,16 @@ public class AllRevenueFragment extends Fragment {
 
     private void initInstances(View rootView) {
 
-        try {
-            dto = CompareManager.getInstance().getCompareDao();
-        }catch (NullPointerException e){
+        chart = rootView.findViewById(R.id.linechart);
+        Revrnus = (TextView) rootView.findViewById(R.id.revrnus);
+        Income = (TextView) rootView.findViewById(R.id.income);
+        Unpaid = (TextView) rootView.findViewById(R.id.unpaid);
 
-        }
-
-        try {
-            this.size = dto.getObject().size();
-        }catch (NullPointerException e){
-
-        }
-
-
-        revenue = new ArrayList<Float>(size);
-
-        for(int i=0;i<size;i++){
-
-            float Cash = valueCashPayments(i);
-            float Credit = valueCreditCardPayments(i);
-            float CardCreddit = valueCreditPayments(i);
-            float Sum = Cash + Credit + CardCreddit;
-            revenue.add(Sum);
-        }
-
-        ChartCompare(rootView);
     }
 
-    private void ChartCompare(View rootView) {
+    private void ChartCompare() {
 
-        chart = rootView.findViewById(R.id.linechart);
+
         chart.setViewPortOffsets(0, 0, 0, 0);
         chart.setBackgroundColor(Color.WHITE);
 
@@ -157,8 +157,6 @@ public class AllRevenueFragment extends Fragment {
                     return chart.getAxisLeft().getAxisMinimum();
                 }
             });
-
-
             // set color of filled area
             if (Utils.getSDKInt() >= 18) {
                 // drawables only supported on api level 18 and above
@@ -214,5 +212,72 @@ public class AllRevenueFragment extends Fragment {
             return 0f;
         }
         return CashPayments;
+    }
+
+    private void teqAPICompare(String s, String key7Date) {
+        String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+key7Date+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<CompareCollectionDto> call = HttpManager.getInstance().getService().loadAPIcompare(requestBody);
+        call.enqueue(new Callback<CompareCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<CompareCollectionDto> call, Response<CompareCollectionDto> response) {
+                if(response.isSuccessful()){
+                     dto = response.body();
+                     size = dto.getObject().size();
+                     revenue = new ArrayList<Float>(size);
+                    for(int i=0;i<size;i++){
+                        float Cash = valueCashPayments(i);
+                        float Credit = valueCreditCardPayments(i);
+                        float CardCreddit = valueCreditPayments(i);
+                        float Sum = Cash + Credit + CardCreddit;
+                        revenue.add(Sum);
+                    }
+                    ChartCompare();
+                }else {
+                    try {
+                        Toast.makeText(getContext(),response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<CompareCollectionDto> call, Throwable t) {
+                Toast.makeText(getContext(),t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPI(String date) {
+        String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
+        call.enqueue(new Callback<DashBoardDto>() {
+            @Override
+            public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
+                if(response.isSuccessful()){
+                    dtomain = response.body();
+
+                    setTextdata();
+                }
+                else {
+                    Toast.makeText(getContext(),"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<DashBoardDto> call, Throwable t) {
+                Toast.makeText(getContext(),"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void setTextdata() {
+
+        formatter = new DecimalFormat("#,###,##0.00");
+
+        Revrnus.setText(formatter.format(dtomain.getObject().getRevenue()));
+        Income.setText(formatter.format(dtomain.getObject().getIncome()));
+        Unpaid.setText(formatter.format(dtomain.getObject().getUnpaid()));
     }
 }

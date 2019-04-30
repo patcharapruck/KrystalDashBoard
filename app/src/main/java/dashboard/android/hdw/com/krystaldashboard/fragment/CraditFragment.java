@@ -23,11 +23,19 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.credit.CreditItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.fragment.dialogfragment.DialogCraditFragment;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
+import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.util.MyFormatCredit;
+import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class CraditFragment extends Fragment implements View.OnClickListener {
@@ -40,16 +48,9 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
     String Kungthap, Tanachat, Tthaipanich, Khunoot;
 
     ArrayList<Double> total = new ArrayList<>();
-
-    ArrayList<String> creditAll = new ArrayList<>();
-    ArrayList<String> Amax = new ArrayList<>();
-    ArrayList<String> Jcb = new ArrayList<>();
-    ArrayList<String> Master = new ArrayList<>();
-    ArrayList<String> Unipay = new ArrayList<>();
-    ArrayList<String> Visa = new ArrayList<>();
     ArrayList<String> Total = new ArrayList<>();
 
-
+    DashBoardDto dto;
     LinearLayout creditA, creditB, creditC, creditD;
 
     DecimalFormat formatter;
@@ -63,6 +64,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_cradit, container, false);
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         initInstances(rootView);
         return rootView;
 
@@ -91,25 +93,17 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         TotalTanachat = (TextView) rootView.findViewById(R.id.textview_tanachat);
         TotalKhunoot = (TextView) rootView.findViewById(R.id.textview_khunoot);
 
-
-        try {
-            setdata();
-        } catch (Exception e) {
-            Toast.makeText(Contextor.getInstance().getmContext(), "ไม่มีข้อมูลที่จะแสดงผล", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     private void setdata() {
 
 
+        CreditItemColleationDto Credit;
         //creditall = DashBoradManager.getInstance().getDto().getObject().getCreditCardPayments();
 
         for (int i = 0; true; i++) {
-            CreditItemColleationDto Credit;
             try {
-                Credit = DashBoradManager.getInstance().getDto()
-                        .getObject().getIncomeByCreditCardList().get(i);
+                Credit = dto.getObject().getIncomeByCreditCardList().get(i);
             } catch (Exception e) {
                 break;
             }
@@ -141,13 +135,6 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
 
         TotalSum.setText(formatter.format(creditall) + " บาท");
-
-
-//        TotalSum.setText(totalts);
-//        TotalSum.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-//
-//        TotalKTextView.setText(totalks);
-//        TotalKTextView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         ArrayList<BarEntry> values = new ArrayList<>();
 
@@ -206,29 +193,6 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         barChart.invalidate();
     }
 
-//    private ArrayList<Float> bar_B1() {
-//        ArrayList<Float> barBnk1 = new ArrayList<>();
-//        barBnk1.add(0, (float) ((amax /creditall)*100));
-//        barBnk1.add(1, (float) ((jcb /creditall)*100));
-//        barBnk1.add(2, (float) ((master /creditall)*100));
-//        barBnk1.add(3, (float) ((unipay /creditall)*100));
-//        barBnk1.add(4, (float) ((visa /creditall)*100));
-//
-//        return barBnk1;
-//    }
-//
-//    //BBL(ธนาคารกรุงเทพ)
-//    private ArrayList<Float> bar_B2() {
-//        ArrayList<Float> barBnk2 = new ArrayList<>();
-//
-//        barBnk2.add(0, (float) ((amaxk/creditall)*100));
-//        barBnk2.add(1, (float) ((jcbk/creditall)*100));
-//        barBnk2.add(2, (float) ((masterk/creditall)*100));
-//        barBnk2.add(3, (float) ((unipayk/creditall)*100));
-//        barBnk2.add(4, (float) ((visak/creditall)*100));
-//
-//        return barBnk2;
-//    }
 
     @Override
     public void onClick(View v) {
@@ -256,5 +220,28 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             dialogCraditFragment.setNameCredit("บัญชีคุณอ๊อด", Khunoot);
             dialogCraditFragment.show(getFragmentManager(), "DialogCraditFragment");
         }
+    }
+
+    private void reqAPI(String date) {
+        String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
+        call.enqueue(new Callback<DashBoardDto>() {
+            @Override
+            public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
+                if(response.isSuccessful()){
+                    dto = response.body();
+
+                    setdata();
+                }
+                else {
+                    Toast.makeText(getContext(),"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<DashBoardDto> call, Throwable t) {
+                Toast.makeText(getContext(),"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

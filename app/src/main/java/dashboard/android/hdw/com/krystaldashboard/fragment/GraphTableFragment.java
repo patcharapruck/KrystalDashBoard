@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -27,8 +29,17 @@ import java.util.ArrayList;
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
+import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
+import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
+import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
+import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDatePayManager;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GraphTableFragment extends Fragment {
 
@@ -40,40 +51,37 @@ public class GraphTableFragment extends Fragment {
 
     DecimalFormat formatter;
 
+    String[] countries ;
+
+    TextView TextViewPay,TextViewNotPay;
+
     public GraphTableFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_graph_table, container, false);
+        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         initInstances(rootView);
         return rootView;
     }
 
     private void initInstances(View rootView) {
 
-        formatter = new DecimalFormat("#,###,##0.00");
-
-        Notdto = NotPayManager.getInstance().getNotpayItemColleationDao();
-        Paydto = PayManager.getInstance().getPayItemColleationDao();
-
-
-        Double sum=0.0;
-
-//        for (int i=0;i<Paydto.getObject().size();i++){
-//            sum = sum + Paydto.getObject().get(i).getTotalPrice();
-//        }
-//
-        Double sum2=0.0;
-//
-//        for (int i=0;i<Notdto.getObject().size();i++){
-//            sum2 = sum2 + Notdto.getObject().get(i).getTotalPrice();
-//        }
         pieChart = (PieChart) rootView.findViewById(R.id.chart1);
+        TextViewPay = (TextView) rootView.findViewById(R.id.text_pay);
+        TextViewNotPay = (TextView) rootView.findViewById(R.id.text_notpay);
+    }
+
+
+    private void setGraphdata() {
+
+        formatter = new DecimalFormat("#,###,##0.00");
+        Double sum=0.0;
+        Double sum2=0.0;
 
         moveOffScreen();
         pieChart.setUsePercentValues(true);
@@ -98,31 +106,33 @@ public class GraphTableFragment extends Fragment {
         pieChart.setEntryLabelTextSize(0f);
     }
 
-    String[] countries ;
 
     private void setData(Double count, Double range) {
         ArrayList<PieEntry> values = new ArrayList<>();
 
         countries = new String[]{formatter.format(count), formatter.format(range)};
-
         double sum = count+range;
 
-        int pg1,pg2;
+        int pay=0,not=0;
 
-        try {
-            pg1 = (int) (sum/(sum+count))*100;
+        try{
+            pay = Paydto.getObject().size();
         }catch (Exception e){
-            pg1 = 0;
+            pay = 0;
         }
 
-        try {
-            pg2 = (int) (sum/(sum+range))*100;
+        try{
+            not = Notdto.getObject().size();
         }catch (Exception e){
-            pg2 = 0;
+            not = 0;
         }
 
-            values.add(new PieEntry(pg1, countries[0]));
-            values.add(new PieEntry(pg2, countries[1]));
+
+            values.add(new PieEntry(pay, countries[0]));
+            values.add(new PieEntry(not, countries[1]));
+
+            TextViewPay.setText(String.valueOf(pay));
+            TextViewNotPay.setText(String.valueOf(not));
 
         PieDataSet dataSet = new PieDataSet(values, "");
         dataSet.setSelectionShift(5f);
@@ -144,14 +154,63 @@ public class GraphTableFragment extends Fragment {
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
         int height = metrics.heightPixels;
-
         int offset = (int) (height * 0.3);
 
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) pieChart.getLayoutParams();
         params.setMargins(0, 0, 0, -offset);
         pieChart.setLayoutParams(params);
     }
+
+    private void reqAPInotpay(String date) {
+        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
+                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
+                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<NotPayItemColleationDto> call = HttpManager.getInstance().getService().loadAPINotPay(requestBody);
+        call.enqueue(new Callback<NotPayItemColleationDto>() {
+            @Override
+            public void onResponse(Call<NotPayItemColleationDto> call, Response<NotPayItemColleationDto> response) {
+                if(response.isSuccessful()){
+                    Notdto = response.body();
+                    reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+                }else {
+                    Toast.makeText(getContext(),"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<NotPayItemColleationDto> call, Throwable t) {
+                Toast.makeText(getContext(),"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    private void reqAPIpay(String date) {
+        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
+                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
+                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
+                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<PayItemColleationDto> call = HttpManager.getInstance().getService().loadAPIPay(requestBody);
+        call.enqueue(new Callback<PayItemColleationDto>() {
+            @Override
+            public void onResponse(Call<PayItemColleationDto> call, Response<PayItemColleationDto> response) {
+                if(response.isSuccessful()){
+                    Paydto = response.body();
+                    setGraphdata();
+                }else {
+                    Toast.makeText(getContext(),"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
+                Toast.makeText(getContext(),"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
 
 }

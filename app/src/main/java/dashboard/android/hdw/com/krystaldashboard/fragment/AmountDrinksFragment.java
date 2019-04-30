@@ -13,9 +13,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.ObjectItemDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
+import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class AmountDrinksFragment extends Fragment {
@@ -27,7 +34,7 @@ public class AmountDrinksFragment extends Fragment {
     ArrayList<Long> purchaseProduct;
     ArrayList<Long> buyProduct;
 
-    ObjectItemDto Odto;
+    DashBoardDto dto;
     int size;
 
     public AmountDrinksFragment() {
@@ -51,11 +58,12 @@ public class AmountDrinksFragment extends Fragment {
         entertainAmountDrinks = (TextView) rootView.findViewById(R.id.textview_entertain_amount_drinks);
         purchaseAmountDrinks = (TextView) rootView.findViewById(R.id.textview_purchase_amount_drinks);
 
-        try {
-            Odto = DashBoradManager.getInstance().getDto().getObject();
-        }catch (Exception e){
-            Toast.makeText(Contextor.getInstance().getmContext(),"ไม่มีข้อมูลที่จะแสดงผล",Toast.LENGTH_SHORT).show();
-        }
+    }
+
+    private void setViewDrink() {
+
+        ObjectItemDto Odto = dto.getObject();
+
 
         try {
             size = Odto.getSummaryUseProductList().size();
@@ -63,11 +71,6 @@ public class AmountDrinksFragment extends Fragment {
             Toast.makeText(Contextor.getInstance().getmContext(),"ไม่มีข้อมูลที่จะแสดงผล",Toast.LENGTH_SHORT).show();
         }
 
-        setViewDrink();
-
-    }
-
-    private void setViewDrink() {
 
         totalAllProduct = new ArrayList<>(size);
         entertainProduct = new ArrayList<>(size);
@@ -151,6 +154,29 @@ public class AmountDrinksFragment extends Fragment {
             return 0L;
         }
         return total;
+    }
+
+
+    private void reqAPI(String date) {
+        String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
+        call.enqueue(new Callback<DashBoardDto>() {
+            @Override
+            public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
+                if(response.isSuccessful()){
+                    dto = response.body();
+                    setViewDrink();
+                }
+                else {
+                    Toast.makeText(getContext(),"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<DashBoardDto> call, Throwable t) {
+                Toast.makeText(getContext(),"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }

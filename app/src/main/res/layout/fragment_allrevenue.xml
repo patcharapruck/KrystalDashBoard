@@ -63,11 +63,12 @@
                         android:background="@drawable/border_shadow">
 
                         <TextView
+                            android:id="@+id/revrnus"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/prompt_medium"
                             android:gravity="center_vertical|center"
-                            android:text="1,234,567,890"
+                            android:text="0.00"
                             android:textColor="#212428"
                             android:textSize="24sp" />
                     </android.support.v7.widget.CardView>
@@ -121,13 +122,14 @@
                                   
 
                                 <TextView
+                                    android:id="@+id/income"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:layout_marginRight="5dp"
                                     android:fontFamily="@font/prompt_medium"
                                     android:gravity="right"
-                                    android:text="12,000,000"
+                                    android:text="0.00"
                                     android:textColor="#212428" />
                             </LinearLayout>
 <!--ค้าวชำระ--><View
@@ -170,13 +172,14 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/unpaid"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:layout_marginRight="5dp"
                                     android:fontFamily="@font/prompt_medium"
                                     android:gravity="right"
-                                    android:text="1,002,000"
+                                    android:text="0.00"
                                     android:textColor="#B14242" />
 
 

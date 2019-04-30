@@ -50,11 +50,6 @@ public class HomeFragment extends Fragment {
 
         showProgress();
         reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
-        try {
-            Thread.sleep(10000);
-        }catch (Exception e){
-
-        }
 
     }
 
@@ -63,7 +58,7 @@ public class HomeFragment extends Fragment {
         super.onStart();
     }
 
-    public void reqAPI(String date) {
+    private void reqAPI(String date) {
         String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
         Call<DashBoardDto> call = HttpManager.getInstance().getService().loadAPI(requestBody);
@@ -75,8 +70,8 @@ public class HomeFragment extends Fragment {
                     DashBoradManager.getInstance().setDto(dao);
 
                     teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay()
-                            ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date());
-                }
+                        ,SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKey7Date());
+            }
                 else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
                 }
@@ -181,6 +176,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private void showProgress() {
         progress = new ProgressDialog(getContext());
         progress.setTitle("Loading");
