@@ -14,15 +14,18 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.adapter.PRListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PRManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDatePayManager;
@@ -160,6 +163,10 @@ public class HomeFragment extends Fragment {
                     CompareCollectionDto dao = response.body();
                     CompareManager.getInstance().setCompareDao(dao);
 
+                    Long id = dao.getObject().get(0).getId();
+                    String json = "{\"criteria\":{\"PrDrinkCenter-salesShiftId\":" + id + "},\"property\":[],\"pagination\": { } }";
+                    reqAPIPR(json);
+
                     reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
 
                 }else {
@@ -172,6 +179,32 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<CompareCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPIPR(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+                    PRManager.getInstance().setPr(dto);
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
             }
         });

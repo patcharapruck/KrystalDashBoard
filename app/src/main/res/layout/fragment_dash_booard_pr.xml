@@ -103,7 +103,7 @@
                         android:id="@+id/number_of_calories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="134"
+                        android:text="0"
                         android:textSize="24sp"
                         android:textColor="#232425"
                         android:fontFamily="@font/prompt_bold"
@@ -163,12 +163,13 @@
                 </View>
 
                 <TextView
+                    android:id="@+id/pr_oofloor"
                     android:layout_width="104dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:gravity="right"
                     android:layout_marginRight="25dp"
-                    android:text="134"
+                    android:text="0"
                     android:textColor="#909090"
                     android:textSize="28sp" />
 
@@ -210,11 +211,12 @@
                 </View>
 
                 <TextView
+                    android:id="@+id/pr_empty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:gravity="left"
-                    android:text="122"
+                    android:text="0"
                     android:textColor="#909090"
                     android:textSize="28sp" />
 
@@ -266,6 +268,7 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/pr_run"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -314,11 +317,12 @@
                     </View>
 
                     <TextView
+                        android:id="@+id/pr_not_drink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="left"
-                        android:text="12"
+                        android:text="0"
                         android:textColor="#909090"
                         android:textSize="28sp" />
 

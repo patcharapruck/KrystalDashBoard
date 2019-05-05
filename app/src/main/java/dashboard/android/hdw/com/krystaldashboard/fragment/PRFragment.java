@@ -228,15 +228,11 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     prListAdapter = new PRListAdapter();
                     prListAdapter.notifyDataSetChanged();
                     listViewPR.setAdapter(prListAdapter);
-
                     reqAPIPRistrue("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }");
-
                 }else {
                     try {
-//                        progress.dismiss();
                         Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
                     } catch (IOException e) {
-//                        progress.dismiss();
                         e.printStackTrace();
                     }
                 }
@@ -249,21 +245,16 @@ public class PRFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setdataview(PRItemCollectionDto dto) {
-
         count = 0;
         sizeonfloor = dto.getObject().size();
-
         TextViewOnfloor.setText(String.valueOf(sizeonfloor));
-
         for(int i=0;i<sizeonfloor;i++){
             if(dto.getObject().get(i).getItemQuantity()==0L){
                 count++;
             }
         }
-
         sizenull = count;
         TextViewNullDrink.setText(String.valueOf(sizenull));
-
         sizeisfalse = sizeonfloor-(sizenull+sizeistrue);
         TextViewIsFalse.setText(String.valueOf(sizeisfalse));
     }
