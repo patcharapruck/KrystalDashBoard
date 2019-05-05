@@ -2,11 +2,13 @@ package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +35,12 @@ public class DashBooardPRFragment extends Fragment {
 
     TextView PrOnfloor,NumberOfCalories,PrEmpty,PrRun,PrNotDrink;
 
+    ProgressBar BackgroundProgressbar,StatsProgressbar,StatsProgressbar2,StatsProgressbar3;
+
     Long id;
     int sizeonfloor,sizenull,sizeisfalse,sizeistrue;
     int count;
+    int pr[];
     public DashBooardPRFragment() {
 
     }
@@ -56,6 +61,11 @@ public class DashBooardPRFragment extends Fragment {
         PrEmpty = (TextView)rootView.findViewById(R.id.pr_empty);
         PrRun = (TextView)rootView.findViewById(R.id.pr_run);
         PrNotDrink = (TextView)rootView.findViewById(R.id.pr_not_drink);
+
+        BackgroundProgressbar = (ProgressBar) rootView.findViewById(R.id.background_progressbar);
+        StatsProgressbar = (ProgressBar) rootView.findViewById(R.id.stats_progressbar);
+        StatsProgressbar2 = (ProgressBar) rootView.findViewById(R.id.stats_progressbar2);
+        StatsProgressbar3 = (ProgressBar) rootView.findViewById(R.id.stats_progressbar3);
     }
 
     private void setdataview(PRItemCollectionDto dto) {
@@ -72,9 +82,111 @@ public class DashBooardPRFragment extends Fragment {
             }
         }
         sizenull = count;
-        PrEmpty.setText(String.valueOf(sizenull));
+        PrNotDrink.setText(String.valueOf(sizenull));
         sizeisfalse = sizeonfloor-(sizenull+sizeistrue);
-        PrNotDrink.setText(String.valueOf(sizeisfalse));
+        PrEmpty.setText(String.valueOf(sizeisfalse));
+
+        setProgress();
+
+    }
+
+    private void setProgress() {
+
+        int pr[] = {sizeonfloor,sizeisfalse,sizeistrue,sizenull};
+        int pr2[] = pr;
+        int tmp;
+        for(int i=0;i<pr.length;i++){
+            for (int j=0;j<pr.length-i-1;j++){
+                if(pr[j+1]>pr[j]){
+                    tmp = pr[j];
+                    pr[j] = pr[j+1];
+                    pr[j+1] = tmp;
+                }
+            }
+        }
+
+        double d;
+        int progress;
+
+        for(int i=0;i<pr2.length;i++){
+
+            if(i==0){
+                for (int j=0;j<pr2.length;j++){
+                    if(pr[i] == pr2[j]){
+                        d =  (double) pr2[j] / (double) sizeonfloor;
+                        progress = (int) (d*100);
+                        BackgroundProgressbar.setProgress(progress);
+
+//                        if(pr2[j]==sizeonfloor)
+//                          BackgroundProgressbar.setBackgroundColor(Color.parseColor("#007AFF"));
+//                        else if(pr2[j]==sizeistrue)
+//                            BackgroundProgressbar.setBackgroundColor(Color.parseColor("#06B085"));
+//                        else if(pr2[j]==sizeisfalse)
+//                            BackgroundProgressbar.setBackgroundColor(Color.parseColor("#EF483E"));
+//                        else if(pr2[j]==sizenull)
+//                            BackgroundProgressbar.setBackgroundColor(Color.parseColor("#FFC108"));
+                    }
+                }
+            }
+            else if(i==1){
+                for (int j=0;j<pr2.length;j++){
+                    if(pr[i] == pr2[j]){
+                        d =  (double) pr2[j] / (double) sizeonfloor;
+                        progress = (int) (d*100);
+                        StatsProgressbar.setProgress(progress);
+
+//                        if(pr2[j]==sizeonfloor)
+//                            StatsProgressbar.setBackgroundColor(Color.parseColor("#007AFF"));
+//                        else if(pr2[j]==sizeistrue)
+//                            StatsProgressbar.setBackgroundColor(Color.parseColor("#06B085"));
+//                        else if(pr2[j]==sizeisfalse)
+//                            StatsProgressbar.setBackgroundColor(Color.parseColor("#EF483E"));
+//                        else if(pr2[j]==sizenull)
+//                            StatsProgressbar.setBackgroundColor(Color.parseColor("#FFC108"));
+                    }
+                }
+            }
+            else if(i==2){
+                for (int j=0;j<pr2.length;j++){
+                    if(pr[i] == pr2[j]){
+                        d =  (double) pr2[j] / (double) sizeonfloor;
+                        progress = (int) (d*100);
+                        StatsProgressbar2.setProgress(progress);
+
+//                        if(pr2[j]==sizeonfloor)
+//                            StatsProgressbar2.setBackgroundColor(Color.parseColor("#007AFF"));
+//                        else if(pr2[j]==sizeistrue)
+//                            StatsProgressbar2.setBackgroundColor(Color.parseColor("#06B085"));
+//                        else if(pr2[j]==sizeisfalse)
+//                            StatsProgressbar2.setBackgroundColor(Color.parseColor("#EF483E"));
+//                        else if(pr2[j]==sizenull)
+//                            StatsProgressbar2.setBackgroundColor(Color.parseColor("#FFC108"));
+                    }
+                }
+            }
+            else if(i==3){
+                for (int j=0;j<pr2.length;j++){
+                    if(pr[i] == pr2[j]){
+                        d =  (double) pr2[j] / (double) sizeonfloor;
+                        progress = (int) (d*100);
+                        StatsProgressbar3.setProgress(progress);
+
+//                        if(pr2[j]==sizeonfloor)
+//                            StatsProgressbar3.setBackgroundColor(Color.parseColor("#007AFF"));
+//                        else if(pr2[j]==sizeistrue)
+//                            StatsProgressbar3.setBackgroundColor(Color.parseColor("#06B085"));
+//                        else if(pr2[j]==sizeisfalse)
+//                            StatsProgressbar3.setBackgroundColor(Color.parseColor("#EF483E"));
+//                        else if(pr2[j]==sizenull)
+//                            StatsProgressbar3.setBackgroundColor(Color.parseColor("#FFC108"));
+                    }
+                }
+            }
+
+        }
+
+
+
 
     }
 
