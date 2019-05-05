@@ -18,6 +18,7 @@ import dashboard.android.hdw.com.krystaldashboard.dto.ObjectItemDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -35,6 +36,7 @@ public class AmountDrinksFragment extends Fragment {
     ArrayList<Long> buyProduct;
 
     DashBoardDto dto;
+    ObjectItemDto Odto;
     int size;
 
     public AmountDrinksFragment() {
@@ -47,6 +49,7 @@ public class AmountDrinksFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_amount_drinks, container, false);
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         initInstances(rootView);
         return rootView;
     }
@@ -62,7 +65,7 @@ public class AmountDrinksFragment extends Fragment {
 
     private void setViewDrink() {
 
-        ObjectItemDto Odto = dto.getObject();
+        Odto = dto.getObject();
 
 
         try {
@@ -119,7 +122,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long getWithdraw(int i) {
         Long withdraw;
         try {
-            withdraw = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getWithdrawUse();
+            withdraw = Odto.getSummaryUseProductList().get(i).getWithdrawUse();
         } catch (NullPointerException e) {
             return 0L;
         }
@@ -129,7 +132,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long getPurchase(int i) {
         Long purchase;
         try {
-            purchase = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getPurchaseAmount();
+            purchase = Odto.getSummaryUseProductList().get(i).getPurchaseAmount();
         } catch (NullPointerException e) {
             return 0L;
         }
@@ -139,7 +142,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long getEntertain(int i) {
         Long enter;
         try {
-            enter = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getEntertainAmount();
+            enter = Odto.getSummaryUseProductList().get(i).getEntertainAmount();
         } catch (NullPointerException e) {
             return 0L;
         }
@@ -149,7 +152,7 @@ public class AmountDrinksFragment extends Fragment {
     private Long gettotalProduct(int i) {
         Long total;
         try {
-            total = DashBoradManager.getInstance().getDto().getObject().getSummaryUseProductList().get(i).getTotalAll();
+            total = Odto.getSummaryUseProductList().get(i).getTotalAll();
         } catch (NullPointerException e) {
             return 0L;
         }

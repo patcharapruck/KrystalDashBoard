@@ -85,7 +85,7 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
         TextViewTotalRevanue = (TextView) rootView.findViewById(R.id.textview_total_revanue);
         TextViewTableMoneyRevanue = (TextView) rootView.findViewById(R.id.textview_table_money_revanue);
         TextViewUpdateTimeRevanue = (TextView) rootView.findViewById(R.id.textview_update_time_revanue);
-        TextViewAmountTableRevanue = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
+        TextViewAmountTableRevanue = (TextView) rootView.findViewById(R.id.table_revanue);
         TextViewAmountAll = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
 
         ButtonDate = (Button) rootView.findViewById(R.id.button_date);
@@ -101,6 +101,13 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
         TotalRevanue = ODto.getRevenue();
 
         Long dD = AmountTableRevanue+NotTableRevanue;
+
+        Double p = Double.valueOf(AmountTableRevanue);
+        Double p2 = Double.valueOf(dD);
+
+        Double p3 = p/p2;
+
+        int ss = (int) (p3*100);
 
 
         DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
@@ -124,11 +131,11 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
         }
 
         TextViewAmountTableRevanue.setText(AmountTableRevanue.toString());
-        TextViewAmountAll.setText("   จาก "+dD+" โต๊ะ");
+        TextViewAmountAll.setText(dD.toString());
         TextViewTotalRevanue.setText(formatter.format(TotalRevanue));
         TextViewUpdateTimeRevanue.setText("อัพเดทรายรับล่าสุด "+formatDategeneral+" "+currentDateTimeString);
         TextViewTableMoneyRevanue.setText(formatter.format(sum));
-//        progressBar.setProgress(pg);
+        progressBar.setProgress(ss);
     }
 
     @Override
