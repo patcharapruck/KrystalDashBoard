@@ -8,14 +8,14 @@ import android.widget.TextView;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.adapter.BillItemAdater;
+import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillArrayDto;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillArrayManager;
 import dashboard.android.hdw.com.krystaldashboard.view.basecustom.BaseCustomViewGroup;
 
 public class CustomViewBillType extends BaseCustomViewGroup {
 
     ListView listViewBill;
     BillItemAdater billItemAdater;
-
-    String Type;
     TextView TextFood;
 
     public CustomViewBillType(Context context) {
@@ -53,8 +53,8 @@ public class CustomViewBillType extends BaseCustomViewGroup {
         listViewBill = (ListView) findViewById(R.id.listview);
         TextFood = (TextView) findViewById(R.id.textfood);
 
+
         billItemAdater = new BillItemAdater();
-        billItemAdater.setType(Type);
         listViewBill.setAdapter(billItemAdater);
     }
 

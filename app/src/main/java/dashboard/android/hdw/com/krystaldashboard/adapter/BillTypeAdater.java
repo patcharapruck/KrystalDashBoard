@@ -40,6 +40,10 @@ public class BillTypeAdater extends BaseAdapter {
 
         String dto = BillArrayManager.getInstance().getBillArrayDto().getTypeBill().get(position);
 
+        BillArrayDto billArrayDto = new BillArrayDto();
+        billArrayDto.setTypemenu(dto);
+        BillArrayManager.getInstance().setBillArrayDto(billArrayDto);
+
         try {
             item.setTypeBill(dto);
         }catch (NullPointerException e){

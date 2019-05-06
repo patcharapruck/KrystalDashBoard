@@ -77,11 +77,13 @@ public class HomeFragment extends Fragment {
             }
                 else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                    progress.dismiss();
                 }
             }
             @Override
             public void onFailure(Call<DashBoardDto> call, Throwable t) {
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อกับข้อมูลได้",Toast.LENGTH_LONG).show();
+                progress.dismiss();
             }
         });
     }
@@ -140,12 +142,14 @@ public class HomeFragment extends Fragment {
 
                 }else {
                     Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                    progress.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
                 Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
+                progress.dismiss();
             }
         });
 
@@ -175,10 +179,12 @@ public class HomeFragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    progress.dismiss();
                 }
             }
             @Override
             public void onFailure(Call<CompareCollectionDto> call, Throwable t) {
+                progress.dismiss();
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
             }
         });
@@ -195,17 +201,21 @@ public class HomeFragment extends Fragment {
                 if(response.isSuccessful()){
                     PRItemCollectionDto dto = response.body();
                     PRManager.getInstance().setPr(dto);
+
+
                 }else {
                     try {
                         Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    progress.dismiss();
                 }
             }
             @Override
             public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+                progress.dismiss();
             }
         });
     }
