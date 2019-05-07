@@ -294,7 +294,13 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                 if(response.isSuccessful()){
                     PRItemCollectionDto dto = response.body();
 
-                    setdataview(dto);
+                    try {
+                        sizeonfloor = dto.getObject().size();
+                    }catch (Exception e){
+                        sizeonfloor = 0;
+                    }
+
+                    TextViewOnfloor.setText(String.valueOf(sizeonfloor));
 
                 }else {
                     try {
@@ -329,6 +335,78 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     }
 
                     TextViewIsTrue.setText(String.valueOf(sizeistrue));
+
+                    reqAPIPRisfalse("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"sql-obj-command\":\"(f:itemQuantity = 0 OR f:itemQuantity IS NULL)\"},\"property\":[],\"pagination\":{}}");
+
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPIPRisfalse(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+
+                    try {
+                        sizeisfalse = dto.getObject().size();
+                    }catch (Exception e){
+                        sizeisfalse = 0;
+                    }
+
+                    TextViewIsFalse.setText(String.valueOf(sizeisfalse));
+
+                    reqAPIPREmty("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"false\"},\"property\":[],\"pagination\":{}}");
+
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPIPREmty(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+
+                    try {
+                        sizenull = dto.getObject().size();
+                    }catch (Exception e){
+                        sizenull = 0;
+                    }
+
+                    TextViewNullDrink.setText(String.valueOf(sizenull));
 
                     reqAPIPROnfloor("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }");
 

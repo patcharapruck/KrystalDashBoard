@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillItemDto;
+
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillItemListDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillArrayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillManager;
@@ -16,21 +16,35 @@ import dashboard.android.hdw.com.krystaldashboard.view.CustomViewBill;
 public class BillItemAdater extends BaseAdapter {
 
     DecimalFormat formatter;
+    String type;
+    ArrayList<Integer> index;
 
     @Override
     public int getCount() {
+
+        int size = 0;
+
+        type = BillArrayManager.getInstance().getBillArrayDto().getTypemenu();
+        index = new ArrayList<>();
 
         if(BillManager.getInstance().getBillCollectionDto()==null)
             return 0;
         if(BillManager.getInstance().getBillCollectionDto().getObject().get(0).getItemList()==null)
             return 0;
-        return BillManager.getInstance().getBillCollectionDto().getObject().get(0).getItemList().size();
+        for(int i=0;i<BillManager.getInstance().getBillCollectionDto().getObject().get(0).getItemList().size();i++){
+            if(type.equals(BillManager.getInstance().getBillCollectionDto().getObject().get(0).getItemList().get(i).getIncomeType())){
+                size++;
+                index.add(i);
+            }
+        }
 
+        return size;
     }
 
     @Override
     public Object getItem(int position) {
         return BillManager.getInstance().getBillCollectionDto().getObject().get(0).getItemList().get(position);
+//        return null;
     }
 
     @Override
@@ -41,18 +55,15 @@ public class BillItemAdater extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         CustomViewBill item;
-        String type = BillArrayManager.getInstance().getBillArrayDto().getTypemenu();
-        BillItemListDto billItemDto = (BillItemListDto) getItem(position);
-        if(convertView != null && type.equals(billItemDto.getIncomeType())){
+        BillItemListDto billItemDto = (BillItemListDto) getItem(index.get(position));
+
+        if(convertView != null){
             item = (CustomViewBill) convertView;
-        }else if(convertView == null && type.equals(billItemDto.getIncomeType())){
+        }else{
             item = new CustomViewBill(parent.getContext());
-        }else {
-            item = null;
-            return item;
         }
-
-
+//
+//
         formatter = new DecimalFormat("#,###,##0.00");
 
         try {

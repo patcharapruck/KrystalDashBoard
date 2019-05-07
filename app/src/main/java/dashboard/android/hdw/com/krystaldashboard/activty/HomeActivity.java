@@ -160,7 +160,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         calendartoday.setTime(date);
         day7.setTime(date);
 
-        day7.add(Calendar.DATE,-9);
+        day7.add(Calendar.DATE,-7);
         calendar.add(Calendar.DATE,-1);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH)+1;
@@ -266,78 +266,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void reqAPInotpay(String date) {
-        checkNotPay = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
-        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 22 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
-                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
-                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<NotPayItemColleationDto> call = HttpManager.getInstance().getService().loadAPINotPay(requestBody);
-        call.enqueue(new Callback<NotPayItemColleationDto>() {
-            @Override
-            public void onResponse(Call<NotPayItemColleationDto> call, Response<NotPayItemColleationDto> response) {
-                if(response.isSuccessful()){
-                    NotPayItemColleationDto dao = response.body();
-                    NotPayManager.getInstance().setNotpayItemColleationDao(dao);
-                    checkNotPay = true;
-
-                    SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
-                            .saveNotPay(dao.getPagination().getTotalItem());
-
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
-                        initInstances();
-                    }
-                }else {
-                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NotPayItemColleationDto> call, Throwable t) {
-                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
-
-    private void reqAPIpay(String date) {
-        checkPay = false;
-        final Context mcontext = Contextor.getInstance().getmContext();
-        String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
-                "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\"}," +
-                "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
-                "\"pagination\":{},\"orderBy\":{\"InvoiceDocument-id\":\"DESC\"}}";
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
-        Call<PayItemColleationDto> call = HttpManager.getInstance().getService().loadAPIPay(requestBody);
-        call.enqueue(new Callback<PayItemColleationDto>() {
-            @Override
-            public void onResponse(Call<PayItemColleationDto> call, Response<PayItemColleationDto> response) {
-                if(response.isSuccessful()){
-                    PayItemColleationDto dao = response.body();
-                    PayManager.getInstance().setPayItemColleationDao(dao);
-
-                    checkPay = true;
-                    SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext())
-                            .savePay(dao.getPagination().getTotalItem());
-
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
-                        initInstances();
-                    }
-
-                }else {
-                    Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<PayItemColleationDto> call, Throwable t) {
-                Toast.makeText(mcontext,"ไม่สามารถเชื่อมต่อได้",Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
-
     private void setDateDialog() {
 
         int day = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getDateofMonth();
@@ -373,8 +301,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         .saveDateCalendar(dayOfMonth,month,year);
 
                 reqAPI(datecalendat);
-                reqAPIpay(datecalendat2);
-                reqAPInotpay(datecalendat2);
 
 
 

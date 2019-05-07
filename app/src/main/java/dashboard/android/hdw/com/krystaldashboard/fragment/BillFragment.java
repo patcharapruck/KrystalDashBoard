@@ -235,15 +235,52 @@ public class BillFragment extends Fragment {
 
         formatter = new DecimalFormat("#,###,##0.00");
 
-        TextViewHeadBill.setText(billDto.getDocumentStatus().getStatusNameTh());
-        TextViewNomberBill.setText(billDto.getInvoiceCode());
-        TextViewMemberBill.setText(billDto.getMemberAccount().getMemberCode());
-        TextNameView.setText(billDto.getMemberAccount().getMemberAccountName());
-        TextViewPaxBill.setText(billDto.getPax().toString());
-        TextViewTableRoomBill.setText(billDto.getPlace().getPlaceNameTh());
-        TextViewSaleBill.setText(billDto.getSales().getNickName()+" | "+billDto.getSales().getEmployeeCode());
-        TextViewBillTotal.setText(formatter.format(billDto.getTotalPrice()));
-        TextViewBillTotal2.setText(formatter.format(billDto.getTotalPrice()));
+        try {
+            TextViewHeadBill.setText(billDto.getDocumentStatus().getStatusNameTh());
+        }catch (Exception e){
+            TextViewHeadBill.setText("-");
+        }
+        try {
+            TextViewNomberBill.setText(billDto.getInvoiceCode());
+        }catch (Exception e){
+            TextViewNomberBill.setText("-");
+        }
+        try {
+            TextViewMemberBill.setText(billDto.getMemberAccount().getMemberCode());
+        }catch (Exception e){
+            TextViewMemberBill.setText("-");
+        }
+        try {
+            TextNameView.setText(billDto.getMemberAccount().getMemberAccountName());
+        }catch (Exception e){
+
+        }
+        try {
+            TextViewPaxBill.setText(billDto.getPax().toString());
+        }catch (Exception e){
+            TextViewPaxBill.setText("-");
+        }
+        try {
+            TextViewTableRoomBill.setText(billDto.getPlace().getPlaceNameTh());
+        }catch (Exception e){
+            TextViewTableRoomBill.setText("-");
+        }
+        try {
+            TextViewSaleBill.setText(billDto.getSales().getNickName()+" | "+billDto.getSales().getEmployeeCode());
+        }catch (Exception e){
+            TextViewSaleBill.setText("-|-");
+        }
+
+        try {
+            TextViewBillTotal.setText(formatter.format(billDto.getTotalPrice()));
+        }catch (Exception e){
+            TextViewBillTotal.setText("0.00");
+        }
+        try {
+            TextViewBillTotal2.setText(formatter.format(billDto.getTotalPrice()));
+        }catch (Exception e){
+            TextViewBillTotal2.setText("0.00");
+        }
 
         int size = billDto.getItemList().size();
         TypeBill = new ArrayList<>();
@@ -266,6 +303,8 @@ public class BillFragment extends Fragment {
 
         BillArrayDto billArrayDto = new BillArrayDto();
         billArrayDto.setTypeBill(TypeBill);
+        billArrayDto.setTypemenu(TypeBill.get(0));
+        BillArrayManager.getInstance().setBillArrayDto(billArrayDto);
 
         BillArrayManager.getInstance().setBillArrayDto(billArrayDto);
 

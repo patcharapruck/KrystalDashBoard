@@ -4,6 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
+
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillArrayDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillArrayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillManager;
@@ -37,10 +39,11 @@ public class BillTypeAdater extends BaseAdapter {
         }else{
             item = new CustomViewBillType(parent.getContext());
         }
-
         String dto = BillArrayManager.getInstance().getBillArrayDto().getTypeBill().get(position);
 
+        ArrayList<String> S = BillArrayManager.getInstance().getBillArrayDto().getTypeBill();
         BillArrayDto billArrayDto = new BillArrayDto();
+        billArrayDto.setTypeBill(S);
         billArrayDto.setTypemenu(dto);
         BillArrayManager.getInstance().setBillArrayDto(billArrayDto);
 
