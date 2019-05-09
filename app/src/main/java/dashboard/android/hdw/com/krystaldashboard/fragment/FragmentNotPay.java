@@ -73,8 +73,8 @@ public class FragmentNotPay extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                String item = (String) listViewPay.getItemAtPosition(position);
 //                Toast.makeText(getContext(),"You selected : " + parent.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), BillActivity.class);
-                getContext().startActivity(intent);
+//                Intent intent = new Intent(getContext(), BillActivity.class);
+//                getContext().startActivity(intent);
             }
         });
     }

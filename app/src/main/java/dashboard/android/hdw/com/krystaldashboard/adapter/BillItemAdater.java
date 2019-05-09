@@ -44,7 +44,6 @@ public class BillItemAdater extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         return BillManager.getInstance().getBillCollectionDto().getObject().get(0).getItemList().get(position);
-//        return null;
     }
 
     @Override

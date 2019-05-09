@@ -146,7 +146,7 @@
                     android:gravity="right"
                     android:text="0.0"
                     android:textColor="@color/color_pay"
-                    android:textSize="14sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
