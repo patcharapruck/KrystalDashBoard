@@ -65,7 +65,7 @@
                     android:fontFamily="@font/prompt_bold"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="#007AFF"
+                    android:textColor="#4CAF4F"
                     android:textSize="62sp" />
             </LinearLayout>
 
@@ -107,7 +107,7 @@
                     android:fontFamily="@font/prompt_bold"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="#C4183B"
+                    android:textColor="#FF6155"
                     android:textSize="62sp" />
             </LinearLayout>
 

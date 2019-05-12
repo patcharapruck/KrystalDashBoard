@@ -50,7 +50,7 @@
                         android:layout_height="28dp"
                         android:fontFamily="@font/prompt_medium"
                         android:gravity="center_horizontal"
-                        android:text="รายรับทั้งหมด"
+                        android:text="สรุปรายได้จริง"
                         android:textColor="#212428"
                         android:textSize="18sp" />
 
@@ -116,7 +116,7 @@
                                           android:layout_marginLeft="5dp"
                                           android:gravity="center_vertical"
                                           android:fontFamily="@font/prompt_medium"
-                                          android:text="รายรับจริง"
+                                          android:text="รายรับตามบิล"
                                           android:textColor="#212428" />
                                   </LinearLayout>  
                                   

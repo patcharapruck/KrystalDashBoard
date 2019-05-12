@@ -137,8 +137,8 @@ public class GraphTableFragment extends Fragment {
         PieDataSet dataSet = new PieDataSet(values, "");
         dataSet.setSelectionShift(5f);
         dataSet.setSliceSpace(3f);
-        dataSet.setColors(new int[]{Color.parseColor("#007AFF"),
-                Color.parseColor("#C4183B")});
+        dataSet.setColors(new int[]{Color.parseColor("#4CAF4F"),
+                Color.parseColor("#FF6155")});
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());

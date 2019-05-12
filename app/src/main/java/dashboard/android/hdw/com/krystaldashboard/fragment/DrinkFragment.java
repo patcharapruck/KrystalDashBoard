@@ -115,8 +115,8 @@ public class DrinkFragment extends Fragment {
 
         TextViewTotal.setText(sumtotal.toString());
         TextViewEntertain.setText(sumentertain.toString());
-        TextViewWithdraw.setText(sumwithdraw.toString());
-        TextViewPurchase.setText(sumpurchase.toString());
+        TextViewWithdraw.setText(sumpurchase.toString());
+        TextViewPurchase.setText(sumwithdraw.toString());
         TextViewAmount.setText(String.valueOf(size));
 
     }

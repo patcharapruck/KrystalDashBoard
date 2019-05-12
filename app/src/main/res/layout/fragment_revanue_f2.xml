@@ -9,8 +9,8 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="รูปแบบการชำระเงิน"
+        android:layout_height="match_parent"
+        android:text="รูปแบบการชำระเงิน(รายรับตามบิล)"
         android:fontFamily="@font/prompt_medium"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="2dp"
@@ -110,67 +110,6 @@
                     android:text="00,000,000,000.00"
                     android:textColor="@color/colorfont"
                     app:layout_gravity="right"/>
-                <!--ตัดยอด Member-->
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginBottom="7dp"
-                    android:src="@drawable/untitled11" />
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:textSize="12sp"
-                    android:text="ตัดยอด Member"
-                    android:textColor="@color/colorfont" />
-
-                <TextView
-                    android:id="@+id/textview_member_debit_payments"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:textSize="12sp"
-                    android:freezesText="true"
-                    android:gravity="right"
-                    android:maxLines="1"
-                    android:text="00,000,000,000.00"
-                    android:textColor="@color/colorfont"
-                    app:layout_gravity="right" />
-
-                <!--Entertrain-->
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginBottom="7dp"
-                    android:src="@drawable/untitled7"/>
-
-                <TextView
-                    android:layout_width="120dp"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:textSize="12sp"
-                    android:text="Entertrian"
-                    android:textColor="@color/colorfont" />
-
-                <TextView
-                    android:id="@+id/textview_entertain_payments"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:textSize="12sp"
-                    android:freezesText="true"
-                    android:gravity="right"
-                    android:maxLines="1"
-                    android:text="00,000,000,000.00"
-                    android:textColor="@color/colorfont"
-                    app:layout_gravity="right" />
-
                 <!--เครดิต-->
                 <ImageView
                     android:layout_width="20dp"
@@ -201,6 +140,68 @@
                     android:text="00,000,000,000.00"
                     android:textColor="@color/colorfont"
                     app:layout_gravity="right" />
+
+                <!--ตัดยอด Member-->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginBottom="7dp"
+                    android:src="@drawable/untitled11" />
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:textSize="12sp"
+                    android:text="ตัดยอด Member"
+                    android:textColor="@color/colorfont" />
+
+                <TextView
+                    android:id="@+id/textview_member_debit_payments"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:textSize="12sp"
+                    android:freezesText="true"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text="00,000,000,000.00"
+                    android:textColor="#FF6155"
+                    app:layout_gravity="right" />
+
+                <!--Entertrain-->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginBottom="7dp"
+                    android:src="@drawable/untitled7"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:textSize="12sp"
+                    android:text="Entertrian"
+                    android:textColor="@color/colorfont" />
+
+                <TextView
+                    android:id="@+id/textview_entertain_payments"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:textSize="12sp"
+                    android:freezesText="true"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text="00,000,000,000.00"
+                    android:textColor="#FF6155"
+                    app:layout_gravity="right" />
+
 
 
             </android.support.v7.widget.GridLayout>
@@ -278,7 +279,7 @@
                     android:gravity="right"
                     android:maxLines="1"
                     android:text="00,000,000,000.00"
-                    android:textColor="@color/colorfont"
+                    android:textColor="#FF6155"
                     app:layout_gravity="right" />
 
 
@@ -293,7 +294,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ค่าบริการ"
+        android:text="ค่าบริการ(แบบรายรับตามบิล)"
         android:fontFamily="@font/prompt_medium"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="2dp"
@@ -302,7 +303,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="122dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -312,18 +313,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <View
                 android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="0dp"
+                android:layout_height="140dp"
                 android:background="#DB5EAB"></View>
 
             <android.support.v7.widget.GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:paddingTop="10dp"
                 app:columnCount="3"
@@ -331,7 +330,7 @@
                 app:rowCount="4">
 
 
-                <!--เงินสด-->
+                <!--ยอดดื่ม-->
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -362,7 +361,7 @@
                     android:textColor="@color/colorfont"
                     app:layout_gravity="right" />
 
-                <!--ชำระผ่านบัตรเครดิต-->
+                <!--ยอดรวมค่า Member-->
 
                 <ImageView
                     android:layout_width="20dp"
@@ -393,7 +392,7 @@
                     android:text="00,000,000,000.00"
                     android:textColor="@color/colorfont"
                     app:layout_gravity="right"/>
-                <!--ตัดยอด Member-->
+                <!--ตยอดรวมค่าบริการ-->
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -424,7 +423,7 @@
                     android:textColor="@color/colorfont"
                     app:layout_gravity="right" />
 
-                <!--Entertrain-->
+                <!--ยอดรวมค่าสินค้า/เครื่องดื่ม-->
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -455,7 +454,36 @@
                     android:textColor="@color/colorfont"
                     app:layout_gravity="right" />
 
+                <!--ค่าอาหาร-->
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginBottom="7dp"
+                    android:src="@mipmap/icon_app" />
 
+                <TextView
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:textSize="12sp"
+                    android:text="ยอดรวมค่าอาหาร"
+                    android:textColor="@color/colorfont"  />
+
+                <TextView
+                    android:id="@+id/textview_foot"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:textSize="12sp"
+                    android:freezesText="true"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text="00,000,000,000.00"
+                    android:textColor="@color/colorfont"
+                    app:layout_gravity="right" />
 
 
             </android.support.v7.widget.GridLayout>

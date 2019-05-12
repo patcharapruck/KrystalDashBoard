@@ -156,7 +156,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
                 Color.parseColor("#19237E")});
         set1.setValueTextColor(Color.BLACK);
         BarData data = new BarData(set1);
-        data.setValueFormatter(new MyFormatCredit());
+//        data.setValueFormatter(new MyFormatCredit());
         barChart.setData(data);
 
         String[] creditName = new String[]{"กรุงเทพ", "ธนชาต", "ไทยพาณิชย์", "คุณอ๊อต"};

@@ -109,11 +109,11 @@ public class AmountDrinksFragment extends Fragment {
         if (sumentertain > 0) {
             entertainAmountDrinks.setTextColor(Color.parseColor("#232323"));
         }
-        purchaseAmountDrinks.setText(sumpurchase.toString());
+        purchaseAmountDrinks.setText(sumwithdraw.toString());
         if (sumpurchase > 0) {
             purchaseAmountDrinks.setTextColor(Color.parseColor("#232323"));
         }
-        buyAmountDrinks.setText(sumwithdraw.toString());
+        buyAmountDrinks.setText(sumpurchase.toString());
         if (sumwithdraw > 0) {
             buyAmountDrinks.setTextColor(Color.parseColor("#232323"));
         }

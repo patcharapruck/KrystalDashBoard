@@ -232,7 +232,12 @@ public class DashBooardPRFragment extends Fragment {
                 if(response.isSuccessful()){
                     PRItemCollectionDto dto = response.body();
 
-                    setdataview(dto);
+                    try{
+                        setdataview(dto);
+                    }catch (Exception e){
+
+                    }
+
 
                 }else {
                     try {

@@ -26,7 +26,7 @@ public class Revanuef2Fragment extends Fragment {
     TextView TextViewCashPayments,TextViewCreditPayments,TextViewMemberDebitPayments
             ,TextViewEntertainPayments,TextViewCredit;
 
-    TextView TextViewUnpaid,TextViewDrink,TextViewMember,TextViewService,TextViewProduct;
+    TextView TextViewUnpaid,TextViewDrink,TextViewMember,TextViewService,TextViewProduct,TextViewFoot;
 
     Double CashPayments,CreditPayments,MemberDebitPayments
             ,EntertainPayments,Credit, Unpaid,Drink
@@ -62,7 +62,7 @@ public class Revanuef2Fragment extends Fragment {
         TextViewMember = (TextView) rootView.findViewById(R.id.textview_member);
         TextViewService = (TextView) rootView.findViewById(R.id.textview_service);
         TextViewProduct = (TextView) rootView.findViewById(R.id.textview_product);
-
+        TextViewFoot = (TextView) rootView.findViewById(R.id.textview_foot);
         setTextViewIncome();
     }
 
@@ -82,7 +82,8 @@ public class Revanuef2Fragment extends Fragment {
         Drink = ODto.getSerivceDrinkCharge();
         Member = ODto.getMemberCharge();
         Service = ODto.getServiceCharge();
-        Product = ODto.getFoodPrice()+ODto.getProductPrice();
+        Product = ODto.getProductPrice();
+
 
         TextViewCashPayments.setText(formatter.format(CashPayments));
         TextViewCreditPayments.setText(formatter.format(CreditPayments));
@@ -95,6 +96,7 @@ public class Revanuef2Fragment extends Fragment {
         TextViewMember.setText(formatter.format(Member));
         TextViewService.setText(formatter.format(Service));
         TextViewProduct.setText(formatter.format(Product));
+        TextViewFoot.setText(formatter.format(ODto.getFoodPrice()));
 
     }
 

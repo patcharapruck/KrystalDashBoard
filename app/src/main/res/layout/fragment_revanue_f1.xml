@@ -36,7 +36,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@font/prompt_bold"
-                        android:text="รายรับจริง"
+                        android:text="สรุปรายได้จริง"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -47,7 +47,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="23dp"
                         android:fontFamily="@font/prompt_bold"
-                        android:text="11,141,234.00"
+                        android:text="0.00"
                         android:textColor="@color/white"
                         android:textSize="26sp" />
 
@@ -113,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="21dp"
                         android:fontFamily="@font/prompt_regular"
-                        android:text="235,756.00 "
+                        android:text="0.00 "
                         android:textColor="@color/colorfontrevenue"
                         android:textSize="14sp" />
                     <TextView
