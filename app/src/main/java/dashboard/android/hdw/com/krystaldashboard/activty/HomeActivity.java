@@ -30,8 +30,6 @@ import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
-import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
-import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.fragment.DrinkFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.HomeFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.PRFragment;
@@ -40,8 +38,6 @@ import dashboard.android.hdw.com.krystaldashboard.fragment.TableFragment;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
-import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
-import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDatePayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefUser;
@@ -90,6 +86,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         getDateTime();
         initInstances();
     }
@@ -97,8 +94,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPostCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-//        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-//        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
     }
 
     private void initInstances() {
@@ -300,7 +295,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                         .saveDateCalendar(dayOfMonth,month,year);
 
-                reqAPI(datecalendat);
+//                reqAPI(datecalendat);
 
 
 
