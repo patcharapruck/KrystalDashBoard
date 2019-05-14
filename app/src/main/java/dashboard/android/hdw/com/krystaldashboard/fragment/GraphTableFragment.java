@@ -79,7 +79,7 @@ public class GraphTableFragment extends Fragment {
 
     private void setGraphdata() {
 
-        formatter = new DecimalFormat("#,###,##0.00");
+//        formatter = new DecimalFormat("%");
         Double sum=0.0;
         Double sum2=0.0;
 
@@ -110,9 +110,6 @@ public class GraphTableFragment extends Fragment {
     private void setData(Double count, Double range) {
         ArrayList<PieEntry> values = new ArrayList<>();
 
-        countries = new String[]{formatter.format(count), formatter.format(range)};
-        double sum = count+range;
-
         int pay=0,not=0;
 
         try{
@@ -126,6 +123,12 @@ public class GraphTableFragment extends Fragment {
         }catch (Exception e){
             not = 0;
         }
+
+        int sum = pay+not;
+        float p = pay/sum;
+        int p1 = (int)(p*100);
+
+        countries = new String[]{p1+"%", 100-p1+"%"};
 
 
             values.add(new PieEntry(pay, countries[0]));

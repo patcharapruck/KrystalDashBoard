@@ -42,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PRFragment extends Fragment implements View.OnClickListener {
-    Spinner spins;
+//    Spinner spins;
     private ArrayList<String> mTypeSearch = new ArrayList<String>();
 
     TextView TextViewSearch;
@@ -88,7 +88,7 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         EditTextSearchTable = (EditText) rootView.findViewById(R.id.edittext_search_table);
 
         listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
-        spins = (Spinner) rootView.findViewById(R.id.spinspr);
+//        spins = (Spinner) rootView.findViewById(R.id.spinspr);
 
         TextViewOnfloor = (TextView) rootView.findViewById(R.id.textview_Onfloor) ;
         TextViewNullDrink = (TextView) rootView.findViewById(R.id.textview_null_drink);
@@ -100,35 +100,39 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         CardIsdrinkFalse = (CardView) rootView.findViewById(R.id.card_isdrink_false);
         CardNulldrink = (CardView) rootView.findViewById(R.id.card_null_drink);
 
+        typeSearch = "รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน";
+        TextViewSearch.setText(typeSearch);
+        ch = 0;
+
         CardOnfloor.setOnClickListener(this);
         CardIsdrinkFalse.setOnClickListener(this);
         CardIsdrinkTrue.setOnClickListener(this);
         CardNulldrink.setOnClickListener(this);
 
-        createTypeSearchData();
+//        createTypeSearchData();
 
-        ArrayAdapter<String> spinsSearch = new ArrayAdapter<String>(getContext()
-                ,R.layout.support_simple_spinner_dropdown_item,mTypeSearch);
-        spins.setAdapter(spinsSearch);
-        spins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(mTypeSearch.get(position).equals("รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน")){
-                    typeSearch = "รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน";
-                    TextViewSearch.setText(typeSearch);
-                    ch = 0;
-                }else if(mTypeSearch.get(position).equals("ตำแหน่ง")){
-                    typeSearch = "ตำแหน่ง";
-                    TextViewSearch.setText(typeSearch);
-                    ch =1;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        ArrayAdapter<String> spinsSearch = new ArrayAdapter<String>(getContext()
+//                ,R.layout.support_simple_spinner_dropdown_item,mTypeSearch);
+//        spins.setAdapter(spinsSearch);
+//        spins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if(mTypeSearch.get(position).equals("รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน")){
+//                    typeSearch = "รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน";
+//                    TextViewSearch.setText(typeSearch);
+//                    ch = 0;
+//                }else if(mTypeSearch.get(position).equals("ตำแหน่ง")){
+//                    typeSearch = "ตำแหน่ง";
+//                    TextViewSearch.setText(typeSearch);
+//                    ch =1;
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         listViewPR.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -151,10 +155,10 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     Search = ",\"PrDrinkCenter-employeeCode-firstname-lastname-nickName\":\""+s+"\"";
                     setDataSearch(chCrad,Search);
                 }
-                else if (ch == 1){
-                    Search = ",\"PrDrinkCenter-positionNameTh\":\""+s+"\"";
-                    setDataSearch(chCrad,Search);
-                }
+//                else if (ch == 1){
+//                    Search = ",\"PrDrinkCenter-positionNameTh\":\""+s+"\"";
+//                    setDataSearch(chCrad,Search);
+//                }
             }
 
             @Override
