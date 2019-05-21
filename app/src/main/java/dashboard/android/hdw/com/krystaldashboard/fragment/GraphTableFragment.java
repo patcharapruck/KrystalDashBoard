@@ -125,7 +125,13 @@ public class GraphTableFragment extends Fragment {
         }
 
         int sum = pay+not;
-        float p = pay/sum;
+        float p = 0;
+        try {
+            p = pay/sum;
+        }catch (Exception e){
+            p = 0;
+        }
+
         int p1 = (int)(p*100);
 
         countries = new String[]{p1+"%", 100-p1+"%"};

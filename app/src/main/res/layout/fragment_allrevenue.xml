@@ -107,7 +107,7 @@
                                           android:layout_height="10dp"
                                           app:cardCornerRadius="5dp"
                                           app:cardBackgroundColor="#01A431"
-                                          android:layout_gravity="center_vertical"
+                                           android:layout_gravity="center_vertical"
                                           android:layout_margin="5dp"></android.support.v7.widget.CardView>
 
                                       <TextView

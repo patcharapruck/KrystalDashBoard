@@ -30,6 +30,7 @@ import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.DateDto;
 import dashboard.android.hdw.com.krystaldashboard.fragment.DrinkFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.HomeFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.PRFragment;
@@ -38,6 +39,7 @@ import dashboard.android.hdw.com.krystaldashboard.fragment.TableFragment;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DateManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDatePayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefUser;
@@ -52,11 +54,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
 
-    private Boolean checkPay = false,checkNotPay=false , checkdashboard=false , checkall = false;
-
+    String formatDateTime,formatDateTimetoday,formatDateTime2,formatDategeneral,format7DateTime;
+    DateDto dateDto;
     Button datehome;
 
-    ProgressDialog progress;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,8 +87,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         getDateTime();
+        reqAPI(formatDateTime);
         initInstances();
     }
 
@@ -148,24 +149,28 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
-        Calendar calendartoday = Calendar.getInstance();
-        Calendar day7 = Calendar.getInstance();
-
         calendar.setTime(date);
-        calendartoday.setTime(date);
-        day7.setTime(date);
-
-        day7.add(Calendar.DATE,-7);
         calendar.add(Calendar.DATE,-1);
+
+        formatDateTime = dateFormat.format(calendar.getTime());
+        formatDateTimetoday = dateFormat.format(calendar.getTime());
+
+        Calendar day7 = Calendar.getInstance();
+        day7.add(Calendar.DATE,-7);
+
+
+        dateDto = new DateDto();
+        dateDto.setCalendar(calendar);
+        dateDto.setDateToday(date);
+        DateManager.getInstance().setDateDto(dateDto);
+
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH)+1;
         int year = calendar.get(Calendar.YEAR);
 
-        String formatDateTime = dateFormat.format(calendar.getTime());
-        String formatDateTime2 = dateFormat2.format(calendar.getTime());
-        String formatDateTimetoday = dateFormat.format(calendartoday.getTime());
-        String formatDategeneral = dateFormatth.format(calendar.getTime());
-        String format7DateTime = dateFormat2.format(day7.getTime());
+        formatDateTime2 = dateFormat2.format(calendar.getTime());
+        formatDategeneral = dateFormatth.format(calendar.getTime());
+        format7DateTime = dateFormat2.format(day7.getTime());
 
         SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                 .saveDatereq(formatDateTime,formatDateTime2);
@@ -223,7 +228,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void reqAPI(String date) {
-        checkdashboard = false;
         final Context mcontext = Contextor.getInstance().getmContext();
         String nn = "{\"property\":[],\"criteria\":{\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+date+" 00:00:00' AND tb_sales_shift.open_date <= '"+date+" 23:59:59')\",\"summary-date\":\"*\"},\"orderBy\":{\"InvoiceDocument-id\":\"desc\"},\"pagination\":{}}";
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
@@ -231,15 +235,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         call.enqueue(new Callback<DashBoardDto>() {
             @Override
             public void onResponse(Call<DashBoardDto> call, Response<DashBoardDto> response) {
-                String aa = String.valueOf(response.raw().code());
                 if(response.isSuccessful()){
                     DashBoardDto dao = response.body();
                     DashBoradManager.getInstance().setDto(dao);
-                    checkdashboard = true;
 
-                    if(checkPay == true && checkNotPay == true && checkdashboard == true){
-                        initInstances();
-                    }
                 }else {
                     if(response.code() == 403){
                         SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).logout();
@@ -295,10 +294,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
                         .saveDateCalendar(dayOfMonth,month,year);
 
-//                reqAPI(datecalendat);
-
-
-
             }
         },year,month-1,day);
 
@@ -327,11 +322,4 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void showProgress() {
-        progress = new ProgressDialog(HomeActivity.this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
-        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
-        progress.show();
-    }
 }

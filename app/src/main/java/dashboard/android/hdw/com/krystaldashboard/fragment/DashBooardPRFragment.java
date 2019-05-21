@@ -13,13 +13,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.DateDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DateManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -34,8 +39,9 @@ public class DashBooardPRFragment extends Fragment {
 
 
     TextView PrOnfloor,NumberOfCalories,PrEmpty,PrRun,PrNotDrink;
-
     ProgressBar BackgroundProgressbar,StatsProgressbar,StatsProgressbar2,StatsProgressbar3;
+
+    DateDto dateDto;
 
     Long id;
     int sizeonfloor,sizenull,sizeisfalse,sizeistrue;
@@ -66,6 +72,13 @@ public class DashBooardPRFragment extends Fragment {
         StatsProgressbar = (ProgressBar) rootView.findViewById(R.id.stats_progressbar);
         StatsProgressbar2 = (ProgressBar) rootView.findViewById(R.id.stats_progressbar2);
         StatsProgressbar3 = (ProgressBar) rootView.findViewById(R.id.stats_progressbar3);
+
+        dateDto = DateManager.getInstance().getDateDto();
+        DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+        String formatDateTime2 = dateFormat2.format(dateDto.getCalendar().getTime());
+
+
     }
 
     private void setdataview(PRItemCollectionDto dto) {
@@ -202,8 +215,8 @@ public class DashBooardPRFragment extends Fragment {
                 if(response.isSuccessful()){
                     CompareCollectionDto dao = response.body();
 
-                    id = dao.getObject().get(0).getId();
-                    reqAPIPRistrue("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }");
+                   // id = dao.getObject().get(0).getId();
+                  //  reqAPIPRistrue("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }");
                 }else {
                     try {
 //                        progress.dismiss();

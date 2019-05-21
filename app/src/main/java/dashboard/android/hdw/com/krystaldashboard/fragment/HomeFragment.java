@@ -12,11 +12,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.adapter.PRListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.DateDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto;
@@ -24,6 +30,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DateManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PRManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
@@ -40,13 +47,31 @@ public class HomeFragment extends Fragment {
     ProgressDialog progress;
     final Context mcontext = Contextor.getInstance().getmContext();
 
+    DateDto dateDto;
+
+    String formatDateTime,formatDateTimetoday,formatDateTime2,formatDategeneral,format7DateTime;
+
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+    DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+    DateFormat dateFormatTh = new SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH);
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater
             , @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        getTime();
         initInstances(rootView);
         return rootView;
+    }
+
+    private void getTime() {
+        dateDto = DateManager.getInstance().getDateDto();
+
+        Date date = dateDto.getDateToday();
+        Calendar calendar = dateDto.getCalendar();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE,-1);
     }
 
     private void initInstances(View rootView) {
