@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.adapter.PRAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.PRListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto;
@@ -35,6 +38,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PRManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
+import dashboard.android.hdw.com.krystaldashboard.view.PRModelClass;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -60,10 +64,16 @@ public class PRFragment extends Fragment implements View.OnClickListener {
 
     int count;
 
+    ArrayList<PRModelClass> items;
+    PRAdapter adapter;
+    RecyclerView recyclerView;
+
     int sizeonfloor,sizenull,sizeisfalse,sizeistrue;
 
     ListView listViewPR;
     PRListAdapter prListAdapter;
+
+    PRItemCollectionDto dto;
 
     @Nullable
     @Override
@@ -87,7 +97,9 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         TextViewSearch = (TextView) rootView.findViewById(R.id.textview_serach);
         EditTextSearchTable = (EditText) rootView.findViewById(R.id.edittext_search_table);
 
-        listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
+        recyclerView = rootView.findViewById(R.id.recycler_view_pr);
+
+//        listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
 //        spins = (Spinner) rootView.findViewById(R.id.spinspr);
 
         TextViewOnfloor = (TextView) rootView.findViewById(R.id.textview_Onfloor) ;
@@ -109,40 +121,17 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         CardIsdrinkTrue.setOnClickListener(this);
         CardNulldrink.setOnClickListener(this);
 
-//        createTypeSearchData();
 
-//        ArrayAdapter<String> spinsSearch = new ArrayAdapter<String>(getContext()
-//                ,R.layout.support_simple_spinner_dropdown_item,mTypeSearch);
-//        spins.setAdapter(spinsSearch);
-//        spins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+//        listViewPR.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if(mTypeSearch.get(position).equals("รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน")){
-//                    typeSearch = "รหัส,ชื่อ,นามสกุล,ชื่อเล่น ของพนักงาน";
-//                    TextViewSearch.setText(typeSearch);
-//                    ch = 0;
-//                }else if(mTypeSearch.get(position).equals("ตำแหน่ง")){
-//                    typeSearch = "ตำแหน่ง";
-//                    TextViewSearch.setText(typeSearch);
-//                    ch =1;
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
+//            public boolean onTouch(View v, MotionEvent event) {
+//                v.getParent().requestDisallowInterceptTouchEvent(true);
+//                return false;
 //            }
 //        });
 
-        listViewPR.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-
-        setListViewHeightBasedOnChildren(listViewPR);
+//        setListViewHeightBasedOnChildren(listViewPR);
 
 
         EditTextSearchTable.addTextChangedListener(new TextWatcher() {
@@ -157,10 +146,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     Search = ",\"PrDrinkCenter-employeeCode-firstname-lastname-nickName\":\""+s+"\"";
                     setDataSearch(chCrad,Search);
                 }
-//                else if (ch == 1){
-//                    Search = ",\"PrDrinkCenter-positionNameTh\":\""+s+"\"";
-//                    setDataSearch(chCrad,Search);
-//                }
             }
 
             @Override
@@ -169,6 +154,67 @@ public class PRFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+    }
+
+    private void setRecyclerView() {
+        items = new ArrayList<>();
+        adapter = new PRAdapter(getContext(), items);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(adapter);
+
+        for (int i = 0; i < dto.getObject().size(); i++) {
+
+            String name,nickName,employeeCode,runDrink,position,onFloor;
+            Long start,all;
+
+            try {
+                name = dto.getObject().get(i).getFirstname()+" "+dto.getObject().get(i).getLastname();
+            }catch (NullPointerException e){
+                name = "-";
+            }
+            try {
+                nickName = dto.getObject().get(i).getNickName();
+            }catch (NullPointerException e){
+                nickName = "-";
+            }
+            try {
+                employeeCode = dto.getObject().get(i).getEmployeeCode();
+            }catch (NullPointerException e){
+                employeeCode = "-";
+            }
+            try {
+                runDrink = dto.getObject().get(i).getPlaceCode();
+            }catch (NullPointerException e){
+                runDrink = "-";
+            }
+            try {
+                position = dto.getObject().get(i).getPositionNameTh();
+            }catch (NullPointerException e){
+                position = "-";
+            }
+
+            try {
+                onFloor = dto.getObject().get(i).getTimeOnFloor();
+            }catch (NullPointerException e){
+                onFloor = "-";
+            }
+
+            try {
+                start = dto.getObject().get(i).getStartDrink();
+            }catch (NullPointerException e){
+                start = 0L;
+            }
+
+            try {
+                all = dto.getObject().get(i).getTotalQuantity();
+            }catch (NullPointerException e){
+                all = 0L;
+            }
+
+            items.add(new PRModelClass(name,nickName,employeeCode,runDrink,position,onFloor,start,all));
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void setDataSearch(int chCrad, String search) {
@@ -203,10 +249,8 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     reqAPIPR(json);
                 }else {
                     try {
-//                        progress.dismiss();
                         Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
                     } catch (IOException e) {
-//                        progress.dismiss();
                         e.printStackTrace();
                     }
                 }
@@ -228,12 +272,10 @@ public class PRFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
                 if(response.isSuccessful()){
-                    PRItemCollectionDto dto = response.body();
+                    dto = response.body();
                     PRManager.getInstance().setPr(dto);
 
-                    prListAdapter = new PRListAdapter();
-                    prListAdapter.notifyDataSetChanged();
-                    listViewPR.setAdapter(prListAdapter);
+                    setRecyclerView();
                     reqAPIPRistrue("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }");
                 }else {
                     try {

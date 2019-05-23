@@ -139,17 +139,6 @@ public class DrinkFragment extends Fragment {
             items.add(new TopProductModelClass(Sortimage[i],Sortname[i],Sorttotal[i].toString()));
             adapter.notifyDataSetChanged();
         }
-
-// Expandable card
-//        cardView = (CardView) rootView.findViewById(R.id.carddrink);
-//        mycontent = (ExpandableRelativeLayout)rootView.findViewById(R.id.mycontent);
-//        cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mycontent.toggle();
-//            }
-//        });
-
     }
 
     private Long getWithdraw(int i) {
