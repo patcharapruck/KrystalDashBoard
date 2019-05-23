@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
+    android:layout_height="wrap_content"
     tools:context=".fragment.DashBooardPRFragment">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="5dp"
         app:cardBackgroundColor="@color/white"
@@ -19,104 +19,31 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
           <!--chart pr-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:orientation="vertical">
 
-                <!-- Doughnut chart starts here -->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/constraintLayout"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <com.razerdp.widget.animatedpieview.AnimatedPieView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/drew2" />
+
+                <TextView
+                    android:id="@+id/number_of_calories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:text="0"
+                    android:textSize="24sp"
+                    android:textColor="#232425"
+                    android:fontFamily="@font/prompt_bold"
+                    android:layout_centerInParent="true"/>
 
-                    <!-- ProgressBar that represents a total of 100% -->
-                    <!--on floor-->
-                    <ProgressBar
-                        android:id="@+id/background_progressbar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="204dp"
-                        android:indeterminate="false"
-                        android:max="100"
-                        android:progress="100"
-                        android:progressDrawable="@drawable/stats_full"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
-
-                    <ProgressBar
-                        android:id="@+id/stats_progressbar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="204dp"
-                        android:indeterminate="false"
-                        android:max="100"
-                        android:progress="60"
-                        android:progressDrawable="@drawable/stats_progress"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ProgressBar
-                        android:id="@+id/stats_progressbar2"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="204dp"
-                        android:indeterminate="false"
-                        android:max="100"
-                        android:progress="30"
-                        android:progressDrawable="@drawable/stats_progress2"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ProgressBar
-                        android:id="@+id/stats_progressbar3"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="204dp"
-                        android:indeterminate="false"
-                        android:max="100"
-                        android:progress="10"
-                        android:progressDrawable="@drawable/stats_progress3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <!-- The text that goes in a center of the chart -->
-                    <TextView
-                        android:id="@+id/number_of_calories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="24sp"
-                        android:textColor="#232425"
-                        android:fontFamily="@font/prompt_bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-            </LinearLayout>
-
-
-
+            </RelativeLayout>
+    
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="130dp"
