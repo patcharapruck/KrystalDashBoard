@@ -21,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DateDto;
 import dashboard.android.hdw.com.krystaldashboard.fragment.DrinkFragment;
@@ -38,6 +40,7 @@ import dashboard.android.hdw.com.krystaldashboard.fragment.RevenueFragment;
 import dashboard.android.hdw.com.krystaldashboard.fragment.TableFragment;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DateManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
@@ -88,8 +91,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getDateTime();
-        reqAPI(formatDateTime);
-        initInstances();
+        teqAPICompare(formatDateTime2);
     }
 
     @Override
@@ -150,7 +152,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.DATE,-1);
 
         formatDateTime = dateFormat.format(calendar.getTime());
         formatDateTimetoday = dateFormat.format(calendar.getTime());
@@ -239,6 +240,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     DashBoardDto dao = response.body();
                     DashBoradManager.getInstance().setDto(dao);
 
+                    initInstances();
+
                 }else {
                     if(response.code() == 403){
                         SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).logout();
@@ -313,6 +316,95 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         dialog.getDatePicker().setMinDate(d.getTime());
         dialog.getDatePicker().setMaxDate(date.getTime());
 
+    }
+
+    private void teqAPICompare(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        String nn = "{\"property\":[],\"criteria\":{\"opening\":false,\"sql-obj-command\":\"( tb_sales_shift.open_date >= '"+s+" 00:00:00' AND tb_sales_shift.open_date <= '"+s+" 23:59:59')\"},\"orderBy\":{},\"pagination\":{}}";
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),nn);
+        Call<CompareCollectionDto> call = HttpManager.getInstance().getService().loadAPIcompare(requestBody);
+        call.enqueue(new Callback<CompareCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<CompareCollectionDto> call, Response<CompareCollectionDto> response) {
+                if(response.isSuccessful()){
+                    CompareCollectionDto dao = response.body();
+
+                    if(dao.getPagination().getTotalItem()==0){
+                        getDateTime2();
+                    }
+                    else {
+                        reqAPI(formatDateTime);
+                    }
+
+                }else {
+                    if(response.code() == 403){
+                        SharedPrefUser.getInstance(Contextor.getInstance().getmContext()).logout();
+                        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).logoutDate();
+                        SharedPrefDatePayManager.getInstance(Contextor.getInstance().getmContext()).logoutPay();
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        HomeActivity.this.startActivity(intent);
+                        finish();
+
+                    }else{
+                        Toast.makeText(mcontext,"เกิดข้อผิดพลาด",Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<CompareCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void getDateTime2() {
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+        DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH);
+
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE,-1);
+
+        formatDateTime = dateFormat.format(calendar.getTime());
+        formatDateTimetoday = dateFormat.format(calendar.getTime());
+
+        Calendar day7 = Calendar.getInstance();
+        day7.add(Calendar.DATE,-7);
+
+
+        dateDto = new DateDto();
+        dateDto.setCalendar(calendar);
+        dateDto.setDateToday(date);
+        DateManager.getInstance().setDateDto(dateDto);
+
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int year = calendar.get(Calendar.YEAR);
+
+        formatDateTime2 = dateFormat2.format(calendar.getTime());
+        formatDategeneral = dateFormatth.format(calendar.getTime());
+        format7DateTime = dateFormat2.format(day7.getTime());
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDatereq(formatDateTime,formatDateTime2);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDateMax(formatDateTimetoday);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDateFull(formatDategeneral);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDate7(format7DateTime);
+
+        SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext())
+                .saveDateCalendar(day,month,year);
+
+        teqAPICompare(formatDateTime2);
     }
 
     @Override

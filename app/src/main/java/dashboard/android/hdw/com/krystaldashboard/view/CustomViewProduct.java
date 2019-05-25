@@ -98,9 +98,12 @@ public class CustomViewProduct extends BaseCustomViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height =  Integer.MAX_VALUE >> 2;
+        int expandSpec = MeasureSpec.makeMeasureSpec(height,
                 MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
+//        setMeasuredDimension(width,height);
     }
 
     public void setNameProduct(int count,String nameProduct){

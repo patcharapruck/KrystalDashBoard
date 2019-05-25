@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PRManager;
 import dashboard.android.hdw.com.krystaldashboard.view.PRModelClass;
 
 public class PRAdapter extends RecyclerView.Adapter<PRAdapter.CustomViewPR> {
@@ -46,7 +47,11 @@ public class PRAdapter extends RecyclerView.Adapter<PRAdapter.CustomViewPR> {
 
     @Override
     public int getItemCount() {
-        return 5;
+        if(PRManager.getInstance().getPr()==null)
+            return 0;
+        if(PRManager.getInstance().getPr().getObject()==null)
+            return 0;
+        return PRManager.getInstance().getPr().getObject().size();
     }
 
     public class CustomViewPR extends RecyclerView.ViewHolder {

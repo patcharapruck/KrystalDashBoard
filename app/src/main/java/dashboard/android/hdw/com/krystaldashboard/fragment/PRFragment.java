@@ -163,7 +163,16 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-        for (int i = 0; i < dto.getObject().size(); i++) {
+        int size;
+        try {
+            size = dto.getObject().size();
+        }catch (NullPointerException e){
+            size = 0;
+        }
+
+
+
+        for (int i = 0; i < size; i++) {
 
             String name,nickName,employeeCode,runDrink,position,onFloor;
             Long start,all;

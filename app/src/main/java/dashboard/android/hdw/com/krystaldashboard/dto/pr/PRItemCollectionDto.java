@@ -7,7 +7,7 @@ public class PRItemCollectionDto {
 
     private Long statusCode;
     private String message;
-    private Object pagination;
+    private PRPaginationItemDto pagination;
     private List<PRItemDto> object;
 
     public Long getStatusCode() {
@@ -26,11 +26,12 @@ public class PRItemCollectionDto {
         this.message = message;
     }
 
-    public Object getPagination() {
+
+    public PRPaginationItemDto getPagination() {
         return pagination;
     }
 
-    public void setPagination(Object pagination) {
+    public void setPagination(PRPaginationItemDto pagination) {
         this.pagination = pagination;
     }
 

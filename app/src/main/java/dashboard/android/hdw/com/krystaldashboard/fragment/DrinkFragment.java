@@ -22,6 +22,7 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.adapter.ProductItemsAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.ProductListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.TopProductAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
@@ -32,6 +33,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.ProductManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
+import dashboard.android.hdw.com.krystaldashboard.view.ProductModelClass;
 import dashboard.android.hdw.com.krystaldashboard.view.TopProductModelClass;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -62,7 +64,10 @@ public class DrinkFragment extends Fragment {
 
     ArrayList<TopProductModelClass> items;
     TopProductAdapter adapter;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,recyclerProduct;
+
+    ArrayList<ProductModelClass> itemProduct;
+    ProductItemsAdapter productItemsAdapter;
 
     ListView listProduct;
     ProductListAdapter productListAdapter;
@@ -93,7 +98,12 @@ public class DrinkFragment extends Fragment {
 
 
         Odto = DashBoradManager.getInstance().getDto().getObject();
-        size = Odto.getSummaryUseProductList().size();
+        try {
+            size = Odto.getSummaryUseProductList().size();
+        }catch (NullPointerException e){
+            size = 0;
+        }
+
 
 
         setViewDrink();
@@ -121,12 +131,6 @@ public class DrinkFragment extends Fragment {
 
     }
 
-    private void setListProduct(View rootView) {
-        listProduct  = (ListView) rootView.findViewById(R.id.list_item_product);
-        productListAdapter = new ProductListAdapter();
-        listProduct.setAdapter(productListAdapter);
-    }
-
     private void setRecyclerView(View rootView) {
         items = new ArrayList<>();
         adapter = new TopProductAdapter(getContext(), items);
@@ -136,9 +140,72 @@ public class DrinkFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         for (int i = 0; i < 5; i++) {
-            items.add(new TopProductModelClass(Sortimage[i],Sortname[i],Sorttotal[i].toString()));
+            try {
+                items.add(new TopProductModelClass(Sortimage[i],Sortname[i],Sorttotal[i].toString()));
+            }catch (ArrayIndexOutOfBoundsException e){
+                break;
+            }
+
             adapter.notifyDataSetChanged();
         }
+    }
+
+    private void setListProduct(View rootView){
+
+        listProduct = (ListView) rootView.findViewById(R.id.list_item_product);
+        productListAdapter = new ProductListAdapter();
+        listProduct.setAdapter(productListAdapter);
+
+//        itemProduct = new ArrayList<>();
+//        productItemsAdapter = new ProductItemsAdapter(getContext(), itemProduct);
+//
+//        recyclerProduct = rootView.findViewById(R.id.recycler_view_product);
+//        recyclerProduct.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+//        recyclerProduct.setAdapter(productItemsAdapter);
+//
+//
+//        for (int i = 0; i < ProductManager.getInstance().getProductSortDto().getNameProductSort().length; i++) {
+//
+//            String NameProduct,ImageProduct;
+//            Long WithdrawProduct,PurchaseProduct,EntertainProduct,TotalProduct;
+//
+//            ProductSortDto dto = ProductManager.getInstance().getProductSortDto();
+//
+//            try {
+//                NameProduct = i+1+". "+dto.getNameProductSort()[i];
+//            }catch (NullPointerException e){
+//                NameProduct = "0. -";
+//            }
+//            try {
+//                WithdrawProduct = dto.getWithdrawProductSort()[i];
+//            }catch (NullPointerException e){
+//                WithdrawProduct = 0L;
+//            }
+//            try {
+//                PurchaseProduct = dto.getPurchaseProductSort()[i];
+//            }catch (NullPointerException e){
+//                PurchaseProduct = 0L;
+//            }
+//            try {
+//                EntertainProduct = dto.getEntertainProductSort()[i];
+//            }catch (NullPointerException e){
+//                EntertainProduct = 0L;
+//            }
+//            try {
+//                TotalProduct = dto.getTotalAllProductSort()[i];
+//            }catch (NullPointerException e){
+//                TotalProduct = 0L;
+//            }
+//
+//            try {
+//                ImageProduct = dto.getImageProductSort()[i];
+//            }catch (NullPointerException e){
+//                ImageProduct = "";
+//            }
+//
+//            itemProduct.add(new ProductModelClass(NameProduct,ImageProduct,WithdrawProduct,PurchaseProduct,EntertainProduct,TotalProduct));
+//            productItemsAdapter.notifyDataSetChanged();
+//        }
     }
 
     private Long getWithdraw(int i) {

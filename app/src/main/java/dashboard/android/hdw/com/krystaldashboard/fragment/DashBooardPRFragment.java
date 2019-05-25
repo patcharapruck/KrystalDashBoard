@@ -76,7 +76,6 @@ public class DashBooardPRFragment extends Fragment {
         calendar.setTime(date);
         calendar.add(Calendar.DATE,-1);
         formatDateTime2 = dateFormat2.format(calendar.getTime());
-        formatDateTime2 = formatDateTime2;
     }
 
     @Override
@@ -99,26 +98,26 @@ public class DashBooardPRFragment extends Fragment {
 
     }
 
-    private void setdataview(PRItemCollectionDto dto) {
-
-        PrRun.setText(String.valueOf(sizeistrue));
-
-        count = 0;
-        NumberOfCalories.setText(String.valueOf(sizeonfloor));
-        PrOnfloor.setText(String.valueOf(sizeonfloor));
-        for(int i=0;i<sizeonfloor;i++){
-            if(dto.getObject().get(i).getItemQuantity()==0L){
-                count++;
-            }
-        }
-        sizenull = count;
-        PrNotDrink.setText(String.valueOf(sizenull));
-        sizeisfalse = sizeonfloor-(sizenull+sizeistrue);
-        PrEmpty.setText(String.valueOf(sizeisfalse));
-
-        setProgress();
-
-    }
+//    private void setdataview(PRItemCollectionDto dto) {
+//
+//        PrRun.setText(String.valueOf(sizeistrue));
+//
+//        count = 0;
+//        NumberOfCalories.setText(String.valueOf(sizeonfloor));
+//        PrOnfloor.setText(String.valueOf(sizeonfloor));
+//        for(int i=0;i<sizeonfloor;i++){
+//            if(dto.getObject().get(i).getItemQuantity()==0L){
+//                count++;
+//            }
+//        }
+//        sizenull = count;
+//        PrNotDrink.setText(String.valueOf(sizenull));
+//        sizeisfalse = sizeonfloor-(sizenull+sizeistrue);
+//        PrEmpty.setText(String.valueOf(sizeisfalse));
+//
+//
+//
+//    }
 
     private void setProgress() {
 
@@ -145,7 +144,7 @@ public class DashBooardPRFragment extends Fragment {
                 if(response.isSuccessful()){
                     CompareCollectionDto dao = response.body();
 
-                   id = dao.getObject().get(0).getId();
+                    id = dao.getObject().get(0).getId();
                     reqAPIPRistrue("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"true\"},\"property\":[],\"pagination\": { } }");
                 }else {
                     try {
@@ -164,42 +163,6 @@ public class DashBooardPRFragment extends Fragment {
         });
     }
 
-    private void reqAPIPROnfloor(String s) {
-        final Context mcontext = Contextor.getInstance().getmContext();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
-        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
-        call.enqueue(new Callback<PRItemCollectionDto>() {
-
-            @Override
-            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
-                if(response.isSuccessful()){
-                    PRItemCollectionDto dto = response.body();
-                    try{
-                        try {
-                            sizeonfloor = dto.getObject().size();
-                        }catch (Exception e){
-                            sizeistrue = 0;
-                        }
-                        setdataview(dto);
-                    }catch (Exception e){
-
-                    }
-                }else {
-                    try {
-                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
-                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-
 
     private void reqAPIPRistrue(String s) {
         final Context mcontext = Contextor.getInstance().getmContext();
@@ -216,7 +179,10 @@ public class DashBooardPRFragment extends Fragment {
                     }catch (Exception e){
                         sizeistrue = 0;
                     }
-                    reqAPIPROnfloor("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }");
+                    PrRun.setText(String.valueOf(sizeistrue));
+
+                    reqAPIPRisfalse("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"sql-obj-command\":\"(f:itemQuantity = 0 OR f:itemQuantity IS NULL)\"},\"property\":[],\"pagination\":{}}");
+
                 }else {
                     try {
                         Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
@@ -227,6 +193,114 @@ public class DashBooardPRFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<dashboard.android.hdw.com.krystaldashboard.dto.pr.PRItemCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPIPROnfloor(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+
+                    try {
+                        sizeonfloor = dto.getObject().size();
+                    }catch (Exception e){
+                        sizeonfloor = 0;
+                    }
+
+                    PrOnfloor.setText(String.valueOf(sizeonfloor));
+                    NumberOfCalories.setText(String.valueOf(sizeonfloor));
+                    setProgress();
+
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<PRItemCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPIPRisfalse(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+
+                    try {
+                        sizeisfalse = dto.getObject().size();
+                    }catch (Exception e){
+                        sizeisfalse = 0;
+                    }
+
+                    PrEmpty.setText(String.valueOf(sizeisfalse));
+
+                    reqAPIPREmty("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"false\"},\"property\":[],\"pagination\":{}}");
+
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<PRItemCollectionDto> call, Throwable t) {
+                Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void reqAPIPREmty(String s) {
+        final Context mcontext = Contextor.getInstance().getmContext();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),s);
+        Call<PRItemCollectionDto> call = HttpManager.getInstance().getService().loadAPIPR(requestBody);
+        call.enqueue(new Callback<PRItemCollectionDto>() {
+
+            @Override
+            public void onResponse(Call<PRItemCollectionDto> call, Response<PRItemCollectionDto> response) {
+                if(response.isSuccessful()){
+                    PRItemCollectionDto dto = response.body();
+
+                    try {
+                        sizenull = dto.getObject().size();
+                    }catch (Exception e){
+                        sizenull = 0;
+                    }
+
+                    PrNotDrink.setText(String.valueOf(sizenull));
+
+                    reqAPIPROnfloor("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }");
+
+                }else {
+                    try {
+                        Toast.makeText(mcontext,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<PRItemCollectionDto> call, Throwable t) {
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
             }
         });

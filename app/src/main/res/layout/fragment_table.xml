@@ -37,14 +37,23 @@
                 android:textColor="@color/white"
                 android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/textview_serach_table"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/prompt_regular"
-                android:text="ชื่อเล่น "
-                android:textColor="@color/white"
-                android:textSize="15dp" />
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spins"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:popupBackground="@color/colorMain">
+
+            </android.support.v7.widget.AppCompatSpinner>
+
+            <!--<TextView-->
+                <!--android:id="@+id/textview_serach_table"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:fontFamily="@font/prompt_regular"-->
+                <!--android:text="ชื่อเล่น "-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="15dp" />-->
         </LinearLayout>
 
         <android.support.v7.widget.CardView
@@ -56,23 +65,15 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spins"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/ic_arrow_drop_down_black_24dp">
-
-                </android.support.v7.widget.AppCompatSpinner>
-
                 <EditText
                     android:id="@+id/edittext_search_table"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/prompt_regular"
                     android:gravity="left|center_vertical"
                     android:hint="   ค้นหาใบงาน"
+                    android:drawableLeft="@mipmap/icon_search"
                     android:singleLine="true" />
 
             </LinearLayout>

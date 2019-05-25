@@ -6,7 +6,7 @@ public class CompareCollectionDto {
 
     private Long statusCode;
     private String message;
-    private Object pagination;
+    private ComparePaginationItemDto pagination;
     private List<ObjectListItemDto> object;
 
     public Long getStatusCode() {
@@ -25,11 +25,11 @@ public class CompareCollectionDto {
         this.message = message;
     }
 
-    public Object getPagination() {
+    public ComparePaginationItemDto getPagination() {
         return pagination;
     }
 
-    public void setPagination(Object pagination) {
+    public void setPagination(ComparePaginationItemDto pagination) {
         this.pagination = pagination;
     }
 

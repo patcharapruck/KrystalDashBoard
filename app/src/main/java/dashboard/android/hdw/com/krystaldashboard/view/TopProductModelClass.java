@@ -2,7 +2,7 @@ package dashboard.android.hdw.com.krystaldashboard.view;
 
 public class TopProductModelClass {
 
-    String Image , NameProduct , AmountProduct;
+    private String Image , NameProduct , AmountProduct;
 
    public TopProductModelClass(String img ,String name ,String amount){
         this.Image = img;

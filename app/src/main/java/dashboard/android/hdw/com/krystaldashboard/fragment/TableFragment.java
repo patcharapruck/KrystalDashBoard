@@ -76,7 +76,7 @@ public class TableFragment extends Fragment {
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         spins = (Spinner) rootView.findViewById(R.id.spins);
-        textViewTable = (TextView) rootView.findViewById(R.id.textview_serach_table);
+//        textViewTable = (TextView) rootView.findViewById(R.id.textview_serach_table);
         EdittextSearchTable = (EditText) rootView.findViewById(R.id.edittext_search_table);
 
         setPager(dataSearch);
@@ -84,18 +84,18 @@ public class TableFragment extends Fragment {
         createTypeSearchData();
 
         ArrayAdapter<String> spinsSearch = new ArrayAdapter<String>(getContext()
-                ,R.layout.support_simple_spinner_dropdown_item,mTypeSearch);
-        spins.setAdapter(spinsSearch);
+                ,R.layout.spinner_item,mTypeSearch);
 
+        spins.setAdapter(spinsSearch);
         spins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(mTypeSearch.get(position).equals("เลขที่เอกสาร")){
                     typeSearch = "InvoiceDocument-invoiceCode";
-                    textViewTable.setText("เลขที่เอกสาร");
+//                    textViewTable.setText("เลขที่เอกสาร");
                 }else if (mTypeSearch.get(position).equals("Table/Room")){
                     typeSearch = "Place-placeCode";
-                    textViewTable.setText("Table/Room");
+//                    textViewTable.setText("Table/Room");
                 }
             }
             @Override

@@ -126,7 +126,14 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
 
         Double sum=0.0;
 
-        for (int i=0;i<Paydto.getObject().size();i++){
+        int sizeloop;
+
+        try {
+            sizeloop = Paydto.getObject().size();
+        }catch (NullPointerException e){
+            sizeloop = 0;
+        }
+        for (int i=0;i<sizeloop;i++){
             sum = sum + Paydto.getObject().get(i).getTotalPrice();
         }
 
