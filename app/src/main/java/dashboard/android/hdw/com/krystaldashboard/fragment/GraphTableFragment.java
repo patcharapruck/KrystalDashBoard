@@ -53,7 +53,7 @@ public class GraphTableFragment extends Fragment {
 
     String[] countries ;
 
-    TextView TextViewPay,TextViewNotPay;
+    TextView TextViewPay,TextViewNotPay,TextViewTotalTable;
 
     public GraphTableFragment() {
         // Required empty public constructor
@@ -74,6 +74,7 @@ public class GraphTableFragment extends Fragment {
         pieChart = (PieChart) rootView.findViewById(R.id.chart1);
         TextViewPay = (TextView) rootView.findViewById(R.id.text_pay);
         TextViewNotPay = (TextView) rootView.findViewById(R.id.text_notpay);
+        TextViewTotalTable = (TextView) rootView.findViewById(R.id.text_total_table);
     }
 
 
@@ -127,7 +128,7 @@ public class GraphTableFragment extends Fragment {
         int sum = pay+not;
         float p = 0;
         try {
-            p = pay/sum;
+            p = (float)pay/(float)sum;
         }catch (Exception e){
             p = 0;
         }
@@ -142,6 +143,7 @@ public class GraphTableFragment extends Fragment {
 
             TextViewPay.setText(String.valueOf(pay));
             TextViewNotPay.setText(String.valueOf(not));
+            TextViewTotalTable.setText(String.valueOf(sum));
 
         PieDataSet dataSet = new PieDataSet(values, "");
         dataSet.setSelectionShift(5f);

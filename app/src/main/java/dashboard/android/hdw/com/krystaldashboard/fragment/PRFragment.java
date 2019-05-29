@@ -301,21 +301,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    private void setdataview(PRItemCollectionDto dto) {
-        count = 0;
-        sizeonfloor = dto.getObject().size();
-        TextViewOnfloor.setText(String.valueOf(sizeonfloor));
-        for(int i=0;i<sizeonfloor;i++){
-            if(dto.getObject().get(i).getItemQuantity()==0L){
-                count++;
-            }
-        }
-        sizenull = count;
-        TextViewNullDrink.setText(String.valueOf(sizenull));
-        sizeisfalse = sizeonfloor-(sizenull+sizeistrue);
-        TextViewIsFalse.setText(String.valueOf(sizeisfalse));
-    }
-
     @Override
     public void onClick(View v) {
         if(v == CardOnfloor){
@@ -480,26 +465,5 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(mcontext,t.toString(),Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    public void setListViewHeightBasedOnChildren(ListView listViewHeightBasedOnChildren) {
-        prListAdapter = (PRListAdapter) listViewHeightBasedOnChildren.getAdapter();
-        if (prListAdapter == null)
-            return;
-
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listViewHeightBasedOnChildren.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
-        View view = null;
-        for (int i = 0; i < prListAdapter.getCount(); i++) {
-            view = prListAdapter.getView(i, view, listViewHeightBasedOnChildren);
-            if (i == 0)
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listViewHeightBasedOnChildren.getLayoutParams();
-        params.height = totalHeight + (listViewHeightBasedOnChildren.getDividerHeight() * (prListAdapter.getCount() - 1));
-        listViewHeightBasedOnChildren.setLayoutParams(params);
     }
 }

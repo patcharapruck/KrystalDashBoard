@@ -64,7 +64,7 @@ public class DashBooardPRFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getTime();
+//        getTime();
     }
 
     private void getTime() {
@@ -82,7 +82,7 @@ public class DashBooardPRFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_dash_booard_pr, container, false);
-        teqAPICompare(formatDateTime2);
+        teqAPICompare(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         initInstances(rootView);
         return rootView;
     }
@@ -97,27 +97,6 @@ public class DashBooardPRFragment extends Fragment {
         mAnimatedPieView = rootView.findViewById(R.id.drew2);
 
     }
-
-//    private void setdataview(PRItemCollectionDto dto) {
-//
-//        PrRun.setText(String.valueOf(sizeistrue));
-//
-//        count = 0;
-//        NumberOfCalories.setText(String.valueOf(sizeonfloor));
-//        PrOnfloor.setText(String.valueOf(sizeonfloor));
-//        for(int i=0;i<sizeonfloor;i++){
-//            if(dto.getObject().get(i).getItemQuantity()==0L){
-//                count++;
-//            }
-//        }
-//        sizenull = count;
-//        PrNotDrink.setText(String.valueOf(sizenull));
-//        sizeisfalse = sizeonfloor-(sizenull+sizeistrue);
-//        PrEmpty.setText(String.valueOf(sizeisfalse));
-//
-//
-//
-//    }
 
     private void setProgress() {
 

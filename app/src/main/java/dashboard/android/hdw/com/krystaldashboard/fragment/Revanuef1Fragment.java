@@ -30,6 +30,7 @@ import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemCo
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DateManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
@@ -65,9 +66,6 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
         View rootView = inflater.inflate(R.layout.fragment_revanue_f1,container,false);
         initInstances(rootView);
         return rootView;
-
-
-
 
     }
 
@@ -109,16 +107,8 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
 
         int ss = (int) (p3*100);
 
-
         DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        Calendar calendartoday = Calendar.getInstance();
-        calendar.setTime(date);
-        calendartoday.setTime(date);
-        calendar.add(Calendar.DATE,-1);
-        String formatDategeneral = dateFormatth.format(calendar.getTime());
+        String formatDategeneral = dateFormatth.format(DateManager.getInstance().getDateDto().getCalendar().getTime());
 
         Date d =new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("hh:mm a");

@@ -23,14 +23,10 @@ public class Revanuef2Fragment extends Fragment {
 
     ObjectItemDto ODto;
 
-    TextView TextViewCashPayments,TextViewCreditPayments,TextViewMemberDebitPayments
-            ,TextViewEntertainPayments,TextViewCredit;
 
     TextView TextViewUnpaid,TextViewDrink,TextViewMember,TextViewService,TextViewProduct,TextViewFoot;
 
-    Double CashPayments,CreditPayments,MemberDebitPayments
-            ,EntertainPayments,Credit, Unpaid,Drink
-            ,Member,Service,Product;
+    Double Drink,Member,Service,Product,Foot;
 
 
     DecimalFormat formatter;
@@ -51,11 +47,6 @@ public class Revanuef2Fragment extends Fragment {
 
     private void initInstances(View rootView) {
 
-        TextViewCashPayments = (TextView) rootView.findViewById(R.id.textview_cash_payments);
-        TextViewCreditPayments = (TextView) rootView.findViewById(R.id.textview_credit_payments);
-        TextViewMemberDebitPayments = (TextView) rootView.findViewById(R.id.textview_member_debit_payments);
-        TextViewEntertainPayments = (TextView) rootView.findViewById(R.id.textview_entertain_payments);
-        TextViewCredit = (TextView) rootView.findViewById(R.id.textview_credit);
 
         TextViewUnpaid = (TextView) rootView.findViewById(R.id.textview_unpaid);
         TextViewDrink = (TextView) rootView.findViewById(R.id.textview_drink);
@@ -69,34 +60,47 @@ public class Revanuef2Fragment extends Fragment {
     private void setTextViewIncome() {
         formatter = new DecimalFormat("#,###,##0.00");
 
-        ODto = DashBoradManager.getInstance().getDto().getObject();
+        try {
+            ODto = DashBoradManager.getInstance().getDto().getObject();
+        }catch (Exception e){
+            ODto = null;
+        }
 
-        CashPayments = ODto.getCashPayments();
-        CreditPayments = ODto.getCreditPayments();
-        Credit = ODto.getCreditCardPayments();
-        MemberDebitPayments = ODto.getMemberDebitPayments();
-        EntertainPayments = ODto.getEntertainPayments();
+        try {
+            Drink = ODto.getSerivceDrinkCharge();
+        }catch (Exception e){
+            Drink = 0.00;
+        }
 
-        Unpaid = ODto.getTotalServiceCharge();
+        try {
+            Member = ODto.getMemberCharge();
+        }catch (Exception e){
+            Member = 0.00;
+        }
 
-        Drink = ODto.getSerivceDrinkCharge();
-        Member = ODto.getMemberCharge();
-        Service = ODto.getServiceCharge();
-        Product = ODto.getProductPrice();
+        try {
+            Service = ODto.getServiceCharge();
+        }catch (Exception e){
+            Service = 0.00;
+        }
 
+        try {
+            Product = ODto.getProductPrice();
+        }catch (Exception e){
+            Product = 0.00;
+        }
 
-        TextViewCashPayments.setText(formatter.format(CashPayments));
-        TextViewCreditPayments.setText(formatter.format(CreditPayments));
-        TextViewMemberDebitPayments.setText(formatter.format(MemberDebitPayments));
-        TextViewEntertainPayments.setText(formatter.format(EntertainPayments));
-        TextViewCredit.setText(formatter.format(Credit));
-        TextViewUnpaid.setText(formatter.format(Unpaid));
+        try {
+            Foot = ODto.getFoodPrice();
+        }catch (Exception e){
+            Foot = 0.00;
+        }
 
         TextViewDrink.setText(formatter.format(Drink));
         TextViewMember.setText(formatter.format(Member));
         TextViewService.setText(formatter.format(Service));
         TextViewProduct.setText(formatter.format(Product));
-        TextViewFoot.setText(formatter.format(ODto.getFoodPrice()));
+        TextViewFoot.setText(formatter.format(Foot));
 
     }
 

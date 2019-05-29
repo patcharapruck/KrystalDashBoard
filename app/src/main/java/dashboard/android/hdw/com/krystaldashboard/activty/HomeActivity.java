@@ -152,6 +152,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
+//        calendar.add(Calendar.DATE,+1);
 
         formatDateTime = dateFormat.format(calendar.getTime());
         formatDateTimetoday = dateFormat.format(calendar.getTime());

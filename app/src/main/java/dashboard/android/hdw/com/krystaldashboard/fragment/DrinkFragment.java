@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
+import dashboard.android.hdw.com.krystaldashboard.adapter.PRListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.ProductItemsAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.ProductListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.TopProductAdapter;
@@ -75,9 +77,6 @@ public class DrinkFragment extends Fragment {
     ProductSortDto productSortDto;
 
     ProgressDialog progress;
-
-    CardView cardView;
-    ExpandableRelativeLayout mycontent;
 
     @Nullable
     @Override
@@ -152,61 +151,93 @@ public class DrinkFragment extends Fragment {
 
     private void setListProduct(View rootView){
 
-        listProduct = (ListView) rootView.findViewById(R.id.list_item_product);
-        productListAdapter = new ProductListAdapter();
-        listProduct.setAdapter(productListAdapter);
+//        listProduct = (ListView) rootView.findViewById(R.id.list_item_product);
+//        productListAdapter = new ProductListAdapter();
+//        listProduct.setAdapter(productListAdapter);
+//
+//                listProduct.setOnTouchListener(new View.OnTouchListener() {
+//                    @Override
+//                    public boolean onTouch(View v, MotionEvent event) {
+//                        v.getParent().requestDisallowInterceptTouchEvent(true);
+//                        return false;
+//                    }
+//        });
+//
+//        setListViewHeightBasedOnChildren(listProduct);
 
-//        itemProduct = new ArrayList<>();
-//        productItemsAdapter = new ProductItemsAdapter(getContext(), itemProduct);
-//
-//        recyclerProduct = rootView.findViewById(R.id.recycler_view_product);
-//        recyclerProduct.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-//        recyclerProduct.setAdapter(productItemsAdapter);
-//
-//
-//        for (int i = 0; i < ProductManager.getInstance().getProductSortDto().getNameProductSort().length; i++) {
-//
-//            String NameProduct,ImageProduct;
-//            Long WithdrawProduct,PurchaseProduct,EntertainProduct,TotalProduct;
-//
-//            ProductSortDto dto = ProductManager.getInstance().getProductSortDto();
-//
-//            try {
-//                NameProduct = i+1+". "+dto.getNameProductSort()[i];
-//            }catch (NullPointerException e){
-//                NameProduct = "0. -";
-//            }
-//            try {
-//                WithdrawProduct = dto.getWithdrawProductSort()[i];
-//            }catch (NullPointerException e){
-//                WithdrawProduct = 0L;
-//            }
-//            try {
-//                PurchaseProduct = dto.getPurchaseProductSort()[i];
-//            }catch (NullPointerException e){
-//                PurchaseProduct = 0L;
-//            }
-//            try {
-//                EntertainProduct = dto.getEntertainProductSort()[i];
-//            }catch (NullPointerException e){
-//                EntertainProduct = 0L;
-//            }
-//            try {
-//                TotalProduct = dto.getTotalAllProductSort()[i];
-//            }catch (NullPointerException e){
-//                TotalProduct = 0L;
-//            }
-//
-//            try {
-//                ImageProduct = dto.getImageProductSort()[i];
-//            }catch (NullPointerException e){
-//                ImageProduct = "";
-//            }
-//
-//            itemProduct.add(new ProductModelClass(NameProduct,ImageProduct,WithdrawProduct,PurchaseProduct,EntertainProduct,TotalProduct));
-//            productItemsAdapter.notifyDataSetChanged();
-//        }
+        itemProduct = new ArrayList<>();
+        productItemsAdapter = new ProductItemsAdapter(getContext(), itemProduct);
+
+        recyclerProduct = rootView.findViewById(R.id.recycler_view_product);
+        recyclerProduct.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerProduct.setAdapter(productItemsAdapter);
+
+
+        for (int i = 0; i < ProductManager.getInstance().getProductSortDto().getNameProductSort().length; i++) {
+
+            String NameProduct,ImageProduct;
+            Long WithdrawProduct,PurchaseProduct,EntertainProduct,TotalProduct;
+
+            ProductSortDto dto = ProductManager.getInstance().getProductSortDto();
+
+            try {
+                NameProduct = i+1+". "+dto.getNameProductSort()[i];
+            }catch (NullPointerException e){
+                NameProduct = "0. -";
+            }
+            try {
+                WithdrawProduct = dto.getWithdrawProductSort()[i];
+            }catch (NullPointerException e){
+                WithdrawProduct = 0L;
+            }
+            try {
+                PurchaseProduct = dto.getPurchaseProductSort()[i];
+            }catch (NullPointerException e){
+                PurchaseProduct = 0L;
+            }
+            try {
+                EntertainProduct = dto.getEntertainProductSort()[i];
+            }catch (NullPointerException e){
+                EntertainProduct = 0L;
+            }
+            try {
+                TotalProduct = dto.getTotalAllProductSort()[i];
+            }catch (NullPointerException e){
+                TotalProduct = 0L;
+            }
+
+            try {
+                ImageProduct = dto.getImageProductSort()[i];
+            }catch (NullPointerException e){
+                ImageProduct = "";
+            }
+
+            itemProduct.add(new ProductModelClass(NameProduct,ImageProduct,WithdrawProduct,PurchaseProduct,EntertainProduct,TotalProduct));
+            productItemsAdapter.notifyDataSetChanged();
+        }
     }
+
+//    private void setListViewHeightBasedOnChildren(ListView listProduct) {
+//        productListAdapter = (ProductListAdapter) listProduct.getAdapter();
+//        if (productListAdapter == null)
+//            return;
+//
+//        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listProduct.getWidth(), View.MeasureSpec.UNSPECIFIED);
+//        int totalHeight = 0;
+//        View view = null;
+//        for (int i = 0; i < productListAdapter.getCount(); i++) {
+//            view = productListAdapter.getView(i, view, listProduct);
+//            if (i == 0)
+//                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+//
+//            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+//            totalHeight += view.getMeasuredHeight();
+//        }
+//        ViewGroup.LayoutParams params = listProduct.getLayoutParams();
+//        params.height = totalHeight + (listProduct.getDividerHeight() * (productListAdapter.getCount() - 1));
+//        listProduct.setLayoutParams(params);
+//
+//    }
 
     private Long getWithdraw(int i) {
         Long withdraw;
@@ -389,5 +420,26 @@ public class DrinkFragment extends Fragment {
         progress.setMessage("Wait while loading...");
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
+    }
+
+    public void setListViewHeightBasedOnChildren(ListView listViewHeightBasedOnChildren) {
+        productListAdapter = (ProductListAdapter) listViewHeightBasedOnChildren.getAdapter();
+        if (productListAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listViewHeightBasedOnChildren.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < productListAdapter.getCount(); i++) {
+            view = productListAdapter.getView(i, view, listViewHeightBasedOnChildren);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listViewHeightBasedOnChildren.getLayoutParams();
+        params.height = totalHeight + (listViewHeightBasedOnChildren.getDividerHeight() * (productListAdapter.getCount() - 1));
+        listViewHeightBasedOnChildren.setLayoutParams(params);
     }
 }

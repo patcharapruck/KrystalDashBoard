@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.util.ArrayList;
@@ -46,13 +47,13 @@ public class ProductItemsAdapter extends RecyclerView.Adapter<ProductItemsAdapte
                 .load(items.get(i).getImageProduct())
                 .into(customViewProduct.imageView);
 
-        customViewProduct.mycontent.toggle();
-//        customViewProduct.cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                customViewProduct.mycontent.toggle();
-//            }
-//        });
+        customViewProduct.mycontent.collapse();
+        customViewProduct.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customViewProduct.mycontent.toggle();
+            }
+        });
     }
 
     @Override
@@ -83,7 +84,7 @@ public class ProductItemsAdapter extends RecyclerView.Adapter<ProductItemsAdapte
 
             imageView = (ImageView) itemView.findViewById(R.id.imageview_product);
             cardView = (CardView) itemView.findViewById(R.id.carddrink);
-            mycontent = (ExpandableRelativeLayout)itemView.findViewById(R.id.mycontent);
+            mycontent = (ExpandableRelativeLayout) itemView.findViewById(R.id.mycontent);
         }
     }
 }
