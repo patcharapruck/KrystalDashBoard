@@ -42,7 +42,8 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
 
     ProgressBar progressBar;
     DecimalFormat formatter;
-    TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue,TextViewTableMoneyRevanue,TextViewAmountTableRevanue,TextViewAmountAll;
+    TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue,TextViewTableMoneyRevanue
+            ,TextViewAmountTableRevanue,TextViewAmountAll,TextViewMoneyRevanue;
 
     NotPayItemColleationDto Notdto;
     PayItemColleationDto Paydto;
@@ -97,6 +98,7 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
         AmountTableRevanue = Paydto.getPagination().getTotalItem();
         NotTableRevanue = Notdto.getPagination().getTotalItem();
         TotalRevanue = ODto.getRevenue();
+        TableMoneyRevanue = ODto.getIncome();
 
         Long dD = AmountTableRevanue+NotTableRevanue;
 
@@ -127,6 +129,7 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
             sum = sum + Paydto.getObject().get(i).getTotalPrice();
         }
 
+        TextViewMoneyRevanue.setText(formatter.format(TableMoneyRevanue));
         TextViewAmountTableRevanue.setText(AmountTableRevanue.toString());
         TextViewAmountAll.setText(dD.toString());
         TextViewTotalRevanue.setText(formatter.format(TotalRevanue));
@@ -195,6 +198,5 @@ public class Revanuef1Fragment extends Fragment implements View.OnClickListener 
         dialog.show();
         dialog.getDatePicker().setMinDate(d.getTime());
         dialog.getDatePicker().setMaxDate(date.getTime());
-
     }
 }

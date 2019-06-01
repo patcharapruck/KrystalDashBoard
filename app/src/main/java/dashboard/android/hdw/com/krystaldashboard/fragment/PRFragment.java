@@ -70,9 +70,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
 
     int sizeonfloor,sizenull,sizeisfalse,sizeistrue;
 
-    ListView listViewPR;
-    PRListAdapter prListAdapter;
-
     PRItemCollectionDto dto;
 
     @Nullable
@@ -99,9 +96,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
 
         recyclerView = rootView.findViewById(R.id.recycler_view_pr);
 
-//        listViewPR = (ListView) rootView.findViewById(R.id.list_pr);
-//        spins = (Spinner) rootView.findViewById(R.id.spinspr);
-
         TextViewOnfloor = (TextView) rootView.findViewById(R.id.textview_Onfloor) ;
         TextViewNullDrink = (TextView) rootView.findViewById(R.id.textview_null_drink);
         TextViewIsFalse = (TextView) rootView.findViewById(R.id.textview_isfalse);
@@ -122,24 +116,11 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         CardNulldrink.setOnClickListener(this);
 
 
-
-//        listViewPR.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                v.getParent().requestDisallowInterceptTouchEvent(true);
-//                return false;
-//            }
-//        });
-
-//        setListViewHeightBasedOnChildren(listViewPR);
-
-
         EditTextSearchTable.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(ch == 0){
@@ -147,7 +128,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
                     setDataSearch(chCrad,Search);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -169,8 +149,6 @@ public class PRFragment extends Fragment implements View.OnClickListener {
         }catch (NullPointerException e){
             size = 0;
         }
-
-
 
         for (int i = 0; i < size; i++) {
 

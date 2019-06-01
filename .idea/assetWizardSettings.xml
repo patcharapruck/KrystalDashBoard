@@ -82,7 +82,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_search_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_insert_drive_file_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -105,8 +105,9 @@
                                     <map>
                                       <entry key="backgroundColor" value="010101" />
                                       <entry key="cropped" value="true" />
+                                      <entry key="iconShape" value="NONE" />
                                       <entry key="imageAsset" value="C:\Users\jmaysina\Desktop\833978_people_512x512.png" />
-                                      <entry key="outputName" value="icon_search" />
+                                      <entry key="outputName" value="icon_doc" />
                                     </map>
                                   </option>
                                 </PersistentState>

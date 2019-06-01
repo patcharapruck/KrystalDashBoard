@@ -26,7 +26,7 @@ public class Revanuef2Fragment extends Fragment {
 
     TextView TextViewUnpaid,TextViewDrink,TextViewMember,TextViewService,TextViewProduct,TextViewFoot;
 
-    Double Drink,Member,Service,Product,Foot;
+    Double Unpaid,Drink,Member,Service,Product,Foot;
 
 
     DecimalFormat formatter;
@@ -67,6 +67,12 @@ public class Revanuef2Fragment extends Fragment {
         }
 
         try {
+            Unpaid = ODto.getUnpaid();
+        }catch (Exception e){
+            Unpaid = 0.00;
+        }
+
+        try {
             Drink = ODto.getSerivceDrinkCharge();
         }catch (Exception e){
             Drink = 0.00;
@@ -96,6 +102,7 @@ public class Revanuef2Fragment extends Fragment {
             Foot = 0.00;
         }
 
+        TextViewUnpaid.setText(formatter.format(Unpaid));
         TextViewDrink.setText(formatter.format(Drink));
         TextViewMember.setText(formatter.format(Member));
         TextViewService.setText(formatter.format(Service));

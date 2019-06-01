@@ -14,22 +14,29 @@
         android:layout_height="@dimen/h_tool_bar"
         android:background="#19237E"
         app:menu="@menu/top_menu">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/prompt_medium"
-                android:gravity="center"
+                android:layout_centerHorizontal="true"
                 android:text="@string/app_name"
+                android:gravity="center"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp" />
 
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/imagebutton_doc"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:background="@mipmap/icon_doc"/>
+
+        </RelativeLayout>
 
 
     </android.support.v7.widget.Toolbar>

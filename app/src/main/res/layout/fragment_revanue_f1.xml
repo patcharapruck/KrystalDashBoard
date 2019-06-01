@@ -97,7 +97,7 @@
                     android:layout_marginLeft="88dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/prompt_bold"
-                    android:text="โต๊ะที่ชำระเงิน"
+                    android:text="จำนวนเงินโต๊ะที่ชำระแล้ว"
                     android:textColor="@color/colorfontrevenue"
                     android:textSize="14sp" />
 
@@ -120,7 +120,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="21dp"
                         android:fontFamily="@font/prompt_regular"
-                        android:text=" บาท"
+                        android:text="บาท  รายรับตามบิล  "
+                        android:textColor="@color/colorfontrevenue"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textview_money_revanue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:text="0.00 "
+                        android:textColor="@color/colorfontrevenue"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:text="บาท"
                         android:textColor="@color/colorfontrevenue"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -149,6 +165,14 @@
     android:layout_marginLeft="88dp"
     android:layout_marginTop="80dp">
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:fontFamily="@font/prompt_regular"
+        android:text="ชำระเงินแล้ว  "
+        android:textColor="@color/colorfontrevenue"
+        android:textSize="12sp" />
+
+    <TextView
         android:id="@+id/table_revanue"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
@@ -168,7 +192,7 @@
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:fontFamily="@font/prompt_regular"
-        android:text=" จาก "
+        android:text=" จากทั้งหมด "
         android:textColor="@color/colorfontrevenue"
         android:textSize="12sp" />
     <TextView

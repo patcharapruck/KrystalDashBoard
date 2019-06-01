@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     DateDto dateDto;
     Button datehome;
 
+    ImageButton ImageButtonDoc;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,6 +105,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         textView = findViewById(R.id.text);
         toolbar = findViewById(R.id.toolbar);
+
+        ImageButtonDoc = (ImageButton) findViewById(R.id.imagebutton_doc);
+        ImageButtonDoc.setOnClickListener(this);
 
         datehome = (Button) findViewById(R.id.datehome);
         datehome.setOnClickListener(this);
@@ -412,6 +417,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v == datehome){
             setDateDialog();
+        }
+
+        if(v == ImageButtonDoc){
+            Intent intent = new Intent(HomeActivity.this, CompareReceipts.class);
+            startActivity(intent);
         }
     }
 
