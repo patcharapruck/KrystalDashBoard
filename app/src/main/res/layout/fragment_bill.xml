@@ -1,525 +1,548 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/white"
- >
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:background="@color/white">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp"
-        android:orientation="vertical">
-        <!--content-->
+        android:layout_height="match_parent">
+
         <LinearLayout
-            android:id="@+id/container_bill"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:padding="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/textview_head_bill"
-                android:layout_width="wrap_content"
-                android:layout_height="29dp"
-                android:layout_gravity="right"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/borderstatus"
-                android:fontFamily="@font/prompt_medium"
-                android:gravity="center_vertical"
-                android:padding="3dp"
-                android:text="-"
-                android:textColor="#8BC34A"
-                android:textSize="10dp" />
-
-
+            android:padding="10dp">
+            <!--content-->
             <LinearLayout
+                android:id="@+id/container_bill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:fontFamily="@font/prompt_bold"
-                    android:text="BILL STATEMENT"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="NO. "
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/nomberbill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="00000000000"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/dotline" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_bold"
-                        android:text="MEMBER : "
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/memberbill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_bold"
-                        android:text="-"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="DATE : "
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/datebill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="00/00/0000 (00:00)"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp"
-                android:weightSum="2">
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_bold"
-                        android:text="MEMBER NAME : "
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/textNameView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_bold"
-                        android:text="-"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="PAX : "
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/paxbill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="0"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text=" AMOUNT"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/bordersale"
-                android:gravity="center|center_vertical"
-                android:orientation="horizontal">
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/textview_head_bill"
                     android:layout_width="wrap_content"
-                    android:layout_height="21dp"
+                    android:layout_height="29dp"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/borderstatus"
                     android:fontFamily="@font/prompt_medium"
                     android:gravity="center_vertical"
-                    android:text="SALE : "
-                    android:textColor="#1A1A1A"
+                    android:padding="3dp"
+                    android:text="-"
+                    android:textColor="#8BC34A"
                     android:textSize="10dp" />
 
-                <TextView
-                    android:id="@+id/salebill"
-                    android:layout_width="wrap_content"
-                    android:layout_height="21dp"
-                    android:fontFamily="@font/prompt_medium"
-                    android:text="- | -"
-                    android:gravity="center_vertical"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
-            </LinearLayout>
 
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/dotline" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text="TABLE / ROOM"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/tableroombill"
-                        android:layout_width="match_parent"
-                        android:layout_height="21dp"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text="-"
-                        android:textColor="#1A1A1A"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/bordertotal"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="3dp">
-
-                    <TextView
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
-                        android:text="TOTAL"
-                        android:textColor="@color/white"
-                        android:textSize="10dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textview_bill_total"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/prompt_medium"
-                            android:gravity="center"
-                            android:text="0.00"
-                            android:textColor="@color/white"
-                            android:textSize="10dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/prompt_medium"
-                            android:gravity="center"
-                            android:text=" ฿"
-                            android:textColor="@color/white"
-                            android:textSize="10dp" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/dotline" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:fontFamily="@font/prompt_medium"
-                    android:text="DEACRIPTION"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
-                    android:fontFamily="@font/prompt_medium"
-                    android:gravity="center"
-                    android:text="QTY"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:fontFamily="@font/prompt_medium"
-                    android:gravity="center"
-                    android:text="AMOUNT"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/prompt_medium"
-                    android:gravity="center"
-                    android:text="DISCOUNT"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/prompt_medium"
-                    android:gravity="center"
-                    android:text="PRICE"
-                    android:textColor="#1A1A1A"
-                    android:textSize="10dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/dotline" />
-
-            <ListView
-                android:id="@+id/listview"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:collapseColumns="5">
-            </ListView>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/black"
-                    android:layout_gravity="top"
-                    />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center"
-                    android:weightSum="3">
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-                    <TextView
-                        android:layout_weight="1"
-                        android:id="@+id/all"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text=" รวมค่าใช้จ่ายสุทธิ "
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
+                    android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/textview_bill_total2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
                         android:layout_weight="1"
-                        android:layout_width="0dp"
+                        android:fontFamily="@font/prompt_bold"
+                        android:text="BILL STATEMENT"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="right"
-                        android:fontFamily="@font/prompt_medium"
-                        android:text="0.00"
-                        android:layout_marginRight="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text="NO. "
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/nomberbill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text="00000000000"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                    </LinearLayout>
                 </LinearLayout>
+
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_gravity="bottom"
-                    android:background="@color/black" />
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/dotline" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_bold"
+                            android:text="MEMBER : "
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/memberbill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_bold"
+                            android:text="-"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text="DATE : "
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/datebill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text="00/00/0000 (00:00)"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_bold"
+                            android:text="MEMBER NAME : "
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/textNameView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_bold"
+                            android:text="-"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text="PAX : "
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/paxbill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text="0"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text=" AMOUNT"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bordersale"
+                    android:gravity="center|center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="center_vertical"
+                        android:text="SALE : "
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/salebill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="center_vertical"
+                        android:text="- | -"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/dotline" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/prompt_medium"
+                            android:gravity="center"
+                            android:text="TABLE / ROOM"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/tableroombill"
+                            android:layout_width="match_parent"
+                            android:layout_height="21dp"
+                            android:fontFamily="@font/prompt_medium"
+                            android:gravity="center"
+                            android:text="-"
+                            android:textColor="#1A1A1A"
+                            android:textSize="10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bordertotal"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="3dp">
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/prompt_medium"
+                            android:gravity="center"
+                            android:text="TOTAL"
+                            android:textColor="@color/white"
+                            android:textSize="10dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textview_bill_total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center"
+                                android:text="0.00"
+                                android:textColor="@color/white"
+                                android:textSize="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center"
+                                android:text=" ฿"
+                                android:textColor="@color/white"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/dotline" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/prompt_medium"
+                        android:text="DEACRIPTION"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="center"
+                        android:text="QTY"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="center"
+                        android:text="AMOUNT"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="center"
+                        android:text="DISCOUNT"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/prompt_medium"
+                        android:gravity="center"
+                        android:text="PRICE"
+                        android:textColor="#1A1A1A"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/dotline" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view_billtype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:collapseColumns="5">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="top"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/all"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/prompt_medium"
+                            android:text=" รวมค่าใช้จ่ายสุทธิ "
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/textview_bill_total2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/prompt_medium"
+                            android:gravity="right"
+                            android:text="0.00"
+                            android:textColor="@color/black"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/black" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
+            <!--button-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/save_bill"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/button_save"
+                    android:drawableLeft="@drawable/ic_get_app_black_24dp"
+                    android:fontFamily="@font/prompt_bold"
+                    android:gravity="center"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:text="บันทึก"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cloesdialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="#FF6155"
+                    android:fontFamily="@font/prompt_bold"
+                    android:gravity="center"
+                    android:text="ปิด"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <!--button-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="38.17dp"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/cloesdialog"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/button1"
-                android:fontFamily="@font/prompt_bold"
-                android:gravity="center"
-                android:src="@drawable/ic_chevron_left_black_24dp" />
+        <ImageView
+            android:id="@+id/imageViewShowScreenshot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
-            <Button
-                android:id="@+id/save_bill"
-                android:layout_width="260dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/button_save"
-                android:drawableLeft="@drawable/ic_get_app_black_24dp"
-                android:fontFamily="@font/prompt_bold"
-                android:gravity="center"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:text="บันทึก"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageViewShowScreenshot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        />
-
-</RelativeLayout>
-
+    </RelativeLayout>
 
 
 </ScrollView>

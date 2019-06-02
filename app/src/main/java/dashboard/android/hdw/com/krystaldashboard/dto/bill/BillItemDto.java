@@ -1,10 +1,12 @@
 package dashboard.android.hdw.com.krystaldashboard.dto.bill;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class BillItemDto {
 
     private Long id;
+    private Timestamp lastUpdate;
     private String invoiceCode;
     private BillMemberAccountDto memberAccount;
     private String customerName;
@@ -356,5 +358,13 @@ public class BillItemDto {
 
     public void setTransactionPaymentList(List<BillTransactionPaymentListDto> transactionPaymentList) {
         this.transactionPaymentList = transactionPaymentList;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

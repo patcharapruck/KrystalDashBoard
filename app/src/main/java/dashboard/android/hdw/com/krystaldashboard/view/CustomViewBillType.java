@@ -2,6 +2,7 @@ package dashboard.android.hdw.com.krystaldashboard.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ public class CustomViewBillType extends BaseCustomViewGroup {
     ListView listViewBill;
     BillItemAdater billItemAdater;
     TextView TextFood;
+
+    RecyclerView recyclerViewBill;
 
     public CustomViewBillType(Context context) {
         super(context);
@@ -50,7 +53,7 @@ public class CustomViewBillType extends BaseCustomViewGroup {
     }
 
     private void initInstances() {
-        listViewBill = (ListView) findViewById(R.id.listview);
+        recyclerViewBill = findViewById(R.id.recycler_view_billitem);
         TextFood = (TextView) findViewById(R.id.textfood);
 
 

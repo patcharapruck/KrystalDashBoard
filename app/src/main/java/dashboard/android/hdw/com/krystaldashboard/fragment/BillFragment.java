@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,8 @@ import java.util.Date;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.adapter.BillTypeAdater;
+import dashboard.android.hdw.com.krystaldashboard.adapter.BillTypeListAdapter;
+import dashboard.android.hdw.com.krystaldashboard.adapter.TopProductAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.BillCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillArrayDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillItemDto;
@@ -42,6 +46,8 @@ import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillArrayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillManager;
 import dashboard.android.hdw.com.krystaldashboard.util.screenshot.FileUtil;
+import dashboard.android.hdw.com.krystaldashboard.view.BillTypeModelClass;
+import dashboard.android.hdw.com.krystaldashboard.view.TopProductModelClass;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -50,7 +56,7 @@ import retrofit2.Response;
 
 public class BillFragment extends Fragment {
     private Button btnsaveBILL;
-    private ImageButton backidalog;
+    private Button backidalog;
     private LinearLayout parentView;
     private Bitmap bitmap;
 
@@ -60,8 +66,12 @@ public class BillFragment extends Fragment {
     BillItemDto billDto;
     DecimalFormat formatter;
 
-    ListView listviewType;
-    BillTypeAdater billTypeAdater;
+//    ListView listviewType;
+//    BillTypeAdater billTypeAdater;
+
+    ArrayList<BillTypeModelClass> items;
+    BillTypeListAdapter adapter;
+    RecyclerView recyclerView;
 
     Long CodeID;
     private ImageView imageViewShowScreenshot;
@@ -102,7 +112,7 @@ public class BillFragment extends Fragment {
     private void initInstances(final View rootView) {
 
         btnsaveBILL = (Button) rootView.findViewById(R.id.save_bill);
-        backidalog = (ImageButton) rootView.findViewById(R.id.cloesdialog);
+        backidalog = (Button) rootView.findViewById(R.id.cloesdialog);
         parentView = (LinearLayout) rootView.findViewById(R.id.container_bill);
 
         TextViewHeadBill = (TextView) rootView.findViewById(R.id.textview_head_bill);
@@ -118,7 +128,7 @@ public class BillFragment extends Fragment {
 
         imageViewShowScreenshot = (ImageView) rootView.findViewById(R.id.imageViewShowScreenshot);
 
-        listviewType = (ListView) rootView.findViewById(R.id.listview);
+        recyclerView = rootView.findViewById(R.id.recycler_view_billtype);
 //        billTypeAdater = new BillTypeAdater();
 //        listviewType.setAdapter(billTypeAdater);
 
@@ -306,11 +316,36 @@ public class BillFragment extends Fragment {
         billArrayDto.setTypemenu(TypeBill.get(0));
         BillArrayManager.getInstance().setBillArrayDto(billArrayDto);
 
+
         BillArrayManager.getInstance().setBillArrayDto(billArrayDto);
+        setRecyclerView();
 
-        billTypeAdater = new BillTypeAdater();
-        listviewType.setAdapter(billTypeAdater);
+    }
 
+    private void setRecyclerView() {
+        items = new ArrayList<>();
+        adapter = new BillTypeListAdapter(getContext(), items);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(adapter);
+
+        int size_array;
+
+        try {
+            size_array = BillArrayManager.getInstance().getBillArrayDto().getTypeBill().size();
+        }catch (Exception e){
+            size_array = 0;
+        }
+
+        for (int i = 0; i <size_array ; i++) {
+            try {
+                items.add(new BillTypeModelClass(TypeBill.get(i)));
+            }catch (ArrayIndexOutOfBoundsException e){
+                break;
+            }
+
+            adapter.notifyDataSetChanged();
+        }
     }
 
 

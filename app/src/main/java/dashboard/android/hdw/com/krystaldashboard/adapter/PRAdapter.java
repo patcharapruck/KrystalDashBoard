@@ -70,6 +70,10 @@ public class PRAdapter extends RecyclerView.Adapter<PRAdapter.CustomViewPR> {
             textviewStart = (TextView) itemView.findViewById(R.id.textview_start_pr);
             textviewOnfloor = (TextView) itemView.findViewById(R.id.textview_onfloor_pr);
             textviewAll = (TextView) itemView.findViewById(R.id.textview_all_pr);
+
+//            itemView.measure(
+//                    View.MeasureSpec.makeMeasureSpec(itemView.getWidth(), View.MeasureSpec.EXACTLY),
+//                    View.MeasureSpec.makeMeasureSpec(itemView.getHeight(), View.MeasureSpec.AT_MOST));
         }
     }
 }
