@@ -25,10 +25,9 @@
 
         <Button
             android:id="@+id/close"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button1"
-            android:drawableLeft="@drawable/ic_chevron_left_black_24dp"
+            android:background="#FF6155"
             android:fontFamily="@font/prompt_bold"
             android:gravity="center"
             android:text="ปิด"

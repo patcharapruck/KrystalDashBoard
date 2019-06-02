@@ -20,6 +20,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IFillFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.Utils;
@@ -102,8 +103,14 @@ public class AllRevenueFragment extends Fragment {
 //        chart.animateXY(2000, 2000);
         // don't forget to refresh the drawing
 
+        String[] creditName = new String[]{"กรุงเทพ", "ธนชาต", "ไทยพาณิชย์", "คุณอ๊อต"};
         XAxis x = chart.getXAxis();
-        x.setEnabled(false);
+        x.setValueFormatter(new IndexAxisValueFormatter(creditName));
+        x.setCenterAxisLabels(false);
+        x.setPosition(XAxis.XAxisPosition.BOTTOM);
+        x.setGranularity(1);
+        x.setGranularityEnabled(true);
+        x.setEnabled(true);
 
         YAxis y = chart.getAxisLeft();
 //        y.setTypeface(tfLight);

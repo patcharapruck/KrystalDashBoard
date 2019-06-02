@@ -1,23 +1,37 @@
 package dashboard.android.hdw.com.krystaldashboard.fragment;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
+import dashboard.android.hdw.com.krystaldashboard.dto.ObjectItemDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.NotPayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.paymentstatus.PayItemColleationDto;
 import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DateManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.NotPayManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.PayManager;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
@@ -28,11 +42,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RevenueFragment extends Fragment {
+public class RevenueFragment extends Fragment implements View.OnClickListener {
 
     ProgressDialog progress;
+    DecimalFormat formatter;
     private Boolean checkPay = false,checkNotPay=false , checkdashboard=false , checkall = false;
 
+    TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue;
+
+
+    NotPayItemColleationDto Notdto;
+    PayItemColleationDto Paydto;
+    ObjectItemDto ODto;
+
+    View rootView ;
+    Button ButtonDate;
+    Double TotalRevanue;
+
+    Fragment fragment1,fragment2,fragment3;
 
 
     @Override
@@ -44,22 +71,65 @@ public class RevenueFragment extends Fragment {
         checkNotPay=false;
         checkdashboard=false;
 
-        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
-        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
-
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_revanue,null);
-        initInstances(rootView);
+        rootView = inflater.inflate(R.layout.fragment_revanue,null);
+        reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
+        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+        reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         return rootView;
     }
 
     private void initInstances(View rootView) {
+
+        formatter = new DecimalFormat("#,###,##0.00");
+        Notdto = NotPayManager.getInstance().getNotpayItemColleationDao();
+        Paydto = PayManager.getInstance().getPayItemColleationDao();
+        ODto = DashBoradManager.getInstance().getDto().getObject();
+
+        TextViewTotalRevanue = (TextView) rootView.findViewById(R.id.textview_total_revanue);
+        TextViewUpdateTimeRevanue = (TextView) rootView.findViewById(R.id.textview_update_time_revanue);
+//        fragment1 = (Fragment) rootView.findViewById(R.id.fragment_revanue_f1);
+        ButtonDate = (Button) rootView.findViewById(R.id.button_date);
+        ButtonDate.setOnClickListener(this);
+
+        fragment1 = getChildFragmentManager().findFragmentById(R.id.fragment_revanue_f1);
+        fragment2 = getChildFragmentManager().findFragmentById(R.id.fragment_revanue_table);
+        fragment3 = getChildFragmentManager().findFragmentById(R.id.fragment_revanue_f2);
+        setTextView();
+
+    }
+
+    private void setTextView() {
+
+        TotalRevanue = ODto.getRevenue();
+
+//       getChildFragmentManager().beginTransaction().detach(fragment1).commit();
+
+//                        FragmentTransaction fragmentTransaction2 = getFragmentManager().beginTransaction();
+//                        fragmentTransaction2.detach(fragment2);
+//                        fragmentTransaction2.attach(fragment2);
+//                        fragmentTransaction2.commit();
+//
+//                        FragmentTransaction fragmentTransaction3 = getFragmentManager().beginTransaction();
+//                        fragmentTransaction3.detach(fragment3);
+//                        fragmentTransaction3.attach(fragment3);
+//                        fragmentTransaction3.commit();
+
+
+        DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        String formatDategeneral = dateFormatth.format(DateManager.getInstance().getDateDto().getCalendar().getTime());
+
+        Date d =new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm a");
+        String currentDateTimeString = sdf.format(d);
+
+//        TextViewMoneyRevanue.setText(formatter.format(TableMoneyRevanue));
+        TextViewTotalRevanue.setText(formatter.format(TotalRevanue));
+        TextViewUpdateTimeRevanue.setText("อัพเดทรายรับล่าสุด "+formatDategeneral+" "+currentDateTimeString);
     }
 
     public void reqAPI(String date) {
@@ -79,6 +149,7 @@ public class RevenueFragment extends Fragment {
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true){
                         progress.dismiss();
+                        initInstances(rootView);
                     }
                 }
                 else {
@@ -115,6 +186,7 @@ public class RevenueFragment extends Fragment {
 
                     if(checkPay == true && checkNotPay == true && checkdashboard == true){
                         progress.dismiss();
+                        initInstances(rootView);
                     }
                 }else {
                     progress.dismiss();
@@ -150,6 +222,8 @@ public class RevenueFragment extends Fragment {
                             .savePay(dao.getPagination().getTotalItem());
                     if(checkPay == true && checkNotPay == true && checkdashboard == true){
                         progress.dismiss();
+                        initInstances(rootView);
+//
                     }
                 }else {
                     progress.dismiss();
@@ -171,5 +245,63 @@ public class RevenueFragment extends Fragment {
         progress.setMessage("Wait while loading...");
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == ButtonDate){
+            setDateDialog();
+        }
+    }
+
+    private void setDateDialog() {
+
+        int day = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getDateofMonth();
+        int month = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getMonth();
+        int year = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getYear();
+
+        final DatePickerDialog dialog = new DatePickerDialog(getContext(),new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month++;
+                String mm = ""+month;
+                String dd = ""+dayOfMonth;
+
+                if (month<10){
+                    mm = "0"+month;
+                }
+                if (dayOfMonth < 10){
+                    dd = "0"+dayOfMonth;
+                }
+                String datecalendat, datecalendat2;
+                String fulldate;
+                datecalendat = year+ "/" + mm + "/" +dd;
+                datecalendat2 = year+ "-" + mm + "-" +dd;
+                fulldate = dd+ "/" + mm + "/" +year;
+
+
+                reqAPI(datecalendat);
+                reqAPIpay(datecalendat2);
+                reqAPInotpay(datecalendat2);
+
+
+            }
+        },year,month-1,day);
+
+        Date date = null;
+        Date d = null;
+        String oldDateString = "2019/01/06";
+        String NewDateString = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDate();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+        try {
+            d = sdf.parse(oldDateString);
+            date = sdf.parse(NewDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        dialog.show();
+        dialog.getDatePicker().setMinDate(d.getTime());
+        dialog.getDatePicker().setMaxDate(date.getTime());
     }
 }

@@ -17,6 +17,69 @@
 
             <!--________________________________________f1________________________________________-->
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="#19237E"
+                app:cardCornerRadius="7dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="21dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/prompt_bold"
+                        android:text="สรุปรายได้จริง"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textview_total_revanue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="23dp"
+                        android:fontFamily="@font/prompt_bold"
+                        android:text="0.00"
+                        android:textColor="@color/white"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/textview_update_time_revanue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="65dp"
+                        android:fontFamily="@font/prompt_regular"
+                        android:text="อัพเดทรายรับล่าสุด 01/03/2562 13:20"
+                        android:textColor="@color/white"
+                        android:textSize="8sp" />
+
+
+                    <Button
+                        android:id="@+id/button_date"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="203dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/button2"
+                        android:fontFamily="@font/prompt_medium"
+                        android:text="เลือกวันที่"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
             <fragment
                 android:id="@+id/fragment_revanue_f1"
                 android:name="dashboard.android.hdw.com.krystaldashboard.fragment.Revanuef1Fragment"

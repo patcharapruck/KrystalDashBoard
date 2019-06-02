@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,9 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.adapter.BillTypeAdater;
@@ -290,6 +293,16 @@ public class BillFragment extends Fragment {
             TextViewBillTotal2.setText(formatter.format(billDto.getTotalPrice()));
         }catch (Exception e){
             TextViewBillTotal2.setText("0.00");
+        }
+
+        try{
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(billDto.getLeaveTime() * 1000L);
+            String datetime = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
+
+            TextViewDateBill.setText(datetime);
+        }catch (Exception e){
+            TextViewDateBill.setText("00-00-00 00:00:00");
         }
 
         int size = billDto.getItemList().size();

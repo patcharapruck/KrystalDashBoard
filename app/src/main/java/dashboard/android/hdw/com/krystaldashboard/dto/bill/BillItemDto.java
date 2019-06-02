@@ -6,7 +6,7 @@ import java.util.List;
 public class BillItemDto {
 
     private Long id;
-    private Timestamp lastUpdate;
+    private Long leaveTime;
     private String invoiceCode;
     private BillMemberAccountDto memberAccount;
     private String customerName;
@@ -360,11 +360,11 @@ public class BillItemDto {
         this.transactionPaymentList = transactionPaymentList;
     }
 
-    public Timestamp getLastUpdate() {
-        return lastUpdate;
+    public Long getLeaveTime() {
+        return leaveTime;
     }
 
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setLeaveTime(Long leaveTime) {
+        this.leaveTime = leaveTime;
     }
 }
