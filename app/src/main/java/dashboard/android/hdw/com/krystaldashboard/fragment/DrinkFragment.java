@@ -2,30 +2,23 @@ package dashboard.android.hdw.com.krystaldashboard.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
-
 import java.util.ArrayList;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
-import dashboard.android.hdw.com.krystaldashboard.adapter.PRListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.ProductItemsAdapter;
-import dashboard.android.hdw.com.krystaldashboard.adapter.ProductListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.adapter.TopProductAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.ObjectItemDto;
@@ -70,9 +63,6 @@ public class DrinkFragment extends Fragment {
 
     ArrayList<ProductModelClass> itemProduct;
     ProductItemsAdapter productItemsAdapter;
-
-    ListView listProduct;
-    ProductListAdapter productListAdapter;
 
     ProductSortDto productSortDto;
 
@@ -422,24 +412,4 @@ public class DrinkFragment extends Fragment {
         progress.show();
     }
 
-    public void setListViewHeightBasedOnChildren(ListView listViewHeightBasedOnChildren) {
-        productListAdapter = (ProductListAdapter) listViewHeightBasedOnChildren.getAdapter();
-        if (productListAdapter == null)
-            return;
-
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listViewHeightBasedOnChildren.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
-        View view = null;
-        for (int i = 0; i < productListAdapter.getCount(); i++) {
-            view = productListAdapter.getView(i, view, listViewHeightBasedOnChildren);
-            if (i == 0)
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listViewHeightBasedOnChildren.getLayoutParams();
-        params.height = totalHeight + (listViewHeightBasedOnChildren.getDividerHeight() * (productListAdapter.getCount() - 1));
-        listViewHeightBasedOnChildren.setLayoutParams(params);
-    }
 }

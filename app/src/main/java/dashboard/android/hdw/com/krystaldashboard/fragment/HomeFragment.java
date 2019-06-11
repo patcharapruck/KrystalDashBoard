@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
-import dashboard.android.hdw.com.krystaldashboard.adapter.PRListAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DashBoardDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.DateDto;

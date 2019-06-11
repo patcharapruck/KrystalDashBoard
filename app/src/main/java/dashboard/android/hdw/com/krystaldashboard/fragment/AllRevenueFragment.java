@@ -87,7 +87,7 @@ public class AllRevenueFragment extends Fragment {
         chart.setBackgroundColor(Color.WHITE);
 
         // no description text
-        chart.getDescription().setEnabled(false);
+        chart.getDescription().setEnabled(true);
         // enable touch gestures
         chart.setTouchEnabled(true);
         // enable scaling and dragging

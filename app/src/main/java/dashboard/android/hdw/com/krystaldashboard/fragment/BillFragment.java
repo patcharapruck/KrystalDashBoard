@@ -16,10 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +33,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
-import dashboard.android.hdw.com.krystaldashboard.adapter.BillTypeAdater;
 import dashboard.android.hdw.com.krystaldashboard.adapter.BillTypeListAdapter;
-import dashboard.android.hdw.com.krystaldashboard.adapter.TopProductAdapter;
 import dashboard.android.hdw.com.krystaldashboard.dto.BillCollectionDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillArrayDto;
 import dashboard.android.hdw.com.krystaldashboard.dto.bill.BillItemDto;
@@ -50,7 +45,6 @@ import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillArrayMan
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.BillManager;
 import dashboard.android.hdw.com.krystaldashboard.util.screenshot.FileUtil;
 import dashboard.android.hdw.com.krystaldashboard.view.BillTypeModelClass;
-import dashboard.android.hdw.com.krystaldashboard.view.TopProductModelClass;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -69,8 +63,6 @@ public class BillFragment extends Fragment {
     BillItemDto billDto;
     DecimalFormat formatter;
 
-//    ListView listviewType;
-//    BillTypeAdater billTypeAdater;
 
     ArrayList<BillTypeModelClass> items;
     BillTypeListAdapter adapter;
@@ -132,8 +124,6 @@ public class BillFragment extends Fragment {
         imageViewShowScreenshot = (ImageView) rootView.findViewById(R.id.imageViewShowScreenshot);
 
         recyclerView = rootView.findViewById(R.id.recycler_view_billtype);
-//        billTypeAdater = new BillTypeAdater();
-//        listviewType.setAdapter(billTypeAdater);
 
         btnsaveBILL.setOnClickListener(new View.OnClickListener() {
             @Override

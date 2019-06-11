@@ -50,6 +50,7 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
 
     TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue;
 
+    FragmentTransaction f1,f2,f3;
 
     NotPayItemColleationDto Notdto;
     PayItemColleationDto Paydto;
@@ -58,8 +59,6 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
     View rootView ;
     Button ButtonDate;
     Double TotalRevanue;
-
-    Fragment fragment1,fragment2,fragment3;
 
 
     @Override
@@ -90,35 +89,34 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
         Paydto = PayManager.getInstance().getPayItemColleationDao();
         ODto = DashBoradManager.getInstance().getDto().getObject();
 
+        setChildFragment();
+
         TextViewTotalRevanue = (TextView) rootView.findViewById(R.id.textview_total_revanue);
         TextViewUpdateTimeRevanue = (TextView) rootView.findViewById(R.id.textview_update_time_revanue);
 //        fragment1 = (Fragment) rootView.findViewById(R.id.fragment_revanue_f1);
         ButtonDate = (Button) rootView.findViewById(R.id.button_date);
         ButtonDate.setOnClickListener(this);
-
-        fragment1 = getChildFragmentManager().findFragmentById(R.id.fragment_revanue_f1);
-        fragment2 = getChildFragmentManager().findFragmentById(R.id.fragment_revanue_table);
-        fragment3 = getChildFragmentManager().findFragmentById(R.id.fragment_revanue_f2);
         setTextView();
 
+    }
+
+    private void setChildFragment() {
+        f1 = getChildFragmentManager().beginTransaction();
+        f1.replace(R.id.fragment_revanue_f1, new Revanuef1Fragment());
+        f1.commit();
+
+        f2 = getChildFragmentManager().beginTransaction();
+        f2.replace(R.id.fragment_revanue_table, new TableRevanueFragment());
+        f2.commit();
+
+        f3 = getChildFragmentManager().beginTransaction();
+        f3.replace(R.id.fragment_revanue_f2, new Revanuef2Fragment());
+        f3.commit();
     }
 
     private void setTextView() {
 
         TotalRevanue = ODto.getRevenue();
-
-//       getChildFragmentManager().beginTransaction().detach(fragment1).commit();
-
-//                        FragmentTransaction fragmentTransaction2 = getFragmentManager().beginTransaction();
-//                        fragmentTransaction2.detach(fragment2);
-//                        fragmentTransaction2.attach(fragment2);
-//                        fragmentTransaction2.commit();
-//
-//                        FragmentTransaction fragmentTransaction3 = getFragmentManager().beginTransaction();
-//                        fragmentTransaction3.detach(fragment3);
-//                        fragmentTransaction3.attach(fragment3);
-//                        fragmentTransaction3.commit();
-
 
         DateFormat dateFormatth = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         String formatDategeneral = dateFormatth.format(DateManager.getInstance().getDateDto().getCalendar().getTime());
