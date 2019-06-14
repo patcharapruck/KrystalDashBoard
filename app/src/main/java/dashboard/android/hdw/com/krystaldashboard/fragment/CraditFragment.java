@@ -100,8 +100,8 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         CreditItemColleationDto Credit;
         //creditall = DashBoradManager.getInstance().getDto().getObject().getCreditCardPayments();
-
-        for (int i = 0; true; i++) {
+        int j = 0;
+        for (int i = 0;true;) {
             try {
                 Credit = dto.getObject().getIncomeByCreditCardList().get(i);
             } catch (Exception e) {
@@ -114,22 +114,66 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             unipay = Credit.getUnipay();
             visa = Credit.getVisa();
 
-            total.add(i, amax + jcb + master + unipay + visa);
-            creditall = creditall + total.get(i);
-            Total.add(i, formatter.format(total.get(i)));
 
             if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")) {
-                Tanachat = Total.get(i);
-                TotalTanachat.setText(Tanachat);
+
+                if(j==0){
+                    total.add(0, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(0);
+                    Total.add(0, formatter.format(total.get(0)));
+                    Tanachat = Total.get(j);
+                    TotalTanachat.setText(Tanachat);
+                    i++;
+                }else {
+                    total.add(0, 0d);
+                    creditall = creditall + total.get(0);
+                    Total.add(0, formatter.format(total.get(0)));
+                }
             } else if (Credit.getBank().getBankName().equals("ธนาคารกรุงเทพ (BBL)")) {
-                Kungthap = Total.get(i);
-                TotalKungthap.setText(Kungthap);
+                if(j==1){
+                    total.add(1, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(1);
+                    Total.add(1, formatter.format(total.get(1)));
+                    Kungthap = Total.get(j);
+                    TotalKungthap.setText(Kungthap);
+                    i++;
+                    j++;
+                }else {
+                    total.add(1, 0d);
+                    creditall = creditall + total.get(1);
+                    Total.add(1, formatter.format(total.get(1)));
+                    j++;
+                }
             } else if (Credit.getBank().getBankName().equals("ธนาคารไทยพาณิชย์ (SCB)")) {
-                Tthaipanich = Total.get(i);
-                TotalTthaipanich.setText(Tthaipanich);
+                if(j==2){
+                    total.add(2, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(2);
+                    Total.add(2, formatter.format(total.get(2)));
+                    Tthaipanich = Total.get(j);
+                    TotalTthaipanich.setText(Tthaipanich);
+                    i++;
+                    j++;
+                }else {
+                    total.add(2, 0d);
+                    creditall = creditall + total.get(2);
+                    Total.add(2, formatter.format(total.get(2)));
+                    j++;
+                }
             } else if (Credit.getBank().getBankName().equals("บัญชีคุณอ๊อด")) {
-                Khunoot = Total.get(i);
-                TotalKhunoot.setText(Khunoot);
+                if(j==3){
+                    total.add(3, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(3);
+                    Total.add(3, formatter.format(total.get(3)));
+                    Khunoot = Total.get(j);
+                    TotalKhunoot.setText(Khunoot);
+                    i++;
+                    j++;
+                }else {
+                    total.add(3, 0d);
+                    creditall = creditall + total.get(3);
+                    Total.add(3, formatter.format(total.get(3)));
+                    j++;
+                }
             }
         }
 
@@ -138,7 +182,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         ArrayList<BarEntry> values = new ArrayList<>();
 
-        for (int i = 0; true; i++) {
+        for (int i = 0;i<4; i++) {
 
             try {
                 values.add(new BarEntry(i, total.get(i).floatValue()));

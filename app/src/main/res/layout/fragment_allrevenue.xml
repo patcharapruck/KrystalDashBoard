@@ -13,6 +13,7 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="1dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,18 +21,27 @@
             android:padding="10dp">
 
             <!--_____graph_____-->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="117dp"
-                android:orientation="vertical">
+                android:layout_height="120dp">
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/linechart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
 
                 </com.github.mikephil.charting.charts.LineChart>
-            </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(ล้าน)"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/prompt_medium"
+                    android:textColor="@color/black"/>
+
+            </RelativeLayout>
             <!--_____money______-->
             <LinearLayout
                 android:layout_width="match_parent"

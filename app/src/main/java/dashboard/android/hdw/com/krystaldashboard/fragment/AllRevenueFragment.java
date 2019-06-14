@@ -14,11 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
@@ -26,8 +29,13 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import dashboard.android.hdw.com.krystaldashboard.R;
 import dashboard.android.hdw.com.krystaldashboard.dto.CompareCollectionDto;
@@ -36,6 +44,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
+import dashboard.android.hdw.com.krystaldashboard.util.Formatcompare;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -73,7 +82,7 @@ public class AllRevenueFragment extends Fragment {
 
     private void initInstances(View rootView) {
 
-        chart = rootView.findViewById(R.id.linechart);
+        chart = (LineChart) rootView.findViewById(R.id.linechart);
         Revrnus = (TextView) rootView.findViewById(R.id.revrnus);
         Income = (TextView) rootView.findViewById(R.id.income);
         Unpaid = (TextView) rootView.findViewById(R.id.unpaid);
@@ -83,44 +92,52 @@ public class AllRevenueFragment extends Fragment {
     private void ChartCompare() {
 
 
-        chart.setViewPortOffsets(0, 0, 0, 0);
-        chart.setBackgroundColor(Color.WHITE);
+//        chart.setViewPortOffsets(0, 0, 0, 0);
+//        chart.setBackgroundColor(Color.WHITE);
 
         // no description text
-        chart.getDescription().setEnabled(true);
+        chart.setDescription(null);
         // enable touch gestures
         chart.setTouchEnabled(true);
         // enable scaling and dragging
-        chart.setDragEnabled(true);
+        chart.setDragEnabled(false);
         chart.setScaleEnabled(true);
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
         chart.setMaxHighlightDistance(300);
         setData(size);
-        chart.getAxisRight().setEnabled(true);
+//        chart.getAxisLeft().setEnabled(true);
         chart.getLegend().setEnabled(false);
 //        chart.animateXY(2000, 2000);
         // don't forget to refresh the drawing
+        chart.getAxisLeft().setEnabled(true);
+//        chart.getAxisLeft().setValueFormatter((IAxisValueFormatter) new Formatcompare());
+        chart.getAxisRight().setDrawAxisLine(true);
+        chart.getAxisRight().setDrawGridLines(false);
+        chart.getXAxis().setDrawAxisLine(true);
+        chart.getXAxis().setDrawGridLines(false);
 
-        String[] creditName = new String[]{"กรุงเทพ", "ธนชาต", "ไทยพาณิชย์", "คุณอ๊อต"};
-        XAxis x = chart.getXAxis();
-        x.setValueFormatter(new IndexAxisValueFormatter(creditName));
-        x.setCenterAxisLabels(false);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setGranularity(1);
-        x.setGranularityEnabled(true);
-        x.setEnabled(true);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setValueFormatter(new MyAxisValueFormatter());
+        xAxis.setTextColor(Color.parseColor("#4d4d4d"));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setAxisLineColor(Color.WHITE);
+
 
         YAxis y = chart.getAxisLeft();
-//        y.setTypeface(tfLight);
-        y.setLabelCount(6, false);
+
+//        y.setLabelCount(6, false);
         y.setTextColor(Color.parseColor("#4d4d4d"));
-        y.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+        y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        y.setValueFormatter(new MyYxisValueFormatter());
         y.setDrawGridLines(false);
-        y.setAxisLineColor(Color.WHITE);
-//        y.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         y.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        YAxis rightAxis = chart.getAxisRight();
+        rightAxis.setEnabled(false);
 
         chart.invalidate();
     }
@@ -183,8 +200,9 @@ public class AllRevenueFragment extends Fragment {
             }
             // create a data object with the data sets
             LineData data = new LineData(set1);
+            data.setValueFormatter(new Formatcompare());
             data.setValueTextSize(9f);
-            data.setDrawValues(false);
+            data.setDrawValues(true);
 
             // set data
             chart.setData(data);
@@ -286,5 +304,37 @@ public class AllRevenueFragment extends Fragment {
         Revrnus.setText(formatter.format(dtomain.getObject().getRevenue()));
         Income.setText(formatter.format(dtomain.getObject().getIncome()));
         Unpaid.setText(formatter.format(dtomain.getObject().getUnpaid()));
+    }
+
+    private class  MyAxisValueFormatter implements IAxisValueFormatter {
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MMM");
+
+
+            Date date = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE,-(7-(int)value));
+
+            String formatDateTime = dateFormat.format(calendar.getTime());
+
+            return formatDateTime;
+        }
+    }
+
+    private class  MyYxisValueFormatter implements IAxisValueFormatter {
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            String money = "0";
+
+            if (value > 999999) {
+                money = String.format("%.2f", value / 1000000.0);
+            }
+
+            return money;
+        }
     }
 }

@@ -78,6 +78,8 @@ public class DialogCraditFragment extends DialogFragment implements View.OnClick
 
         NameCreditDialog.setText(NameCredit);
 
+        if(Total == null) Total = "0.00";
+
         if (NameCredit.equals("ธนาคารธนชาต (T-BANK)")){
             ToolbarColor.setBackgroundColor(Color.parseColor("#F37637"));
             totalTextView.setText(Total+" บาท");

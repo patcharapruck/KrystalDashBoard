@@ -58,15 +58,21 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/icon_search"
+                    android:background="@color/black"/>
+
                 <EditText
                     android:id="@+id/edittext_search_table"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/bordertotal"
                     android:fontFamily="@font/prompt_regular"
                     android:gravity="left|center_vertical"
                     android:hint="   ค้นหาใบงาน"
-                    android:drawableLeft="@mipmap/icon_search"
                     android:singleLine="true" />
 
             </LinearLayout>

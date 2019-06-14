@@ -81,7 +81,7 @@ public class Revanuef1Fragment extends Fragment{
         progressBar = rootView.findViewById(R.id.horizontal_progress_bar);
         progressBar.getProgressDrawable().setColorFilter(Color.parseColor("#7F6CFF"), PorterDuff.Mode.SRC_IN);
 
-        TextViewTableMoneyRevanue = (TextView) rootView.findViewById(R.id.textview_table_money_revanue);
+        TextViewTableMoneyRevanue = (TextView) rootView.findViewById(R.id.textview_money_revanue);
         TextViewAmountTableRevanue = (TextView) rootView.findViewById(R.id.table_revanue);
         TextViewAmountAll = (TextView) rootView.findViewById(R.id.textview_amount_table_revanue);
 
