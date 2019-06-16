@@ -293,7 +293,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/bordertotal"
+                        android:background="@drawable/borderbill"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="3dp">
@@ -354,18 +354,19 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="1.5"
                         android:fontFamily="@font/prompt_medium"
                         android:text="DEACRIPTION"
+                        android:gravity="left"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
+                        android:layout_weight="0.4"
                         android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
+                        android:gravity="right"
                         android:text="QTY"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
@@ -373,9 +374,9 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
+                        android:layout_weight="1.1"
                         android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
+                        android:gravity="right"
                         android:text="AMOUNT"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
@@ -383,9 +384,9 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
+                        android:layout_weight="0.9"
                         android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
+                        android:gravity="right"
                         android:text="DISCOUNT"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />
@@ -393,9 +394,9 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.1"
                         android:fontFamily="@font/prompt_medium"
-                        android:gravity="center"
+                        android:gravity="right"
                         android:text="PRICE"
                         android:textColor="#1A1A1A"
                         android:textSize="10dp" />

@@ -45,6 +45,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.CompareManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.util.Formatcompare;
+import dashboard.android.hdw.com.krystaldashboard.util.MyYxisValueFormatter;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -321,20 +322,6 @@ public class AllRevenueFragment extends Fragment {
             String formatDateTime = dateFormat.format(calendar.getTime());
 
             return formatDateTime;
-        }
-    }
-
-    private class  MyYxisValueFormatter implements IAxisValueFormatter {
-
-        @Override
-        public String getFormattedValue(float value, AxisBase axis) {
-            String money = "0";
-
-            if (value > 999999) {
-                money = String.format("%.2f", value / 1000000.0);
-            }
-
-            return money;
         }
     }
 }

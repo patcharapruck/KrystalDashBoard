@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="380dp"
+    android:layout_height="wrap_content"
     tools:context=".fragment.CraditFragment">
 
     <android.support.v7.widget.CardView
@@ -24,7 +24,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barchart"
@@ -74,56 +75,6 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/creditA"
-                            android:layout_width="match_parent"
-                            android:layout_height="21dp"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:weightSum="3">
-
-                            <ImageView
-                                android:layout_weight="0.3"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/krungtap"
-                                android:layout_gravity="center_vertical"/>
-
-                            <TextView
-                                android:layout_weight="1.3"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/prompt_bold"
-                                android:gravity="left|center_vertical"
-                                android:layout_gravity="center_vertical"
-                                android:text="ธนาคารกรุงเทพ"
-                                android:textColor="@color/bank_krungtap"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_weight="1"
-                                android:id="@+id/textview_kungthap"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/prompt_medium"
-                                android:text="0.00"
-                                android:gravity="right"
-                                android:textColor="#232323"
-                                android:textSize="14sp" />
-                            <TextView
-                                android:layout_weight="0.4"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/prompt_medium"
-                                android:gravity="center|center_vertical"
-                                android:layout_gravity="center_vertical"
-                                android:text="บาท"
-                                android:textColor="#232323"
-                                android:textSize="14sp" />
-
-
-                        </LinearLayout>
                         <LinearLayout
                             android:id="@+id/creditB"
                             android:layout_width="match_parent"
@@ -176,6 +127,58 @@
 
 
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/creditA"
+                            android:layout_width="match_parent"
+                            android:layout_height="21dp"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:layout_weight="0.3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/krungtap"
+                                android:layout_gravity="center_vertical"/>
+
+                            <TextView
+                                android:layout_weight="1.3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_bold"
+                                android:gravity="left|center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:text="ธนาคารกรุงเทพ"
+                                android:textColor="@color/bank_krungtap"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/textview_kungthap"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:text="0.00"
+                                android:gravity="right"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/prompt_medium"
+                                android:gravity="center|center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:text="บาท"
+                                android:textColor="#232323"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/creditC"
                             android:layout_width="match_parent"
@@ -276,16 +279,22 @@
                                 android:textColor="#232323"
                                 android:textSize="14sp" />
 
-
                         </LinearLayout>
-
-
 
                     </LinearLayout>
 
-
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(ล้าน)"
+                android:textSize="11sp"
+                android:fontFamily="@font/prompt_medium"
+                android:textColor="@color/black"/>
+
         </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>

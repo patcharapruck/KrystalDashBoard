@@ -30,6 +30,7 @@ import dashboard.android.hdw.com.krystaldashboard.manager.Contextor;
 import dashboard.android.hdw.com.krystaldashboard.manager.http.HttpManager;
 import dashboard.android.hdw.com.krystaldashboard.manager.singleton.DashBoradManager;
 import dashboard.android.hdw.com.krystaldashboard.util.MyFormatCredit;
+import dashboard.android.hdw.com.krystaldashboard.util.MyYxisValueFormatter;
 import dashboard.android.hdw.com.krystaldashboard.util.sharedprefmanager.SharedPrefDateManager;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -107,73 +108,69 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
             } catch (Exception e) {
                 break;
             }
-
             amax = Credit.getAmax();
             jcb = Credit.getJcb();
             master = Credit.getMaster();
             unipay = Credit.getUnipay();
             visa = Credit.getVisa();
 
-
             if (Credit.getBank().getBankName().equals("ธนาคารธนชาต (T-BANK)")) {
-
                 if(j==0){
-                    total.add(0, amax + jcb + master + unipay + visa);
-                    creditall = creditall + total.get(0);
-                    Total.add(0, formatter.format(total.get(0)));
+                    total.add(j, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                     Tanachat = Total.get(j);
                     TotalTanachat.setText(Tanachat);
                     i++;
                 }else {
-                    total.add(0, 0d);
-                    creditall = creditall + total.get(0);
-                    Total.add(0, formatter.format(total.get(0)));
+                    total.add(j, 0d);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                 }
             } else if (Credit.getBank().getBankName().equals("ธนาคารกรุงเทพ (BBL)")) {
                 if(j==1){
-                    total.add(1, amax + jcb + master + unipay + visa);
-                    creditall = creditall + total.get(1);
-                    Total.add(1, formatter.format(total.get(1)));
+                    total.add(j, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                     Kungthap = Total.get(j);
                     TotalKungthap.setText(Kungthap);
                     i++;
-                    j++;
                 }else {
-                    total.add(1, 0d);
-                    creditall = creditall + total.get(1);
-                    Total.add(1, formatter.format(total.get(1)));
-                    j++;
+                    total.add(j, 0d);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                 }
             } else if (Credit.getBank().getBankName().equals("ธนาคารไทยพาณิชย์ (SCB)")) {
                 if(j==2){
-                    total.add(2, amax + jcb + master + unipay + visa);
-                    creditall = creditall + total.get(2);
-                    Total.add(2, formatter.format(total.get(2)));
+                    total.add(j, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                     Tthaipanich = Total.get(j);
                     TotalTthaipanich.setText(Tthaipanich);
                     i++;
-                    j++;
                 }else {
-                    total.add(2, 0d);
-                    creditall = creditall + total.get(2);
-                    Total.add(2, formatter.format(total.get(2)));
-                    j++;
+                    total.add(j, 0d);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                 }
             } else if (Credit.getBank().getBankName().equals("บัญชีคุณอ๊อด")) {
                 if(j==3){
-                    total.add(3, amax + jcb + master + unipay + visa);
-                    creditall = creditall + total.get(3);
-                    Total.add(3, formatter.format(total.get(3)));
+                    total.add(j, amax + jcb + master + unipay + visa);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                     Khunoot = Total.get(j);
                     TotalKhunoot.setText(Khunoot);
                     i++;
-                    j++;
                 }else {
-                    total.add(3, 0d);
-                    creditall = creditall + total.get(3);
-                    Total.add(3, formatter.format(total.get(3)));
-                    j++;
+                    total.add(j, 0d);
+                    creditall = creditall + total.get(j);
+                    Total.add(j, formatter.format(total.get(j)));
                 }
+            }
+            j = j+1;
+
+            if (j>=4){
+                break;
             }
         }
 
@@ -194,8 +191,8 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 
         BarDataSet set1;
         set1 = new BarDataSet(values, "Credit");
-        set1.setColors(new int[]{Color.parseColor("#204298"),
-                Color.parseColor("#F37637"),
+        set1.setColors(new int[]{Color.parseColor("#F37637"),
+                Color.parseColor("#204298"),
                 Color.parseColor("#502984"),
                 Color.parseColor("#19237E")});
         set1.setValueTextColor(Color.BLACK);
@@ -203,7 +200,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
 //        data.setValueFormatter(new MyFormatCredit());
         barChart.setData(data);
 
-        String[] creditName = new String[]{"กรุงเทพ", "ธนชาต", "ไทยพาณิชย์", "คุณอ๊อต"};
+        String[] creditName = new String[]{"ธนชาต","กรุงเทพ", "ไทยพาณิชย์", "คุณอ๊อต"};
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(creditName));
         xAxis.setCenterAxisLabels(false);
@@ -212,7 +209,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         xAxis.setGranularityEnabled(true);
 
         barChart.setDragEnabled(false);
-
+        barChart.setDrawGridBackground(false);
         barChart.setVisibleXRangeMaximum(4);
         data.setBarWidth(0.5f);
 
@@ -223,6 +220,7 @@ public class CraditFragment extends Fragment implements View.OnClickListener {
         leftAxis.setTextColor(Color.parseColor("#4D4D4D"));
 //        leftAxis.setValueFormatter(custom);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setValueFormatter(new MyYxisValueFormatter());
         leftAxis.setSpaceTop(15f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 

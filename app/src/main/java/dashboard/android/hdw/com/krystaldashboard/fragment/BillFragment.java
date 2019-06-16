@@ -287,12 +287,12 @@ public class BillFragment extends Fragment {
 
         try{
             Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(billDto.getLeaveTime() * 1000L);
-            String datetime = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
+            cal.setTimeInMillis(billDto.getLeaveTime());
+            String datetime = DateFormat.format("dd/MM/yyyy hh:mm:ss", cal).toString();
 
             TextViewDateBill.setText(datetime);
         }catch (Exception e){
-            TextViewDateBill.setText("00-00-00 00:00:00");
+            TextViewDateBill.setText("00/00/00 00:00:00");
         }
 
         int size = billDto.getItemList().size();

@@ -40,8 +40,8 @@ public class ProductItemsAdapter extends RecyclerView.Adapter<ProductItemsAdapte
     public void onBindViewHolder(@NonNull final CustomViewProduct customViewProduct, int i) {
         customViewProduct.TextViewProductName.setText(items.get(i).getNameProduct());
         customViewProduct.TextViewProductTotal.setText(items.get(i).getTotalProduct().toString());
-        customViewProduct.TextViewProductBuy.setText(items.get(i).getWithdrawProduct().toString());
-        customViewProduct.TextViewProductPurchase.setText(items.get(i).getPurchaseProduct().toString());
+        customViewProduct.TextViewProductBuy.setText(items.get(i).getPurchaseProduct().toString());
+        customViewProduct.TextViewProductPurchase.setText(items.get(i).getWithdrawProduct().toString());
         customViewProduct.TextViewProductEntertain.setText(items.get(i).getEntertainProduct().toString());
         Glide.with(context)
                 .load(items.get(i).getImageProduct())
