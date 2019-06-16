@@ -34,17 +34,9 @@ public class FragmentPay extends Fragment {
     ListView listViewPay;
     PayMentAdapter payMentAdapter;
 
-    String DataType = "";
-
     public FragmentPay() {
             super();
     }
-
-    @SuppressLint("ValidFragment")
-    public FragmentPay(String s){
-        this.DataType = s;
-    }
-
 
     public static FragmentPay newInstance() {
         FragmentPay fragment = new FragmentPay();
@@ -105,6 +97,7 @@ public class FragmentPay extends Fragment {
 
     private void reqAPIpay(String date) {
         final Context mcontext = Contextor.getInstance().getmContext();
+        String DataType = SharedPrefDateManager.getKeySearchTablepay();
         String nn = "{\"criteria\":{\"sql-obj-command\":\"f:documentStatus.id = 21 and " +
                 "(f:salesShift.openDate >= '"+date+" 00:00:00' AND f:salesShift.openDate <= '"+date+" 23:59:59')\""+DataType+"}," +
                 "\"property\":[\"memberAccount->customerMemberAccount\",\"sales->employee\",\"place\",\"transactionPaymentList\",\"documentStatus\",\"salesShift\"]," +
