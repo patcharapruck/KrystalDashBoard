@@ -312,6 +312,7 @@ public class AllRevenueFragment extends Fragment {
         @Override
         public String getFormattedValue(float value, AxisBase axis) {
             DateFormat dateFormat = new SimpleDateFormat("dd/MMM");
+//            DateFormat dateFormat2 = new SimpleDateFormat("MMM");
 
 
             Date date = new Date();
@@ -320,6 +321,7 @@ public class AllRevenueFragment extends Fragment {
             calendar.add(Calendar.DATE,-(7-(int)value));
 
             String formatDateTime = dateFormat.format(calendar.getTime());
+//            String formatDateTime2 = dateFormat2.format(calendar.getTime());
 
             return formatDateTime;
         }

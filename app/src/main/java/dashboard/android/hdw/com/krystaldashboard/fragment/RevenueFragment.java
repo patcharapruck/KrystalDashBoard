@@ -48,7 +48,9 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
     DecimalFormat formatter;
     private Boolean checkPay = false,checkNotPay=false , checkdashboard=false , checkall = false;
 
-    TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue;
+    TextView TextViewTotalRevanue,TextViewUpdateTimeRevanue,TextviewDateShow;
+    String DataShow;
+    String datecalendat, datecalendat2;
 
     FragmentTransaction f1,f2,f3;
 
@@ -79,10 +81,14 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
         reqAPI(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate());
         reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
         reqAPInotpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
+        TextviewDateShow = (TextView)rootView.findViewById(R.id.textview_date_show);
+        DataShow = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDateFull();
+        datecalendat = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDate();
         return rootView;
     }
 
     private void initInstances(View rootView) {
+
 
         formatter = new DecimalFormat("#,###,##0.00");
         Notdto = NotPayManager.getInstance().getNotpayItemColleationDao();
@@ -93,6 +99,7 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
 
         TextViewTotalRevanue = (TextView) rootView.findViewById(R.id.textview_total_revanue);
         TextViewUpdateTimeRevanue = (TextView) rootView.findViewById(R.id.textview_update_time_revanue);
+
 //        fragment1 = (Fragment) rootView.findViewById(R.id.fragment_revanue_f1);
         ButtonDate = (Button) rootView.findViewById(R.id.button_date);
         ButtonDate.setOnClickListener(this);
@@ -128,6 +135,7 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
 //        TextViewMoneyRevanue.setText(formatter.format(TableMoneyRevanue));
         TextViewTotalRevanue.setText(formatter.format(TotalRevanue));
         TextViewUpdateTimeRevanue.setText("อัพเดทรายรับล่าสุด "+formatDategeneral+" "+currentDateTimeString);
+        TextviewDateShow.setText("แสดงข้อมูลของวันที่  "+DataShow);
     }
 
     public void reqAPI(String date) {
@@ -271,13 +279,13 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
                 if (dayOfMonth < 10){
                     dd = "0"+dayOfMonth;
                 }
-                String datecalendat, datecalendat2;
                 String fulldate;
                 datecalendat = year+ "/" + mm + "/" +dd;
                 datecalendat2 = year+ "-" + mm + "-" +dd;
                 fulldate = dd+ "/" + mm + "/" +year;
 
 
+                DataShow = fulldate;
                 reqAPI(datecalendat);
                 reqAPIpay(datecalendat2);
                 reqAPInotpay(datecalendat2);
@@ -289,7 +297,7 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
         Date date = null;
         Date d = null;
         String oldDateString = "2019/01/06";
-        String NewDateString = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDate();
+        String NewDateString = datecalendat;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
         try {

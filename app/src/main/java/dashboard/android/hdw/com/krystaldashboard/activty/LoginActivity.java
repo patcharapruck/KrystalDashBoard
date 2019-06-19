@@ -28,8 +28,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     TextInputEditText username,password;
 
-
-
     CheckBox cbRemember;
 
     CardView btnlogin;

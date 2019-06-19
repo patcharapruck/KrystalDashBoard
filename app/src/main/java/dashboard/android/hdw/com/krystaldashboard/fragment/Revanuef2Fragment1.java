@@ -72,13 +72,13 @@ public class Revanuef2Fragment1 extends Fragment {
         }
 
         try {
-            CreditPayments = ODto.getCreditPayments();
+            CreditPayments = ODto.getCreditCardPayments();
         }catch (Exception e){
             CreditPayments = 0.00;
         }
 
         try {
-            Credit = ODto.getCreditCardPayments();
+            Credit = ODto.getCreditPayments();
         }catch (Exception e){
             Credit = 0.00;
         }

@@ -127,7 +127,7 @@ public class Revanuef1Fragment extends Fragment{
 //        TextViewMoneyRevanue.setText(formatter.format(TableMoneyRevanue));
         TextViewAmountTableRevanue.setText(AmountTableRevanue.toString());
         TextViewAmountAll.setText(dD.toString());
-        TextViewTableMoneyRevanue.setText(formatter.format(ODto.getIncome()));
+        TextViewTableMoneyRevanue.setText(formatter.format(sum+ODto.getCashPayments()));
         progressBar.setProgress(ss);
     }
 
