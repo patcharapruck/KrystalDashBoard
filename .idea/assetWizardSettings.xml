@@ -58,6 +58,14 @@
                                       </entry>
                                     </map>
                                   </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
+                                      <entry key="foregroundImage" value="D:\67974906-unopened-unlabeled-full-whiskey-bottle-sketch-style-vector-illustration-isolated-on-white-background.jpg" />
+                                      <entry key="foregroundLayerName" value="ic_launcher_foreground" />
+                                      <entry key="outputName" value="ic_bottle" />
+                                    </map>
+                                  </option>
                                 </PersistentState>
                               </value>
                             </entry>
@@ -103,9 +111,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="backgroundColor" value="010101" />
-                                      <entry key="imageAsset" value="C:\Users\jmaysina\Desktop\bars\bars.png" />
-                                      <entry key="outputName" value="icon_search" />
+                                      <entry key="imageAsset" value="D:\67974906-unopened-unlabeled-full-whiskey-bottle-sketch-style-vector-illustration-isolated-on-white-background.jpg" />
+                                      <entry key="outputName" value="icon_bottle" />
                                     </map>
                                   </option>
                                 </PersistentState>

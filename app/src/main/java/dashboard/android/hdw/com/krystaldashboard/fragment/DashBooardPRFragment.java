@@ -102,9 +102,9 @@ public class DashBooardPRFragment extends Fragment {
 
         config = new AnimatedPieViewConfig();
         config.startAngle(-90)// Starting angle offset
-                .addData(new SimplePieInfo(sizeisfalse, Color.parseColor("#FFC108"), "ว่าง"))
+                .addData(new SimplePieInfo(sizenull, Color.parseColor("#FFC108"), "ว่าง"))
                 .addData(new SimplePieInfo(sizeistrue, Color.parseColor("#06B085"), "รันดื่มอยู่"))//Data (bean that implements the IPieInfo interface)
-                .addData(new SimplePieInfo(sizenull, Color.parseColor("#EF483E"), "ไม่มีดื่ม")).textSize(30).animatePie(false);
+                .addData(new SimplePieInfo(sizeisfalse, Color.parseColor("#EF483E"), "ไม่มีดื่ม")).textSize(30).animatePie(false);
         mAnimatedPieView.applyConfig(config);
         mAnimatedPieView.start();
 
@@ -230,7 +230,7 @@ public class DashBooardPRFragment extends Fragment {
                         sizeisfalse = 0;
                     }
 
-                    PrEmpty.setText(String.valueOf(sizeisfalse));
+                    PrNotDrink.setText(String.valueOf(sizeisfalse));
 
                     reqAPIPREmty("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+",\"PrDrinkCenter-isDrink\":\"false\"},\"property\":[],\"pagination\":{}}");
 
@@ -266,7 +266,7 @@ public class DashBooardPRFragment extends Fragment {
                         sizenull = 0;
                     }
 
-                    PrNotDrink.setText(String.valueOf(sizenull));
+                    PrEmpty.setText(String.valueOf(sizenull));
 
                     reqAPIPROnfloor("{\"criteria\":{\"PrDrinkCenter-salesShiftId\":"+id+"},\"property\":[],\"pagination\": { } }");
 

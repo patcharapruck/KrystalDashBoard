@@ -32,7 +32,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:id="@+id/image_view"
-                android:src="@drawable/chair"
+                android:src="@mipmap/icon_bottle"
                 />
             <TextView
                 android:id="@+id/name_product"
@@ -40,7 +40,7 @@
                 android:layout_height="22dp"
                 android:textSize="15sp"
                 android:textColor="#4D4D4D"
-                android:text="Black Label"
+                android:text="Product"
                 android:gravity="center"
                 android:fontFamily="@font/prompt_medium"/>
 
@@ -56,7 +56,7 @@
                     android:layout_height="21dp"
                     android:textSize="14sp"
                     android:textColor="#4D4D4D"
-                    android:text="49"
+                    android:text="0"
                     android:gravity="right"
                     android:fontFamily="@font/prompt_medium"/>
 

@@ -59,7 +59,7 @@
                             android:layout_marginBottom="11dp"
                             android:fontFamily="@font/prompt_bold"
                             android:gravity="center"
-                            android:text="39"
+                            android:text="0"
                             android:textColor="#17C671"
                             android:textSize="39sp" />
                     </LinearLayout>
@@ -89,7 +89,7 @@
                             android:layout_marginBottom="11dp"
                             android:fontFamily="@font/prompt_bold"
                             android:gravity="center"
-                            android:text="156"
+                            android:text="0"
                             android:textColor="#17C671"
                             android:textSize="39sp" />
                     </LinearLayout>
@@ -126,7 +126,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/prompt_bold"
                             android:gravity="center"
-                            android:text="120"
+                            android:text="0"
                             android:textColor="#19237E"
                             android:textSize="20dp" />
 
@@ -168,7 +168,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/prompt_bold"
                             android:gravity="center"
-                            android:text="30"
+                            android:text="0"
                             android:textColor="#19237E"
                             android:textSize="20dp" />
 
@@ -211,7 +211,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/prompt_bold"
                             android:gravity="center"
-                            android:text="6"
+                            android:text="0"
                             android:textColor="#19237E"
                             android:textSize="20dp" />
 
