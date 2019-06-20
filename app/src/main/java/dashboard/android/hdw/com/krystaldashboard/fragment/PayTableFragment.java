@@ -23,6 +23,13 @@ public class PayTableFragment extends Fragment {
     private TabLayout tabLayout;
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    public static PayTableFragment newInstance() {
+        PayTableFragment fragment = new PayTableFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public PayTableFragment() {
         // Required empty public constructor
     }
@@ -62,9 +69,9 @@ public class PayTableFragment extends Fragment {
 
             switch (position) {
                 case 0:
-                    return new FragmentPay();
+                    return FragmentPay.newInstance();
                 default:
-                    return new FragmentNotPay();
+                    return FragmentNotPay.newInstance();
             }
         }
         @Override

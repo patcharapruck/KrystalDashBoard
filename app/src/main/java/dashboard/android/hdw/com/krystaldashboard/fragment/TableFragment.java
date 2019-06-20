@@ -128,7 +128,8 @@ public class TableFragment extends Fragment {
                 .savekeysearch(dataSearch);
 
         tableList = getChildFragmentManager().beginTransaction();
-        tableList.replace(R.id.frame_table_pay, new PayTableFragment());
+        tableList.replace(R.id.frame_table_pay, PayTableFragment.newInstance());
+        tableList.addToBackStack(null);
         tableList.commit();
     }
 

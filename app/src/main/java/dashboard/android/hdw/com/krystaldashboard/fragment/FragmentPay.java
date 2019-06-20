@@ -68,6 +68,7 @@ public class FragmentPay extends Fragment {
                 getContext().startActivity(intent);
             }
         });
+        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
     }
 
     @Override
@@ -87,7 +88,6 @@ public class FragmentPay extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        reqAPIpay(SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDatePay());
     }
 
     @Override
