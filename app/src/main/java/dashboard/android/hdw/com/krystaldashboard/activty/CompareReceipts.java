@@ -227,10 +227,8 @@ public class CompareReceipts extends AppCompatActivity implements View.OnClickLi
     }
 
     private void InitInstant() {
-        String date = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getKeyDateFull();
         toolbar = findViewById(R.id.tbCompare);
         toolbar.setTitle("เปรียบเทียบรายรับ");
-        toolbar.setSubtitle(date);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         toolbar.setSubtitleTextColor(Color.parseColor("#FFFFFF"));
