@@ -104,7 +104,7 @@ public class DashBooardPRFragment extends Fragment {
         config.startAngle(-90)// Starting angle offset
                 .addData(new SimplePieInfo(sizenull, Color.parseColor("#FFC108"), "ว่าง"))
                 .addData(new SimplePieInfo(sizeistrue, Color.parseColor("#06B085"), "รันดื่มอยู่"))//Data (bean that implements the IPieInfo interface)
-                .addData(new SimplePieInfo(sizeisfalse, Color.parseColor("#EF483E"), "ไม่มีดื่ม")).textSize(30).animatePie(false);
+                .addData(new SimplePieInfo(sizeisfalse, Color.parseColor("#EF483E"), "ไม่มีดื่ม")).textSize(30).animatePie(false).canTouch(false);
         mAnimatedPieView.applyConfig(config);
         mAnimatedPieView.start();
 
