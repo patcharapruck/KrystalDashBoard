@@ -62,6 +62,9 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
     Button ButtonDate;
     Double TotalRevanue;
 
+    int Day = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getDateofMonth();
+    int Month = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getMonth();
+    int Year = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getYear();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -262,10 +265,6 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
 
     private void setDateDialog() {
 
-        int day = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getDateofMonth();
-        int month = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getMonth();
-        int year = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getYear();
-
         final DatePickerDialog dialog = new DatePickerDialog(getContext(),new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -284,6 +283,10 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
                 datecalendat2 = year+ "-" + mm + "-" +dd;
                 fulldate = dd+ "/" + mm + "/" +year;
 
+                Day = dayOfMonth;
+                Month = month;
+                Year = year;
+
 
                 DataShow = fulldate;
                 reqAPI(datecalendat);
@@ -292,12 +295,12 @@ public class RevenueFragment extends Fragment implements View.OnClickListener {
 
 
             }
-        },year,month-1,day);
+        },Year,Month-1,Day);
 
         Date date = null;
         Date d = null;
         String oldDateString = "2019/01/06";
-        String NewDateString = datecalendat;
+        String NewDateString = SharedPrefDateManager.getInstance(Contextor.getInstance().getmContext()).getreqDate();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
         try {

@@ -6,7 +6,7 @@ android {
         applicationId "dashboard.android.hdw.com.krystaldashboard"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 11
+        versionCode 12
         versionName "1.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
