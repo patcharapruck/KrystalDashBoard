@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -128,7 +129,12 @@ public class Revanuef1Fragment extends Fragment{
         TextViewAmountTableRevanue.setText(AmountTableRevanue.toString());
         TextViewAmountAll.setText(dD.toString());
 
-        TextViewTableMoneyRevanue.setText(formatter.format(sum+ODto.getCreditPayments()+ODto.getUnpaid()));
+        Double sum2 = sum + ODto.getCreditPayments()+ODto.getUnpaid();
+
+        TextViewTableMoneyRevanue.setText(formatter.format(sum2));
+//        TextViewTableMoneyRevanue.setText(formatter.format(sum2)+" ผลต่าง "+(ODto.getIncome()-sum2));
+
+//        Toast.makeText(Contextor.getInstance().getmContext(),ODto.getIncome().toString(),Toast.LENGTH_LONG).show();
 
         progressBar.setProgress(ss);
     }
