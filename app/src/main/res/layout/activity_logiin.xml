@@ -40,18 +40,17 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="30dp"
                         android:text="เข้าสู่ระบบ"
-                        android:fontFamily="@font/prompt_bold"
-                        android:textColor="@color/colorMain"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/prompt_regular"
+                        android:textColor="@color/black"
+                        android:textSize="25dp"/>
 
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="60dp"
-                        android:background="@color/bg1"
+                        android:textColorHint="#494949"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp">
 
@@ -61,20 +60,21 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/prompt_regular"
                             android:hint="Username"
+                            android:text="@string/user"
                             android:drawableRight="@drawable/ic_action_user"
+                            android:focusable="false"
                             android:paddingRight="10dp"
                             android:singleLine="true"/>
-
 
                     </android.support.design.widget.TextInputLayout>
 
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
-                        android:background="@color/bg1"
+                        android:textColorHint="#494949"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         app:passwordToggleEnabled="true">
@@ -86,6 +86,8 @@
                             android:inputType="textPassword"
                             android:fontFamily="@font/prompt_regular"
                             android:hint="Password"
+                            android:text="@string/pass"
+                            android:focusable="false"
                             android:singleLine="true"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -97,6 +99,7 @@
                         android:layout_height="wrap_content"
                         android:text="Remember Password"
                         android:fontFamily="@font/prompt_regular"
+                        android:checked="true"
                         android:textSize="12dp"
                         android:textColor="#959595" />
 

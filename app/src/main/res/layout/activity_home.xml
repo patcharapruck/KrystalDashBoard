@@ -12,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/h_tool_bar"
-        android:background="#19237E"
+        android:background="@color/colorMain"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:menu="@menu/top_menu">
         <RelativeLayout

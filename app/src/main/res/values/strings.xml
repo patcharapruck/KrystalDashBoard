@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">Restaurant Dashboard</string>
+    <string name="app_name">Biz Dashboard</string>
 
-    <string name="textCreateByhdw">Create by HandyWings.co.,ltd</string>
+    <string name="textCreateByhdw">Created by Handywings Co.,Ltd</string>
+
+    <string name="user">krystalclub</string>
+    <string name="pass">kt1688</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

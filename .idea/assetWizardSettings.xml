@@ -29,11 +29,22 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_https_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                     </map>
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="outputName" value="ic_action_pass" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>
@@ -51,6 +62,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -60,10 +72,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="D:\67974906-unopened-unlabeled-full-whiskey-bottle-sketch-style-vector-illustration-isolated-on-white-background.jpg" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundLayerName" value="ic_launcher_background_app" />
+                                      <entry key="foregroundImage" value="D:\Pchrp\KrystalDashBoard\app\src\main\res\drawable\diagram.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="outputName" value="ic_bottle" />
+                                      <entry key="outputName" value="ic_app" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -102,6 +115,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="ffffff" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -113,8 +127,9 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="backgroundColor" value="010101" />
-                                      <entry key="imageAsset" value="D:\67974906-unopened-unlabeled-full-whiskey-bottle-sketch-style-vector-illustration-isolated-on-white-background.jpg" />
-                                      <entry key="outputName" value="icon_bottle" />
+                                      <entry key="iconShape" value="NONE" />
+                                      <entry key="imageAsset" value="D:\Pchrp\KrystalDashBoard\app\src\main\res\drawable\diagram.png" />
+                                      <entry key="outputName" value="icon_app2" />
                                     </map>
                                   </option>
                                 </PersistentState>
